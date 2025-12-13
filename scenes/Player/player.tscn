@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://hw08n22lt0e2"]
+
+[ext_resource type="Script" uid="uid://ct6vii1j5q78w" path="res://scripts/Player/player_movement.gd" id="1_cyojo"]
+[ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://scripts/Player/player_stats.gd" id="2_1kbk7"]
+[ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://scripts/Player/player_manager.gd" id="3_gqjuk"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
+radius = 48.1664
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4h5g"]
+radius = 48.1664
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uiqp4"]
+radius = 48.5077
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(95, 95)
+mesh = SubResource("SphereMesh_1kbk7")
+
+[node name="PlayerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+visible = false
+shape = SubResource("CircleShape2D_gqjuk")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_c4h5g")
+
+[node name="PlayerMovement" type="Node2D" parent="."]
+script = ExtResource("1_cyojo")
+
+[node name="PlayerStats" type="Node2D" parent="."]
+script = ExtResource("2_1kbk7")
+Speed = 500.0
+SlideAmount = 100.0
+
+[node name="PlayerManager" type="Node2D" parent="."]
+script = ExtResource("3_gqjuk")
+
+[node name="InteractArea" type="Area2D" parent="PlayerManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerManager/InteractArea"]
+shape = SubResource("CircleShape2D_uiqp4")

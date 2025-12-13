@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8hsu3b3gsqo3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dsome"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_so6nt"]
+radius = 75.326
+
+[node name="GameStarter" type="Node2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(150, 150)
+mesh = SubResource("SphereMesh_dsome")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_so6nt")

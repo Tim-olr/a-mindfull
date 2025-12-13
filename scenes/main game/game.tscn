@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjun8ius5qflf"]
+
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_6av20"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_h2mqu"]
+[ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://scripts/main game/game.gd" id="1_yg2su"]
+[ext_resource type="PackedScene" uid="uid://50cnp7hho4ow" path="res://scenes/main game/lobby.tscn" id="4_ig5is"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_yg2su")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h2mqu")
+
+[node name="Player" parent="." instance=ExtResource("1_6av20")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="lobby" parent="." instance=ExtResource("4_ig5is")]

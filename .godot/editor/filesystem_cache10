@@ -1,0 +1,21 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1765652481
+icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1765536258::1765536269::1::::<><><>0<>0<>dc8032d2a0736b3c4c83a2f043ba0cf1<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://assets/::1765536283
+::res://scenes/::1765536730
+::res://scenes/extraction/::1765539548
+extraction_point.tscn::PackedScene::3209941356272914288::1765539548::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg
+::res://scenes/main game/::1765539594
+game.tscn::PackedScene::5446677219255966895::1765539548::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dowoda6idxfva::::res://icon.svg<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://50cnp7hho4ow::::res://scenes/main game/lobby.tscn
+lobby.tscn::PackedScene::2157420239910742566::1765539594::0::1::::<><><>0<>0<><>::uid://d3dsnsr54xkj7::::res://scripts/main game/lobby/lobby.gd<>uid://bpgan8t04uu36::::res://scripts/main game/lobby/AnimatedButton.gd
+::res://scenes/Player/::1765539548
+player.tscn::PackedScene::538315797829068015::1765539548::0::1::::<><><>0<>0<><>::uid://ct6vii1j5q78w::::res://scripts/Player/player_movement.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd
+::res://scripts/::1765537274
+::res://scripts/main game/::1765539029
+game.gd::GDScript::3552846528166844466::1765537306::0::1::::<>Node2D<><>0<>0<><>::
+::res://scripts/main game/lobby/::1765539523
+AnimatedButton.gd::GDScript::3451664583905997303::1765539067::0::1::::<>Button<><>0<>0<><>::
+lobby.gd::GDScript::9131859900481659266::1765539523::0::1::::<>Control<><>0<>0<><>::
+::res://scripts/Player/::1765537055
+player_movement.gd::GDScript::6171714910885397240::1765537055::0::1::::<>Node2D<><>0<>0<><>::
+player_stats.gd::GDScript::6699601115607886984::1765537040::0::1::::<>Node2D<><>0<>0<><>::
