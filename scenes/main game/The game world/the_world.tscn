@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bheqsxiy5xkwj"]
+
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
+[ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+
+[sub_resource type="Gradient" id="Gradient_13bug"]
+offsets = PackedFloat32Array(0.993506, 0.993976, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
+gradient = SubResource("Gradient_13bug")
+
+[node name="TheWorld" type="Node2D"]
+script = ExtResource("1_87ryk")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You in the game now cuh"
+
+[node name="Player" parent="." instance=ExtResource("1_27o51")]
+position = Vector2(204, 78)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Black" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(963, 542)
+scale = Vector2(7.516, 1083)
+texture = SubResource("GradientTexture1D_87ryk")
+
+[node name="LoadTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]
