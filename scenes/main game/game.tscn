@@ -15,5 +15,3 @@ position = Vector2(-166, -126)
 texture = ExtResource("1_h2mqu")
 
 [node name="Player" parent="." instance=ExtResource("1_6av20")]
-
-[node name="Camera2D" type="Camera2D" parent="."]

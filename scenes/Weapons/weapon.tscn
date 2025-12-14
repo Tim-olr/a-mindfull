@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci80gkextgb66"]
+
+[ext_resource type="Script" uid="uid://yt26tbo0l8dw" path="res://spirit-game-project/scripts/Weapons/weapon.gd" id="1_d3qks"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_d3qks")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

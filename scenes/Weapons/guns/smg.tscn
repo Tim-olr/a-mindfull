@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwbppuqdsjqxj"]
+
+[ext_resource type="Script" uid="uid://dwgbqg2e5ykv4" path="res://spirit-game-project/scripts/Weapons/guns/smg.gd" id="1_7ut2w"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_eyfox"]
+
+[node name="SMG" type="Node2D"]
+script = ExtResource("1_7ut2w")
+damageMod = 2.0
+bulletLifeTimeMod = 0.7
+bulletAmountMod = 3
+projectileSpeedMod = 100.0
+bulletSizeMod = Vector2(-0.4, -0.4)
+shootCooldown = -0.85
+gun = true
+damage = 1.0
+description = "Fast firing gun"
+Name = "SMG"
+rarity = "green"
+bulletScene = ExtResource("2_eyfox")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

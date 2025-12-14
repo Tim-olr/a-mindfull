@@ -22,6 +22,7 @@ text = "You in the game now cuh"
 position = Vector2(204, 78)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Black" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(963, 542)
@@ -31,5 +32,7 @@ texture = SubResource("GradientTexture1D_87ryk")
 [node name="LoadTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="projectiles" type="Node2D" parent="."]
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

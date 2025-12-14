@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://kqprvh4qgnic"]
+
+[ext_resource type="Script" uid="uid://b2jv88fufhq1" path="res://spirit-game-project/scripts/Projectiles/projectile.gd" id="1_gmfsf"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_mvg1l"]
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_gmfsf")
+
+[node name="LifeTime" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mvg1l")
+
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]
