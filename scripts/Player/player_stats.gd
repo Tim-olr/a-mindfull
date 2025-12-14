@@ -5,6 +5,7 @@ extends Node2D
 @export var attackDamage: float
 @export var slideAmount: float
 @export var playerSpirit: Resource
+var playerSpiritScene: CharacterBody2D
 @export var bulletAmount: int
 @export var rotationAddition: float
 @export var projectileSpeed: float
