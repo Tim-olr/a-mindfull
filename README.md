@@ -6,5 +6,5 @@
   The roguelike elements of this game is the upgrades you can find in each run, they will help you loot items and extract them at the extraction point.
   When you are done looting, you can extract and go back to the hub world. All the loot you got will carry over with you to the hub world, where you can sell or craft with the loot! <br>
   This game is in early development, but I will try to add updates wenever I can! <br>
-  You can keep track pf what I am doing or what still has to be done by viewing the trello board: <a align="center" style="text-decoration:none;" href="https://trello.com/b/a87l82Mu">trello</a>
+  You can keep track pf what I am doing or what still has to be done by viewing the trello board: <a href="https://trello.com/b/a87l82Mu">A mindfull trello board</a> 😉
 </p>
