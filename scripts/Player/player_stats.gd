@@ -13,6 +13,9 @@ var playerSpiritScene: CharacterBody2D
 @export var bulletLifeTime: float
 @export var bulletSize: Vector2
 @export var attackSpeed: float
+@export var dashImmuneTime: float
+@export var dashCooldown: float
+@export var dashAmount: int
 var canAttack: bool
 
 func _ready() -> void:

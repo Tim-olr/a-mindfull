@@ -8,6 +8,10 @@ func _ready() -> void:
 	GlobalPlayer.visuals.deleteBlack()
 	GlobalWorld.projectiles = projectiles
 	GlobalPlayer.stats.canAttack = true
+	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
+	playerSpirit.host = GlobalPlayer.player
+	GlobalPlayer.stats.playerSpiritScene = playerSpirit
+	GlobalPlayer.player.add_child(playerSpirit)
 
 func _on_load_timer_timeout() -> void:
 	black.hide()
