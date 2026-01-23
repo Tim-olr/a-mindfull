@@ -59,3 +59,6 @@ func shoot():
 				start_rotation = bullet_stars_pos.rotation - ((spread_angle * (total_bullets - 1)) / 2.0)
 			if stats.bulletAmount > 1:
 				maxRot -= stats.rotationAddition + rotationAdditionMod
+
+func _on_attack_cooldown_timeout() -> void:
+	stats.canAttack = true
