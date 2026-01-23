@@ -7,16 +7,17 @@
 script = ExtResource("1_7ut2w")
 damageMod = 2.0
 bulletLifeTimeMod = 0.7
-bulletAmountMod = 3
+bulletAmountMod = 2
 projectileSpeedMod = 100.0
 bulletSizeMod = Vector2(-0.4, -0.4)
-shootCooldown = -0.85
+shootCooldown = -0.2
 gun = true
 damage = 1.0
 description = "Fast firing gun"
 Name = "SMG"
 rarity = "green"
 bulletScene = ExtResource("2_eyfox")
+doConsecShooting = true
 
 [node name="attack_cooldown" type="Timer" parent="."]
 one_shot = true

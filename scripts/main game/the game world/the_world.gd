@@ -12,6 +12,7 @@ func _ready() -> void:
 	playerSpirit.host = GlobalPlayer.player
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
+	GlobalPlayer.inventory.setPlayerInvToGlobal()
 
 func _on_load_timer_timeout() -> void:
 	black.hide()

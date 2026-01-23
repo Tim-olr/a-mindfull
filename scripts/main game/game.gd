@@ -6,3 +6,4 @@ func _ready() -> void:
 	playerSpirit.host = GlobalPlayer.player
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
+	GlobalPlayer.inventory.inventory = GlobalSafe.currentInventory

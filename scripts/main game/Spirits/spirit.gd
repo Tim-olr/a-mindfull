@@ -22,17 +22,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if !host:
 		return
-	
 	add_collision_exception_with(host)
-
 	if host.velocity.length_squared() > 200.0:
 		last_direction = host.velocity.normalized()
-	
 	var target_pos = host.global_position
-	
 	if out:
 		target_pos -= last_direction * follow_distance
-	
 	global_position = global_position.lerp(target_pos, smooth_speed * delta)
 	rotation = lerp_angle(rotation, last_direction.angle(), smooth_speed * delta)
 
@@ -47,3 +42,9 @@ func bring_in():
 		out = false
 		canGetAttacked = false
 		ap.play("BringIn")
+
+func attack():
+	pass
+
+func applyPassive():
+	pass

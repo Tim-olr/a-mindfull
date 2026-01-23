@@ -16,6 +16,7 @@ class_name Weapon
 @export var Name: String
 @export var rarity: String
 @export var bulletScene: PackedScene
+@export var doConsecShooting := false
 
 @onready var attack_cooldown: Timer = $attack_cooldown
 @onready var bullet_stars_pos = $BulletStarsPos
@@ -36,9 +37,13 @@ func _process(delta: float) -> void:
 func shoot():
 	if gun:
 		var maxRot = 0
-		if stats.bulletAmount + bulletAmountMod > 1:
-			maxRot = ((stats.bulletAmount + bulletAmountMod) * (stats.rotationAddition + rotationAdditionMod)) / 2.5
-		for i in stats.bulletAmount:
+		var total_bullets = stats.bulletAmount + bulletAmountMod
+		var spread_angle = stats.rotationAddition + rotationAdditionMod
+		var start_rotation = bullet_stars_pos.rotation
+		if total_bullets > 1:
+			maxRot = ((total_bullets) * (stats.rotationAddition + rotationAdditionMod)) / 2.5
+		for i in total_bullets:
+			GlobalPlayer.camera.apply_shake()
 			var bullet = bulletScene.instantiate()
 			bullet.rot = bullet_stars_pos.rotation + maxRot
 			bullet.rotation = bullet_stars_pos.rotation
@@ -49,9 +54,8 @@ func shoot():
 			bullet.set_scale(stats.bulletSize + bulletSizeMod)
 			bullet.global_position = bullet_stars_pos.global_position
 			GlobalWorld.projectiles.add_child(bullet)
+			if doConsecShooting:
+				await get_tree().create_timer(0.1).timeout 
+				start_rotation = bullet_stars_pos.rotation - ((spread_angle * (total_bullets - 1)) / 2.0)
 			if stats.bulletAmount > 1:
 				maxRot -= stats.rotationAddition + rotationAdditionMod
-
-
-func _on_attack_cooldown_timeout() -> void:
-	stats.canAttack = true

@@ -99,7 +99,7 @@ script = ExtResource("1_vdfrk")
 Name = "teest"
 attackDamage = 1.0
 attackType = "test"
-follow_distance = 150.0
+follow_distance = 200.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
