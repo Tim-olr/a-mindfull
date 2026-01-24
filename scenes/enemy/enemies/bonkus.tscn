@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cioco2pfro1aw"]
+
+[ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://spirit-game-project/scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_wqe0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpvw"]
+
+[node name="Bonkus" type="CharacterBody2D" node_paths=PackedStringArray("area", "base")]
+script = ExtResource("1_1yn7j")
+Name = "Bonkus"
+hp = 200.0
+speed = 75.0
+enemyDamage = 25.0
+texture = ExtResource("2_wqe0a")
+area = NodePath("Area2D")
+attackCooldown = 1.0
+attackSpeed = 1.0
+death_anim_time = 1.0
+base = NodePath("Sprite2D")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ihpvw")
+
+[node name="attack_speed" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="death_anim_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]
+
+[connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="death_anim_timer" to="." method="_on_death_anim_timer_timeout"]

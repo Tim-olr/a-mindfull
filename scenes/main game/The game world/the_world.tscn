@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bheqsxiy5xkwj"]
+[gd_scene load_steps=6 format=3 uid="uid://bheqsxiy5xkwj"]
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_xiahp"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -34,5 +35,8 @@ wait_time = 0.1
 one_shot = true
 
 [node name="projectiles" type="Node2D" parent="."]
+
+[node name="Bonkus" parent="." instance=ExtResource("3_xiahp")]
+position = Vector2(1239, 295)
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

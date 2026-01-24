@@ -100,8 +100,8 @@ shape = SubResource("CircleShape2D_c4h5g")
 [node name="PlayerStats" type="Node2D" parent="."]
 script = ExtResource("2_s4a0o")
 speed = 200.0
-hp = 10.0
-attackDamage = 10.0
+hp = 100.0
+attackDamage = 20.0
 slideAmount = 100.0
 playerSpirit = ExtResource("3_sfhj7")
 bulletAmount = 1

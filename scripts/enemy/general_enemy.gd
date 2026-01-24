@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name enemy
+class_name Enemy
 
 @export var Name: String
 @export var hp: float
@@ -11,10 +11,9 @@ class_name enemy
 @export var attackSpeed: float
 @export var death_anim_time: float
 @onready var timer: Timer = $Timer
-@export var base: AnimatedSprite2D
+@export var base: Sprite2D
 @onready var death_anim_timer: Timer = $death_anim_timer
 @onready var attack_speed: Timer = $attackSpeed
-var itemPool = GlobalPlayer.player.itemPool
 
 var canWalk := true
 
@@ -26,6 +25,9 @@ var canAttack := true
 
 var direction
 
+func _ready() -> void:
+	base.texture = texture
+
 func _process(_delta: float) -> void:
 	if hp <= 0 and !died:
 		area.set_deferred("monitorable", false)
@@ -36,11 +38,16 @@ func _process(_delta: float) -> void:
 		return
 
 func _physics_process(_delta: float) -> void:
-	if !attacking and canWalk:
-		velocity = Vector2(speed, speed)
+	if !attacking and canWalk and GlobalPlayer.player:
+		var target_position = GlobalPlayer.player.global_position
+		var direction_to_player = global_position.direction_to(target_position)
+		velocity = direction_to_player * speed
+		if velocity.x != 0:
+			base.flip_h = velocity.x < 0
 		move_and_slide()
 	else:
-		velocity = Vector2(0, 0)
+		velocity = Vector2.ZERO
+		move_and_slide()
 
 func damage(damageAmount):
 	var newDmg = damageAmount

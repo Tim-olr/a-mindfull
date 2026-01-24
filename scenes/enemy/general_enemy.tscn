@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://1pqu781ccyqc"]
+
+[ext_resource type="Script" uid="uid://dk7stsacyc270" path="res://spirit-game-project/scripts/enemy/general_enemy.gd" id="1_rthla"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_jf28e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqlc4"]
+size = Vector2(109, 113)
+
+[node name="GeneralEnemy" type="CharacterBody2D"]
+script = ExtResource("1_rthla")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_mqlc4")
+
+[node name="attack_speed" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="death_anim_timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jf28e")
+
+[connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="death_anim_timer" to="." method="_on_death_anim_timer_timeout"]
