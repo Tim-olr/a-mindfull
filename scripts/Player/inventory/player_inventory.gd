@@ -1,6 +1,8 @@
 extends Node2D
 
 var inventory := []
+var slotAmount: int
+var occupiedSlots: int
 
 func addToInventory(item, amount):
 	if inventory.has(item):
@@ -9,8 +11,10 @@ func addToInventory(item, amount):
 			invItem.stack += amount
 		else:
 			pass
-	else:
+	elif occupiedSlots < slotAmount:
 		inventory.append(item)
+	else:
+		pass # make it so it gives a red pop up or sum like that
 	setGlobalInv()
 
 func setPlayerInvToGlobal():
