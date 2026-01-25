@@ -8,28 +8,32 @@ class_name Spirit
 @export var out: bool = false
 @export var canGetAttacked: bool = true
 
-@export var follow_distance: float = 60.0
+@export var follow_distance: float = 150.0
 @export var smooth_speed: float = 8.0
 
 @onready var ap: AnimationPlayer = $AnimationPlayer
 
 var host: CharacterBody2D
-var last_direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:
 	top_level = true 
+	host = get_parent()
+	print(host)
 
 func _physics_process(delta: float) -> void:
 	if !host:
 		return
 	add_collision_exception_with(host)
-	if host.velocity.length_squared() > 200.0:
-		last_direction = host.velocity.normalized()
+	var movement_script = host.player_movement
+	if !movement_script:
+		return
+	var move_dir = movement_script.last_movement_direction
+	
 	var target_pos = host.global_position
 	if out:
-		target_pos -= last_direction * follow_distance
+		target_pos -= move_dir * follow_distance
 	global_position = global_position.lerp(target_pos, smooth_speed * delta)
-	rotation = lerp_angle(rotation, last_direction.angle(), smooth_speed * delta)
+	rotation = lerp_angle(rotation, move_dir.angle(), smooth_speed * delta)
 
 func bring_out():
 	if !out:

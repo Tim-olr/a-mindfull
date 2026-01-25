@@ -9,6 +9,7 @@ var rot
 @export var projectileSpeed: float
 @export var pierce: int
 @onready var collision_area: Area2D = $CollisionArea
+var shooter_group: String = ""
 
 var targets_hit: Array[Node] = []
 
@@ -20,8 +21,11 @@ func _ready() -> void:
 	collision_area.area_exited.connect(_on_obstacle_exited)
 
 func _on_obstacle_entered(body: Node):
-	if body.is_in_group("enemy") and not targets_hit.has(body):
-		hit(body)
+	if body.is_in_group(shooter_group):
+		return
+	if body.is_in_group("enemy") or body.is_in_group("player"):
+		if not targets_hit.has(body):
+			hit(body)
 	elif body.is_in_group("wall"):
 		go_away()
 
@@ -34,8 +38,19 @@ func go_away():
 
 func do_damage(hitBody):
 	if hitBody.is_in_group("enemy"):
-		if hitBody.get_parent().has_method("damage"):
+		if hitBody.has_method("damage"):
+			hitBody.damage(damage)
+		elif hitBody.get_parent().has_method("damage"):
 			hitBody.get_parent().damage(damage)
+		targets_hit.append(hitBody)
+		pierce -= 1
+		if pierce <= 0:
+			go_away()
+	elif hitBody.is_in_group("player"):
+		if hitBody.manager.has_method("damage"):
+			hitBody.manager.damage(damage)
+		elif hitBody.get_parent().manager.has_method("damage"):
+			hitBody.get_parent().manager.damage(damage)
 		targets_hit.append(hitBody)
 		pierce -= 1
 		if pierce <= 0:

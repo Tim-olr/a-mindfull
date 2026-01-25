@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://1pqu781ccyqc"]
+[gd_scene load_steps=6 format=3 uid="uid://1pqu781ccyqc"]
 
 [ext_resource type="Script" uid="uid://dk7stsacyc270" path="res://spirit-game-project/scripts/enemy/general_enemy.gd" id="1_rthla"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_jf28e"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_x2xsk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqlc4"]
-size = Vector2(109, 113)
+size = Vector2(136, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2xsk"]
+size = Vector2(211, 195)
 
 [node name="GeneralEnemy" type="CharacterBody2D"]
 script = ExtResource("1_rthla")
@@ -12,7 +16,7 @@ script = ExtResource("1_rthla")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mqlc4")
 
 [node name="attack_speed" type="Timer" parent="."]
@@ -29,6 +33,24 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_jf28e")
+
+[node name="EnemyStats" type="Node2D" parent="."]
+script = ExtResource("3_x2xsk")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 200.0
+max_speed = 100000.0
+
+[node name="playerMeleeDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_x2xsk")
+
+[node name="enemycollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_mqlc4")
 
 [connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

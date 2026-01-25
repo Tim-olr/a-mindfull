@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwbppuqdsjqxj"]
+
+[ext_resource type="Script" uid="uid://dwgbqg2e5ykv4" path="res://spirit-game-project/scripts/Weapons/guns/burst_rifle.gd" id="1_3dcqj"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_ynmbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyfox"]
+size = Vector2(86, 20)
+
+[node name="Burst Rifle" type="Node2D"]
+script = ExtResource("1_3dcqj")
+damageMod = 2.0
+bulletLifeTimeMod = 0.7
+bulletAmountMod = 2
+projectileSpeedMod = 1100.0
+bulletSizeMod = Vector2(-0.4, -0.4)
+shootCooldown = -0.2
+gun = true
+damage = 1.0
+description = "Shoot in a 3 bullet sequence"
+Name = "Burst Rifle"
+rarity = "Common"
+bulletScene = ExtResource("2_ynmbx")
+doConsecShooting = true
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_eyfox")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

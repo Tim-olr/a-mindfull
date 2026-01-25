@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bheqsxiy5xkwj"]
+[gd_scene load_steps=10 format=3 uid="uid://bheqsxiy5xkwj"]
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
-[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_xiahp"]
+[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="3_xiahp"]
+[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="4_5i8ky"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -10,6 +11,16 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
 gradient = SubResource("Gradient_13bug")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xiahp"]
+vertices = PackedVector2Array(399, 1103, 399, -452, 20214.3, -4572.91, 20942.7, 21210, -15335.9, -4282.08, 270, -452, -14972.1, 21283, 270, 1103)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(3, 6, 7, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20224, -4583, 20953, 21220, -14982, 21293, -15346, -4292)])
+
+[sub_resource type="BoxMesh" id="BoxMesh_5i8ky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsixv"]
+size = Vector2(0.995434, 1)
 
 [node name="TheWorld" type="Node2D"]
 script = ExtResource("1_87ryk")
@@ -36,7 +47,25 @@ one_shot = true
 
 [node name="projectiles" type="Node2D" parent="."]
 
-[node name="Bonkus" parent="." instance=ExtResource("3_xiahp")]
-position = Vector2(1239, 295)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xiahp")
+
+[node name="testWall" type="StaticBody2D" parent="NavigationRegion2D"]
+
+[node name="testWall" type="MeshInstance2D" parent="NavigationRegion2D/testWall"]
+position = Vector2(335, 325)
+scale = Vector2(109.5, 1535)
+mesh = SubResource("BoxMesh_5i8ky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/testWall"]
+position = Vector2(334.5, 325.5)
+scale = Vector2(109.5, 1535)
+shape = SubResource("RectangleShape2D_fsixv")
+
+[node name="Ardy" parent="." instance=ExtResource("3_xiahp")]
+position = Vector2(839, 120)
+
+[node name="Bonkus" parent="." instance=ExtResource("4_5i8ky")]
+position = Vector2(543, 416)
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

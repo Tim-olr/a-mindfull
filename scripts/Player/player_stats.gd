@@ -20,3 +20,4 @@ var canAttack: bool
 
 func _ready() -> void:
 	GlobalPlayer.stats = self
+	

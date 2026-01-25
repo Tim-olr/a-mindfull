@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player_movement = $PlayerMovement
 @onready var stats = $PlayerStats
-@onready var player_manager = $PlayerManager
+@onready var manager = $PlayerManager
 @onready var player_inventory: Node2D = $PlayerInventory
 @onready var camera_2d: Camera2D = $Camera2D
 

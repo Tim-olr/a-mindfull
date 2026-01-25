@@ -1,26 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://cioco2pfro1aw"]
+[gd_scene load_steps=8 format=3 uid="uid://cioco2pfro1aw"]
 
 [ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://spirit-game-project/scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_wqe0a"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_ihpvw"]
+[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="3_tk08l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpvw"]
+size = Vector2(132, 131)
 
-[node name="Bonkus" type="CharacterBody2D" node_paths=PackedStringArray("area", "base")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk08l"]
+size = Vector2(211, 195)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4h5t"]
+size = Vector2(136, 136)
+
+[node name="Bonkus" type="CharacterBody2D" node_paths=PackedStringArray("area", "base") groups=["enemy"]]
 script = ExtResource("1_1yn7j")
 Name = "Bonkus"
-hp = 200.0
-speed = 75.0
-enemyDamage = 25.0
 texture = ExtResource("2_wqe0a")
 area = NodePath("Area2D")
-attackCooldown = 1.0
-attackSpeed = 1.0
-death_anim_time = 1.0
 base = NodePath("Sprite2D")
+weapon = ExtResource("3_tk08l")
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ihpvw")
 
 [node name="attack_speed" type="Timer" parent="."]
@@ -32,8 +37,39 @@ one_shot = true
 [node name="death_anim_timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." groups=["enemy"]]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wqe0a")
+
+[node name="EnemyStats" type="Node2D" parent="."]
+script = ExtResource("3_ihpvw")
+hp = 200.0
+speed = 100.0
+attackDamage = 25.0
+attackCooldown = 1.0
+attackSpeed = 3.0
+death_anim_time = 1.0
+bulletAmount = 1
+bulletLifeTime = 1.0
+bulletSize = Vector2(1, 1)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 30.0
+target_desired_distance = 120.0
+avoidance_enabled = true
+radius = 200.0
+max_speed = 100000.0
+
+[node name="playerMeleeDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_tk08l")
+
+[node name="enemycollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_v4h5t")
 
 [connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="death_anim_timer" to="." method="_on_death_anim_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

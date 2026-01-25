@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://spirit-game-project/scripts/Player/player_stats.gd" id="2_s4a0o"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Resource" uid="uid://bnxpbwyfw0rxo" path="res://spirit-game-project/resources/spirits/TestSpirit.tres" id="3_sfhj7"]
-[ext_resource type="PackedScene" uid="uid://cwbppuqdsjqxj" path="res://spirit-game-project/scenes/Weapons/guns/smg.tscn" id="4_cib4j"]
+[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="5_06t3u"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
@@ -80,7 +80,7 @@ _data = {
 &"transition_unload": SubResource("Animation_sfhj7")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_s4a0o")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
@@ -105,7 +105,6 @@ attackDamage = 20.0
 slideAmount = 100.0
 playerSpirit = ExtResource("3_sfhj7")
 bulletAmount = 1
-projectileSpeed = 1000.0
 bulletLifeTime = 1.0
 bulletSize = Vector2(1, 1)
 attackSpeed = 1.0
@@ -113,9 +112,9 @@ dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 4000
 
-[node name="PlayerManager" type="Node2D" parent="."]
+[node name="PlayerManager" type="Node2D" parent="." groups=["player"]]
 script = ExtResource("3_ly2qd")
-weapon = ExtResource("4_cib4j")
+weapon = ExtResource("5_06t3u")
 
 [node name="InteractArea" type="Area2D" parent="PlayerManager"]
 
@@ -135,7 +134,6 @@ one_shot = true
 script = ExtResource("7_3ragq")
 
 [node name="PlayerVisuals" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_ly2qd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

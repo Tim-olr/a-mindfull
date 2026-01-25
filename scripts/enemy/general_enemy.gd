@@ -2,34 +2,35 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var Name: String
-@export var hp: float
-@export var speed: float
-@export var enemyDamage: float
 @export var texture: Texture2D
 @export var area: Area2D
-@export var attackCooldown: float
-@export var attackSpeed: float
-@export var death_anim_time: float
 @onready var timer: Timer = $Timer
 @export var base: Sprite2D
+@export var weapon: PackedScene
 @onready var death_anim_timer: Timer = $death_anim_timer
-@onready var attack_speed: Timer = $attackSpeed
+@onready var stats: Node2D = $EnemyStats
+@onready var attack_speed: Timer = $attack_speed
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
 var canWalk := true
+
+var isMelee: bool = false
 
 var died := false
 
 var attacking := false
 
-var canAttack := true
-
 var direction
 
 func _ready() -> void:
 	base.texture = texture
+	await get_tree().physics_frame
+	if weapon != null:
+		var wep = weapon.instantiate()
+		add_child(wep)
 
 func _process(_delta: float) -> void:
-	if hp <= 0 and !died:
+	if stats.hp <= 0 and !died:
 		area.set_deferred("monitorable", false)
 		area.set_deferred("monitoring", false)
 		die()
@@ -39,19 +40,19 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if !attacking and canWalk and GlobalPlayer.player:
-		var target_position = GlobalPlayer.player.global_position
-		var direction_to_player = global_position.direction_to(target_position)
-		velocity = direction_to_player * speed
-		if velocity.x != 0:
-			base.flip_h = velocity.x < 0
-		move_and_slide()
-	else:
-		velocity = Vector2.ZERO
-		move_and_slide()
+		nav_agent.target_position = GlobalPlayer.player.global_position
+		if not nav_agent.is_navigation_finished():
+			var next_path_pos = nav_agent.get_next_path_position()
+			var new_velocity = global_position.direction_to(next_path_pos) * stats.speed
+			nav_agent.set_velocity(new_velocity) 
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	velocity = safe_velocity
+	move_and_slide()
 
 func damage(damageAmount):
 	var newDmg = damageAmount
-	hp -= newDmg
+	stats.hp -= newDmg
 	damaged()
 
 func die():
@@ -63,15 +64,10 @@ func attack(_b):
 	pass
 
 func attackCooldownActivator():
-	timer.start(attackCooldown)
-	canAttack = false
+	timer.start(stats.attackCooldown)
 
 func _on_timer_timeout() -> void:
 	attacking = false
-	canAttack = true
-
-func evaDieCheckEn():
-	return GlobalPlayer.manager.evaDieCheck(15)
 
 func _on_attack_speed_timeout() -> void:
 	attacking = false
