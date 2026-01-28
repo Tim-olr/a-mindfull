@@ -1,21 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci80gkextgb66"]
+[gd_scene format=3 uid="uid://ci80gkextgb66"]
 
 [ext_resource type="Script" uid="uid://yt26tbo0l8dw" path="res://spirit-game-project/scripts/Weapons/weapon.gd" id="1_d3qks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3qks"]
 size = Vector2(86, 20)
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="Node2D" unique_id=1503854450]
 script = ExtResource("1_d3qks")
 
-[node name="attack_cooldown" type="Timer" parent="."]
+[node name="attack_cooldown" type="Timer" parent="." unique_id=2034860734]
 one_shot = true
 
-[node name="BulletStarsPos" type="Marker2D" parent="."]
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=2081558377]
 
-[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1818512620]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1504284346]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_d3qks")
 

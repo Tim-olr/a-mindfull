@@ -18,6 +18,7 @@ class_name Weapon
 @export var rarity: String
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
+@export var cameraShakeAmount: float
 
 @export_group("Melee Settings")
 @export var is_swing: bool = false
@@ -142,7 +143,7 @@ func shoot():
 		var bullet = bulletScene.instantiate()
 		bullet.shooter_group = "player" if shooter.is_in_group("player") else "enemy"
 		if shooter.is_in_group("player"):
-			GlobalPlayer.camera.apply_shake()
+			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		bullet.rot = bullet_stars_pos.rotation + maxRot
 		bullet.rotation = bullet_stars_pos.rotation
 		bullet.projectileSpeed = shooter.stats.projectileSpeed + projectileSpeedMod

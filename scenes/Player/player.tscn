@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://spirit-game-project/scripts/Player/player_stats.gd" id="2_s4a0o"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Resource" uid="uid://bnxpbwyfw0rxo" path="res://spirit-game-project/resources/spirits/TestSpirit.tres" id="3_sfhj7"]
-[ext_resource type="PackedScene" uid="uid://c7ugbef8o7i7e" path="res://spirit-game-project/scenes/Weapons/guns/smg.tscn" id="5_06t3u"]
+[ext_resource type="PackedScene" uid="uid://cj8c0mg5ktkcj" path="res://spirit-game-project/scenes/Weapons/guns/sniper.tscn" id="5_06t3u"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
@@ -150,7 +150,6 @@ libraries/ = SubResource("AnimationLibrary_3ragq")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1047571954]
 zoom = Vector2(0.7, 0.7)
 script = ExtResource("9_06t3u")
-randomStrength = 5.0
 shakeFade = 7.0
 
 [connection signal="timeout" from="PlayerMovement/DashCooldown" to="PlayerMovement" method="_on_dash_cooldown_timeout"]
