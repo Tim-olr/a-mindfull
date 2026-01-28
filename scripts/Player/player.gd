@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name  Player
 
 @onready var player_movement = $PlayerMovement
 @onready var stats = $PlayerStats

@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://hw08n22lt0e2"]
+[gd_scene format=3 uid="uid://hw08n22lt0e2"]
 
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://spirit-game-project/scripts/Player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://spirit-game-project/scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://spirit-game-project/scripts/Player/player_stats.gd" id="2_s4a0o"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Resource" uid="uid://bnxpbwyfw0rxo" path="res://spirit-game-project/resources/spirits/TestSpirit.tres" id="3_sfhj7"]
-[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="5_06t3u"]
+[ext_resource type="PackedScene" uid="uid://c7ugbef8o7i7e" path="res://spirit-game-project/scenes/Weapons/guns/smg.tscn" id="5_06t3u"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
@@ -80,24 +80,24 @@ _data = {
 &"transition_unload": SubResource("Animation_sfhj7")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=856193928 groups=["player"]]
 script = ExtResource("1_s4a0o")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]
 scale = Vector2(95, 95)
 mesh = SubResource("SphereMesh_1kbk7")
 
-[node name="PlayerArea" type="Area2D" parent="."]
+[node name="PlayerArea" type="Area2D" parent="." unique_id=54834554]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=405685383]
 visible = false
 shape = SubResource("CircleShape2D_gqjuk")
 
-[node name="PlayerCollision" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1518453830]
 visible = false
 shape = SubResource("CircleShape2D_c4h5g")
 
-[node name="PlayerStats" type="Node2D" parent="."]
+[node name="PlayerStats" type="Node2D" parent="." unique_id=1111926634]
 script = ExtResource("2_s4a0o")
 speed = 200.0
 hp = 100.0
@@ -112,44 +112,42 @@ dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 4000
 
-[node name="PlayerManager" type="Node2D" parent="." groups=["player"]]
+[node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
 script = ExtResource("3_ly2qd")
 weapon = ExtResource("5_06t3u")
 
-[node name="InteractArea" type="Area2D" parent="PlayerManager"]
+[node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerManager/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerManager/InteractArea" unique_id=1722034112]
 shape = SubResource("CircleShape2D_uiqp4")
 
-[node name="PlayerMovement" type="Node2D" parent="."]
+[node name="PlayerMovement" type="Node2D" parent="." unique_id=563886157]
 script = ExtResource("1_pyt2a")
 
-[node name="DashCooldown" type="Timer" parent="PlayerMovement"]
+[node name="DashCooldown" type="Timer" parent="PlayerMovement" unique_id=1870434932]
 one_shot = true
 
-[node name="ImmunityTime" type="Timer" parent="PlayerMovement"]
+[node name="ImmunityTime" type="Timer" parent="PlayerMovement" unique_id=308731058]
 one_shot = true
 
-[node name="PlayerInventory" type="Node2D" parent="."]
+[node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
 script = ExtResource("7_3ragq")
 
-[node name="PlayerVisuals" type="Node2D" parent="."]
+[node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1016626830]
 
-[node name="Black" type="Sprite2D" parent="CanvasLayer"]
+[node name="Black" type="Sprite2D" parent="CanvasLayer" unique_id=1788720447]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(963, 542)
 scale = Vector2(7.516, 1083)
 texture = SubResource("GradientTexture1D_cib4j")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3ragq")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1058413631]
+libraries/ = SubResource("AnimationLibrary_3ragq")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1047571954]
 zoom = Vector2(0.7, 0.7)
 script = ExtResource("9_06t3u")
 randomStrength = 5.0

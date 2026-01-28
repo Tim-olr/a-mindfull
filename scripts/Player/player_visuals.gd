@@ -1,4 +1,6 @@
 extends Node2D
+class_name PlayerVisuals
+
 @onready var ap: AnimationPlayer = $"../AnimationPlayer"
 
 func _ready() -> void:

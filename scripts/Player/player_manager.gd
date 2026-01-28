@@ -37,4 +37,4 @@ func damaged():
 	tween.tween_property(mesh_instance_2d, "modulate", Color.WHITE, 0.1)
 
 func die():
-	pass
+	get_tree().change_scene_to_file("res://spirit-game-project/scenes/main game/game.tscn")
