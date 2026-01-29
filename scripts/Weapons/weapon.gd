@@ -44,7 +44,7 @@ func _ready():
 	if shooter.is_in_group("enemy") and melee:
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if shooter.is_in_group("player"):
 		global_position = shooter.global_position
 		bullet_stars_pos.look_at(get_global_mouse_position())
