@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c6pwfat6wbqi7"]
+
+[ext_resource type="Script" uid="uid://cwnmwn3j0i1hx" path="res://spirit-game-project/scripts/Weapons/guns/pistol.gd" id="1_3roqf"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_1thyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1thyv"]
+size = Vector2(86, 20)
+
+[node name="Pistol" type="Node2D" unique_id=1714587889]
+script = ExtResource("1_3roqf")
+bulletLifeTimeMod = 0.6
+projectileSpeedMod = 1000.0
+bulletSizeMod = Vector2(-0.7, -0.7)
+shootCooldown = -0.2
+gun = true
+damage = 15.0
+description = "medium damage and medium shooting"
+Name = "Pistol"
+rarity = "common"
+bulletScene = ExtResource("2_1thyv")
+doConsecShooting = true
+cameraShakeAmount = 10.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1366904101]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=884647451]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=484257002]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1348209950]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_1thyv")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

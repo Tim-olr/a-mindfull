@@ -135,17 +135,19 @@ func do_damage(hitBody):
 		targets_hit.append(hitBody)
 
 func shoot():
-	var maxRot = 0
 	var total_bullets = shooter.stats.bulletAmount + bulletAmountMod
-	if total_bullets > 1:
-		maxRot = ((total_bullets) * (shooter.stats.rotationAddition + rotationAdditionMod)) / 2.5
+	var spread_angle = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+	var start_rotation = bullet_stars_pos.rotation
+	if total_bullets > 1 and !doConsecShooting:
+		start_rotation -= (spread_angle * (total_bullets - 1)) / 2.0
 	for i in total_bullets:
 		var bullet = bulletScene.instantiate()
 		bullet.shooter_group = "player" if shooter.is_in_group("player") else "enemy"
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
-		bullet.rot = bullet_stars_pos.rotation + maxRot
-		bullet.rotation = bullet_stars_pos.rotation
+		var current_rot = start_rotation + (i * spread_angle)
+		bullet.rot = current_rot
+		bullet.rotation = current_rot
 		bullet.projectileSpeed = shooter.stats.projectileSpeed + projectileSpeedMod
 		bullet.pierce = shooter.stats.pierce + pierceMod
 		bullet.damage = shooter.stats.attackDamage + damageMod
@@ -156,7 +158,7 @@ func shoot():
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout 
 		if shooter.stats.bulletAmount > 1:
-			maxRot -= shooter.stats.rotationAddition + rotationAdditionMod
+			start_rotation -= shooter.stats.rotationAddition + rotationAdditionMod
 
 func _on_attack_cooldown_timeout() -> void:
 	shooter.stats.canAttack = true
