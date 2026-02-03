@@ -17,6 +17,7 @@ damage = 2.0
 description = "stabbie stab!"
 Name = "Knife"
 rarity = "common"
+cameraShakeAmount = 15.0
 is_stab = true
 stab_distance = 150.0
 

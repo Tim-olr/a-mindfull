@@ -10,6 +10,9 @@ var rot
 @export var pierce: int
 @onready var collision_area: Area2D = $CollisionArea
 var shooter_group: String = ""
+var knockback_force: float = 0.0  # NEW: Knockback force
+
+var shake
 
 var targets_hit: Array[Node] = []
 
@@ -48,9 +51,9 @@ func do_damage(hitBody):
 			go_away()
 	elif hitBody.is_in_group("player"):
 		if hitBody.manager.has_method("damage"):
-			hitBody.manager.damage(damage)
+			hitBody.manager.damage(damage, get_parent().get_parent(), shake)
 		elif hitBody.get_parent().manager.has_method("damage"):
-			hitBody.get_parent().manager.damage(damage)
+			hitBody.get_parent().manager.damage(damage, get_parent().get_parent(), shake)
 		targets_hit.append(hitBody)
 		pierce -= 1
 		if pierce <= 0:
@@ -67,6 +70,22 @@ func hit(hitBody):
 	if contacts.size() > 0:
 		spawn_pos = contacts[0]
 	do_damage(hitBody)
+	apply_knockback_to_target(hitBody)
+
+func apply_knockback_to_target(hitBody):
+	if knockback_force <= 0:
+		return
+	var knockback_direction = Vector2(1, 0).rotated(rot)
+	if hitBody.is_in_group("enemy"):
+		if hitBody.has_method("apply_knockback"):
+			hitBody.apply_knockback(knockback_direction, knockback_force)
+		elif hitBody.get_parent().has_method("apply_knockback"):
+			hitBody.get_parent().apply_knockback(knockback_direction, knockback_force)
+	elif hitBody.is_in_group("player"):
+		if hitBody.manager.has_method("apply_knockback"):
+			hitBody.manager.apply_knockback(knockback_direction, knockback_force)
+		elif hitBody.get_parent().manager.has_method("apply_knockback"):
+			hitBody.get_parent().manager.apply_knockback(knockback_direction, knockback_force)
 
 func _on_life_time_timeout() -> void:
 	queue_free()

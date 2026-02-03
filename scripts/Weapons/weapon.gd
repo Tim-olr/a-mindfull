@@ -19,6 +19,7 @@ class_name Weapon
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
 @export var cameraShakeAmount: float
+@export var knockback_force: float = 1000.0
 
 @export_group("Melee Settings")
 @export var is_swing: bool = false
@@ -53,7 +54,6 @@ func _process(_delta: float) -> void:
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
 			bullet_stars_pos.look_at(GlobalPlayer.player.global_position)
-			
 			if gun:
 				var dist = global_position.distance_to(GlobalPlayer.player.global_position)
 				if shooter.stats.canAttack and dist < 1000:
@@ -118,6 +118,7 @@ func _on_melee_hitbox_entered(body: Node):
 
 func hit(hitBody):
 	do_damage(hitBody)
+	apply_knockback_to_target(hitBody)
 
 func do_damage(hitBody):
 	var total_damage = shooter.stats.attackDamage + damage
@@ -129,10 +130,25 @@ func do_damage(hitBody):
 		targets_hit.append(hitBody)
 	elif hitBody.is_in_group("player"):
 		if hitBody.manager.has_method("damage"):
-			hitBody.manager.damage(total_damage)
+			hitBody.manager.damage(total_damage, get_parent(), cameraShakeAmount)
 		elif hitBody.get_parent().manager.has_method("damage"):
-			hitBody.get_parent().manager.damage(total_damage)
+			hitBody.get_parent().manager.damage(total_damage, get_parent(), cameraShakeAmount)
 		targets_hit.append(hitBody)
+
+func apply_knockback_to_target(hitBody):
+	if knockback_force <= 0:
+		return
+	var knockback_direction = (hitBody.global_position - shooter.global_position).normalized()
+	if hitBody.is_in_group("enemy"):
+		if hitBody.has_method("apply_knockback"):
+			hitBody.apply_knockback(knockback_direction, knockback_force)
+		elif hitBody.get_parent().has_method("apply_knockback"):
+			hitBody.get_parent().apply_knockback(knockback_direction, knockback_force)
+	elif hitBody.is_in_group("player"):
+		if hitBody.manager.has_method("apply_knockback"):
+			hitBody.manager.apply_knockback(knockback_direction, knockback_force)
+		elif hitBody.get_parent().manager.has_method("apply_knockback"):
+			hitBody.get_parent().manager.apply_knockback(knockback_direction, knockback_force)
 
 func shoot():
 	var total_bullets = shooter.stats.bulletAmount + bulletAmountMod
@@ -143,6 +159,7 @@ func shoot():
 	for i in total_bullets:
 		var bullet = bulletScene.instantiate()
 		bullet.shooter_group = "player" if shooter.is_in_group("player") else "enemy"
+		bullet.knockback_force = knockback_force
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot = start_rotation + (i * spread_angle)
@@ -154,6 +171,7 @@ func shoot():
 		bullet.lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
 		bullet.set_scale(shooter.stats.bulletSize + bulletSizeMod)
 		bullet.global_position = bullet_stars_pos.global_position
+		bullet.shake = cameraShakeAmount
 		GlobalWorld.projectiles.add_child(bullet)
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout 

@@ -17,6 +17,7 @@ var playerSpiritScene: CharacterBody2D
 @export var dashImmuneTime: float
 @export var dashCooldown: float
 @export var dashAmount: int
+@export var knockback_resistance: float = 0.0  # 0 = no resistance, 1 = full resistance
 var canAttack: bool
 
 func _ready() -> void:

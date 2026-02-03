@@ -12,6 +12,11 @@ class_name Enemy
 @onready var attack_speed: Timer = $attack_speed
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
+@export var knockback_resistance: float = 0.0 
+
+var knockbackVelocity = Vector2.ZERO 
+var knockback_decay: float = 8.0 
+
 var canWalk := true
 
 var isMelee: bool = false
@@ -38,13 +43,21 @@ func _process(_delta: float) -> void:
 	if direction == Vector2(0, 0):
 		return
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	if knockbackVelocity.length() > 0:
+		knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, knockback_decay * delta)
+		if knockbackVelocity.length() < 1.0:
+			knockbackVelocity = Vector2.ZERO
+	
 	if !attacking and canWalk and GlobalPlayer.player:
 		nav_agent.target_position = GlobalPlayer.player.global_position
 		if not nav_agent.is_navigation_finished():
 			var next_path_pos = nav_agent.get_next_path_position()
 			var new_velocity = global_position.direction_to(next_path_pos) * stats.speed
-			nav_agent.set_velocity(new_velocity) 
+			nav_agent.set_velocity(new_velocity + knockbackVelocity)
+	elif knockbackVelocity.length() > 0:
+		velocity = knockbackVelocity
+		move_and_slide()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
@@ -79,3 +92,7 @@ func damaged():
 	var tween = create_tween()
 	tween.tween_property(base, "modulate", Color.RED, 0.1)
 	tween.tween_property(base, "modulate", Color.WHITE, 0.1)
+
+func apply_knockback(direction: Vector2, force: float):
+	var effective_force = force * (1.0 - clamp(knockback_resistance, 0.0, 1.0))
+	knockbackVelocity = direction.normalized() * effective_force
