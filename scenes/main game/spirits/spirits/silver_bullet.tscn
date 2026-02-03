@@ -1,6 +1,7 @@
-[gd_scene format=3 uid="uid://ubmawdsqley6"]
+[gd_scene format=3 uid="uid://dndtlivdt7geg"]
 
-[ext_resource type="Script" uid="uid://odgjkiyrneke" path="res://spirit-game-project/scripts/main game/Spirits/spirit.gd" id="1_vdfrk"]
+[ext_resource type="Script" uid="uid://bkwsciciajwil" path="res://spirit-game-project/scripts/main game/Spirits/spirits/silver_bullet.gd" id="1_kwwd0"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_bcdgv"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -85,38 +86,50 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ry537"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kwwd0"]
 _data = {
 &"BringIn": SubResource("Animation_ry537"),
 &"BringOut": SubResource("Animation_vdfrk"),
 &"RESET": SubResource("Animation_gjxxu")
 }
 
-[sub_resource type="SphereMesh" id="SphereMesh_vdfrk"]
+[sub_resource type="SphereMesh" id="SphereMesh_bcdgv"]
 
-[node name="Spirit" type="CharacterBody2D" unique_id=1991023785]
-script = ExtResource("1_vdfrk")
-Name = "teest"
-attackDamage = 1.0
-attackType = "test"
+[node name="SilverBullet" type="CharacterBody2D" unique_id=1530907115]
+script = ExtResource("1_kwwd0")
+Name = "SILVER BULLET"
+attackDamage = 0.1
+attackType = "ranged"
+size = Vector2(0.5, 0.5)
+activeAbilityCooldown = 10.0
+hasAbilityDuration = true
+abilityDuration = 5.0
+attackCooldown = 0.1
+lifetime = 2.0
+projectileSpeed = 1000.0
+pierce = 1
+rotationAdditionMod = 10.0
+bulletAmountMod = 1
+bulletSize = Vector2(0.2, 0.2)
+projectile = ExtResource("2_bcdgv")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1213760863]
-libraries/ = SubResource("AnimationLibrary_ry537")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2004360364]
+libraries/ = SubResource("AnimationLibrary_kwwd0")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1437753325]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1641971127]
 modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
-mesh = SubResource("SphereMesh_vdfrk")
+mesh = SubResource("SphereMesh_bcdgv")
 
-[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=330885304]
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=760423013]
 one_shot = true
 
-[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=1418985529]
+[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=69744440]
 one_shot = true
 
-[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=2031016593]
+[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=1585287357]
 one_shot = true
 
-[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
 [connection signal="timeout" from="AbilityDurationTimedOut" to="." method="_on_ability_duration_timed_out_timeout"]

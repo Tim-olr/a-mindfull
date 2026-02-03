@@ -1,16 +1,23 @@
 extends Node2D
+class_name PlayerManager
 
 @onready var stats = $"../PlayerStats"
 @onready var interact_area = $InteractArea
 @onready var movement_controller = $"../PlayerMovement"
 @export var weapon: PackedScene
-@export var knockback_resistance: float = 0.0  # 0 = no resistance, 1 = full resistance
+@export var knockback_resistance: float = 0.0
+@export var canHps: bool = true
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 
-func _ready() -> void:
-	if weapon != null:
-		var wepon = weapon.instantiate()
-		add_child(wepon)
+var _weapon_instance: Node  
+  
+func _ready() -> void:  
+	if weapon != null:  
+		_weapon_instance = weapon.instantiate()  
+		add_child(_weapon_instance)  
+  
+func get_weapon() -> Node:  
+	return _weapon_instance
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0:
@@ -43,6 +50,11 @@ func damaged(shake):
 
 func die():
 	get_tree().change_scene_to_file("res://spirit-game-project/scenes/main game/game.tscn")
+
+func hps_tick():
+	if canHps:
+		if stats.hp + stats.hps <= stats.maxHp:
+			stats.hp += stats.hps
 
 func apply_knockback(direction: Vector2, force: float):
 	var effective_force = force * (1.0 - clamp(knockback_resistance, 0.0, 1.0))

@@ -23,10 +23,14 @@ func _physics_process(delta):
 		dodge()
 	var target = direction * Stats.speed                                           
 	walkingVelocity = lerp(Player.velocity, target, Stats.slideAmount * delta)     
-	knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, 8.0 * delta)
 	Player.velocity = walkingVelocity + dodgeVelocity + extraVelocity + knockbackVelocity
-	dodgeVelocity = lerp(dodgeVelocity, Vector2(0,0), 13 * delta)
+	knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, 10 * delta)
+	dodgeVelocity = lerp(dodgeVelocity, Vector2.ZERO, 13 * delta)
+	
 	Player.move_and_slide()     
+
+func add_knockback(knockback: Vector2):
+	knockbackVelocity += knockback     
 
 func dodge():
 	dodgeVelocity = Vector2(direction.x, direction.y) * Stats.dashAmount
@@ -34,9 +38,6 @@ func dodge():
 	canDodge = false
 	isDodging = true
 	immunity_time.start(Stats.dashImmuneTime)
-
-func add_knockback(knockback: Vector2):
-	knockbackVelocity = knockback
 
 func _on_dash_cooldown_timeout() -> void:
 	canDodge = true

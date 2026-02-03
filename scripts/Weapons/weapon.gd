@@ -37,11 +37,15 @@ var detection_area: Area2D
 @onready var bullet_stars_pos = $BulletStarsPos
 @onready var melee_hitbox: Area2D = $BulletStarsPos/MeleeHitbox
 
+var original_bullet_pos: Vector2  
+var original_bullet_rot: float
+
 func _ready():
 	shooter = get_parent()
 	melee_hitbox.body_entered.connect(_on_melee_hitbox_entered)
 	melee_hitbox.area_entered.connect(_on_melee_hitbox_entered)
-	
+	original_bullet_pos = bullet_stars_pos.position  
+	original_bullet_rot = bullet_stars_pos.rotation
 	if shooter.is_in_group("enemy") and melee:
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
 
@@ -50,6 +54,11 @@ func _process(_delta: float) -> void:
 		global_position = shooter.global_position
 		bullet_stars_pos.look_at(get_global_mouse_position())
 		if Input.is_action_pressed("attack") and shooter.stats.canAttack:
+			perform_attack()
+	elif shooter.is_in_group("spirit"):
+		global_position = shooter.global_position
+		bullet_stars_pos.look_at(get_global_mouse_position())
+		if Input.is_action_just_pressed("spirit_attack") and shooter.out and shooter.canAttack:
 			perform_attack()
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
@@ -66,20 +75,26 @@ func _process(_delta: float) -> void:
 							break
 
 func perform_attack():
-	shooter.stats.canAttack = false
-	attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
-	attack_cooldown.start()
+	if shooter.is_in_group("spirit"):
+		shooter.canAttack = false
+	else:
+		shooter.stats.canAttack = false
+		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
+		attack_cooldown.start()
 	
 	if gun:
 		shoot()
 	elif melee:
-		var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
-		for i in total_attacks:
+		if shooter.is_in_group("spirit"):
 			do_melee_animation()
-			if doConsecShooting:
-				await get_tree().create_timer(0.1).timeout
-			else:
-				await get_tree().create_timer(attack_duration).timeout
+		else:
+			var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
+			for i in total_attacks:
+				do_melee_animation()
+				if doConsecShooting:
+					await get_tree().create_timer(0.1).timeout
+				else:
+					await get_tree().create_timer(attack_duration).timeout
 
 func do_melee_animation():
 	targets_hit.clear()
@@ -91,37 +106,45 @@ func do_melee_animation():
 		_on_melee_hitbox_entered(area)
 
 	var tween = create_tween()
-	var original_rot = bullet_stars_pos.rotation
-	var original_pos = bullet_stars_pos.position
+	var current_rot = bullet_stars_pos.rotation
+	var current_pos = bullet_stars_pos.position
 	
 	if is_swing:
-		tween.tween_property(bullet_stars_pos, "rotation", original_rot + deg_to_rad(swing_arc/2), attack_duration/2)
-		tween.tween_property(bullet_stars_pos, "rotation", original_rot - deg_to_rad(swing_arc/2), attack_duration/2)
-		tween.tween_property(bullet_stars_pos, "rotation", original_rot, 0.05)
+		tween.tween_property(bullet_stars_pos, "rotation", current_rot + deg_to_rad(swing_arc/2), attack_duration/2)
+		tween.tween_property(bullet_stars_pos, "rotation", current_rot - deg_to_rad(swing_arc/2), attack_duration/2)
+		tween.tween_property(bullet_stars_pos, "rotation", original_bullet_rot, 0.05)
 	elif is_stab:
-		tween.tween_property(bullet_stars_pos, "position", original_pos + Vector2(stab_distance, 0).rotated(original_rot), attack_duration/2)
-		tween.tween_property(bullet_stars_pos, "position", original_pos, attack_duration/2)
+		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0).rotated(current_rot), attack_duration/2)
+		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration/2)
 	
 	await tween.finished
+	if shooter.is_in_group("spirit"):
+		shooter.canAttack = true
+	bullet_stars_pos.position = original_bullet_pos
+	bullet_stars_pos.rotation = original_bullet_rot
+	
 	melee_active = false
 
 func _on_melee_hitbox_entered(body: Node):
 	if !melee_active or targets_hit.has(body) or body == shooter:
 		return
-		
-	var shooter_group = "player" if shooter.is_in_group("player") else "enemy"
-	if body.is_in_group(shooter_group):
-		return
-
-	if body.is_in_group("enemy") or body.is_in_group("player"):
-		hit(body)
+	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
+		if body.is_in_group("enemy"):
+			hit(body)
+	elif shooter.is_in_group("enemy"):
+		if body.is_in_group("player") or body.is_in_group("spirit"):
+			hit(body)
 
 func hit(hitBody):
 	do_damage(hitBody)
 	apply_knockback_to_target(hitBody)
 
 func do_damage(hitBody):
-	var total_damage = shooter.stats.attackDamage + damage
+	var total_damage
+	if shooter.is_in_group("spirit"):
+		total_damage = shooter.attackDamage + damage
+	else:
+		total_damage = shooter.stats.attackDamage + damage
 	if hitBody.is_in_group("enemy"):
 		if hitBody.has_method("damage"):
 			hitBody.damage(total_damage)
