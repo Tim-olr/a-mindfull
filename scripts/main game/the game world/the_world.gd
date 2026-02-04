@@ -7,6 +7,7 @@ func _ready() -> void:
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
 	GlobalWorld.projectiles = projectiles
+	GlobalWorld.theWorld = self
 	GlobalPlayer.stats.canAttack = true
 	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
 	playerSpirit.host = GlobalPlayer.player

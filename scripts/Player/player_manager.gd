@@ -6,17 +6,17 @@ class_name PlayerManager
 @onready var movement_controller = $"../PlayerMovement"
 @export var weapon: PackedScene
 @export var knockback_resistance: float = 0.0
-@export var canHps: bool = true
+@export var canHps: bool = false
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 
-var _weapon_instance: Node  
-  
-func _ready() -> void:  
-	if weapon != null:  
-		_weapon_instance = weapon.instantiate()  
-		add_child(_weapon_instance)  
-  
-func get_weapon() -> Node:  
+var _weapon_instance: Node
+
+func _ready() -> void:
+	if weapon != null:
+		_weapon_instance = weapon.instantiate()
+		add_child(_weapon_instance)
+
+func get_weapon() -> Node:
 	return _weapon_instance
 
 func _process(_delta: float) -> void:
@@ -38,6 +38,7 @@ func _input(_event: InputEvent) -> void:
 func damage(damage_amount, attacker, shake):
 	stats.hp -= damage_amount
 	damaged(shake)
+	GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
 	if attacker != null:
 		var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
 		apply_knockback(knockback_direction, 200.0)
@@ -53,8 +54,21 @@ func die():
 
 func hps_tick():
 	if canHps:
-		if stats.hp + stats.hps <= stats.maxHp:
-			stats.hp += stats.hps
+		heal(stats.hps)
+
+func heal(amount):   
+	if stats.hp >= stats.maxHp:  
+		return  
+	var actual_heal = min(amount, stats.maxHp - stats.hp)  
+	stats.hp += actual_heal  
+	if actual_heal > 0:  
+		healed()  
+		GlobalhitMarker.show_hit_marker(actual_heal, GlobalPlayer.player, true)
+
+func healed():
+	var tween = create_tween()
+	tween.tween_property(mesh_instance_2d, "modulate", Color.GREEN, 0.1)
+	tween.tween_property(mesh_instance_2d, "modulate", Color.WHITE, 0.1)
 
 func apply_knockback(direction: Vector2, force: float):
 	var effective_force = force * (1.0 - clamp(knockback_resistance, 0.0, 1.0))

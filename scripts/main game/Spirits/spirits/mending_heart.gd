@@ -2,6 +2,7 @@ extends Spirit
 
 @export var follow_speed: float = 1000.0
 @export var max_radius: float = 200.0
+@onready var healing_checker: Area2D = $HealingChecker
 
 func _physics_process(delta: float) -> void:
 	if not host:
@@ -15,6 +16,21 @@ func _physics_process(delta: float) -> void:
 
 func apply_passive():
 	GlobalPlayer.stats.hps += 1
+	GlobalPlayer.manager.canHps = true
 
 func remove_passive():
 	GlobalPlayer.stats.hps -= 1
+	GlobalPlayer.manager.canHps = false
+
+func active_ability():
+	if canAbility:
+		var overlappers = healing_checker.get_overlapping_bodies()
+		var healAmount := 50.0
+		var healingPerBody = healAmount / overlappers.size()
+		for b in overlappers:
+			if b.is_in_group("player"):
+				b.manager.heal(healingPerBody)
+			if b.is_in_group("physics_object"):
+				b.heal(healingPerBody)
+		active_ability_timer.start(activeAbilityCooldown)
+		canAbility = false

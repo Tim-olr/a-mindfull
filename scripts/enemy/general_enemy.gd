@@ -15,7 +15,7 @@ class_name Enemy
 @export var knockback_resistance: float = 0.0 
 
 var knockbackVelocity = Vector2.ZERO 
-var knockback_decay: float = 8.0 
+var knockback_decay: float = 10.0 
 
 var canWalk := true
 
@@ -67,6 +67,7 @@ func damage(damageAmount):
 	var newDmg = damageAmount
 	stats.hp -= newDmg
 	damaged()
+	GlobalhitMarker.show_hit_marker(newDmg, self, false)
 
 func die():
 	canWalk = false

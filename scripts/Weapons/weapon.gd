@@ -19,7 +19,7 @@ class_name Weapon
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
 @export var cameraShakeAmount: float
-@export var knockback_force: float = 1000.0
+@export var knockback_force: float = 500.0
 
 @export_group("Melee Settings")
 @export var is_swing: bool = false

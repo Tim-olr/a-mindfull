@@ -143,6 +143,7 @@ func _on_attack_cooldown_timer_timeout() -> void:
 
 func _on_active_ability_timer_timeout() -> void:
 	canAbility = true
+	print("we can do it again twin")
 
 func _on_ability_duration_timed_out_timeout() -> void:
 	if hasAbilityDuration:

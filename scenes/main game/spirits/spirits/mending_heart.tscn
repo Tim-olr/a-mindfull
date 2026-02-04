@@ -95,6 +95,9 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_pln2i"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pln2i"]
+radius = 139.94641
+
 [node name="MendingHeart" type="CharacterBody2D" unique_id=37072058 groups=["spirit"]]
 script = ExtResource("1_rx7lu")
 Name = "MENDING HEART"
@@ -120,6 +123,11 @@ one_shot = true
 
 [node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=722178294]
 one_shot = true
+
+[node name="HealingChecker" type="Area2D" parent="." unique_id=1754741925]
+
+[node name="HealingCheckerCollision" type="CollisionShape2D" parent="HealingChecker" unique_id=8970841]
+shape = SubResource("CircleShape2D_pln2i")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
