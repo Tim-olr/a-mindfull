@@ -1,4 +1,5 @@
 extends Node2D
+class_name PlayerMovement
 
 @onready var Player = $".."
 @onready var Stats: Node2D = $"../PlayerStats"

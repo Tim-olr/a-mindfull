@@ -14,4 +14,5 @@ func _ready() -> void:
 	GlobalPlayer.inventory = player_inventory
 	GlobalPlayer.camera = camera_2d
 	GlobalPlayer.manager = manager
+	GlobalPlayer.movement = player_movement
 	GlobalPlayer.spiritMarker = spirit_bullet_marker
