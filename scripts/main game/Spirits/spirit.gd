@@ -54,8 +54,10 @@ func _ready() -> void:
 	top_level = true 
 	host = get_parent()
 	set_scale(size)
+	z_index = 2
 
 func _process(_delta: float) -> void:
+	look_at(get_global_mouse_position())
 	bullet_start_pos.global_position = global_position
 	bullet_start_pos.look_at(get_global_mouse_position())
 	if out:
@@ -143,7 +145,6 @@ func _on_attack_cooldown_timer_timeout() -> void:
 
 func _on_active_ability_timer_timeout() -> void:
 	canAbility = true
-	print("we can do it again twin")
 
 func _on_ability_duration_timed_out_timeout() -> void:
 	if hasAbilityDuration:

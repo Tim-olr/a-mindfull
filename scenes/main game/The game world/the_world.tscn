@@ -2,9 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
-[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="3_xiahp"]
-[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="4_5i8ky"]
-[ext_resource type="PackedScene" uid="uid://dg08cdh3iur8r" path="res://spirit-game-project/scenes/enemy/enemies/bartholomew.tscn" id="5_fsixv"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -47,8 +44,6 @@ texture = SubResource("GradientTexture1D_87ryk")
 wait_time = 0.1
 one_shot = true
 
-[node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=233197356]
 navigation_polygon = SubResource("NavigationPolygon_xiahp")
 
@@ -64,13 +59,6 @@ position = Vector2(334.5, 325.5)
 scale = Vector2(109.5, 1535)
 shape = SubResource("RectangleShape2D_fsixv")
 
-[node name="Ardy" parent="." unique_id=427162219 instance=ExtResource("3_xiahp")]
-position = Vector2(1293, 156)
-
-[node name="Bonkus" parent="." unique_id=1791823829 instance=ExtResource("4_5i8ky")]
-position = Vector2(1184, 527)
-
-[node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("5_fsixv")]
-position = Vector2(1009, -230)
+[node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

@@ -21,6 +21,14 @@ class_name Weapon
 @export var cameraShakeAmount: float
 @export var knockback_force: float = 500.0
 
+@export var hasInfPierce: bool = false
+@export var canKeepTicking: bool = false
+@export var tick_interval: float = 0.1
+
+@export_group("Projectile Speed Over Time")
+@export_enum("Constant", "Accelerate", "Decelerate") var bullet_speed_mode: int = 0
+@export var bullet_end_speed_multiplier: float = 1.0
+
 @export_group("Melee Settings")
 @export var is_swing: bool = false
 @export var is_stab: bool = false
@@ -56,6 +64,7 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("attack") and shooter.stats.canAttack:
 			perform_attack()
 	elif shooter.is_in_group("spirit"):
+		bullet_stars_pos = shooter.bullet_start_pos
 		global_position = shooter.global_position
 		bullet_stars_pos.look_at(get_global_mouse_position())
 		if Input.is_action_just_pressed("spirit_attack") and shooter.out and shooter.canAttack:
@@ -74,14 +83,26 @@ func _process(_delta: float) -> void:
 							perform_attack()
 							break
 
+func _get_shooter_attack_speed() -> float:
+	var val = shooter.get("attackSpeed")
+	if typeof(val) == TYPE_FLOAT or typeof(val) == TYPE_INT:
+		return float(val)
+	var stats = shooter.get("stats")
+	if stats != null:
+		var s_val = stats.get("attackSpeed")
+		if typeof(s_val) == TYPE_FLOAT or typeof(s_val) == TYPE_INT:
+			return float(s_val)
+	return 0.5
+
 func perform_attack():
 	if shooter.is_in_group("spirit"):
 		shooter.canAttack = false
+		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + shootCooldown)
+		attack_cooldown.start()
 	else:
 		shooter.stats.canAttack = false
 		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
 		attack_cooldown.start()
-	
 	if gun:
 		shoot()
 	elif melee:
@@ -99,7 +120,6 @@ func perform_attack():
 func do_melee_animation():
 	targets_hit.clear()
 	melee_active = true
-	
 	for body in melee_hitbox.get_overlapping_bodies():
 		_on_melee_hitbox_entered(body)
 	for area in melee_hitbox.get_overlapping_areas():
@@ -122,7 +142,6 @@ func do_melee_animation():
 		shooter.canAttack = true
 	bullet_stars_pos.position = original_bullet_pos
 	bullet_stars_pos.rotation = original_bullet_rot
-	
 	melee_active = false
 
 func _on_melee_hitbox_entered(body: Node):
@@ -174,32 +193,66 @@ func apply_knockback_to_target(hitBody):
 			hitBody.get_parent().manager.apply_knockback(knockback_direction, knockback_force)
 
 func shoot():
-	var total_bullets = shooter.stats.bulletAmount + bulletAmountMod
-	var spread_angle = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+	var total_bullets
+	var spread_angle
+	var projectile_speed
+	var pierce
+	var attack_damage
+	var bullet_lifetime
+	var bullet_size
+	if shooter.is_in_group("spirit"):
+		total_bullets = shooter.bulletAmountMod + bulletAmountMod
+		spread_angle = shooter.rotationAdditionMod + rotationAdditionMod
+		projectile_speed = shooter.projectileSpeed + projectileSpeedMod
+		pierce = shooter.pierce + pierceMod
+		attack_damage = shooter.attackDamage + damageMod
+		bullet_lifetime = shooter.lifetime + bulletLifeTimeMod
+		bullet_size = shooter.bulletSize + bulletSizeMod
+	else:
+		total_bullets = shooter.stats.bulletAmount + bulletAmountMod
+		spread_angle = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+		projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
+		pierce = shooter.stats.pierce + pierceMod
+		attack_damage = shooter.stats.attackDamage + damageMod
+		bullet_lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
+		bullet_size = shooter.stats.bulletSize + bulletSizeMod
 	var start_rotation = bullet_stars_pos.rotation
 	if total_bullets > 1 and !doConsecShooting:
 		start_rotation -= (spread_angle * (total_bullets - 1)) / 2.0
 	for i in total_bullets:
 		var bullet = bulletScene.instantiate()
-		bullet.shooter_group = "player" if shooter.is_in_group("player") else "enemy"
+		if shooter.is_in_group("player"):
+			bullet.shooter_group = "player"
+		elif shooter.is_in_group("enemy"):
+			bullet.shooter_group = "enemy"
+		elif shooter.is_in_group("spirit"):
+			bullet.shooter_group = "spirit"
 		bullet.knockback_force = knockback_force
+		bullet.hasInfPierce = hasInfPierce
+		bullet.canKeepTicking = canKeepTicking
+		bullet.tick_interval = tick_interval
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot = start_rotation + (i * spread_angle)
 		bullet.rot = current_rot
 		bullet.rotation = current_rot
-		bullet.projectileSpeed = shooter.stats.projectileSpeed + projectileSpeedMod
-		bullet.pierce = shooter.stats.pierce + pierceMod
-		bullet.damage = shooter.stats.attackDamage + damageMod
-		bullet.lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
-		bullet.set_scale(shooter.stats.bulletSize + bulletSizeMod)
+		bullet.projectileSpeed = projectile_speed
+		bullet.speed_mode = bullet_speed_mode
+		bullet.end_speed_multiplier = bullet_end_speed_multiplier
+		bullet.pierce = pierce
+		bullet.damage = attack_damage
+		bullet.lifetime = bullet_lifetime
+		bullet.set_scale(bullet_size)
 		bullet.global_position = bullet_stars_pos.global_position
 		bullet.shake = cameraShakeAmount
 		GlobalWorld.projectiles.add_child(bullet)
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout 
-		if shooter.stats.bulletAmount > 1:
-			start_rotation -= shooter.stats.rotationAddition + rotationAdditionMod
+		if total_bullets > 1:
+			start_rotation -= spread_angle
 
 func _on_attack_cooldown_timeout() -> void:
-	shooter.stats.canAttack = true
+	if shooter and shooter.is_in_group("spirit"):
+		shooter.canAttack = true
+	elif shooter and (shooter.is_in_group("player") or shooter.is_in_group("enemy")):
+		shooter.stats.canAttack = true

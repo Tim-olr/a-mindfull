@@ -8,12 +8,12 @@ size = Vector2(123, 128)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=1162203950]
 script = ExtResource("1_gmfsf")
-pierce = 1
 
 [node name="LifeTime" type="Timer" parent="." unique_id=1214404922]
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1746666473]
+z_index = 100
 texture = ExtResource("2_mvg1l")
 
 [node name="CollisionArea" type="Area2D" parent="." unique_id=1240437818]
