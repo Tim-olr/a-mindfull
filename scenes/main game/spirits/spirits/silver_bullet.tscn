@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkwsciciajwil" path="res://spirit-game-project/scripts/main game/Spirits/spirits/silver_bullet.gd" id="1_kwwd0"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_bcdgv"]
+[ext_resource type="PackedScene" uid="uid://cx624efybkweb" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/silver_bullet.tscn" id="2_ukrjp"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -98,19 +99,20 @@ _data = {
 [node name="SilverBullet" type="CharacterBody2D" unique_id=1530907115]
 script = ExtResource("1_kwwd0")
 Name = "SILVER BULLET"
-attackDamage = 0.1
+attackDamage = 2.0
 attackType = "ranged"
 size = Vector2(0.5, 0.5)
 activeAbilityCooldown = 10.0
 hasAbilityDuration = true
 abilityDuration = 5.0
-attackCooldown = 0.1
+attackCooldown = 0.15
 lifetime = 2.0
-projectileSpeed = 1000.0
+projectileSpeed = 800.0
 pierce = 1
-rotationAdditionMod = 10.0
 bulletAmountMod = 1
-bulletSize = Vector2(0.2, 0.2)
+bulletSize = Vector2(0.3, 0.3)
+hasStandaloneShooting = true
+weaponScene = ExtResource("2_ukrjp")
 projectile = ExtResource("2_bcdgv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2004360364]

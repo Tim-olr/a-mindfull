@@ -12,7 +12,6 @@ class_name Weapon
 @export var shootCooldown: float
 @export var gun: bool
 @export var melee: bool
-@export var damage: float
 @export var description: String
 @export var Name: String
 @export var rarity: String
@@ -107,7 +106,8 @@ func perform_attack():
 		shoot()
 	elif melee:
 		if shooter.is_in_group("spirit"):
-			do_melee_animation()
+			for i in bulletAmountMod:
+				do_melee_animation()
 		else:
 			var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
 			for i in total_attacks:
@@ -136,10 +136,10 @@ func do_melee_animation():
 	elif is_stab:
 		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0).rotated(current_rot), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration/2)
-	
 	await tween.finished
 	if shooter.is_in_group("spirit"):
 		shooter.canAttack = true
+	else: shooter.stats.canAttack = true
 	bullet_stars_pos.position = original_bullet_pos
 	bullet_stars_pos.rotation = original_bullet_rot
 	melee_active = false
@@ -161,9 +161,9 @@ func hit(hitBody):
 func do_damage(hitBody):
 	var total_damage
 	if shooter.is_in_group("spirit"):
-		total_damage = shooter.attackDamage + damage
+		total_damage = shooter.attackDamage + damageMod
 	else:
-		total_damage = shooter.stats.attackDamage + damage
+		total_damage = shooter.stats.attackDamage + damageMod
 	if hitBody.is_in_group("enemy"):
 		if hitBody.has_method("damage"):
 			hitBody.damage(total_damage)

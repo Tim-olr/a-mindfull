@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjun8ius5qflf"]
+[gd_scene format=3 uid="uid://cjun8ius5qflf"]
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_6av20"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_h2mqu"]
 [ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://spirit-game-project/scripts/main game/game.gd" id="1_yg2su"]
 [ext_resource type="PackedScene" uid="uid://b8hsu3b3gsqo3" path="res://spirit-game-project/scenes/main game/components/game_starter.tscn" id="2_13bug"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1324580435]
 script = ExtResource("1_yg2su")
 
-[node name="GameStarter" parent="." instance=ExtResource("2_13bug")]
+[node name="GameStarter" parent="." unique_id=295466332 instance=ExtResource("2_13bug")]
 position = Vector2(-166, -126)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1332988175]
 texture = ExtResource("1_h2mqu")
 
-[node name="Player" parent="." instance=ExtResource("1_6av20")]
+[node name="Player" parent="." unique_id=1406596225 instance=ExtResource("1_6av20")]

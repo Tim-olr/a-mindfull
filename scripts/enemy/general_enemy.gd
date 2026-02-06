@@ -11,6 +11,7 @@ class_name Enemy
 @onready var stats: Node2D = $EnemyStats
 @onready var attack_speed: Timer = $attack_speed
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var health_bar: ProgressBar = $"UI enemy/HealthBar"
 
 @export var knockback_resistance: float = 0.0 
 
@@ -30,6 +31,7 @@ var direction
 func _ready() -> void:
 	base.texture = texture
 	await get_tree().physics_frame
+	health_bar.init_health(stats.hp)
 	if weapon != null:
 		var wep = weapon.instantiate()
 		add_child(wep)
@@ -66,6 +68,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 func damage(damageAmount):
 	var newDmg = damageAmount
 	stats.hp -= newDmg
+	health_bar.set_health(stats.hp)
 	damaged()
 	GlobalhitMarker.show_hit_marker(newDmg, self, false)
 

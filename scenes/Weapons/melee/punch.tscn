@@ -8,14 +8,13 @@ size = Vector2(86, 79)
 
 [node name="Punch" type="Node2D" unique_id=1055671558]
 script = ExtResource("1_1iodv")
-damageMod = 10.0
+damageMod = 5.0
 bulletSizeMod = Vector2(1, 1)
 melee = true
 description = "Punch em!"
 Name = "Punch"
 rarity = "common"
 cameraShakeAmount = 20.0
-knockback_force = 500.0
 is_stab = true
 stab_distance = 100.0
 attack_duration = 0.5

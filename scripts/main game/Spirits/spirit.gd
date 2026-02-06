@@ -29,7 +29,7 @@ class_name Spirit
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var bullet_start_pos: Marker2D = GlobalPlayer.spiritMarker
 
-var canAttack: bool = true
+var canAttack: bool = false
 var canAbility: bool = true
 
 var weapo: Node2D
@@ -50,7 +50,6 @@ func _ready() -> void:
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
 		weapo.hide()
-	attack_cooldown_timer.start(attackCooldown)
 	top_level = true 
 	host = get_parent()
 	set_scale(size)

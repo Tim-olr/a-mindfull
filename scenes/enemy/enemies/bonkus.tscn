@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cioco2pfro1aw"]
+[gd_scene format=3 uid="uid://cioco2pfro1aw"]
 
 [ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://spirit-game-project/scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_wqe0a"]
 [ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_ihpvw"]
 [ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="3_tk08l"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="5_v4h5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpvw"]
 size = Vector2(132, 131)
@@ -14,7 +15,7 @@ size = Vector2(211, 195)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4h5t"]
 size = Vector2(136, 136)
 
-[node name="Bonkus" type="CharacterBody2D" node_paths=PackedStringArray("area", "base") groups=["enemy"]]
+[node name="Bonkus" type="CharacterBody2D" unique_id=149083672 node_paths=PackedStringArray("area", "base") groups=["enemy"]]
 script = ExtResource("1_1yn7j")
 Name = "Bonkus"
 texture = ExtResource("2_wqe0a")
@@ -22,25 +23,25 @@ area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_tk08l")
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=496845371 groups=["enemy"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1373880134]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ihpvw")
 
-[node name="attack_speed" type="Timer" parent="."]
+[node name="attack_speed" type="Timer" parent="." unique_id=1515763639]
 one_shot = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=119696950]
 one_shot = true
 
-[node name="death_anim_timer" type="Timer" parent="."]
+[node name="death_anim_timer" type="Timer" parent="." unique_id=839688780]
 one_shot = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=496117665]
 texture = ExtResource("2_wqe0a")
 
-[node name="EnemyStats" type="Node2D" parent="."]
+[node name="EnemyStats" type="Node2D" parent="." unique_id=1019589396]
 script = ExtResource("3_ihpvw")
 hp = 200.0
 speed = 100.0
@@ -52,22 +53,35 @@ bulletAmount = 1
 bulletLifeTime = 1.0
 bulletSize = Vector2(1, 1)
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1658130003]
 path_desired_distance = 30.0
 target_desired_distance = 120.0
 avoidance_enabled = true
 radius = 200.0
 max_speed = 100000.0
 
-[node name="playerMeleeDetectionArea" type="Area2D" parent="."]
+[node name="playerMeleeDetectionArea" type="Area2D" parent="." unique_id=1380809399]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea" unique_id=1777744301]
 position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_tk08l")
 
-[node name="enemycollision" type="CollisionShape2D" parent="."]
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1601309729]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_v4h5t")
+
+[node name="UI enemy" type="Control" parent="." unique_id=81898498]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" parent="UI enemy" unique_id=387592992 instance=ExtResource("5_v4h5t")]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -114.0
+offset_right = 118.0
+offset_bottom = -87.0
 
 [connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

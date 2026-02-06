@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_1i77l"]
 [ext_resource type="PackedScene" uid="uid://cwbppuqdsjqxj" path="res://spirit-game-project/scenes/Weapons/guns/burst_rifle.tscn" id="3_1i77l"]
 [ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_24app"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="5_24app"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rejkr"]
 size = Vector2(181, 180)
@@ -71,6 +72,19 @@ shape = SubResource("RectangleShape2D_ka3cy")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=620455483]
 position = Vector2(-1.5, -1)
 shape = SubResource("RectangleShape2D_7uecq")
+
+[node name="UI enemy" type="Control" parent="." unique_id=965258104]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" parent="UI enemy" unique_id=387592992 instance=ExtResource("5_24app")]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -114.0
+offset_right = 118.0
+offset_bottom = -87.0
 
 [connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

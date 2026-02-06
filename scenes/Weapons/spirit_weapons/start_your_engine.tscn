@@ -8,12 +8,12 @@ size = Vector2(86, 20)
 
 [node name="StartYourEngine" type="Node2D" unique_id=1772353808]
 script = ExtResource("1_r1j4r")
+damageMod = 3.0
 bulletLifeTimeMod = 2.0
 bulletAmountMod = 2
 projectileSpeedMod = 400.0
 shootCooldown = 1.0
 gun = true
-damage = -7.0
 bulletScene = ExtResource("2_ildw1")
 doConsecShooting = true
 hasInfPierce = true

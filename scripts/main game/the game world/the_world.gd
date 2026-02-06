@@ -11,6 +11,7 @@ func _ready() -> void:
 	GlobalPlayer.stats.canAttack = true
 	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
 	playerSpirit.host = GlobalPlayer.player
+	playerSpirit.canAttack = true
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
 	GlobalPlayer.inventory.setPlayerInvToGlobal()
