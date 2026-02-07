@@ -4,7 +4,7 @@ class_name ActualInv
 signal hotbar_selected(item_resource, slot_index : int)
 
 @export var slotAmount: int = 24
-var occupiedSlots: int
+var occupiedSlots: int = 0
 const MIN_HOTBAR_SLOTS = 6
 
 @onready var hotbar = $InventoryContainer/Hotbar
@@ -60,13 +60,20 @@ func _input(event):
 		inventory_grid.visible = !inventory_grid.visible
 		inventory_grid.mouse_filter = Control.MOUSE_FILTER_STOP if inventory_grid.visible else Control.MOUSE_FILTER_IGNORE
 
-func add_item(item):
-	if occupiedSlots < slotAmount:
-		for s: InventorySlot in slots:
-			if s.item == null:
-				s.item = item
-				occupiedSlots += 1
-				break
-			else:
-				return
-			return
+func add_item(item, count: int = 1) -> bool:
+	if occupiedSlots >= slotAmount:
+		return false
+	if item == null:
+		return false
+	if "isStackable" in item and item.isStackable:
+		for s in slots:
+			if s.item != null and "Name" in s.item and "Name" in item and s.item.Name == item.Name:
+				var existing_count = s.item_count if "item_count" in s else 0
+				s.set_item(s.item, existing_count + count)
+				return true
+	for s in slots:
+		if s.item == null:
+			s.set_item(item, count)
+			occupiedSlots += 1
+			return true
+	return false

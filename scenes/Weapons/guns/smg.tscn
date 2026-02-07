@@ -8,7 +8,7 @@ size = Vector2(86, 20)
 
 [node name="smg" type="Node2D" unique_id=225370864]
 script = ExtResource("1_7ut2w")
-damageMod = -15.0
+damageMod = -5.0
 bulletLifeTimeMod = 1.0
 projectileSpeedMod = 900.0
 bulletSizeMod = Vector2(-0.5, -0.5)

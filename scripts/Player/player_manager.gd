@@ -1,16 +1,13 @@
 extends Node2D
 class_name PlayerManager
 
-# Existing onready references
 @onready var stats = $"../PlayerStats"
 @onready var interact_area = $InteractArea
 @onready var movement_controller = $"../PlayerMovement"
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 
 @export var weapon: PackedScene
-
 @export var inventory_node_path: NodePath = NodePath("")
-
 @export var knockback_resistance: float = 0.0
 @export var canHps: bool = false
 
@@ -24,14 +21,19 @@ func _ready() -> void:
 		else:
 			push_warning("PlayerManager: inventory_node_path set but node not found: %s" % inventory_node_path)
 	if _weapon_instance == null and weapon != null and (inventory_node_path == NodePath("") or get_node_or_null(inventory_node_path) == null):
-		_weapon_instance = weapon.instantiate()
+		var inst = weapon.instantiate()
+		_weapon_instance = inst
 		var player_node = get_parent()
 		if player_node:
-			player_node.add_child(_weapon_instance)
-			_weapon_instance.shooter = player_node
+			player_node.add_child(inst)
+		else:
+			add_child(inst)
+		inst.set("shooter", player_node)
+		inst.set("isSelected", true)
 
 func get_weapon() -> Node:
 	return _weapon_instance
+
 func _on_inventory_hotbar_selected(item_resource, slot_index: int) -> void:
 	if item_resource == null:
 		unequip_weapon()
@@ -49,23 +51,31 @@ func equip_weapon_from_item(item_resource) -> void:
 		unequip_weapon()
 		return
 	if _weapon_instance:
-		_weapon_instance.isSelected = false
-		_weapon_instance.queue_free()
-		_weapon_instance = null
-	_weapon_instance = item_resource.itemScene.instantiate()
-
+		unequip_weapon()
+	var inst = item_resource.itemScene.instantiate()
+	_weapon_instance = inst
 	var player_node = get_parent()
 	if player_node:
-		player_node.add_child(_weapon_instance)
+		player_node.add_child(inst)
 	else:
-		add_child(_weapon_instance)
-	if player_node:
-		_weapon_instance.shooter = player_node
-	_weapon_instance.isSelected = true
+		add_child(inst)
+	inst.set("shooter", player_node)
+	inst.set("isSelected", true)
 
 func unequip_weapon() -> void:
 	if _weapon_instance:
-		_weapon_instance.isSelected = false
+		var sh = null
+		if _weapon_instance.has_method("get"):
+			sh = _weapon_instance.get("shooter")
+		if sh:
+			if sh.is_in_group("spirit"):
+				sh.canAttack = true
+			elif sh.is_in_group("player") or sh.is_in_group("enemy"):
+				if sh.has_method("get") and sh.get("stats") != null:
+					sh.stats.canAttack = true
+		if _weapon_instance.has_node("attack_cooldown"):
+			_weapon_instance.attack_cooldown.stop()
+		_weapon_instance.set("isSelected", false)
 		_weapon_instance.queue_free()
 		_weapon_instance = null
 
@@ -79,7 +89,7 @@ func _input(_event: InputEvent) -> void:
 			if i.is_in_group("interactables"):
 				i.interacted()
 	if Input.is_action_just_pressed("embrace"):
-		if !stats.playerSpiritScene.out:
+		if not stats.playerSpiritScene.out:
 			stats.playerSpiritScene.bring_out()
 			stats.playerSpiritScene.host = get_parent()
 		elif stats.playerSpiritScene.out:

@@ -8,8 +8,11 @@ script = ExtResource("1_uvwsa")
 
 [node name="ItemIcon" type="TextureRect" parent="." unique_id=1260081239]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 6.0
+offset_bottom = 6.0
+expand_mode = 1
 
 [node name="ItemCount" type="Label" parent="." unique_id=1384505004]
 layout_mode = 0

@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="5_ox3eu"]
 [ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
+[ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
+[ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -78,5 +80,13 @@ position = Vector2(-774, 1176)
 [node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
 position = Vector2(126, -121)
 item = ExtResource("7_3s1wv")
+
+[node name="ItemInteractable2" parent="." unique_id=1083151494 instance=ExtResource("6_ox3eu")]
+position = Vector2(-80, -66)
+item = ExtResource("8_3s1wv")
+
+[node name="ItemInteractable3" parent="." unique_id=104032653 instance=ExtResource("6_ox3eu")]
+position = Vector2(104, -313)
+item = ExtResource("9_d06gs")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

@@ -32,7 +32,6 @@ func set_item(new_item, count: int = 1) -> void:
 	_update_visuals()
 	emit_signal("item_changed", slot_index)
 
-
 func _update_visuals() -> void:
 	if not _ready_called:
 		if txtr == null:
@@ -42,13 +41,7 @@ func _update_visuals() -> void:
 	if txtr == null:
 		return
 	if item != null:
-		if item.has_method("get") and item.get("txtr") != null:
-			txtr.texture = item.txtr
-		else:
-			if "txtr" in item:
-				txtr.texture = item.txtr
-			else:
-				txtr.texture = null
+		txtr.texture = item.txtr if "txtr" in item else null
 		if count_label != null:
 			count_label.text = str(item_count) if item_count > 1 else ""
 			count_label.visible = item_count > 1
@@ -60,9 +53,8 @@ func _update_visuals() -> void:
 			count_label.text = ""
 			count_label.visible = false
 
-
 func _gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 		emit_signal("selected", slot_index)
 
 func _get_drag_data(_position):
@@ -77,7 +69,6 @@ func _get_drag_data(_position):
 	preview_container.add_child(preview)
 	preview.position = -preview.size / 2
 	set_drag_preview(preview_container)
-
 	return {
 		"item": item,
 		"count": item_count,
@@ -92,6 +83,8 @@ func _drop_data(_position, data) -> void:
 	if not (data is Dictionary and data.has("item")):
 		return
 	var source_slot: InventorySlot = data["source_slot"]
+	if source_slot == self:
+		return
 	var temp_item = item
 	var temp_count = item_count
 	set_item(data["item"], data["count"])

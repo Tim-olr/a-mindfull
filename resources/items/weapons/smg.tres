@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://ck7g7loj24uwc"]
+
+[ext_resource type="PackedScene" uid="uid://c7ugbef8o7i7e" path="res://spirit-game-project/scenes/Weapons/guns/smg.tscn" id="1_gvrgd"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_ns5sk"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="3_uqxgp"]
+
+[resource]
+script = ExtResource("1_ns5sk")
+isWeapon = true
+itemScene = ExtResource("1_gvrgd")
+rarity = 0
+txtr = ExtResource("3_uqxgp")
+Name = "smg"
+description = "smg"
+metadata/_custom_type_script = "uid://eykeum4a21x1"
