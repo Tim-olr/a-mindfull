@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cdamkadr37mce"]
+
+[ext_resource type="Script" uid="uid://cn5m8hl2xgbts" path="res://spirit-game-project/scripts/Player/inventory/inventory_slot.gd" id="1_uvwsa"]
+
+[node name="InventorySlot" type="Button" unique_id=1332280298]
+toggle_mode = true
+script = ExtResource("1_uvwsa")
+
+[node name="ItemIcon" type="TextureRect" parent="." unique_id=1260081239]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemCount" type="Label" parent="." unique_id=1384505004]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

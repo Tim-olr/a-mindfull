@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://spirit-game-project/scripts/Player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://spirit-game-project/scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://spirit-game-project/scripts/Player/player_stats.gd" id="2_s4a0o"]
-[ext_resource type="Resource" uid="uid://ctd72ls07tcc7" path="res://spirit-game-project/resources/spirits/spirits/SILVER_BULLET.tres" id="3_06t3u"]
+[ext_resource type="Resource" uid="uid://cuynql6xkmyqf" path="res://spirit-game-project/resources/spirits/spirits/START_YOUR_ENGINE.tres" id="3_06t3u"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
-[ext_resource type="PackedScene" uid="uid://bmxmn6xb00hvq" path="res://spirit-game-project/scenes/Weapons/melee/punch.tscn" id="5_06t3u"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
+[ext_resource type="PackedScene" uid="uid://jqii235rbcqp" path="res://spirit-game-project/scenes/Player/inventory/Inventory.tscn" id="8_lf5c0"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
@@ -115,7 +115,7 @@ dashAmount = 4000
 
 [node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
 script = ExtResource("3_ly2qd")
-weapon = ExtResource("5_06t3u")
+inventory_node_path = NodePath("../PlayerInventory/Inventory")
 
 [node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
 
@@ -136,6 +136,13 @@ one_shot = true
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
 script = ExtResource("7_3ragq")
+
+[node name="Inventory" parent="PlayerInventory" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
+offset_left = -1224.0001
+offset_top = -647.0
+offset_right = -1224.0001
+offset_bottom = -647.0
+scale = Vector2(15, 15)
 
 [node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")

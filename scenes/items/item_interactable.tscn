@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cgwfugy5k2bsj"]
+
+[ext_resource type="Script" uid="uid://bdtr3flr637uv" path="res://spirit-game-project/scripts/items/item_interactable.gd" id="1_hdnmr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdnmr"]
+radius = 75.326
+
+[node name="ItemInteractable" type="Area2D" unique_id=877810067 groups=["interactables"]]
+script = ExtResource("1_hdnmr")
+
+[node name="icon" type="Sprite2D" parent="." unique_id=177039136]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1476647787]
+shape = SubResource("CircleShape2D_hdnmr")

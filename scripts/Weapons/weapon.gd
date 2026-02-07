@@ -39,6 +39,7 @@ var shooter: Node2D
 var targets_hit: Array[Node] = []
 var melee_active: bool = false
 var detection_area: Area2D
+var isSelected: bool = false
 
 @onready var attack_cooldown: Timer = $attack_cooldown
 @onready var bullet_stars_pos = $BulletStarsPos
@@ -57,11 +58,12 @@ func _ready():
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
 
 func _process(_delta: float) -> void:
-	if shooter.is_in_group("player"):
-		global_position = shooter.global_position
-		bullet_stars_pos.look_at(get_global_mouse_position())
-		if Input.is_action_pressed("attack") and shooter.stats.canAttack:
-			perform_attack()
+	if isSelected:
+		if shooter.is_in_group("player"):
+			global_position = shooter.global_position
+			bullet_stars_pos.look_at(get_global_mouse_position())
+			if Input.is_action_pressed("attack") and shooter.stats.canAttack:
+				perform_attack()
 	elif shooter.is_in_group("spirit"):
 		bullet_stars_pos = shooter.bullet_start_pos
 		global_position = shooter.global_position

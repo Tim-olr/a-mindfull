@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dfpc56k7tagqa"]
+
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_djics"]
+[ext_resource type="PackedScene" uid="uid://bgmhxyrly6au7" path="res://spirit-game-project/scenes/Weapons/guns/assault_rifle.tscn" id="1_q8xmj"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="3_jsec3"]
+
+[resource]
+script = ExtResource("1_djics")
+isWeapon = true
+itemScene = ExtResource("1_q8xmj")
+rarity = 0
+txtr = ExtResource("3_jsec3")
+Name = "AR"
+description = "AR"

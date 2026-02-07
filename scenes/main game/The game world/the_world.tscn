@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_fsixv"]
 [ext_resource type="PackedScene" uid="uid://dg08cdh3iur8r" path="res://spirit-game-project/scenes/enemy/enemies/bartholomew.tscn" id="4_diwni"]
 [ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="5_ox3eu"]
+[ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
+[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -72,5 +74,9 @@ position = Vector2(1180, 655)
 
 [node name="Ardy" parent="." unique_id=334750648 instance=ExtResource("5_ox3eu")]
 position = Vector2(-774, 1176)
+
+[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
+position = Vector2(126, -121)
+item = ExtResource("7_3s1wv")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

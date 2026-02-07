@@ -1,23 +1,73 @@
 extends Node2D
 class_name PlayerManager
 
+# Existing onready references
 @onready var stats = $"../PlayerStats"
 @onready var interact_area = $InteractArea
 @onready var movement_controller = $"../PlayerMovement"
-@export var weapon: PackedScene
-@export var knockback_resistance: float = 0.0
-@export var canHps: bool = false
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 
-var _weapon_instance: Node
+@export var weapon: PackedScene
+
+@export var inventory_node_path: NodePath = NodePath("")
+
+@export var knockback_resistance: float = 0.0
+@export var canHps: bool = false
+
+var _weapon_instance: Node = null
 
 func _ready() -> void:
-	if weapon != null:
+	if inventory_node_path != null and inventory_node_path != NodePath(""):
+		var inv_node = get_node_or_null(inventory_node_path)
+		if inv_node:
+			inv_node.connect("hotbar_selected", Callable(self, "_on_inventory_hotbar_selected"))
+		else:
+			push_warning("PlayerManager: inventory_node_path set but node not found: %s" % inventory_node_path)
+	if _weapon_instance == null and weapon != null and (inventory_node_path == NodePath("") or get_node_or_null(inventory_node_path) == null):
 		_weapon_instance = weapon.instantiate()
-		add_child(_weapon_instance)
+		var player_node = get_parent()
+		if player_node:
+			player_node.add_child(_weapon_instance)
+			_weapon_instance.shooter = player_node
 
 func get_weapon() -> Node:
 	return _weapon_instance
+func _on_inventory_hotbar_selected(item_resource, slot_index: int) -> void:
+	if item_resource == null:
+		unequip_weapon()
+		return
+	if not item_resource.isWeapon:
+		unequip_weapon()
+		return
+	equip_weapon_from_item(item_resource)
+
+func equip_weapon_from_item(item_resource) -> void:
+	if item_resource == null:
+		unequip_weapon()
+		return
+	if not item_resource.itemScene:
+		unequip_weapon()
+		return
+	if _weapon_instance:
+		_weapon_instance.isSelected = false
+		_weapon_instance.queue_free()
+		_weapon_instance = null
+	_weapon_instance = item_resource.itemScene.instantiate()
+
+	var player_node = get_parent()
+	if player_node:
+		player_node.add_child(_weapon_instance)
+	else:
+		add_child(_weapon_instance)
+	if player_node:
+		_weapon_instance.shooter = player_node
+	_weapon_instance.isSelected = true
+
+func unequip_weapon() -> void:
+	if _weapon_instance:
+		_weapon_instance.isSelected = false
+		_weapon_instance.queue_free()
+		_weapon_instance = null
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0:
@@ -56,13 +106,13 @@ func hps_tick():
 	if canHps:
 		heal(stats.hps)
 
-func heal(amount):   
-	if stats.hp >= stats.maxHp:  
-		return  
-	var actual_heal = min(amount, stats.maxHp - stats.hp)  
-	stats.hp += actual_heal  
-	if actual_heal > 0:  
-		healed()  
+func heal(amount):
+	if stats.hp >= stats.maxHp:
+		return
+	var actual_heal = min(amount, stats.maxHp - stats.hp)
+	stats.hp += actual_heal
+	if actual_heal > 0:
+		healed()
 		GlobalhitMarker.show_hit_marker(actual_heal, GlobalPlayer.player, true)
 
 func healed():
