@@ -104,6 +104,7 @@ Name = "MENDING HEART"
 attackDamage = 30.0
 attackType = "close / melee"
 activeAbilityCooldown = 20.0
+bulletAmountMod = 1
 hasWeapon = true
 weaponScene = ExtResource("2_pln2i")
 

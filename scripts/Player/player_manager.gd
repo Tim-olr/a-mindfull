@@ -5,6 +5,7 @@ class_name PlayerManager
 @onready var interact_area = $InteractArea
 @onready var movement_controller = $"../PlayerMovement"
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
+@onready var health_bar: ProgressBar = $"../PlayerVisuals/UI/HealthBar"
 
 @export var weapon: PackedScene
 @export var inventory_node_path: NodePath = NodePath("")
@@ -98,6 +99,7 @@ func _input(_event: InputEvent) -> void:
 func damage(damage_amount, attacker, shake):
 	stats.hp -= damage_amount
 	damaged(shake)
+	health_bar.set_health(stats.hp)
 	GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
 	if attacker != null:
 		var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
@@ -123,6 +125,7 @@ func heal(amount):
 	stats.hp += actual_heal
 	if actual_heal > 0:
 		healed()
+		health_bar.set_health(stats.hp)
 		GlobalhitMarker.show_hit_marker(actual_heal, GlobalPlayer.player, true)
 
 func healed():

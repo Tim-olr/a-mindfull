@@ -65,9 +65,13 @@ func _process(_delta: float) -> void:
 			if Input.is_action_pressed("attack") and shooter.stats.canAttack:
 				perform_attack()
 	elif shooter.is_in_group("spirit"):
-		bullet_stars_pos = shooter.bullet_start_pos
-		global_position = shooter.global_position
-		bullet_stars_pos.look_at(get_global_mouse_position())
+		if melee:
+			global_position = shooter.global_position
+			bullet_stars_pos.look_at(get_global_mouse_position())
+		else: 
+			bullet_stars_pos = shooter.bullet_start_pos
+			global_position = shooter.global_position
+			bullet_stars_pos.look_at(get_global_mouse_position())
 		if Input.is_action_just_pressed("spirit_attack") and shooter.out and shooter.canAttack:
 			perform_attack()
 	elif shooter.is_in_group("enemy"):
@@ -104,46 +108,59 @@ func perform_attack():
 		shooter.stats.canAttack = false
 		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
 		attack_cooldown.start()
+		
 	if gun:
 		shoot()
 	elif melee:
+		var total_attacks
 		if shooter.is_in_group("spirit"):
-			for i in bulletAmountMod:
-				do_melee_animation()
+			total_attacks = shooter.bulletAmountMod + bulletAmountMod
 		else:
-			var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
-			for i in total_attacks:
-				do_melee_animation()
-				if doConsecShooting:
-					await get_tree().create_timer(0.1).timeout
-				else:
-					await get_tree().create_timer(attack_duration).timeout
+			total_attacks = shooter.stats.bulletAmount + bulletAmountMod
+			
+		for i in range(total_attacks):
+			await do_melee_animation()
+			if i < total_attacks - 1:
+				var wait_time = 0.1 if doConsecShooting else attack_duration
+				await get_tree().create_timer(wait_time).timeout
 
 func do_melee_animation():
 	targets_hit.clear()
 	melee_active = true
-	for body in melee_hitbox.get_overlapping_bodies():
-		_on_melee_hitbox_entered(body)
-	for area in melee_hitbox.get_overlapping_areas():
-		_on_melee_hitbox_entered(area)
-
-	var tween = create_tween()
-	var current_rot = bullet_stars_pos.rotation
-	var current_pos = bullet_stars_pos.position
 	
-	if is_swing:
+	if melee_hitbox:
+		for body in melee_hitbox.get_overlapping_bodies():
+			_on_melee_hitbox_entered(body)
+		for area in melee_hitbox.get_overlapping_areas():
+			_on_melee_hitbox_entered(area)
+	
+	var tween = create_tween()
+	var current_rot = 0
+	var current_pos = Vector2.ZERO
+	
+	if bullet_stars_pos:
+		current_rot = bullet_stars_pos.rotation
+		current_pos = bullet_stars_pos.position
+	
+	if is_swing and bullet_stars_pos:
 		tween.tween_property(bullet_stars_pos, "rotation", current_rot + deg_to_rad(swing_arc/2), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "rotation", current_rot - deg_to_rad(swing_arc/2), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "rotation", original_bullet_rot, 0.05)
-	elif is_stab:
+	elif is_stab and bullet_stars_pos:
 		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0).rotated(current_rot), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration/2)
+	
 	await tween.finished
+	
 	if shooter.is_in_group("spirit"):
 		shooter.canAttack = true
-	else: shooter.stats.canAttack = true
-	bullet_stars_pos.position = original_bullet_pos
-	bullet_stars_pos.rotation = original_bullet_rot
+	else: 
+		shooter.stats.canAttack = true
+		
+	if bullet_stars_pos:
+		bullet_stars_pos.position = original_bullet_pos
+		bullet_stars_pos.rotation = original_bullet_rot
+		
 	melee_active = false
 
 func _on_melee_hitbox_entered(body: Node):
@@ -218,7 +235,9 @@ func shoot():
 		attack_damage = shooter.stats.attackDamage + damageMod
 		bullet_lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
 		bullet_size = shooter.stats.bulletSize + bulletSizeMod
-	var start_rotation = bullet_stars_pos.rotation
+	var start_rotation = 0
+	if bullet_stars_pos:
+		start_rotation = bullet_stars_pos.rotation
 	if total_bullets > 1 and !doConsecShooting:
 		start_rotation -= (spread_angle * (total_bullets - 1)) / 2.0
 	for i in total_bullets:
@@ -245,7 +264,8 @@ func shoot():
 		bullet.damage = attack_damage
 		bullet.lifetime = bullet_lifetime
 		bullet.set_scale(bullet_size)
-		bullet.global_position = bullet_stars_pos.global_position
+		if bullet_stars_pos:
+			bullet.global_position = bullet_stars_pos.global_position
 		bullet.shake = cameraShakeAmount
 		GlobalWorld.projectiles.add_child(bullet)
 		if doConsecShooting:

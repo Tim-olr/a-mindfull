@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://cdamkadr37mce"]
 
 [ext_resource type="Script" uid="uid://cn5m8hl2xgbts" path="res://spirit-game-project/scripts/Player/inventory/inventory_slot.gd" id="1_uvwsa"]
+[ext_resource type="Texture2D" uid="uid://ci615ibt1a44" path="res://spirit-game-project/assets/player/inventory/inv_slot.png" id="2_y2mwc"]
 
 [node name="InventorySlot" type="Button" unique_id=1332280298]
+focus_mode = 0
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
 toggle_mode = true
 script = ExtResource("1_uvwsa")
+
+[node name="SlotTexture" type="TextureRect" parent="." unique_id=1743848595]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_y2mwc")
+expand_mode = 1
 
 [node name="ItemIcon" type="TextureRect" parent="." unique_id=1260081239]
 layout_mode = 0
@@ -16,5 +27,9 @@ expand_mode = 1
 
 [node name="ItemCount" type="Label" parent="." unique_id=1384505004]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 1
+text = "2"

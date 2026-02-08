@@ -34,3 +34,5 @@ shape = SubResource("RectangleShape2D_wmvtm")
 position = Vector2(2.5, 0.4999981)
 scale = Vector2(0.679688, 0.6171875)
 texture = ExtResource("2_3s2ln")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
