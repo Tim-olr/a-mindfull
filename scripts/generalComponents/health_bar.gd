@@ -28,7 +28,6 @@ func set_health(new_health):
 	if health <= 0:
 		if damage_tween: damage_tween.kill()
 		if flash_tween: flash_tween.kill()
-		queue_free()
 		return
 	
 	if health < prev_health:

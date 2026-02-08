@@ -9,6 +9,7 @@ theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 
 theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
 toggle_mode = true
 script = ExtResource("1_uvwsa")
+slot_index = null
 
 [node name="SlotTexture" type="TextureRect" parent="." unique_id=1743848595]
 layout_mode = 0

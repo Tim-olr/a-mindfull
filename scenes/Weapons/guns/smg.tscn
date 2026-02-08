@@ -19,7 +19,7 @@ Name = "SMG"
 rarity = "common"
 bulletScene = ExtResource("2_eyfox")
 doConsecShooting = true
-cameraShakeAmount = 10.0
+cameraShakeAmount = 5.0
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=53666180]
 one_shot = true

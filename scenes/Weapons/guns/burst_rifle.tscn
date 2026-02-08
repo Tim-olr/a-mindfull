@@ -15,13 +15,12 @@ projectileSpeedMod = 1100.0
 bulletSizeMod = Vector2(-0.4, -0.4)
 shootCooldown = -0.2
 gun = true
-damage = 4.0
 description = "Shoot in a 3 bullet sequence"
 Name = "Burst Rifle"
 rarity = "Common"
 bulletScene = ExtResource("2_ynmbx")
 doConsecShooting = true
-cameraShakeAmount = 15.0
+cameraShakeAmount = 10.0
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1967878743]
 one_shot = true

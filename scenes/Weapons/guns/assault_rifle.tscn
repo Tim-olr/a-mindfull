@@ -13,13 +13,12 @@ projectileSpeedMod = 1000.0
 bulletSizeMod = Vector2(-0.4, -0.4)
 shootCooldown = -0.3
 gun = true
-damage = 10.0
 description = "Nice little gun"
 Name = "Assault Rifle"
 rarity = "Common"
 bulletScene = ExtResource("2_7e2mb")
 doConsecShooting = true
-cameraShakeAmount = 10.0
+cameraShakeAmount = 6.0
 metadata/_custom_type_script = "uid://yt26tbo0l8dw"
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=334279380]

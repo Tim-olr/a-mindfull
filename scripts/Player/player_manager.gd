@@ -6,12 +6,14 @@ class_name PlayerManager
 @onready var movement_controller = $"../PlayerMovement"
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 @onready var health_bar: ProgressBar = $"../PlayerVisuals/UI/HealthBar"
+@onready var player_sprites: AnimatedSprite2D = $"../PlayerVisuals/PlayerSprites"
 
 @export var weapon: PackedScene
 @export var inventory_node_path: NodePath = NodePath("")
 @export var knockback_resistance: float = 0.0
 @export var canHps: bool = false
 
+var canGetDamaged: bool = true
 var _weapon_instance: Node = null
 
 func _ready() -> void:
@@ -38,11 +40,21 @@ func get_weapon() -> Node:
 func _on_inventory_hotbar_selected(item_resource, slot_index: int) -> void:
 	if item_resource == null:
 		unequip_weapon()
+		await _block_shoot_for(0.7)
 		return
 	if not item_resource.isWeapon:
 		unequip_weapon()
+		await _block_shoot_for(0.7)
 		return
 	equip_weapon_from_item(item_resource)
+	await _block_shoot_for(0.7)
+
+func _block_shoot_for(seconds: float) -> void:
+	if stats != null:
+		stats.canAttack = false
+	await get_tree().create_timer(seconds).timeout
+	if stats != null:
+		stats.canAttack = true
 
 func equip_weapon_from_item(item_resource) -> void:
 	if item_resource == null:
@@ -97,22 +109,43 @@ func _input(_event: InputEvent) -> void:
 			stats.playerSpiritScene.bring_in()
 
 func damage(damage_amount, attacker, shake):
-	stats.hp -= damage_amount
-	damaged(shake)
-	health_bar.set_health(stats.hp)
-	GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
-	if attacker != null:
-		var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
-		apply_knockback(knockback_direction, 200.0)
+	if canGetDamaged:
+		stats.hp -= damage_amount
+		damaged(shake)
+		health_bar.set_health(stats.hp)
+		GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
+		if attacker != null:
+			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
+			apply_knockback(knockback_direction, 200.0)
 
 func damaged(shake):
-	var tween = create_tween()
-	tween.tween_property(mesh_instance_2d, "modulate", Color.RED, 0.1)
-	tween.tween_property(mesh_instance_2d, "modulate", Color.WHITE, 0.1)
+	if movement_controller:
+		movement_controller.play_priority_animation("hurt", false)
+	else:
+		player_sprites.play("hurt")
 	GlobalPlayer.camera.apply_shake(shake)
 
 func die():
-	get_tree().change_scene_to_file("res://spirit-game-project/scenes/main game/game.tscn")
+	canGetDamaged = false
+	var tree = get_tree()
+	if tree == null:
+		return
+	var player_node = get_parent()
+	if player_node:
+		player_node.process_mode = Node.PROCESS_MODE_ALWAYS
+	if movement_controller:
+		movement_controller.process_mode = Node.PROCESS_MODE_ALWAYS
+	if player_sprites:
+		player_sprites.process_mode = Node.PROCESS_MODE_ALWAYS
+	tree.paused = true
+	if movement_controller:
+		movement_controller.play_priority_animation("death", true)
+		await player_sprites.animation_finished
+	else:
+		player_sprites.play("death")
+		await player_sprites.animation_finished
+	tree.paused = false
+	tree.call_deferred("change_scene_to_file", "res://spirit-game-project/scenes/main game/game.tscn")
 
 func hps_tick():
 	if canHps:

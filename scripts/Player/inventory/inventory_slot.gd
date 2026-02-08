@@ -99,11 +99,14 @@ func _update_visuals() -> void:
 	_update_selection_visuals()
 
 func _gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-		if item != null:
-			if item.isUsableItem or item.isWeapon:
-				set_selected(true)
-			emit_signal("selected", slot_index)
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			accept_event()
+		else:
+			if item != null:
+				if item.isUsableItem or item.isWeapon:
+					set_selected(true)
+				emit_signal("selected", slot_index)
 
 func _get_drag_data(_position):
 	if not item:

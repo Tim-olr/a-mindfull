@@ -39,6 +39,9 @@ func update_inventory_slots() -> void:
 			hotbar.add_child(slot)
 		else:
 			inventory_grid.add_child(slot)
+	if selected_slot_index >= MIN_HOTBAR_SLOTS or selected_slot_index >= slots.size():
+		selected_slot_index = -1
+	update_hotbar_selection()
 
 func _on_slot_selected(index: int) -> void:
 	if index < 0 or index >= slots.size():
@@ -48,17 +51,42 @@ func _on_slot_selected(index: int) -> void:
 	selected_slot_index = index
 	var slot: Button = slots[index]
 	emit_signal("hotbar_selected", slot.item, index)
+	update_hotbar_selection()
 
 func _on_slot_item_changed(index: int) -> void:
 	if index == selected_slot_index:
 		var slot = slots[index]
 		if slot == null or slot.item == null or not slot.item.isWeapon:
+			selected_slot_index = -1
 			emit_signal("hotbar_selected", null, index)
+			update_hotbar_selection()
 
 func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			Key.KEY_1:
+				_select_hotbar_number(1)
+			Key.KEY_2:
+				_select_hotbar_number(2)
+			Key.KEY_3:
+				_select_hotbar_number(3)
+			Key.KEY_4:
+				_select_hotbar_number(4)
+			Key.KEY_5:
+				_select_hotbar_number(5)
+			Key.KEY_6:
+				_select_hotbar_number(6)
 	if event.is_action_pressed("open_inventory"):
 		inventory_grid.visible = !inventory_grid.visible
 		inventory_grid.mouse_filter = Control.MOUSE_FILTER_STOP if inventory_grid.visible else Control.MOUSE_FILTER_IGNORE
+
+func _select_hotbar_number(n: int) -> void:
+	var index = n - 1
+	if index < 0 or index >= MIN_HOTBAR_SLOTS:
+		return
+	if index >= slots.size():
+		return
+	_on_slot_selected(index)
 
 func add_item(item, count: int = 1) -> bool:
 	if occupiedSlots >= slotAmount:
@@ -77,3 +105,19 @@ func add_item(item, count: int = 1) -> bool:
 			occupiedSlots += 1
 			return true
 	return false
+
+func update_hotbar_selection() -> void:
+	for i in range(MIN_HOTBAR_SLOTS):
+		if i >= slots.size():
+			break
+		var s = slots[i]
+		if i == selected_slot_index:
+			if "set_selected" in s:
+				s.set_selected(true)
+			else:
+				s.modulate = Color(1.0, 0.9, 0.5, 1.0)
+		else:
+			if "set_selected" in s:
+				s.set_selected(false)
+			else:
+				s.modulate = Color(1.0, 1.0, 1.0, 1.0)

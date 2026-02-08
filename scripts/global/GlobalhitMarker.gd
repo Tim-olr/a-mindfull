@@ -8,7 +8,7 @@ extends Node
 @export var font_size := 50
 
 func show_hit_marker(amount: int, target: Node2D, is_heal: bool) -> void:
-	var world = GlobalWorld.theWorld
+	var world = GlobalWorld.dmgNrs
 	var label = Label.new()
 	label.text = str(abs(amount))
 	label.add_theme_font_size_override("font_size", font_size)
