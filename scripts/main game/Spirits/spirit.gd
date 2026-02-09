@@ -54,6 +54,7 @@ func _ready() -> void:
 	host = get_parent()
 	set_scale(size)
 	z_index = 2
+	canAbility = true
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())

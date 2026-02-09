@@ -1,6 +1,8 @@
 extends Node2D
 class_name PlayerSpecials
 
+var is_paused: bool = false
+
 func pause():
 	get_tree().paused = true
 
@@ -9,10 +11,12 @@ func unpause():
 
 func pause_wo_player():
 	set_player_pause_mode(false)
+	is_paused = true
 	get_tree().paused = true
 
 func unpause_wo_player():
 	get_tree().paused = false
+	is_paused = false
 	set_player_pause_mode(true)
 
 func set_player_pause_mode(paused: bool):

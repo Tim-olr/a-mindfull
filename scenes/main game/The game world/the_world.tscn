@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
 [ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_fsixv"]
 [ext_resource type="PackedScene" uid="uid://dg08cdh3iur8r" path="res://spirit-game-project/scenes/enemy/enemies/bartholomew.tscn" id="4_diwni"]
 [ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="5_ox3eu"]
@@ -9,6 +10,17 @@
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
 [ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
 [ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
+shader = ExtResource("3_8i5hg")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Gradient" id="Gradient_8i5hg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lmetf"]
+gradient = SubResource("Gradient_8i5hg")
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -33,6 +45,17 @@ script = ExtResource("1_87ryk")
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 position = Vector2(204, 78)
+
+[node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
+
+[node name="Gray" type="TextureRect" parent="Effects" unique_id=427023759]
+material = SubResource("ShaderMaterial_s3014")
+offset_left = -1993.0
+offset_top = -1205.0
+offset_right = 2065.0
+offset_bottom = 1277.0
+texture = SubResource("GradientTexture1D_lmetf")
+metadata/_edit_use_anchors_ = true
 
 [node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
 

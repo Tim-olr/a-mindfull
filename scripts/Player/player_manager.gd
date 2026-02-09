@@ -93,6 +93,8 @@ func unequip_weapon() -> void:
 		_weapon_instance = null
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("test"):
+		pass
 	if stats.hp <= 0:
 		die()
 

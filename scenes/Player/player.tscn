@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://spirit-game-project/scripts/Player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://spirit-game-project/scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://spirit-game-project/scripts/Player/player_stats.gd" id="2_s4a0o"]
-[ext_resource type="Resource" uid="uid://dm7jqgd30rno5" path="res://spirit-game-project/resources/spirits/spirits/MENDING_HEART.tres" id="3_lf5c0"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
+[ext_resource type="Resource" uid="uid://cvjrk20laai14" path="res://spirit-game-project/resources/spirits/spirits/KEEP_ME_CLOSE.tres" id="3_tb7ui"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
 [ext_resource type="Script" uid="uid://bhf43mahuarph" path="res://spirit-game-project/scripts/Player/player_specials.gd" id="8_67ne4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
 [ext_resource type="Texture2D" uid="uid://c5cyyhcwchc3x" path="res://spirit-game-project/assets/player/player_map.png" id="10_2du5a"]
+[ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
 
@@ -549,6 +550,17 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tb7ui"]
+shader = ExtResource("12_tb7ui")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Gradient" id="Gradient_t0bry"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7hhef"]
+gradient = SubResource("Gradient_t0bry")
+
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
@@ -634,7 +646,7 @@ hp = 100.0
 maxHp = 100.0
 attackDamage = 10.0
 slideAmount = 100.0
-playerSpirit = ExtResource("3_lf5c0")
+playerSpirit = ExtResource("3_tb7ui")
 bulletAmount = 1
 bulletLifeTime = 1.0
 bulletSize = Vector2(1, 1)
@@ -703,6 +715,17 @@ sprite_frames = SubResource("SpriteFrames_x5xxc")
 animation = &"dodge"
 frame = 7
 frame_progress = 1.0
+
+[node name="Effects" type="CanvasLayer" parent="PlayerVisuals" unique_id=2112952959]
+
+[node name="Gray" type="TextureRect" parent="PlayerVisuals/Effects" unique_id=1488027778]
+material = SubResource("ShaderMaterial_tb7ui")
+offset_left = -1993.0
+offset_top = -1205.0
+offset_right = 2065.0
+offset_bottom = 1277.0
+texture = SubResource("GradientTexture1D_7hhef")
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1016626830]
 
