@@ -94,6 +94,9 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_vdfrk"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdfrk"]
+size = Vector2(123, 128)
+
 [node name="Spirit" type="CharacterBody2D" unique_id=1991023785]
 script = ExtResource("1_vdfrk")
 Name = "teest"
@@ -116,6 +119,12 @@ one_shot = true
 
 [node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=2031016593]
 one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1701328985]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1953809865]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_vdfrk")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

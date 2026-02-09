@@ -65,7 +65,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 	move_and_slide()
 
-func damage(damageAmount):
+func damage(damageAmount, _dmgr, _camShake):
 	var newDmg = damageAmount
 	stats.hp -= newDmg
 	health_bar.set_health(stats.hp)

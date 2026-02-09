@@ -95,6 +95,12 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_1s1gh"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2n30"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2n30"]
+size = Vector2(136, 136)
+
 [node name="KeepMeClose" type="CharacterBody2D" unique_id=758947932 groups=["spirit"]]
 script = ExtResource("1_iis75")
 Name = "KEEP ME CLOSE"
@@ -124,6 +130,16 @@ one_shot = true
 
 [node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=109547187]
 one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=507240069]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=825415497]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_n2n30")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1723689249]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_n2n30")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

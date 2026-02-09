@@ -30,11 +30,8 @@ var _initial_speed: float = 0.0
 var _elapsed: float = 0.0
 
 func _ready() -> void:
-	# Defensive: if an external script assigned rot before _ready it will keep that value.
-	# If rot was never set, fall back to node rotation (or 0.0).
 	if rot == null:
 		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
-
 	_initial_speed = projectileSpeed
 	_elapsed = 0.0
 	if lifetime > 0.0:
@@ -44,40 +41,26 @@ func _ready() -> void:
 
 func _physics_process(delta: float):
 	_elapsed += delta
-
-	# update speed over time
 	if speed_mode != 0 and lifetime > 0.0:
 		var t = clamp(_elapsed / lifetime, 0.0, 1.0)
 		projectileSpeed = _initial_speed * lerp(1.0, end_speed_multiplier, t)
-
-	# Defensive: ensure rot is a number
 	if rot == null:
 		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
-
-	# move first so Area2D overlaps reflect new position
 	velocity = Vector2(projectileSpeed, 0).rotated(rot)
 	move_and_slide()
-
-	# check overlaps each frame so canKeepTicking works while overlapping
 	_check_overlaps()
 
 func _check_overlaps() -> void:
-	# compute which groups to ignore according to Option A:
-	# Player bullets should NOT hit spirits; Spirit bullets should NOT hit players.
 	var ignore_groups: Array = [shooter_group]
 	if shooter_group == "player":
 		ignore_groups.append("spirit")
 	elif shooter_group == "spirit":
 		ignore_groups.append("player")
-
-	# collect current overlapping bodies and their ids
 	var overlapping = collision_area.get_overlapping_bodies()
 	var overlapping_ids: Dictionary = {}
 	for body in overlapping:
 		if body == null:
 			continue
-
-		# ignore the configured groups (shooter_group plus the counterpart)
 		var should_ignore := false
 		for g in ignore_groups:
 			if body.is_in_group(g):
@@ -85,29 +68,21 @@ func _check_overlaps() -> void:
 				break
 		if should_ignore:
 			continue
-
-		# if we hit a wall, destroy the projectile
 		if body.is_in_group("wall"):
 			go_away()
 			return
-
-		if body.is_in_group("enemy") or body.is_in_group("player"):
+		if body.is_in_group("enemy") or body.is_in_group("player") or body.is_in_group("spirit"):
 			var id = body.get_instance_id()
 			overlapping_ids[id] = true
-
 			if not canKeepTicking:
-				# only hit once while overlapping (previous behavior)
 				if not targets_hit_times.has(id):
 					hit(body)
 			else:
-				# allow repeated hits but only if tick_interval has passed
 				var last_hit_time: float = -9999.0
 				if targets_hit_times.has(id):
 					last_hit_time = targets_hit_times[id]
 				if _elapsed - last_hit_time >= tick_interval:
 					hit(body)
-
-	# Remove entries for bodies no longer overlapping so they'll be hittable again on re-entry
 	var to_remove: Array = []
 	for key in targets_hit_times.keys():
 		if not overlapping_ids.has(key):
@@ -122,10 +97,8 @@ func go_away():
 	queue_free()
 
 func hit(hitBody):
-	# compute contact point if needed (keeps your existing code)
 	var my_shape = $CollisionArea/CollisionShape2D.shape
 	var my_transform = $CollisionArea/CollisionShape2D.global_transform
-	# some bodies might not have shape_owner_get_owner; protect with checks
 	if hitBody.has_method("shape_owner_get_owner") and hitBody.has_method("shape_owner_get_shape"):
 		var body_shape_owner = hitBody.shape_owner_get_owner(0)
 		var body_shape = hitBody.shape_owner_get_shape(0, 0)
@@ -134,20 +107,17 @@ func hit(hitBody):
 		if contacts.size() > 0:
 			# spawn_pos = contacts[0]  # unused in current code but kept for compatibility
 			pass
-
 	do_damage(hitBody)
 	apply_knockback_to_target(hitBody)
 
 func do_damage(hitBody):
 	var id = hitBody.get_instance_id()
-	if hitBody.is_in_group("enemy"):
+	if hitBody.is_in_group("enemy") or hitBody.is_in_group("spirit"):
 		if hitBody.has_method("damage"):
-			hitBody.damage(damage)
+			hitBody.damage(damage, get_parent().get_parent(), shake)
 		elif hitBody.get_parent().has_method("damage"):
 			hitBody.get_parent().damage(damage)
-		# record last hit time
 		targets_hit_times[id] = _elapsed
-		# decrement pierce unless infinite
 		if not hasInfPierce:
 			pierce -= 1
 			if pierce <= 0:
@@ -169,11 +139,8 @@ func apply_knback_direction(rot_angle: float) -> Vector2:
 func apply_knockback_to_target(hitBody):
 	if knockback_force <= 0:
 		return
-
-	# Defensive: ensure rot is valid
 	if rot == null:
 		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
-
 	var knockback_direction = apply_knback_direction(rot)
 	if hitBody.is_in_group("enemy"):
 		if hitBody.has_method("apply_knockback"):

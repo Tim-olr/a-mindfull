@@ -96,6 +96,12 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_bcdgv"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukrjp"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukrjp"]
+size = Vector2(136, 136)
+
 [node name="SilverBullet" type="CharacterBody2D" unique_id=1530907115]
 script = ExtResource("1_kwwd0")
 Name = "SILVER BULLET"
@@ -131,6 +137,16 @@ one_shot = true
 
 [node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=1585287357]
 one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1815708328]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=852468968]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_ukrjp")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1094133448]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ukrjp")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

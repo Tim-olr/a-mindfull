@@ -95,6 +95,12 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_6b0nw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7d7pk"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7d7pk"]
+size = Vector2(136, 136)
+
 [node name="StartYourEngine" type="CharacterBody2D" unique_id=1554190966 groups=["spirit"]]
 script = ExtResource("1_7d7pk")
 Name = "START YOUR ENGINE"
@@ -123,6 +129,16 @@ one_shot = true
 
 [node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=2082059046]
 one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=2093358124]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=2137892204]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_7d7pk")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=924570375]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7d7pk")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

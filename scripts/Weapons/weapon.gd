@@ -164,52 +164,69 @@ func do_melee_animation():
 	melee_active = false
 
 func _on_melee_hitbox_entered(body: Node):
-	if !melee_active or targets_hit.has(body) or body == shooter:
+	if !melee_active:
+		return
+	var target = _find_entity_root(body)
+	if targets_hit.has(target) or target == shooter:
 		return
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
-		if body.is_in_group("enemy"):
-			hit(body)
+		if target.is_in_group("enemy"):
+			hit(target)
 	elif shooter.is_in_group("enemy"):
-		if body.is_in_group("player") or body.is_in_group("spirit"):
-			hit(body)
+		if target.is_in_group("player") or target.is_in_group("spirit"):
+			hit(target)
 
 func hit(hitBody):
 	do_damage(hitBody)
 	apply_knockback_to_target(hitBody)
 
 func do_damage(hitBody):
+	var target = _find_entity_root(hitBody)
 	var total_damage
 	if shooter.is_in_group("spirit"):
 		total_damage = shooter.attackDamage + damageMod
 	else:
 		total_damage = shooter.stats.attackDamage + damageMod
-	if hitBody.is_in_group("enemy"):
-		if hitBody.has_method("damage"):
-			hitBody.damage(total_damage)
-		elif hitBody.get_parent().has_method("damage"):
-			hitBody.get_parent().damage(total_damage)
-		targets_hit.append(hitBody)
-	elif hitBody.is_in_group("player"):
-		if hitBody.manager.has_method("damage"):
-			hitBody.manager.damage(total_damage, get_parent(), cameraShakeAmount)
-		elif hitBody.get_parent().manager.has_method("damage"):
-			hitBody.get_parent().manager.damage(total_damage, get_parent(), cameraShakeAmount)
-		targets_hit.append(hitBody)
+	if target.is_in_group("enemy"):
+		if target.has_method("damage"):
+			target.damage(total_damage)
+		elif target.get_parent() and target.get_parent().has_method("damage"):
+			target.get_parent().damage(total_damage)
+		targets_hit.append(target)
+	elif target.is_in_group("player"):
+		var mgr = target.get("manager")
+		if mgr and mgr.has_method("damage"):
+			mgr.damage(total_damage, get_parent(), cameraShakeAmount)
+		elif target.get_parent():
+			var pmgr = target.get_parent().get("manager")
+			if pmgr and pmgr.has_method("damage"):
+				pmgr.damage(total_damage, get_parent(), cameraShakeAmount)
+		targets_hit.append(target)
+	elif target.is_in_group("spirit"):
+		if target.has_method("damage"):
+			target.damage(total_damage, get_parent(), cameraShakeAmount)
+			print("found")
+		else: print("nf")
+		targets_hit.append(target)
 
 func apply_knockback_to_target(hitBody):
+	var target = _find_entity_root(hitBody)
 	if knockback_force <= 0:
 		return
-	var knockback_direction = (hitBody.global_position - shooter.global_position).normalized()
-	if hitBody.is_in_group("enemy"):
-		if hitBody.has_method("apply_knockback"):
-			hitBody.apply_knockback(knockback_direction, knockback_force)
-		elif hitBody.get_parent().has_method("apply_knockback"):
-			hitBody.get_parent().apply_knockback(knockback_direction, knockback_force)
-	elif hitBody.is_in_group("player"):
-		if hitBody.manager.has_method("apply_knockback"):
-			hitBody.manager.apply_knockback(knockback_direction, knockback_force)
-		elif hitBody.get_parent().manager.has_method("apply_knockback"):
-			hitBody.get_parent().manager.apply_knockback(knockback_direction, knockback_force)
+	var knockback_direction = (target.global_position - shooter.global_position).normalized()
+	if target.is_in_group("enemy"):
+		if target.has_method("apply_knockback"):
+			target.apply_knockback(knockback_direction, knockback_force)
+		elif target.get_parent() and target.get_parent().has_method("apply_knockback"):
+			target.get_parent().apply_knockback(knockback_direction, knockback_force)
+	elif target.is_in_group("player"):
+		var mgr = target.get("manager")
+		if mgr and mgr.has_method("apply_knockback"):
+			mgr.apply_knockback(knockback_direction, knockback_force)
+		elif target.get_parent():
+			var pmgr = target.get_parent().get("manager")
+			if pmgr and pmgr.has_method("apply_knockback"):
+				pmgr.apply_knockback(knockback_direction, knockback_force)
 
 func shoot():
 	var total_bullets
@@ -278,3 +295,13 @@ func _on_attack_cooldown_timeout() -> void:
 		shooter.canAttack = true
 	elif shooter and (shooter.is_in_group("player") or shooter.is_in_group("enemy")):
 		shooter.stats.canAttack = true
+
+func _find_entity_root(n: Node) -> Node:
+	var cur = n
+	while cur:
+		if cur.is_in_group("player") or cur.is_in_group("enemy") or cur.is_in_group("spirit"):
+			return cur
+		if cur.get_parent() == null:
+			break
+		cur = cur.get_parent()
+	return n
