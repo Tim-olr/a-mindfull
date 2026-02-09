@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://spirit-game-project/scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://spirit-game-project/scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://spirit-game-project/scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
+[ext_resource type="Script" uid="uid://bhf43mahuarph" path="res://spirit-game-project/scripts/Player/player_specials.gd" id="8_67ne4"]
 [ext_resource type="PackedScene" uid="uid://jqii235rbcqp" path="res://spirit-game-project/scenes/Player/inventory/Inventory.tscn" id="8_lf5c0"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
@@ -673,6 +674,9 @@ offset_top = -647.0
 offset_right = -1224.0001
 offset_bottom = -647.0
 scale = Vector2(15, 15)
+
+[node name="PlayerSpecials" type="Node2D" parent="." unique_id=1411606192]
+script = ExtResource("8_67ne4")
 
 [node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")

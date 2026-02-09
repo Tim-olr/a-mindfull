@@ -7,4 +7,5 @@ extends Node
 @onready var camera
 @onready var spiritMarker: Marker2D
 @onready var manager: PlayerManager
+@onready var specials: PlayerSpecials
 var player: Player
