@@ -8,15 +8,6 @@ size = Vector2(123, 128)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=1162203950]
 script = ExtResource("1_gmfsf")
-damage = null
-lifetime = null
-projectileSpeed = null
-pierce = null
-speed_mode = null
-end_speed_multiplier = null
-hasInfPierce = null
-canKeepTicking = null
-tick_interval = null
 
 [node name="LifeTime" type="Timer" parent="." unique_id=1214404922]
 one_shot = true

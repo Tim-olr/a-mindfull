@@ -28,6 +28,14 @@ class_name Weapon
 @export_enum("Constant", "Accelerate", "Decelerate") var bullet_speed_mode: int = 0
 @export var bullet_end_speed_multiplier: float = 1.0
 
+@export_category("Laser Settings")
+@export var is_laser: bool = false
+@export var laser_max_length: float = 400.0
+@export var laser_width: float = 4.0
+@export var canPhaseThroughWall: bool = false
+@export var laser_attach_to_shooter: bool = false
+@export var laser_hold_while_held: bool = false
+
 @export_group("Melee Settings")
 @export var is_swing: bool = false
 @export var is_stab: bool = false
@@ -45,14 +53,14 @@ var isSelected: bool = false
 @onready var bullet_stars_pos = $BulletStarsPos
 @onready var melee_hitbox: Area2D = $BulletStarsPos/MeleeHitbox
 
-var original_bullet_pos: Vector2  
+var original_bullet_pos: Vector2
 var original_bullet_rot: float
 
 func _ready():
 	shooter = get_parent()
 	melee_hitbox.body_entered.connect(_on_melee_hitbox_entered)
 	melee_hitbox.area_entered.connect(_on_melee_hitbox_entered)
-	original_bullet_pos = bullet_stars_pos.position  
+	original_bullet_pos = bullet_stars_pos.position
 	original_bullet_rot = bullet_stars_pos.rotation
 	if shooter.is_in_group("enemy") and melee:
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
@@ -60,15 +68,19 @@ func _ready():
 func _process(_delta: float) -> void:
 	if isSelected:
 		if shooter.is_in_group("player"):
-			global_position = shooter.global_position
-			bullet_stars_pos.look_at(get_global_mouse_position())
+			if !is_laser:
+				global_position = shooter.global_position
+				bullet_stars_pos.look_at(get_global_mouse_position())
+			else: 
+				global_position = shooter.global_position
+				bullet_stars_pos.look_at(-get_global_mouse_position())
 			if Input.is_action_pressed("attack") and shooter.stats.canAttack:
 				perform_attack()
 	elif shooter.is_in_group("spirit"):
 		if melee:
 			global_position = shooter.global_position
 			bullet_stars_pos.look_at(get_global_mouse_position())
-		else: 
+		else:
 			bullet_stars_pos = shooter.bullet_start_pos
 			global_position = shooter.global_position
 			bullet_stars_pos.look_at(get_global_mouse_position())
@@ -108,7 +120,6 @@ func perform_attack():
 		shooter.stats.canAttack = false
 		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
 		attack_cooldown.start()
-		
 	if gun:
 		shoot()
 	elif melee:
@@ -117,7 +128,6 @@ func perform_attack():
 			total_attacks = shooter.bulletAmountMod + bulletAmountMod
 		else:
 			total_attacks = shooter.stats.bulletAmount + bulletAmountMod
-			
 		for i in range(total_attacks):
 			await do_melee_animation()
 			if i < total_attacks - 1:
@@ -127,21 +137,17 @@ func perform_attack():
 func do_melee_animation():
 	targets_hit.clear()
 	melee_active = true
-	
 	if melee_hitbox:
 		for body in melee_hitbox.get_overlapping_bodies():
 			_on_melee_hitbox_entered(body)
 		for area in melee_hitbox.get_overlapping_areas():
 			_on_melee_hitbox_entered(area)
-	
 	var tween = create_tween()
 	var current_rot = 0
 	var current_pos = Vector2.ZERO
-	
 	if bullet_stars_pos:
 		current_rot = bullet_stars_pos.rotation
 		current_pos = bullet_stars_pos.position
-	
 	if is_swing and bullet_stars_pos:
 		tween.tween_property(bullet_stars_pos, "rotation", current_rot + deg_to_rad(swing_arc/2), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "rotation", current_rot - deg_to_rad(swing_arc/2), attack_duration/2)
@@ -149,18 +155,14 @@ func do_melee_animation():
 	elif is_stab and bullet_stars_pos:
 		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0).rotated(current_rot), attack_duration/2)
 		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration/2)
-	
 	await tween.finished
-	
 	if shooter.is_in_group("spirit"):
 		shooter.canAttack = true
-	else: 
+	else:
 		shooter.stats.canAttack = true
-		
 	if bullet_stars_pos:
 		bullet_stars_pos.position = original_bullet_pos
 		bullet_stars_pos.rotation = original_bullet_rot
-		
 	melee_active = false
 
 func _on_melee_hitbox_entered(body: Node):
@@ -206,7 +208,8 @@ func do_damage(hitBody):
 		if target.has_method("damage"):
 			target.damage(total_damage, get_parent(), cameraShakeAmount)
 			print("found")
-		else: print("nf")
+		else:
+			print("nf")
 		targets_hit.append(target)
 
 func apply_knockback_to_target(hitBody):
@@ -252,12 +255,19 @@ func shoot():
 		attack_damage = shooter.stats.attackDamage + damageMod
 		bullet_lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
 		bullet_size = shooter.stats.bulletSize + bulletSizeMod
-	var start_rotation = 0
-	if bullet_stars_pos:
-		start_rotation = bullet_stars_pos.rotation
+	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
+	var aim_pos: Vector2
+	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
+		aim_pos = get_global_mouse_position()
+	elif shooter.is_in_group("enemy") and GlobalPlayer.player:
+		aim_pos = GlobalPlayer.player.global_position
+	else:
+		aim_pos = spawn_pos + Vector2(1, 0).rotated(bullet_stars_pos.rotation if bullet_stars_pos else rotation)
+	var base_rot: float = (aim_pos - spawn_pos).angle()
+	var start_rotation = base_rot
 	if total_bullets > 1 and !doConsecShooting:
 		start_rotation -= (spread_angle * (total_bullets - 1)) / 2.0
-	for i in total_bullets:
+	for i in range(total_bullets):
 		var bullet = bulletScene.instantiate()
 		if shooter.is_in_group("player"):
 			bullet.shooter_group = "player"
@@ -283,10 +293,23 @@ func shoot():
 		bullet.set_scale(bullet_size)
 		if bullet_stars_pos:
 			bullet.global_position = bullet_stars_pos.global_position
+		else:
+			bullet.global_position = spawn_pos
 		bullet.shake = cameraShakeAmount
+		bullet.is_laser = is_laser
+		bullet.laser_max_length = laser_max_length
+		bullet.laser_width = laser_width
+		bullet.canPhaseThroughWall = canPhaseThroughWall
+		bullet.is_attached_to_shooter = laser_attach_to_shooter
+		bullet.attached_shooter = shooter if laser_attach_to_shooter else null
 		GlobalWorld.projectiles.add_child(bullet)
+		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
+			while Input.is_action_pressed("attack") and bullet.is_inside_tree():
+				await get_tree().process_frame
+			if bullet.is_inside_tree():
+				bullet.queue_free()
 		if doConsecShooting:
-			await get_tree().create_timer(0.1).timeout 
+			await get_tree().create_timer(0.1).timeout
 		if total_bullets > 1:
 			start_rotation -= spread_angle
 

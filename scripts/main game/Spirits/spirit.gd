@@ -42,6 +42,7 @@ var weapo: Node2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
 @onready var active_ability_timer: Timer = $ActiveAbilityTimer
 @onready var ability_duration_timed_out: Timer = $AbilityDurationTimedOut
+@onready var enemycollision: CollisionShape2D = $enemycollision
 
 var host: CharacterBody2D
 
@@ -55,6 +56,7 @@ func _ready() -> void:
 	set_scale(size)
 	z_index = 2
 	canAbility = true
+	enemycollision.disabled = true
 
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
@@ -92,6 +94,7 @@ func bring_out():
 		if hasWeapon:
 			weapo.show()
 		ap.play("BringOut")
+		enemycollision.disabled = false
 
 func bring_in():
 	if out:
@@ -101,6 +104,7 @@ func bring_in():
 		if hasWeapon:
 			weapo.hide()
 		ap.play("BringIn")
+		enemycollision.disabled = true
 
 func check_can_attack():
 	if canAttack:

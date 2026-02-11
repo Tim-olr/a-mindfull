@@ -97,6 +97,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vdfrk"]
 size = Vector2(123, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjxxu"]
+size = Vector2(136, 136)
+
 [node name="Spirit" type="CharacterBody2D" unique_id=1991023785]
 script = ExtResource("1_vdfrk")
 Name = "teest"
@@ -125,6 +128,10 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1953809865]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_vdfrk")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=626258236]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_gjxxu")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

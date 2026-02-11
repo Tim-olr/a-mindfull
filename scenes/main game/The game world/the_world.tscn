@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
 [ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
 [ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
+[ext_resource type="Resource" uid="uid://pgbdmybe5blm" path="res://spirit-game-project/resources/items/weapons/test_laser.tres" id="11_s3014"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -108,5 +109,9 @@ item = ExtResource("8_3s1wv")
 [node name="ItemInteractable3" parent="." unique_id=104032653 instance=ExtResource("6_ox3eu")]
 position = Vector2(104, -313)
 item = ExtResource("9_d06gs")
+
+[node name="ItemInteractable4" parent="." unique_id=1081149344 instance=ExtResource("6_ox3eu")]
+position = Vector2(50, 230)
+item = ExtResource("11_s3014")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]
