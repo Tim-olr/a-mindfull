@@ -299,6 +299,7 @@ func shoot():
 		bullet.is_laser = is_laser
 		bullet.laser_max_length = laser_max_length
 		bullet.laser_width = laser_width
+		bullet.projectile_sprite_size = Vector2(laser_max_length, laser_width)
 		bullet.canPhaseThroughWall = canPhaseThroughWall
 		bullet.is_attached_to_shooter = laser_attach_to_shooter
 		bullet.attached_shooter = shooter if laser_attach_to_shooter else null

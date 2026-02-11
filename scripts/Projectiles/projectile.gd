@@ -12,11 +12,12 @@ var rot: float = 0.0
 @onready var area_shape: CollisionShape2D = $CollisionArea/AreaShape
 var shooter_group: String = ""
 var knockback_force: float = 0.0
-@onready var projectile_sprite: Sprite2D = $ProjectileSprite
+@onready var projectile_sprite: TextureRect = $CollisionArea/AreaShape/ProjectileSprite
 
 @export var txtr: Texture2D
 
 var shake
+var projectile_sprite_size:= Vector2(0, 0)
 
 var targets_hit_times: Dictionary = {}
 
@@ -59,6 +60,7 @@ func _physics_process(delta: float):
 		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
 	if is_laser:
 		_handle_laser_behavior()
+		projectile_sprite.size = projectile_sprite_size
 	else:
 		velocity = Vector2(projectileSpeed, 0).rotated(rot)
 		move_and_slide()
@@ -75,7 +77,6 @@ func _handle_laser_behavior() -> void:
 	var dir = Vector2(1, 0).rotated(rot)
 	var max_len = laser_max_length
 	var space_state = get_world_2d().direct_space_state
-	projectile_sprite.#.size = area_shape.get_shape().get_size()
 	if not canPhaseThroughWall:
 		var exclude: Array = [self, get_parent()]
 		var origin = global_position
