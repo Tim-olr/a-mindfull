@@ -25,3 +25,6 @@ func set_player_pause_mode(paused: bool):
 		player_node.process_mode = Node.PROCESS_MODE_PAUSABLE
 	else:
 		player_node.process_mode = Node.PROCESS_MODE_ALWAYS
+
+func change_game_speed(speed: float = 1.0):
+	Engine.time_scale = speed
