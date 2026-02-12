@@ -7,6 +7,7 @@ class_name PlayerManager
 @onready var mesh_instance_2d: MeshInstance2D = $"../MeshInstance2D"
 @onready var health_bar: ProgressBar = $"../PlayerVisuals/UI/HealthBar"
 @onready var player_sprites: AnimatedSprite2D = $"../PlayerVisuals/PlayerSprites"
+@onready var weapon_marker: Marker2D = $"../WeaponMarker"
 
 @export var weapon: PackedScene
 @export var inventory_node_path: NodePath = NodePath("")

@@ -32,7 +32,7 @@ class_name Spirit
 var canAttack: bool = false
 var canAbility: bool = true
 
-var weapo: Node2D
+var weapo: Weapon
 
 @export var follow_distance: float = 150.0
 @export var smooth_speed: float = 8.0

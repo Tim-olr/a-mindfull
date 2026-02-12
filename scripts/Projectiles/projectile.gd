@@ -12,7 +12,8 @@ var rot: float = 0.0
 @onready var area_shape: CollisionShape2D = $CollisionArea/AreaShape
 var shooter_group: String = ""
 var knockback_force: float = 0.0
-@onready var projectile_sprite: TextureRect = $CollisionArea/AreaShape/ProjectileSprite
+@onready var projectile_sprite: Button = $CollisionArea/AreaShape/ProjectileSprite
+@onready var proj_middle: Marker2D = $ProjMiddle
 
 @export var txtr: Texture2D
 
@@ -50,6 +51,11 @@ func _ready() -> void:
 		life_time.start(lifetime)
 	collision_area.monitoring = true
 	collision_area.monitorable = true
+	if is_laser:
+		if shooter_group == "player":
+			projectile_sprite.global_position = proj_middle.global_position
+		elif shooter_group == "spirit":
+			projectile_sprite.global_position = collision_area.global_position
 
 func _physics_process(delta: float):
 	_elapsed += delta
@@ -195,8 +201,8 @@ func go_away():
 	queue_free()
 
 func hit(hitBody):
-	var my_shape = $CollisionArea/CollisionShape2D.shape
-	var my_transform = $CollisionArea/CollisionShape2D.global_transform
+	var my_shape = area_shape.shape
+	var my_transform = $CollisionArea/AreaShape.global_transform
 	if hitBody.has_method("shape_owner_get_owner") and hitBody.has_method("shape_owner_get_shape"):
 		var body_shape_owner = hitBody.shape_owner_get_owner(0)
 		var body_shape = hitBody.shape_owner_get_shape(0, 0)

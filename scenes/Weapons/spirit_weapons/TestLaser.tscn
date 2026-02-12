@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://cj07e6dbe35xf"]
 
-[ext_resource type="Script" uid="uid://d1nawydecsmi7" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/keep_me_close.gd" id="1_ituwk"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_d48wv"]
+[ext_resource type="Script" uid="uid://d1nawydecsmi7" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/keep_me_close.gd" id="1_1sh4j"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_t14rp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d48wv"]
 size = Vector2(86, 20)
 
 [node name="TestLaser" type="Node2D" unique_id=1250667279]
-script = ExtResource("1_ituwk")
+script = ExtResource("1_1sh4j")
 damageMod = 10.0
 bulletLifeTimeMod = 5.0
 bulletSizeMod = Vector2(1, 1)
 shootCooldown = 0.5
 gun = true
-bulletScene = ExtResource("2_d48wv")
+bulletScene = ExtResource("2_t14rp")
 hasInfPierce = true
 canKeepTicking = true
 tick_interval = 1.0

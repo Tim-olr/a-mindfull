@@ -70,6 +70,7 @@ func _process(_delta: float) -> void:
 		if shooter.is_in_group("player"):
 			if !is_laser:
 				global_position = shooter.global_position
+				bullet_stars_pos = GlobalPlayer.manager.weapon_marker
 				bullet_stars_pos.look_at(get_global_mouse_position())
 			else: 
 				global_position = shooter.global_position
@@ -305,10 +306,9 @@ func shoot():
 		bullet.attached_shooter = shooter if laser_attach_to_shooter else null
 		GlobalWorld.projectiles.add_child(bullet)
 		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
-			while Input.is_action_pressed("attack") and bullet.is_inside_tree():
-				await get_tree().process_frame
-			if bullet.is_inside_tree():
-				bullet.queue_free()
+			while Input.is_action_pressed("attack"):
+				if is_instance_valid(get_tree()):
+					await get_tree().process_frame
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout
 		if total_bullets > 1:

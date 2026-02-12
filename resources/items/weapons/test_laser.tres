@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://pgbdmybe5blm"]
 
-[ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://spirit-game-project/scenes/Weapons/guns/TestLaser.tscn" id="1_tx2ty"]
+[ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/TestLaser.tscn" id="1_tx2ty"]
 [ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="2_jsk7p"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6am4l"]
