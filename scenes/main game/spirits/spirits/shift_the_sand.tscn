@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://c40vnwtu3jrul"]
+
+[ext_resource type="Script" uid="uid://d31ktld32j6nb" path="res://spirit-game-project/scripts/main game/Spirits/spirits/shift_the_sand.gd" id="1_kt7lo"]
+[ext_resource type="PackedScene" uid="uid://b2rbhbs2uhqb4" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_Chunk.tscn" id="2_n8ceb"]
+
+[sub_resource type="Animation" id="Animation_ry537"]
+resource_name = "BringIn"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(12.996, 1),
+"update": 0,
+"values": [Vector2(130, 130), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(9.51365, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.388235), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vdfrk"]
+resource_name = "BringOut"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 12.996),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(130, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 9.51365),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.388235)]
+}
+
+[sub_resource type="Animation" id="Animation_gjxxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8pjs"]
+_data = {
+&"BringIn": SubResource("Animation_ry537"),
+&"BringOut": SubResource("Animation_vdfrk"),
+&"RESET": SubResource("Animation_gjxxu")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_21byt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dymly"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmyta"]
+size = Vector2(136, 136)
+
+[node name="shift_the_sand" type="CharacterBody2D" unique_id=856864190 groups=["spirit"]]
+script = ExtResource("1_kt7lo")
+Name = "SHIFT THE SAND"
+attackDamage = 10.0
+attackType = "ranged"
+size = Vector2(1.3, 1.3)
+activeAbilityCooldown = 3.0
+attackCooldown = 0.8
+bulletAmountMod = 1
+bulletSize = Vector2(1, 1)
+hasWeapon = true
+weaponScene = ExtResource("2_n8ceb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1227495977]
+libraries/ = SubResource("AnimationLibrary_p8pjs")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=805574667]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1e-05, 1e-05)
+mesh = SubResource("SphereMesh_21byt")
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=379362578]
+one_shot = true
+
+[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=216215430]
+one_shot = true
+
+[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=142717798]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1889969394]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1827719069]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_dymly")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1665865154]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_nmyta")
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
+[connection signal="timeout" from="AbilityDurationTimedOut" to="." method="_on_ability_duration_timed_out_timeout"]

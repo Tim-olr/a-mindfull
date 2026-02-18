@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	rotation = lerp_angle(rotation, move_dir.angle(), smooth_speed * delta)
 
 func damage(amount, damager, shake):
-	GlobalPlayer.manager.damage(amount, damager, shake)
+	GlobalPlayer.manager.spirit_damage(amount, damager, shake)
 
 func bring_out():
 	if !out:

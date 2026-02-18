@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
 [ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
 [ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
-[ext_resource type="Resource" uid="uid://pgbdmybe5blm" path="res://spirit-game-project/resources/items/weapons/test_laser.tres" id="11_s3014"]
+[ext_resource type="Resource" uid="uid://ccv4xu1qqciny" path="res://spirit-game-project/resources/items/weapons/sts_swift.tres" id="11_s3014"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")

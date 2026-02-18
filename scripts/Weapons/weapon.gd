@@ -24,6 +24,9 @@ class_name Weapon
 @export var canKeepTicking: bool = false
 @export var tick_interval: float = 0.1
 
+@export var doRandomRotAndPos: bool = false
+@export var pos_scatter_radius: float = 0.0
+
 @export_group("Projectile Speed Over Time")
 @export_enum("Constant", "Accelerate", "Decelerate") var bullet_speed_mode: int = 0
 @export var bullet_end_speed_multiplier: float = 1.0
@@ -72,7 +75,7 @@ func _process(_delta: float) -> void:
 				global_position = shooter.global_position
 				bullet_stars_pos = GlobalPlayer.manager.weapon_marker
 				bullet_stars_pos.look_at(get_global_mouse_position())
-			else: 
+			else:
 				global_position = shooter.global_position
 				bullet_stars_pos.look_at(-get_global_mouse_position())
 			if Input.is_action_pressed("attack") and shooter.stats.canAttack:
@@ -208,9 +211,6 @@ func do_damage(hitBody):
 	elif target.is_in_group("spirit"):
 		if target.has_method("damage"):
 			target.damage(total_damage, get_parent(), cameraShakeAmount)
-			print("found")
-		else:
-			print("nf")
 		targets_hit.append(target)
 
 func apply_knockback_to_target(hitBody):
@@ -232,9 +232,15 @@ func apply_knockback_to_target(hitBody):
 			if pmgr and pmgr.has_method("apply_knockback"):
 				pmgr.apply_knockback(knockback_direction, knockback_force)
 
+func _evenly_spaced_angle(base_rot: float, index: int, count: int, cone: float) -> float:
+	if count <= 1:
+		return base_rot
+	var t = float(index) / float(count - 1)
+	return base_rot + lerp(-cone * 0.5, cone * 0.5, t)
+
 func shoot():
 	var total_bullets
-	var spread_angle
+	var spread_angle_deg
 	var projectile_speed
 	var pierce
 	var attack_damage
@@ -242,7 +248,7 @@ func shoot():
 	var bullet_size
 	if shooter.is_in_group("spirit"):
 		total_bullets = shooter.bulletAmountMod + bulletAmountMod
-		spread_angle = shooter.rotationAdditionMod + rotationAdditionMod
+		spread_angle_deg = shooter.rotationAdditionMod + rotationAdditionMod
 		projectile_speed = shooter.projectileSpeed + projectileSpeedMod
 		pierce = shooter.pierce + pierceMod
 		attack_damage = shooter.attackDamage + damageMod
@@ -250,7 +256,7 @@ func shoot():
 		bullet_size = shooter.bulletSize + bulletSizeMod
 	else:
 		total_bullets = shooter.stats.bulletAmount + bulletAmountMod
-		spread_angle = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+		spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
 		projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
 		pierce = shooter.stats.pierce + pierceMod
 		attack_damage = shooter.stats.attackDamage + damageMod
@@ -265,9 +271,11 @@ func shoot():
 	else:
 		aim_pos = spawn_pos + Vector2(1, 0).rotated(bullet_stars_pos.rotation if bullet_stars_pos else rotation)
 	var base_rot: float = (aim_pos - spawn_pos).angle()
-	var start_rotation = base_rot
-	if total_bullets > 1 and !doConsecShooting:
-		start_rotation -= (spread_angle * (total_bullets - 1)) / 2.0
+	var spread_angle = deg_to_rad(spread_angle_deg)
+	if spread_angle < 0.0:
+		spread_angle = abs(spread_angle)
+	if spread_angle > PI:
+		spread_angle = PI
 	for i in range(total_bullets):
 		var bullet = bulletScene.instantiate()
 		if shooter.is_in_group("player"):
@@ -282,7 +290,15 @@ func shoot():
 		bullet.tick_interval = tick_interval
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
-		var current_rot = start_rotation + (i * spread_angle)
+		var current_rot: float = base_rot
+		if total_bullets > 1 and !doConsecShooting:
+			if doRandomRotAndPos:
+				current_rot = base_rot + randf_range(-spread_angle * 0.5, spread_angle * 0.5)
+			else:
+				current_rot = _evenly_spaced_angle(base_rot, i, total_bullets, spread_angle)
+		else:
+			current_rot = base_rot
+
 		bullet.rot = current_rot
 		bullet.rotation = current_rot
 		bullet.projectileSpeed = projectile_speed
@@ -292,10 +308,14 @@ func shoot():
 		bullet.damage = attack_damage
 		bullet.lifetime = bullet_lifetime
 		bullet.set_scale(bullet_size)
-		if bullet_stars_pos:
-			bullet.global_position = bullet_stars_pos.global_position
-		else:
-			bullet.global_position = spawn_pos
+
+		var final_pos = bullet_stars_pos.global_position if bullet_stars_pos else spawn_pos
+		if pos_scatter_radius > 0.0:
+			var forward_dist = randf() * pos_scatter_radius
+			var forward_offset = Vector2(forward_dist, 0).rotated(base_rot)
+			final_pos += forward_offset
+		bullet.global_position = final_pos
+
 		bullet.shake = cameraShakeAmount
 		bullet.is_laser = is_laser
 		bullet.laser_max_length = laser_max_length
@@ -305,14 +325,14 @@ func shoot():
 		bullet.is_attached_to_shooter = laser_attach_to_shooter
 		bullet.attached_shooter = shooter if laser_attach_to_shooter else null
 		GlobalWorld.projectiles.add_child(bullet)
+
 		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
 			while Input.is_action_pressed("attack"):
 				if is_instance_valid(get_tree()):
 					await get_tree().process_frame
+
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout
-		if total_bullets > 1:
-			start_rotation -= spread_angle
 
 func _on_attack_cooldown_timeout() -> void:
 	if shooter and shooter.is_in_group("spirit"):

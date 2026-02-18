@@ -15,6 +15,7 @@ class_name PlayerManager
 @export var canHps: bool = false
 
 var canGetDamaged: bool = true
+var spiritCanGetDamaged := true
 var _weapon_instance: Node = null
 
 func _ready() -> void:
@@ -121,6 +122,16 @@ func damage(damage_amount, attacker, shake):
 			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
 			apply_knockback(knockback_direction, 200.0)
 
+func spirit_damage(damage_amount, attacker, shake):
+	if spiritCanGetDamaged:
+		stats.hp -= damage_amount
+		damaged(shake)
+		health_bar.set_health(stats.hp)
+		GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
+		if attacker != null:
+			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
+			apply_knockback(knockback_direction, 200.0)
+	
 func damaged(shake):
 	if movement_controller:
 		movement_controller.play_priority_animation("hurt", false)
