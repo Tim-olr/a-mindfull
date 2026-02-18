@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BiomeResource" format=3 uid="uid://mimgm0tt6wov"]
+
+[ext_resource type="Script" uid="uid://coa8c77rsslox" path="res://spirit-game-project/scripts/worldGen/BiomeResource.gd" id="1_00sxp"]
+[ext_resource type="Resource" uid="uid://ch30v47m13ut7" path="res://spirit-game-project/scripts/worldGen/blocks/deep_block.tres" id="1_0ycpx"]
+[ext_resource type="Resource" uid="uid://3l6ede6le3bm" path="res://spirit-game-project/scripts/worldGen/blocks/grass_block_res.tres" id="2_vfl7g"]
+[ext_resource type="Script" uid="uid://d3jqp6em33pmw" path="res://spirit-game-project/scripts/worldGen/BlockResource.gd" id="3_8sm7d"]
+
+[resource]
+script = ExtResource("1_00sxp")
+moisture_min = 0.4
+moisture_max = 0.7
+elevation_max = 0.65
+surface_block = ExtResource("2_vfl7g")
+subsurface_blocks = Array[ExtResource("3_8sm7d")]([ExtResource("1_0ycpx")])
+subsurface_depth = 1
+deep_block = ExtResource("1_0ycpx")
+biome_tint = Color(0, 0.45330322, 0.04140771, 1)
+metadata/_custom_type_script = "uid://coa8c77rsslox"

@@ -3,8 +3,10 @@ extends Node2D
 @onready var load_timer: Timer = $LoadTimer
 @onready var projectiles: Node2D = $projectiles
 @onready var dmg_nrs: Node2D = $dmgNrs
+@onready var world_gen: Node2D = $WorldGenerator
 
 func _ready() -> void:
+	start_new_run()
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
 	GlobalWorld.projectiles = projectiles
@@ -20,3 +22,7 @@ func _ready() -> void:
 
 func _on_load_timer_timeout() -> void:
 	black.hide()
+
+func start_new_run():
+	world_gen.world_seed = randi()
+	world_gen.generate()

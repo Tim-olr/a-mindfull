@@ -2,15 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="PackedScene" uid="uid://ccbcfvr1k8022" path="res://spirit-game-project/scenes/worldGen/world_generator.tscn" id="2_5i8ky"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
-[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_fsixv"]
-[ext_resource type="PackedScene" uid="uid://dg08cdh3iur8r" path="res://spirit-game-project/scenes/enemy/enemies/bartholomew.tscn" id="4_diwni"]
-[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="5_ox3eu"]
-[ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
-[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
-[ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
-[ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
-[ext_resource type="Resource" uid="uid://ccv4xu1qqciny" path="res://spirit-game-project/resources/items/weapons/sts_swift.tres" id="11_s3014"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -44,6 +37,9 @@ size = Vector2(0.995434, 1)
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 script = ExtResource("1_87ryk")
 
+[node name="WorldGenerator" parent="." unique_id=2068919148 instance=ExtResource("2_5i8ky")]
+scale = Vector2(8, 8)
+
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 position = Vector2(204, 78)
 
@@ -76,6 +72,7 @@ one_shot = true
 navigation_polygon = SubResource("NavigationPolygon_xiahp")
 
 [node name="testWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=309918622 groups=["wall"]]
+visible = false
 
 [node name="testWall" type="MeshInstance2D" parent="NavigationRegion2D/testWall" unique_id=1652983117]
 position = Vector2(335, 325)
@@ -86,32 +83,8 @@ mesh = SubResource("BoxMesh_5i8ky")
 position = Vector2(334.5, 325.5)
 scale = Vector2(109.5, 1535)
 shape = SubResource("RectangleShape2D_fsixv")
+disabled = true
 
 [node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
-
-[node name="Bonkus" parent="." unique_id=2063358831 instance=ExtResource("3_fsixv")]
-position = Vector2(1492, -74)
-
-[node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("4_diwni")]
-position = Vector2(1180, 655)
-
-[node name="Ardy" parent="." unique_id=334750648 instance=ExtResource("5_ox3eu")]
-position = Vector2(-774, 1176)
-
-[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
-position = Vector2(126, -121)
-item = ExtResource("7_3s1wv")
-
-[node name="ItemInteractable2" parent="." unique_id=1083151494 instance=ExtResource("6_ox3eu")]
-position = Vector2(-80, -66)
-item = ExtResource("8_3s1wv")
-
-[node name="ItemInteractable3" parent="." unique_id=104032653 instance=ExtResource("6_ox3eu")]
-position = Vector2(104, -313)
-item = ExtResource("9_d06gs")
-
-[node name="ItemInteractable4" parent="." unique_id=1081149344 instance=ExtResource("6_ox3eu")]
-position = Vector2(50, 230)
-item = ExtResource("11_s3014")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

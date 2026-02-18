@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockResource" format=3 uid="uid://3l6ede6le3bm"]
+
+[ext_resource type="Script" uid="uid://d3jqp6em33pmw" path="res://spirit-game-project/scripts/worldGen/BlockResource.gd" id="1_a4gpn"]
+
+[sub_resource type="AudioStream" id="AudioStream_a4gpn"]
+
+[resource]
+script = ExtResource("1_a4gpn")
+block_name = "Grass"
+atlas_coords = Vector2i(2, 0)
+mine_sound = SubResource("AudioStream_a4gpn")
+metadata/_custom_type_script = "uid://d3jqp6em33pmw"

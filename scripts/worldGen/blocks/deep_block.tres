@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BlockResource" format=3 uid="uid://ch30v47m13ut7"]
+
+[ext_resource type="Script" uid="uid://d3jqp6em33pmw" path="res://spirit-game-project/scripts/worldGen/BlockResource.gd" id="1_60pam"]
+
+[sub_resource type="AudioStream" id="AudioStream_60pam"]
+
+[resource]
+script = ExtResource("1_60pam")
+block_name = "Deep Block"
+hardness = 10000
+mine_sound = SubResource("AudioStream_60pam")
+metadata/_custom_type_script = "uid://d3jqp6em33pmw"

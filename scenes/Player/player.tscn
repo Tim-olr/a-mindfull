@@ -629,6 +629,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=856193928 groups=["player"]]
 z_index = 3
+y_sort_enabled = true
 script = ExtResource("1_s4a0o")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]

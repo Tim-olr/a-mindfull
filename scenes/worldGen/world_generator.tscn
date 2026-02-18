@@ -1,0 +1,62 @@
+[gd_scene format=4 uid="uid://ccbcfvr1k8022"]
+
+[ext_resource type="Script" uid="uid://de6eqxaqylscc" path="res://spirit-game-project/scripts/worldGen/world_generator.gd" id="1_6n45j"]
+[ext_resource type="Script" uid="uid://coa8c77rsslox" path="res://spirit-game-project/scripts/worldGen/BiomeResource.gd" id="2_enhay"]
+[ext_resource type="TileSet" uid="uid://b4ywxqjlmj7ye" path="res://spirit-game-project/scripts/worldGen/tilemaps.tres" id="2_i2mqi"]
+[ext_resource type="Resource" uid="uid://mimgm0tt6wov" path="res://spirit-game-project/scripts/worldGen/biomes/plains_res.tres" id="3_ftx08"]
+[ext_resource type="Resource" uid="uid://3l6ede6le3bm" path="res://spirit-game-project/scripts/worldGen/blocks/grass_block_res.tres" id="4_ftx08"]
+[ext_resource type="Resource" uid="uid://du2mhydkhb1qi" path="res://spirit-game-project/scripts/worldGen/blocks/water_block.tres" id="5_rm0d3"]
+
+[node name="WorldGenerator" type="Node2D" unique_id=2068919148]
+script = ExtResource("1_6n45j")
+tile_size = Vector2i(32, 32)
+elevation_scale = 0.1
+water_level = 0.2
+max_elevation_layers = 3
+biomes = Array[ExtResource("2_enhay")]([ExtResource("3_ftx08")])
+fallback_block = ExtResource("4_ftx08")
+water_block = ExtResource("5_rm0d3")
+water_atlas_coords = Vector2i(8, 2)
+elev_layers = Array[NodePath]([NodePath("TileMapLayer_Surface_0"), NodePath("TileMapLayer_Surface_1"), NodePath("TileMapLayer_Surface_2"), NodePath("TileMapLayer_Surface_3")])
+
+[node name="TileMapLayer_Overlay" type="TileMapLayer" parent="." unique_id=2113355164]
+y_sort_enabled = true
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Water" type="TileMapLayer" parent="." unique_id=852882165]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAIAAIAAAABAP//AAAIAAIAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Ground" type="TileMapLayer" parent="." unique_id=170495125]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAP7/AAAAAAAAAAAAAP7/AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD///7/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAABAPz/AAAAAAAAAAAAAPz/AAAAAAAAAAD///z/AAAAAAAAAAD+//z/AAAAAAAAAAD+//3/AAAAAAAAAAD+//7/AAAAAAAAAAD+////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD+/wAAAAAAAAAAAAAAAPv/AAAAAAAAAAAAAPr/AAAAAAAAAAD///r/AAAAAAAAAAD+//r/AAAAAAAAAAD9//r/AAAAAAAAAAD9//v/AAAAAAAAAAD+//v/AAAAAAAAAAD///v/AAAAAAAAAAD8//v/AAAAAAAAAAD8//z/AAAAAAAAAAD8//3/AAAAAAAAAAD9//3/AAAAAAAAAAD9//z/AAAAAAAAAAD8//7/AAAAAAAAAAD8////AAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD9//7/AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD9/wEAAAAAAAAAAAD7////AAAAAAAAAAD7//7/AAAAAAAAAAD7//3/AAAAAAAAAAD7//z/AAAAAAAAAAD6//z/AAAAAAAAAAD6//3/AAAAAAAAAAD6//7/AAAAAAAAAAD6////AAAAAAAAAAD6/wAAAAAAAAAAAAD5/wEAAAAAAAAAAAD5/wAAAAAAAAAAAAD7//v/AAAAAAAAAAD7//r/AAAAAAAAAAD8//r/AAAAAAAAAAD8//n/AAAAAAAAAAD9//n/AAAAAAAAAAD9//j/AAAAAAAAAAD+//f/AAAAAAAAAAD+//b/AAAAAAAAAAD///b/AAAAAAAAAAD///f/AAAAAAAAAAD///j/AAAAAAAAAAD+//j/AAAAAAAAAAD+//n/AAAAAAAAAAD5//3/AAAAAAAAAAD5//7/AAAAAAAAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Surface_0" type="TileMapLayer" parent="." unique_id=1694245527]
+y_sort_enabled = true
+position = Vector2(0, -3)
+tile_map_data = PackedByteArray("AAABAP7/AAACAAAAAAABAP//AAACAAAAAAAAAP//AAACAAAAAAAAAP7/AAACAAAAAAD9//3/AAACAAAAAAD9//z/AAACAAAAAAD+//z/AAACAAAAAAD+//v/AAACAAAAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Surface_1" type="TileMapLayer" parent="." unique_id=1127265554]
+y_sort_enabled = true
+position = Vector2(0, -19)
+tile_map_data = PackedByteArray("AAABAP7/AAACAAAAAAABAP//AAACAAAAAAAAAP//AAACAAAAAAAAAP7/AAACAAAAAAD9//3/AAACAAAAAAD9//z/AAACAAAAAAD+//z/AAACAAAAAAD+//v/AAACAAAAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Surface_2" type="TileMapLayer" parent="." unique_id=2016682265]
+y_sort_enabled = true
+position = Vector2(0, -34)
+tile_map_data = PackedByteArray("AAABAP7/AAACAAAAAAABAP//AAACAAAAAAAAAP//AAACAAAAAAAAAP7/AAACAAAAAAD9//3/AAACAAAAAAD9//z/AAACAAAAAAD+//z/AAACAAAAAAD+//v/AAACAAAAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="TileMapLayer_Surface_3" type="TileMapLayer" parent="." unique_id=73440113]
+y_sort_enabled = true
+position = Vector2(0, -49)
+tile_map_data = PackedByteArray("AAABAP7/AAACAAAAAAABAP//AAACAAAAAAAAAP//AAACAAAAAAAAAP7/AAACAAAAAAD9//3/AAACAAAAAAD9//z/AAACAAAAAAD+//z/AAACAAAAAAD+//v/AAACAAAAAAA=")
+tile_set = ExtResource("2_i2mqi")
+
+[node name="Blocks" type="Node2D" parent="." unique_id=1086305276]
+
+[node name="Decorations" type="Node2D" parent="." unique_id=1890194003]
