@@ -21,6 +21,8 @@ extends Node2D
 @export var elev_layers: Array[NodePath] = []
 var _elev_layers: Array[TileMapLayer] = []
 
+@export var all_layers: Array[TileMapLayer] = []
+
 @onready var layer_ground: TileMapLayer   = $TileMapLayer_Ground
 @onready var layer_surface: TileMapLayer  = $TileMapLayer_Surface_0
 @onready var layer_water: TileMapLayer    = $TileMapLayer_Water
@@ -50,6 +52,8 @@ func generate() -> void:
 	_generate_terrain()
 	_generate_shadows()
 	_generate_decorations()
+	for l in all_layers:
+		l.gen_collisions()
 	print("[WorldGen] World generated. Seed: ", _rng.seed)
 
 
@@ -71,7 +75,6 @@ func _clear_world() -> void:
 func _setup_noise() -> void:
 	_rng = RandomNumberGenerator.new()
 	_rng.seed = world_seed if world_seed != 0 else randi()
-
 	_elevation_noise = FastNoiseLite.new()
 	_elevation_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX_SMOOTH
 	_elevation_noise.seed = _rng.randi()
@@ -89,9 +92,7 @@ func _generate_terrain() -> void:
 			var coord := Vector2i(x, y)
 			var elev_raw: float = (_elevation_noise.get_noise_2d(float(x), float(y)) + 1.0) * 0.5
 			var moisture: float = (_moisture_noise.get_noise_2d(float(x), float(y)) + 1.0) * 0.5
-
 			elevation_map[coord] = int(elev_raw * max_elevation_layers)
-
 			if elev_raw < water_level:
 				_place_water(coord)
 			else:

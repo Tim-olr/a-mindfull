@@ -41,7 +41,7 @@ script = ExtResource("1_87ryk")
 scale = Vector2(8, 8)
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
-position = Vector2(204, 78)
+position = Vector2(952, 765)
 
 [node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
 
