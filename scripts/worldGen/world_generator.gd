@@ -45,6 +45,10 @@ func _ready() -> void:
 		_elev_layers.append(get_node(path))
 	generate()
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("test"):
+		world_seed = 0
+		generate()
 
 func generate() -> void:
 	_clear_world()

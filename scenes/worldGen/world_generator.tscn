@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de6eqxaqylscc" path="res://spirit-game-project/scripts/worldGen/world_generator.gd" id="1_6n45j"]
 [ext_resource type="Script" uid="uid://coa8c77rsslox" path="res://spirit-game-project/scripts/worldGen/BiomeResource.gd" id="2_enhay"]
-[ext_resource type="TileSet" uid="uid://b4ywxqjlmj7ye" path="res://spirit-game-project/scripts/worldGen/tilemaps.tres" id="2_i2mqi"]
+[ext_resource type="TileSet" uid="uid://o74sno7wjkpf" path="res://spirit-game-project/scripts/worldGen/tilemaps.tres" id="2_i2mqi"]
 [ext_resource type="Resource" uid="uid://mimgm0tt6wov" path="res://spirit-game-project/scripts/worldGen/biomes/plains_res.tres" id="3_ftx08"]
 [ext_resource type="Resource" uid="uid://3l6ede6le3bm" path="res://spirit-game-project/scripts/worldGen/blocks/grass_block_res.tres" id="4_ftx08"]
 [ext_resource type="Resource" uid="uid://du2mhydkhb1qi" path="res://spirit-game-project/scripts/worldGen/blocks/water_block.tres" id="5_rm0d3"]
