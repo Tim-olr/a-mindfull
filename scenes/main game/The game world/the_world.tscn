@@ -3,14 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
-[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://spirit-game-project/scenes/enemy/enemies/bonkus.tscn" id="3_fsixv"]
-[ext_resource type="PackedScene" uid="uid://dg08cdh3iur8r" path="res://spirit-game-project/scenes/enemy/enemies/bartholomew.tscn" id="4_diwni"]
-[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://spirit-game-project/scenes/enemy/enemies/ardy.tscn" id="5_ox3eu"]
-[ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
-[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="7_3s1wv"]
-[ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://spirit-game-project/resources/items/weapons/burst_rifle.tres" id="8_3s1wv"]
-[ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://spirit-game-project/resources/items/weapons/smg.tres" id="9_d06gs"]
-[ext_resource type="Resource" uid="uid://ccv4xu1qqciny" path="res://spirit-game-project/resources/items/weapons/sts_swift.tres" id="11_s3014"]
+[ext_resource type="PackedScene" uid="uid://bavktdkd86rkg" path="res://spirit-game-project/scenes/WorldGen/world_generator.tscn" id="4_5i8ky"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -36,11 +29,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(20224, -4583, 20953, 21220, -14982, 21293, -15346, -4292)])
 agent_radius = 200.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_5i8ky"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsixv"]
-size = Vector2(0.995434, 1)
-
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 script = ExtResource("1_87ryk")
 
@@ -58,8 +46,6 @@ offset_bottom = 1277.0
 texture = SubResource("GradientTexture1D_lmetf")
 metadata/_edit_use_anchors_ = true
 
-[node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374598864]
 visible = false
 
@@ -75,43 +61,10 @@ one_shot = true
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=233197356]
 navigation_polygon = SubResource("NavigationPolygon_xiahp")
 
-[node name="testWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=309918622 groups=["wall"]]
-
-[node name="testWall" type="MeshInstance2D" parent="NavigationRegion2D/testWall" unique_id=1652983117]
-position = Vector2(335, 325)
-scale = Vector2(109.5, 1535)
-mesh = SubResource("BoxMesh_5i8ky")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/testWall" unique_id=1026533074]
-position = Vector2(334.5, 325.5)
-scale = Vector2(109.5, 1535)
-shape = SubResource("RectangleShape2D_fsixv")
+[node name="WorldGenerator" parent="." unique_id=2131462431 instance=ExtResource("4_5i8ky")]
 
 [node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
 
-[node name="Bonkus" parent="." unique_id=2063358831 instance=ExtResource("3_fsixv")]
-position = Vector2(1492, -74)
-
-[node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("4_diwni")]
-position = Vector2(1180, 655)
-
-[node name="Ardy" parent="." unique_id=334750648 instance=ExtResource("5_ox3eu")]
-position = Vector2(-774, 1176)
-
-[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
-position = Vector2(126, -121)
-item = ExtResource("7_3s1wv")
-
-[node name="ItemInteractable2" parent="." unique_id=1083151494 instance=ExtResource("6_ox3eu")]
-position = Vector2(-80, -66)
-item = ExtResource("8_3s1wv")
-
-[node name="ItemInteractable3" parent="." unique_id=104032653 instance=ExtResource("6_ox3eu")]
-position = Vector2(104, -313)
-item = ExtResource("9_d06gs")
-
-[node name="ItemInteractable4" parent="." unique_id=1081149344 instance=ExtResource("6_ox3eu")]
-position = Vector2(50, 230)
-item = ExtResource("11_s3014")
+[node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

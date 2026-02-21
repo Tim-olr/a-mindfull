@@ -1,7 +1,7 @@
 extends Node2D
 class_name PlayerStats
 
-@export var speed: float
+@export var speed: float = 200
 @export var hp: float
 @export var maxHp: float
 @export var attackDamage: float

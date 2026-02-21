@@ -8,4 +8,5 @@ extends Node
 @onready var spiritMarker: Marker2D
 @onready var manager: PlayerManager
 @onready var specials: PlayerSpecials
+@onready var coordinates: PlayerCoords
 var player: Player

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://jqii235rbcqp" path="res://spirit-game-project/scenes/Player/inventory/Inventory.tscn" id="8_lf5c0"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
+[ext_resource type="Script" uid="uid://b4cwc0e8hidjf" path="res://spirit-game-project/scripts/Player/player_coordinates.gd" id="9_t0bry"]
 [ext_resource type="Texture2D" uid="uid://c5cyyhcwchc3x" path="res://spirit-game-project/assets/player/player_map.png" id="10_2du5a"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://spirit-game-project/scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
@@ -628,7 +629,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=856193928 groups=["player"]]
-z_index = 3
+z_index = 21
 script = ExtResource("1_s4a0o")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]
@@ -648,7 +649,7 @@ shape = SubResource("CircleShape2D_c4h5g")
 
 [node name="PlayerStats" type="Node2D" parent="." unique_id=1111926634]
 script = ExtResource("2_s4a0o")
-speed = 200.0
+speed = 400.0
 hp = 100.0
 maxHp = 100.0
 attackDamage = 10.0
@@ -696,6 +697,9 @@ scale = Vector2(15, 15)
 
 [node name="PlayerSpecials" type="Node2D" parent="." unique_id=1411606192]
 script = ExtResource("8_67ne4")
+
+[node name="PlayerCoordinates" type="Node2D" parent="." unique_id=2064314755]
+script = ExtResource("9_t0bry")
 
 [node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")
