@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlaceableItemResource" format=3 uid="uid://bq23mbuc0u4ax"]
+
+[ext_resource type="Script" uid="uid://ds5uoc3rvxx4a" path="res://spirit-game-project/scripts/Player/inventory/items/placable_item_resource.gd" id="1_2w8nj"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_112li"]
+
+[resource]
+script = ExtResource("1_2w8nj")
+atlas_coord = Vector2i(2, 0)
+isPlaceable = true
+isStackable = true
+rarity = 0
+txtr = ExtResource("2_112li")
+Name = "Grass Block"
+metadata/_custom_type_script = "uid://ds5uoc3rvxx4a"

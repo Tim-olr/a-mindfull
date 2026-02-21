@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgwfugy5k2bsj"]
 
 [ext_resource type="Script" uid="uid://bdtr3flr637uv" path="res://spirit-game-project/scripts/items/item_interactable.gd" id="1_hdnmr"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_6mnh5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hdnmr"]
 radius = 75.326
@@ -9,6 +10,7 @@ radius = 75.326
 script = ExtResource("1_hdnmr")
 
 [node name="icon" type="Sprite2D" parent="." unique_id=177039136]
+texture = ExtResource("2_6mnh5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1476647787]
 shape = SubResource("CircleShape2D_hdnmr")

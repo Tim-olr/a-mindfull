@@ -5,12 +5,19 @@ extends Node2D
 @export var grass_layer := 0
 @export var dirt_layers: Vector2i
 @export var deep_rock_layer := 0
+@export var build_height: int = 10
+@export var mineable_blocks: Array[MineableBlockResource] = []
 
 var all_layers: Array[TileMapLayer] = []
+var build_layers: Dictionary = {}
+var building_system: BuildingSystem = null
+var mining_system: MiningSystem = null
 var ui_canvas: CanvasLayer
 var coord_label: Label
 var current_layer_y: int = 5
 var step_cooldown: float = 0.0
+
+var _mineable_lookup: Dictionary = {}
 
 @onready var my_tile_set = preload("uid://b6lj4tdjvbmsg")
 const TileMapCoords = preload("uid://crje5ylxrljml")
@@ -22,11 +29,35 @@ const STEP_RANGE := 55.0
 const STEP_COOLDOWN_TIME := 0.3
 
 func _ready() -> void:
+	_setup_building_system()
+	_setup_mining_system()
+	_build_mineable_lookup()
 	generate()
 	create_coord_display()
 	await get_tree().process_frame
 	await get_tree().process_frame
 	spawn_player_on_layer(5)
+
+func _setup_building_system() -> void:
+	building_system = BuildingSystem.new()
+	add_child(building_system)
+
+func _setup_mining_system() -> void:
+	mining_system = MiningSystem.new()
+	add_child(mining_system)
+
+func _build_mineable_lookup() -> void:
+	_mineable_lookup.clear()
+	for block in mineable_blocks:
+		var key := _block_key(block.source_id, block.atlas_coord)
+		_mineable_lookup[key] = block
+
+func _block_key(source_id: int, atlas_coord: Vector2i) -> String:
+	return "%d_%d_%d" % [source_id, atlas_coord.x, atlas_coord.y]
+
+func get_mineable_block(source_id: int, atlas_coord: Vector2i) -> MineableBlockResource:
+	var key := _block_key(source_id, atlas_coord)
+	return _mineable_lookup.get(key, null)
 
 func _process(delta: float) -> void:
 	if step_cooldown > 0.0:
@@ -42,18 +73,48 @@ func get_layer_by_y(y) -> TileMapLayer:
 			return l
 	return null
 
+func get_highest_layer_y() -> int:
+	var highest := 0
+	for l in all_layers:
+		if int(l.y_cord) > highest:
+			highest = int(l.y_cord)
+	for y in build_layers:
+		if int(y) > highest:
+			highest = int(y)
+	return highest
+
+func get_or_create_build_layer(y_cord: int) -> TileMapLayer:
+	var existing := get_layer_by_y(y_cord)
+	if existing != null:
+		return existing
+	var highest := get_highest_layer_y()
+	if y_cord > highest + build_height:
+		return null
+	var new_layer := TileMapLayer.new()
+	new_layer.tile_set = my_tile_set
+	new_layer.scale = Vector2(TILE_SCALE, TILE_SCALE)
+	new_layer.y_sort_enabled = true
+	new_layer.position.y = y_cord * LAYER_SPACING
+	new_layer.z_index = y_cord
+	new_layer.set_script(TileMapCoords)
+	new_layer.y_cord = y_cord
+	add_child(new_layer)
+	all_layers.append(new_layer)
+	build_layers[y_cord] = new_layer
+	return new_layer
+
 func get_tile_world_y(layer: TileMapLayer, cell: Vector2i) -> float:
 	return layer.to_global(layer.map_to_local(cell)).y
 
 func spawn_player_on_layer(y_cord: int) -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
 		return
-	var target_layer = get_layer_by_y(y_cord)
+	var target_layer := get_layer_by_y(y_cord)
 	if target_layer == null:
 		return
 	current_layer_y = y_cord
-	var center_cell = Vector2i(world_size.x / 2, world_size.y / 2)
-	var tile_world_y = get_tile_world_y(target_layer, center_cell)
+	var center_cell := Vector2i(world_size.x / 2, world_size.y / 2)
+	var tile_world_y := get_tile_world_y(target_layer, center_cell)
 	GlobalPlayer.player.global_position.y = tile_world_y
 	GlobalPlayer.player.z_index = y_cord + 1
 	GlobalPlayer.coordinates.y = y_cord
@@ -61,40 +122,40 @@ func spawn_player_on_layer(y_cord: int) -> void:
 func check_layer_transition() -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
 		return
-	var player_pos = GlobalPlayer.player.global_position
+	var player_pos := GlobalPlayer.player.global_position
 	try_step_up(current_layer_y + 1, player_pos)
 	try_step_down(current_layer_y - 1, player_pos)
 
 func try_step_up(target_y_cord: int, player_pos: Vector2) -> void:
-	var target_layer = get_layer_by_y(target_y_cord)
+	var target_layer := get_layer_by_y(target_y_cord)
 	if target_layer == null:
 		return
-	var target_local = target_layer.to_local(player_pos)
-	var target_cell = target_layer.local_to_map(target_local)
+	var target_local := target_layer.to_local(player_pos)
+	var target_cell := target_layer.local_to_map(target_local)
 	if target_layer.get_cell_tile_data(target_cell) == null:
 		return
 	transition_to_layer(target_y_cord)
 
 func try_step_down(target_y_cord: int, player_pos: Vector2) -> void:
-	var target_layer = get_layer_by_y(target_y_cord)
+	var target_layer := get_layer_by_y(target_y_cord)
 	if target_layer == null:
 		return
-	var target_local = target_layer.to_local(player_pos)
-	var target_cell = target_layer.local_to_map(target_local)
+	var target_local := target_layer.to_local(player_pos)
+	var target_cell := target_layer.local_to_map(target_local)
 	if target_layer.get_cell_tile_data(target_cell) == null:
 		return
-	var current_layer = get_layer_by_y(current_layer_y)
+	var current_layer := get_layer_by_y(current_layer_y)
 	if current_layer != null:
-		var current_local = current_layer.to_local(player_pos)
-		var current_cell = current_layer.local_to_map(current_local)
+		var current_local := current_layer.to_local(player_pos)
+		var current_cell := current_layer.local_to_map(current_local)
 		if current_layer.get_cell_tile_data(current_cell) != null:
 			return
-	var tile_world_y = get_tile_world_y(target_layer, target_cell)
+	var tile_world_y := get_tile_world_y(target_layer, target_cell)
 	if abs(player_pos.y - tile_world_y) <= STEP_RANGE:
 		transition_to_layer(target_y_cord)
 
 func transition_to_layer(y_cord: int) -> void:
-	var target_layer = get_layer_by_y(y_cord)
+	var target_layer := get_layer_by_y(y_cord)
 	if target_layer == null:
 		return
 	current_layer_y = y_cord
@@ -106,11 +167,11 @@ func transition_to_layer(y_cord: int) -> void:
 func update_coords_from_current_layer() -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
 		return
-	var current_layer = get_layer_by_y(current_layer_y)
+	var current_layer := get_layer_by_y(current_layer_y)
 	if current_layer == null:
 		return
-	var local_pos = current_layer.to_local(GlobalPlayer.player.global_position)
-	var cell = current_layer.local_to_map(local_pos)
+	var local_pos := current_layer.to_local(GlobalPlayer.player.global_position)
+	var cell := current_layer.local_to_map(local_pos)
 	GlobalPlayer.coordinates.x = int(cell.x)
 	GlobalPlayer.coordinates.y = current_layer_y
 	GlobalPlayer.coordinates.z = int(cell.y)
@@ -129,7 +190,7 @@ func create_coord_display() -> void:
 func update_coord_display() -> void:
 	if coord_label == null or GlobalPlayer == null:
 		return
-	var c = GlobalPlayer.coordinates
+	var c := GlobalPlayer.coordinates
 	if c == null:
 		coord_label.text = ""
 		return
@@ -140,14 +201,15 @@ func generate() -> void:
 	var index := 0
 	for i in layers:
 		index += 1
-		var new_layer = TileMapLayer.new()
+		var new_layer := TileMapLayer.new()
 		new_layer.tile_set = my_tile_set
 		new_layer.scale = Vector2(TILE_SCALE, TILE_SCALE)
-		var new_renderer = TilemapGaeaRenderer.new()
-		var new_noise_gen = NoiseGenerator.new()
-		var new_noise_settings = NoiseGeneratorSettings.new()
-		var gen_data = NoiseGeneratorData.new()
-		var tile_info = TilemapTileInfo.new()
+		new_layer.y_sort_enabled = true
+		var new_renderer := TilemapGaeaRenderer.new()
+		var new_noise_gen := NoiseGenerator.new()
+		var new_noise_settings := NoiseGeneratorSettings.new()
+		var gen_data := NoiseGeneratorData.new()
+		var tile_info := TilemapTileInfo.new()
 		if index == grass_layer:
 			gen_data.title = "Grass"
 			tile_info.atlas_coord = Vector2i(2, 0)

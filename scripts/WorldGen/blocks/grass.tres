@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="MineableBlockResource" format=3 uid="uid://0jpswg54m20g"]
+
+[ext_resource type="Script" uid="uid://102k7qeisaq8" path="res://spirit-game-project/scripts/Player/inventory/items/drop_entry.gd" id="1_0ikyr"]
+[ext_resource type="Script" uid="uid://bwits464nh0q5" path="res://spirit-game-project/scripts/Player/inventory/items/minable_block_resource.gd" id="1_h2xyo"]
+[ext_resource type="Resource" uid="uid://bq23mbuc0u4ax" path="res://spirit-game-project/resources/items/blocks/grass_block.tres" id="2_18yg1"]
+
+[sub_resource type="Resource" id="Resource_57lfx"]
+script = ExtResource("1_0ikyr")
+item = ExtResource("2_18yg1")
+metadata/_custom_type_script = "uid://102k7qeisaq8"
+
+[resource]
+script = ExtResource("1_h2xyo")
+atlas_coord = Vector2i(2, 0)
+hardness = 0.3
+drops = Array[ExtResource("1_0ikyr")]([SubResource("Resource_57lfx")])
+metadata/_custom_type_script = "uid://bwits464nh0q5"

@@ -1,10 +1,12 @@
 extends Control
 class_name ActualInv
 
-signal hotbar_selected(item_resource, slot_index : int)
+signal hotbar_selected(item_resource, slot_index: int)
 
 @export var slotAmount: int = 24
+
 var occupiedSlots: int = 0
+
 const MIN_HOTBAR_SLOTS = 6
 
 @onready var hotbar = $InventoryContainer/Hotbar
@@ -54,12 +56,13 @@ func _on_slot_selected(index: int) -> void:
 	update_hotbar_selection()
 
 func _on_slot_item_changed(index: int) -> void:
-	if index == selected_slot_index:
-		var slot = slots[index]
-		if slot == null or slot.item == null or not slot.item.isWeapon:
-			selected_slot_index = -1
-			emit_signal("hotbar_selected", null, index)
-			update_hotbar_selection()
+	if index != selected_slot_index:
+		return
+	var slot = slots[index]
+	if slot == null or slot.item == null:
+		selected_slot_index = -1
+		emit_signal("hotbar_selected", null, index)
+		update_hotbar_selection()
 
 func _input(event):
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -89,16 +92,19 @@ func _select_hotbar_number(n: int) -> void:
 	_on_slot_selected(index)
 
 func add_item(item, count: int = 1) -> bool:
-	if occupiedSlots >= slotAmount:
-		return false
 	if item == null:
 		return false
 	if "isStackable" in item and item.isStackable:
 		for s in slots:
-			if s.item != null and "Name" in s.item and "Name" in item and s.item.Name == item.Name:
-				var existing_count = s.item_count if "item_count" in s else 0
-				s.set_item(s.item, existing_count + count)
+			if s.item == null:
+				s.set_item(item, count)
+				occupiedSlots += 1
 				return true
+			if s.item != null and s.item.Name == item.Name:
+				s.set_item(s.item, s.item_count + count)
+				return true
+	if occupiedSlots >= slotAmount:
+		return false
 	for s in slots:
 		if s.item == null:
 			s.set_item(item, count)

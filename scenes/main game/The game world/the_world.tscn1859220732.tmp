@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
 [ext_resource type="PackedScene" uid="uid://bavktdkd86rkg" path="res://spirit-game-project/scenes/WorldGen/world_generator.tscn" id="4_5i8ky"]
-[ext_resource type="Resource" uid="uid://dlosobuv67fni" path="res://spirit-game-project/resources/items/tool/wooden_pickaxe.tres" id="6_diwni"]
+[ext_resource type="Resource" uid="uid://bq23mbuc0u4ax" path="res://spirit-game-project/resources/items/blocks/grass_block.tres" id="6_diwni"]
 [ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
