@@ -22,11 +22,12 @@ var _mineable_lookup: Dictionary = {}
 @onready var my_tile_set = preload("uid://b6lj4tdjvbmsg")
 const TileMapCoords = preload("uid://crje5ylxrljml")
 
-const LAYER_SPACING := -120
-const TILE_PIXEL_SIZE := 16
+const LAYER_SPACING := 0
+const TILE_PIXEL_SIZE := 32
 const TILE_SCALE := 10
-const STEP_RANGE := 55.0
 const STEP_COOLDOWN_TIME := 0.3
+const DEPTH_DARKEN_STEP := 0.12
+const DEPTH_LIGHTEN_STEP := 0.06
 
 func _ready() -> void:
 	_setup_building_system()
@@ -66,6 +67,18 @@ func _process(delta: float) -> void:
 		check_layer_transition()
 	update_coords_from_current_layer()
 	update_coord_display()
+
+func _update_layer_depth_shading() -> void:
+	for layer in all_layers:
+		var diff := int(layer.y_cord) - current_layer_y
+		var brightness: float
+		if diff == 0:
+			brightness = 1.0
+		elif diff > 0:
+			brightness = clamp(1.0 + diff * DEPTH_LIGHTEN_STEP, 1.0, 1.5)
+		else:
+			brightness = clamp(1.0 + diff * DEPTH_DARKEN_STEP, 0.1, 1.0)
+		layer.modulate = Color(brightness, brightness, brightness, 1.0)
 
 func get_layer_by_y(y) -> TileMapLayer:
 	for l in all_layers:
@@ -118,41 +131,27 @@ func spawn_player_on_layer(y_cord: int) -> void:
 	GlobalPlayer.player.global_position.y = tile_world_y
 	GlobalPlayer.player.z_index = y_cord + 1
 	GlobalPlayer.coordinates.y = y_cord
+	_update_layer_depth_shading()
 
 func check_layer_transition() -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
 		return
 	var player_pos := GlobalPlayer.player.global_position
-	try_step_up(current_layer_y + 1, player_pos)
-	try_step_down(current_layer_y - 1, player_pos)
+	var ground_y := _find_ground_layer_y(player_pos)
+	if ground_y == -1 or ground_y == current_layer_y:
+		return
+	transition_to_layer(ground_y)
 
-func try_step_up(target_y_cord: int, player_pos: Vector2) -> void:
-	var target_layer := get_layer_by_y(target_y_cord)
-	if target_layer == null:
-		return
-	var target_local := target_layer.to_local(player_pos)
-	var target_cell := target_layer.local_to_map(target_local)
-	if target_layer.get_cell_tile_data(target_cell) == null:
-		return
-	transition_to_layer(target_y_cord)
-
-func try_step_down(target_y_cord: int, player_pos: Vector2) -> void:
-	var target_layer := get_layer_by_y(target_y_cord)
-	if target_layer == null:
-		return
-	var target_local := target_layer.to_local(player_pos)
-	var target_cell := target_layer.local_to_map(target_local)
-	if target_layer.get_cell_tile_data(target_cell) == null:
-		return
-	var current_layer := get_layer_by_y(current_layer_y)
-	if current_layer != null:
-		var current_local := current_layer.to_local(player_pos)
-		var current_cell := current_layer.local_to_map(current_local)
-		if current_layer.get_cell_tile_data(current_cell) != null:
-			return
-	var tile_world_y := get_tile_world_y(target_layer, target_cell)
-	if abs(player_pos.y - tile_world_y) <= STEP_RANGE:
-		transition_to_layer(target_y_cord)
+func _find_ground_layer_y(player_pos: Vector2) -> int:
+	var best_y := -1
+	for layer in all_layers:
+		var ly := int(layer.y_cord)
+		var cell := layer.local_to_map(layer.to_local(player_pos))
+		if layer.get_cell_tile_data(cell) == null:
+			continue
+		if ly <= current_layer_y + 1 and ly > best_y:
+			best_y = ly
+	return best_y
 
 func transition_to_layer(y_cord: int) -> void:
 	var target_layer := get_layer_by_y(y_cord)
@@ -163,6 +162,7 @@ func transition_to_layer(y_cord: int) -> void:
 	GlobalPlayer.stats.playerSpiritScene.z_index = y_cord + 1
 	GlobalWorld.projectiles.z_index = y_cord + 2
 	step_cooldown = STEP_COOLDOWN_TIME
+	_update_layer_depth_shading()
 
 func update_coords_from_current_layer() -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
@@ -212,13 +212,13 @@ func generate() -> void:
 		var tile_info := TilemapTileInfo.new()
 		if index == grass_layer:
 			gen_data.title = "Grass"
-			tile_info.atlas_coord = Vector2i(2, 0)
+			tile_info.atlas_coord = Vector2i(0, 0)
 			gen_data.min = 0
 			gen_data.max = 1.0
 		if index <= dirt_layers.x:
 			if index >= dirt_layers.y:
 				gen_data.title = "Dirt"
-				tile_info.atlas_coord = Vector2i.ZERO
+				tile_info.atlas_coord = Vector2i(1, 0)
 				gen_data.min = -1.0
 				gen_data.max = 1.0
 		if index == deep_rock_layer:

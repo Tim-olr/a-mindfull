@@ -3,7 +3,6 @@ class_name BuildingSystem
 
 static var instance: BuildingSystem = null
 
-const MAX_BUILD_HEIGHT := 10
 const NEIGHBOR_OFFSETS := [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
 
 var world_gen: Node2D = null
@@ -79,27 +78,46 @@ func _update_preview() -> void:
 	preview_layer.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	preview_layer.set_cell(cell, active_item.source_id, active_item.atlas_coord)
 
-func _find_placement(mouse_pos: Vector2) -> Dictionary:
-	for ly in range(world_gen.current_layer_y - 1, world_gen.current_layer_y + 2):
-		var layer = world_gen.get_layer_by_y(ly)
-		if layer == null:
-			continue
+func _get_top_occupied_layer_at(cell: Vector2i) -> TileMapLayer:
+	var best: TileMapLayer = null
+	for layer in world_gen.all_layers:
+		if layer.get_cell_tile_data(cell) != null:
+			if best == null or int(layer.y_cord) > int(best.y_cord):
+				best = layer
+	return best
 
-		var cell = layer.local_to_map(layer.to_local(mouse_pos))
+func _find_placement(mouse_pos: Vector2) -> Dictionary:
+	var sorted_layers = world_gen.all_layers.duplicate()
+	sorted_layers.sort_custom(func(a, b): return int(a.y_cord) > int(b.y_cord))
+
+	for layer in sorted_layers:
+		var cell: Vector2i = layer.local_to_map(layer.to_local(mouse_pos))
 
 		if layer.get_cell_tile_data(cell) != null:
-			var above_layer = world_gen.get_or_create_build_layer(ly + 1)
+			var above_layer = world_gen.get_or_create_build_layer(int(layer.y_cord) + 1)
 			if above_layer == null:
 				continue
 			if above_layer.get_cell_tile_data(cell) != null:
 				continue
 			return {"layer": above_layer, "cell": cell}
 
+	for layer in sorted_layers:
+		var cell: Vector2i = layer.local_to_map(layer.to_local(mouse_pos))
+
+		if layer.get_cell_tile_data(cell) != null:
+			continue
+
 		if _has_horizontal_neighbor(layer, cell):
+			var top := _get_top_occupied_layer_at(cell)
+			if top != null:
+				continue
 			return {"layer": layer, "cell": cell}
 
-		var below_layer = world_gen.get_layer_by_y(ly - 1)
+		var below_layer = world_gen.get_layer_by_y(int(layer.y_cord) - 1)
 		if below_layer != null and below_layer.get_cell_tile_data(cell) != null:
+			var top := _get_top_occupied_layer_at(cell)
+			if top != null and int(top.y_cord) >= int(layer.y_cord):
+				continue
 			return {"layer": layer, "cell": cell}
 
 	return {}

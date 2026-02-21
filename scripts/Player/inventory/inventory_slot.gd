@@ -13,6 +13,7 @@ var item_count: int = 0
 var txtr: TextureRect = null
 var count_label: Label = null
 var _ready_called: bool = false
+var _is_selected: bool = false
 
 static var currently_selected_slot: InventorySlot = null
 
@@ -39,34 +40,37 @@ func set_item(new_item, count: int = 1) -> void:
 	emit_signal("item_changed", slot_index)
 
 func set_selected(value: bool) -> void:
-	if item == null:
+	if value and item == null:
 		return
 
 	if value and currently_selected_slot != null and currently_selected_slot != self:
-		currently_selected_slot.deselect()
+		currently_selected_slot._deselect_internal()
 
-	if item.isUsableItem or item.isWeapon or item.isPlaceable:
-		item.isSelected = value
+	_is_selected = value
 
-	if value and item.isSelected:
+	if value:
 		currently_selected_slot = self
-		if item.isPlaceable and BuildingSystem.instance != null:
+		if item != null and item.isPlaceable and BuildingSystem.instance != null:
 			BuildingSystem.instance.activate(item as PlaceableItemResource)
-	elif not value:
-		if currently_selected_slot == self:
-			currently_selected_slot = null
-		if item.isPlaceable and BuildingSystem.instance != null:
-			BuildingSystem.instance.deactivate()
+	else:
+		_deselect_internal()
 
 	_update_selection_visuals()
 
+func _deselect_internal() -> void:
+	var was_selected := _is_selected
+	_is_selected = false
+	if currently_selected_slot == self:
+		currently_selected_slot = null
+	if was_selected and item != null and item.isPlaceable and BuildingSystem.instance != null:
+		BuildingSystem.instance.deactivate()
+	_update_selection_visuals()
+
 func deselect() -> void:
-	if item != null and item.isUsableItem:
-		item.isSelected = false
-	set_selected(false)
+	_deselect_internal()
 
 func _update_selection_visuals() -> void:
-	if item != null and item.isSelected:
+	if _is_selected:
 		slot_texture.modulate = Color(2.0, 2.0, 2.0, 1.0)
 	elif is_hovered():
 		slot_texture.modulate = Color(1.5, 1.5, 1.5, 1.0)

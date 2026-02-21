@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_2w8nj")
-atlas_coord = Vector2i(2, 0)
 isPlaceable = true
 isStackable = true
 rarity = 0

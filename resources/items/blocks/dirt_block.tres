@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_jf0lp")
+atlas_coord = Vector2i(1, 0)
 isPlaceable = true
 isStackable = true
-rarity = null
+rarity = 0
 txtr = ExtResource("2_jf0lp")
 Name = "Dirt Block"
 metadata/_custom_type_script = "uid://eykeum4a21x1"

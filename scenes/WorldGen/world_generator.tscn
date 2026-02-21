@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dv1xi8r2ln373" path="res://spirit-game-project/scripts/WorldGen/layer_generator.gd" id="1_ecmuo"]
 [ext_resource type="Resource" uid="uid://0jpswg54m20g" path="res://spirit-game-project/scripts/WorldGen/blocks/grass.tres" id="2_gsop1"]
+[ext_resource type="Script" uid="uid://bwits464nh0q5" path="res://spirit-game-project/scripts/Player/inventory/items/minable_block_resource.gd" id="2_rkg2h"]
 [ext_resource type="Resource" uid="uid://ckjij3u28d6h0" path="res://spirit-game-project/scripts/WorldGen/blocks/dirt.tres" id="3_bq11e"]
 
 [node name="WorldGenerator" type="Node2D" unique_id=2131462431]
@@ -13,5 +14,6 @@ script = ExtResource("1_ecmuo")
 layers = 6
 world_size = Vector2i(100, 100)
 grass_layer = 6
+dirt_layers = Vector2i(5, 0)
 deep_rock_layer = 1
-mineable_blocks = Array[Resource]([ExtResource("2_gsop1"), ExtResource("3_bq11e")])
+mineable_blocks = Array[ExtResource("2_rkg2h")]([ExtResource("2_gsop1"), ExtResource("3_bq11e")])

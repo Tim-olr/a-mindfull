@@ -11,7 +11,6 @@ metadata/_custom_type_script = "uid://102k7qeisaq8"
 
 [resource]
 script = ExtResource("1_h2xyo")
-atlas_coord = Vector2i(2, 0)
 hardness = 0.3
 drops = Array[ExtResource("1_0ikyr")]([SubResource("Resource_57lfx")])
 metadata/_custom_type_script = "uid://bwits464nh0q5"
