@@ -13,13 +13,13 @@
 
 ## What is A Mindfull?
 
-A Mindfull is an extraction roguelike shooter where your greatest weapon is your **spirit** — a unique ability tied to who you are as a player. Drop in, loot, fight, and survive long enough to extract with your haul. Each run is shaped by the upgrades you discover along the way.
+A Mindfull is an extraction roguelike shooter where your greatest weapon is your **spirit** a unique ability tied to who you are as a player. Drop in, loot, fight, and survive long enough to extract with your haul. Each run is shaped by the upgrades you discover along the way.
 
 ---
 
 ## The Spirit System
 
-The core of A Mindfull revolves around a mechanic called **embracing your spirit** — bringing your spirit into the physical world to activate its abilities.
+The core of A Mindfull revolves around a mechanic called **embracing your spirit** bringing your spirit into the physical world to activate its abilities.
 
 | Ability | Description |
 |---|---|
