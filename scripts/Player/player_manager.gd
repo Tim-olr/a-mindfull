@@ -99,6 +99,7 @@ func _process(_delta: float) -> void:
 		pass
 	if stats.hp <= 0:
 		die()
+	GlobalPlayer.stats.playerSpiritScene.z_index = GlobalPlayer.player.z_index
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("interact"):

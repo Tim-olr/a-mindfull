@@ -22,7 +22,7 @@ var _mineable_lookup: Dictionary = {}
 @onready var my_tile_set = preload("uid://b6lj4tdjvbmsg")
 const TileMapCoords = preload("uid://crje5ylxrljml")
 
-const LAYER_SPACING := 0
+const LAYER_SPACING := -160
 const TILE_PIXEL_SIZE := 32
 const TILE_SCALE := 10
 const STEP_COOLDOWN_TIME := 0.3
@@ -143,14 +143,26 @@ func check_layer_transition() -> void:
 	transition_to_layer(ground_y)
 
 func _find_ground_layer_y(player_pos: Vector2) -> int:
+	var on_current_layer := false
 	var best_y := -1
+
 	for layer in all_layers:
 		var ly := int(layer.y_cord)
 		var cell := layer.local_to_map(layer.to_local(player_pos))
 		if layer.get_cell_tile_data(cell) == null:
 			continue
-		if ly <= current_layer_y + 1 and ly > best_y:
+		if ly == current_layer_y:
+			on_current_layer = true
+		if ly <= current_layer_y and ly > best_y:
 			best_y = ly
+
+	if on_current_layer:
+		var layer_above := get_layer_by_y(current_layer_y + 1)
+		if layer_above != null:
+			var cell_above := layer_above.local_to_map(layer_above.to_local(player_pos))
+			if layer_above.get_cell_tile_data(cell_above) != null:
+				return current_layer_y + 1
+
 	return best_y
 
 func transition_to_layer(y_cord: int) -> void:
@@ -223,7 +235,7 @@ func generate() -> void:
 				gen_data.max = 1.0
 		if index == deep_rock_layer:
 			gen_data.title = "Deep Rock"
-			tile_info.atlas_coord = Vector2i(15, 0)
+			tile_info.atlas_coord = Vector2i(2, 0)
 			gen_data.min = -1.0
 			gen_data.max = 1.0
 		new_layer.position.y = i * LAYER_SPACING
