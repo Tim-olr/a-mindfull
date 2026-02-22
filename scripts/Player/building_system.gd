@@ -144,6 +144,7 @@ func _try_place() -> void:
 		return
 
 	target_layer.set_cell(current_preview_cell, active_item.source_id, active_item.atlas_coord)
+	world_gen.refresh_stepping_sides_for_cell(target_layer, current_preview_cell)
 
 	var slot := InventorySlot.currently_selected_slot
 	if slot == null:

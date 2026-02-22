@@ -202,6 +202,7 @@ func _finish_mining() -> void:
 	var tile_world_pos := layer.to_global(layer.map_to_local(cell))
 
 	layer.erase_cell(cell)
+	world_gen.refresh_stepping_sides_for_cell(layer, cell)
 	_cancel_mining()
 
 	_spawn_drops(drops, tile_world_pos, layer_z)
@@ -219,7 +220,7 @@ func _spawn_drops(drops: Array[Dictionary], world_pos: Vector2, layer_z: int) ->
 		interactable.item = drop["item"]
 		var count: int = drop["count"]
 		var spread := Vector2(randf_range(-30.0, 30.0), randf_range(-20.0, 20.0))
-		interactable.global_position = world_pos + spread
+		interactable.global_position = world_pos + Vector2(0, 100)
 		interactable.z_index = layer_z + 1
 		GlobalWorld.theWorld.add_child(interactable)
 		if count > 1 and interactable.item is ItemResource:

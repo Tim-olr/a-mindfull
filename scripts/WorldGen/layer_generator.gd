@@ -23,6 +23,7 @@ var _step_down_sensor: ShapeCast2D = null
 
 @onready var my_tile_set: TileSet = preload("uid://b6lj4tdjvbmsg")
 const TileMapCoords = preload("uid://crje5ylxrljml")
+@onready var stepping_side = preload("uid://brmkw6upc5mgq")
 
 const LAYER_SPACING := -160
 const TILE_PIXEL_SIZE := 32
@@ -47,9 +48,11 @@ func _ready() -> void:
 	_setup_building_system()
 	_setup_mining_system()
 	_build_mineable_lookup()
-	_setup_tileset_physics_layers()
+	#_setup_tileset_physics_layers()
 	generate()
 	create_coord_display()
+	for layer in all_layers:
+		await _place_stepping_sides(layer)
 	await get_tree().process_frame
 	await get_tree().process_frame
 	spawn_player_on_layer(5)
@@ -154,6 +157,7 @@ func _setup_tileset_physics_layers() -> void:
 			td.set_collision_polygon_points(PHYSICS_LAYER_WALKABLE, 0, top_face)
 			td.add_collision_polygon(PHYSICS_LAYER_WALL)
 			td.set_collision_polygon_points(PHYSICS_LAYER_WALL, 0, wall_poly)
+			#_create_step_sensors()
 
 func _create_step_sensors() -> void:
 	if GlobalPlayer == null or GlobalPlayer.player == null:
@@ -263,18 +267,7 @@ func get_tile_world_y(layer: TileMapLayer, cell: Vector2i) -> float:
 	return layer.to_global(layer.map_to_local(cell)).y
 
 func spawn_player_on_layer(y_cord: int) -> void:
-	if GlobalPlayer == null or GlobalPlayer.player == null:
-		return
-	var target_layer := get_layer_by_y(y_cord)
-	if target_layer == null:
-		return
-	current_layer_y = y_cord
-	var center_cell := Vector2i(world_size.x / 2, world_size.y / 2)
-	var tile_world_y := get_tile_world_y(target_layer, center_cell)
-	GlobalPlayer.player.global_position.y = tile_world_y
-	GlobalPlayer.player.z_index = y_cord + 1
-	GlobalPlayer.coordinates.y = y_cord
-	_create_step_sensors()
+	transition_to_layer(y_cord)
 	_update_layer_depth_shading()
 
 func check_layer_transition() -> void:
@@ -332,6 +325,23 @@ func transition_to_layer(y_cord: int) -> void:
 	var target_layer := get_layer_by_y(y_cord)
 	if target_layer == null:
 		return
+	for l in all_layers:
+		var y := int(l.y_cord)
+		if y == y_cord:
+			for a in l.step_up_layers:
+				a.set_deferred("monitoring", false)
+			for a in l.step_down_layers:
+				a.set_deferred("monitoring", true)
+		elif y == y_cord + 1:
+			for a in l.step_up_layers:
+				a.set_deferred("monitoring", true)
+			for a in l.step_down_layers:
+				a.set_deferred("monitoring", false)
+		else:
+			for a in l.step_up_layers:
+				a.set_deferred("monitoring", false)
+			for a in l.step_down_layers:
+				a.set_deferred("monitoring", false)
 	current_layer_y = y_cord
 	GlobalPlayer.player.z_index = y_cord + 1
 	GlobalPlayer.stats.playerSpiritScene.z_index = y_cord + 1
@@ -370,6 +380,69 @@ func update_coord_display() -> void:
 		coord_label.text = ""
 		return
 	coord_label.text = "X: %d  Y: %d  Z: %d" % [int(c.x), int(c.y), int(c.z)]
+
+func refresh_stepping_sides_for_cell(layer: TileMapLayer, cell: Vector2i) -> void:
+	var affected: Array[Vector2i] = [cell]
+	for dir in [
+		TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE,
+		TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE,
+		TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE,
+		TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE,
+	]:
+		affected.append(layer.get_neighbor_cell(cell, dir))
+
+	var affected_positions: Dictionary = {}
+	for c in affected:
+		affected_positions[layer.map_to_local(c)] = true
+
+	for child in layer.get_children():
+		if child is SteppingSide and affected_positions.has(child.position):
+			child.queue_free()
+
+	for affected_cell in affected:
+		if layer.get_cell_source_id(affected_cell) == -1:
+			continue
+		for neighbor_dir in [TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE]:
+			var neighbor := layer.get_neighbor_cell(affected_cell, neighbor_dir)
+			if layer.get_cell_source_id(neighbor) == -1:
+				_try_place_side(layer, affected_cell, neighbor_dir, neighbor_dir == TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE)
+
+func _place_stepping_sides(layer: TileMapLayer) -> void:
+	var timeout := 0
+	var prev_count := -1
+	var stable_frames := 0
+	while stable_frames < 3 and timeout < 300:
+		await get_tree().process_frame
+		timeout += 1
+		var count := layer.get_used_cells().size()
+		if count > 0 and count == prev_count:
+			stable_frames += 1
+		else:
+			stable_frames = 0
+			prev_count = count
+	if layer.get_used_cells().is_empty():
+		return
+	var filled_tiles := layer.get_used_cells()
+	for filled_tile: Vector2i in filled_tiles:
+		for neighbor_dir in [TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE]:
+			var neighbor := layer.get_neighbor_cell(filled_tile, neighbor_dir)
+			if layer.get_cell_source_id(neighbor) == -1:
+				_try_place_side(layer, filled_tile, neighbor_dir, neighbor_dir == TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE)
+
+func _try_place_side(layer: TileMapLayer, cell: Vector2i, neighbor_dir: TileSet.CellNeighbor, flip: bool) -> void:
+	var neighbor := layer.get_neighbor_cell(cell, neighbor_dir)
+	if layer.get_cell_source_id(neighbor) != -1:
+		return
+	var stepper = stepping_side.instantiate()
+	stepper.position = layer.map_to_local(cell)
+	stepper.flipped = flip
+	if flip:
+		stepper.scale.x = -1.0
+	stepper.z_index = layer.z_index + 1
+	stepper.gen = self
+	stepper.layer = layer
+	stepper.tile_cell = cell
+	layer.add_child(stepper)
 
 func generate() -> void:
 	if GlobalPlayer != null and GlobalPlayer.player != null:
@@ -416,3 +489,17 @@ func generate() -> void:
 		add_child(new_noise_gen)
 		add_child(new_layer)
 		all_layers.append(new_layer)
+
+func get_stack_height_at(base_layer: TileMapLayer, cell: Vector2i) -> int:
+	var base_y := int(base_layer.y_cord)
+	var height := 1
+	var check_y := base_y + 1
+	while true:
+		var above := get_layer_by_y(check_y)
+		if above == null:
+			break
+		if above.get_cell_source_id(cell) == -1:
+			break
+		height += 1
+		check_y += 1
+	return height
