@@ -6,6 +6,7 @@ class_name PlayerMovement
 @onready var dash_cooldown: Timer = $DashCooldown
 @onready var immunity_time: Timer = $ImmunityTime
 @onready var player_sprites: AnimatedSprite2D = $"../PlayerVisuals/PlayerSprites"
+@onready var climb_timer: Timer = $ClimbTimer
 
 var direction = Vector2.ZERO
 var last_movement_direction = Vector2.DOWN

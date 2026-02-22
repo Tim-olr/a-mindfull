@@ -20,6 +20,7 @@ var playerSpiritScene: CharacterBody2D
 @export var dashAmount: int
 @export var knockback_resistance: float = 0.0  # 0 = no resistance, 1 = full resistance
 @export var step_height: int = 1
+@export var climb_time: float
 
 var hps: float
 var canAttack: bool
