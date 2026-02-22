@@ -22,6 +22,12 @@ var priority_animation_name = ""
 var _priority_token: int = 0
 var _dodge_token: int = 0
 
+const COLLISION_BIT_WALKABLE := 1
+const COLLISION_BIT_WALL := 8
+
+func _ready() -> void:
+	Player.collision_mask = COLLISION_BIT_WALKABLE | COLLISION_BIT_WALL
+
 func _physics_process(delta):
 	if not movement_enabled:
 		return
