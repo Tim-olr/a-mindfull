@@ -24,6 +24,7 @@ var _step_down_sensor: ShapeCast2D = null
 @onready var my_tile_set: TileSet = preload("uid://b6lj4tdjvbmsg")
 const TileMapCoords = preload("uid://crje5ylxrljml")
 @onready var stepping_side = preload("uid://brmkw6upc5mgq")
+@onready var stepping_side_top = preload("uid://ox60up7lwoup")
 
 const LAYER_SPACING := -160
 const TILE_PIXEL_SIZE := 32
@@ -153,31 +154,17 @@ func _find_target_layer_y(player_pos: Vector2) -> int:
 	var current_layer := get_layer_by_y(current_layer_y)
 	if current_layer == null:
 		return -1
-
-	var layer_above := get_layer_by_y(current_layer_y + 1)
-	if layer_above != null:
-		var cell_above := layer_above.local_to_map(layer_above.to_local(player_pos))
-		if layer_above.get_cell_tile_data(cell_above) != null:
-			if _step_up_sensor != null and _step_up_sensor.is_inside_tree():
-				_step_up_sensor.force_shapecast_update()
-				if _step_up_sensor.is_colliding():
-					return current_layer_y + 1
-			return current_layer_y
-
 	var cell_current := current_layer.local_to_map(current_layer.to_local(player_pos))
 	if current_layer.get_cell_tile_data(cell_current) != null:
 		return current_layer_y
-
-	if _step_down_sensor != null and _step_down_sensor.is_inside_tree():
-		_step_down_sensor.force_shapecast_update()
-		if _step_down_sensor.is_colliding():
-			var check_y := current_layer_y - 1
-			var layer_below := get_layer_by_y(check_y)
-			if layer_below != null:
-				var cell_below := layer_below.local_to_map(layer_below.to_local(player_pos))
-				if layer_below.get_cell_tile_data(cell_below) != null:
-					return check_y
-
+	var highest := get_highest_layer_y()
+	for check_y in range(current_layer_y + 1, highest + 1):
+		var layer_above := get_layer_by_y(check_y)
+		if layer_above == null:
+			continue
+		var cell_above := layer_above.local_to_map(layer_above.to_local(player_pos))
+		if layer_above.get_cell_tile_data(cell_above) != null:
+			return check_y
 	for diff in range(1, current_layer_y + 1):
 		var check_y := current_layer_y - diff
 		var layer_below := get_layer_by_y(check_y)
@@ -186,7 +173,6 @@ func _find_target_layer_y(player_pos: Vector2) -> int:
 		var cell_below := layer_below.local_to_map(layer_below.to_local(player_pos))
 		if layer_below.get_cell_tile_data(cell_below) != null:
 			return check_y
-
 	return -1
 
 func transition_to_layer(y_cord: int) -> void:

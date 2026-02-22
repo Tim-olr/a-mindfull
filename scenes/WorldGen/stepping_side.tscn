@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://c11byt6rghpba" path="res://spirit-game-project/scripts/WorldGen/stepping_side.gd" id="1_ufk0c"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_nomh7"]
-points = PackedVector2Array(-1.0000001, 6.000001, -15.000002, 15.000002, -15.000002, 28.000004, -1.0000001, 37.000004, 0, 34.000004)
+points = PackedVector2Array(1.0000001, 30.000004, -14.000002, 24.000004, -15.600002, 31.300005, -0.6000001, 38.600006)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ufk0c"]
-points = PackedVector2Array(0, 23, -15, 15, -12, 12, 3.1, 20.699999)
+points = PackedVector2Array(0, 23, -13, 16, -12, 12, 3.1, 20.699999)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_l1si8"]
-points = PackedVector2Array(-13, 10, -2, 15, -2, 15, -13, 10)
+points = PackedVector2Array(-13, 8, -1, 14, -1, 13, -13, 7)
 
 [node name="SteppingSide" type="Node2D" unique_id=2014830729]
 script = ExtResource("1_ufk0c")
@@ -30,7 +30,6 @@ shape = SubResource("ConvexPolygonShape2D_ufk0c")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1046895653]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=227259905]
-position = Vector2(-1, -3)
 shape = SubResource("ConvexPolygonShape2D_l1si8")
 
 [connection signal="area_entered" from="climbUpArea" to="." method="_on_climb_up_area_area_entered"]

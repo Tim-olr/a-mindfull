@@ -20,3 +20,7 @@ func _ready() -> void:
 
 func _on_load_timer_timeout() -> void:
 	black.hide()
+
+
+func _on_refresh_timer_timeout() -> void:
+	pass # Replace with function body.
