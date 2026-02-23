@@ -71,6 +71,7 @@ navigation_polygon = SubResource("NavigationPolygon_xiahp")
 [node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
 
 [node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
+position = Vector2(338, 50)
 item = ExtResource("6_diwni")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

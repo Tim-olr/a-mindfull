@@ -12,7 +12,7 @@ const MIN_HOTBAR_SLOTS = 6
 @onready var hotbar = $InventoryContainer/Hotbar
 @onready var inventory_grid = $InventoryContainer/InventoryGrid
 @onready var slot_scene = preload("res://spirit-game-project/scenes/Player/inventory/InventorySlot.tscn")
-const WOODEN_PICKAXE = preload("uid://dlosobuv67fni")
+const COPPER_PICKAXE = preload("uid://c6n55kgwomshl")
 
 var slots: Array = []
 var selected_slot_index: int = -1
@@ -21,7 +21,7 @@ func _ready() -> void:
 	update_inventory_slots()
 	inventory_grid.visible = false
 	inventory_grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_item(WOODEN_PICKAXE) 
+	add_item(COPPER_PICKAXE) 
 
 func clear_container(container: Node) -> void:
 	for child in container.get_children():

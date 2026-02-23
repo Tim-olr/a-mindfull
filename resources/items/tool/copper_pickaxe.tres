@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PickaxeItemResource" format=3 uid="uid://c6n55kgwomshl"]
+
+[ext_resource type="Script" uid="uid://tn7ovup6q88d" path="res://spirit-game-project/scripts/Player/inventory/items/pickaxe_item_resource.gd" id="1_6hej1"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_xj7tn"]
+
+[resource]
+script = ExtResource("1_6hej1")
+tier = 2
+isWeapon = true
+rarity = 0
+txtr = ExtResource("2_xj7tn")
+Name = "Copper Pickaxe"
+metadata/_custom_type_script = "uid://tn7ovup6q88d"

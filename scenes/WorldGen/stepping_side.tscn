@@ -29,7 +29,7 @@ shape = SubResource("ConvexPolygonShape2D_ufk0c")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1046895653]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=227259905]
+[node name="Collision" type="CollisionShape2D" parent="StaticBody2D" unique_id=227259905]
 shape = SubResource("ConvexPolygonShape2D_l1si8")
 
 [connection signal="area_entered" from="climbUpArea" to="." method="_on_climb_up_area_area_entered"]

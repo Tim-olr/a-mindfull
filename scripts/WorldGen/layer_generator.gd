@@ -184,18 +184,24 @@ func transition_to_layer(y_cord: int) -> void:
 		if y == y_cord:
 			for a in l.step_up_layers:
 				a.set_deferred("monitoring", false)
+				#a.get_parent().collision.disabled = true
 			for a in l.step_down_layers:
 				a.set_deferred("monitoring", true)
+				#a.get_parent().collision.disabled = true
 		elif y == y_cord + 1:
 			for a in l.step_up_layers:
 				a.set_deferred("monitoring", true)
+				#a.get_parent().collision.disabled = true
 			for a in l.step_down_layers:
 				a.set_deferred("monitoring", false)
+				#a.get_parent().collision.disabled = true
 		else:
 			for a in l.step_up_layers:
 				a.set_deferred("monitoring", false)
+				#a.get_parent().collision.disabled = true
 			for a in l.step_down_layers:
 				a.set_deferred("monitoring", false)
+				#a.get_parent().collision.disabled = true
 	current_layer_y = y_cord
 	GlobalPlayer.player.z_index = y_cord + 1
 	GlobalPlayer.stats.playerSpiritScene.z_index = y_cord + 1

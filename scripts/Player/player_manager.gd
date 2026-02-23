@@ -95,11 +95,6 @@ func unequip_weapon() -> void:
 		_weapon_instance = null
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("test"):
-		var stepper = SteppingSide.new()
-		stepper.global_position = global_position
-		stepper.scale = Vector2(10, 10)
-		GlobalWorld.theWorld.add_child(stepper)
 	if stats.hp <= 0:
 		die()
 	GlobalPlayer.stats.playerSpiritScene.z_index = GlobalPlayer.player.z_index
