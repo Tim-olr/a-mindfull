@@ -53,6 +53,7 @@ func _ready() -> void:
 	create_coord_display()
 	for layer in all_layers:
 		await _place_stepping_sides(layer)
+		await _place_top_edge_overlays(layer)  
 	await get_tree().process_frame
 	await get_tree().process_frame
 	spawn_player_on_layer(5)
@@ -265,6 +266,7 @@ func refresh_stepping_sides_for_cell(layer: TileMapLayer, cell: Vector2i) -> voi
 		for neighbor_dir in [TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE, TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE]:
 			var neighbor := layer.get_neighbor_cell(affected_cell, neighbor_dir)
 			if layer.get_cell_source_id(neighbor) == -1:
+				
 				_try_place_side(layer, affected_cell, neighbor_dir, neighbor_dir == TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE)
 
 func _place_stepping_sides(layer: TileMapLayer) -> void:
@@ -363,3 +365,64 @@ func get_stack_height_at(base_layer: TileMapLayer, cell: Vector2i) -> int:
 		height += 1
 		check_y += 1
 	return height
+
+# ── TOP-EDGE OVERLAY SYSTEM ───────────────────────────────────────────────────
+
+func _place_top_edge_overlays(layer: TileMapLayer) -> void:
+	var timeout := 0
+	var prev_count := -1
+	var stable_frames := 0
+	while stable_frames < 3 and timeout < 300:
+		await get_tree().process_frame
+		timeout += 1
+		var count := layer.get_used_cells().size()
+		if count > 0 and count == prev_count:
+			stable_frames += 1
+		else:
+			stable_frames = 0
+			prev_count = count
+	if layer.get_used_cells().is_empty():
+		return
+	_apply_top_edge_overlays(layer, layer.get_used_cells())
+
+
+func _apply_top_edge_overlays(layer: TileMapLayer, cells: Array) -> void:
+	if not layer.has_meta("overlay_tl"):
+		layer.set_meta("overlay_tl", _make_overlay_layer(layer))
+		layer.set_meta("overlay_tr", _make_overlay_layer(layer))
+
+	var overlay_tl: TileMapLayer = layer.get_meta("overlay_tl")
+	var overlay_tr: TileMapLayer = layer.get_meta("overlay_tr")
+
+	for cell: Vector2i in cells:
+		overlay_tl.erase_cell(cell)
+		overlay_tr.erase_cell(cell)
+
+		var top_left  := layer.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE)
+		var top_right := layer.get_neighbor_cell(cell, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE)
+
+		if layer.get_cell_source_id(top_left) == -1:
+			overlay_tl.set_cell(cell, 1, Vector2i(0, 0), 0)
+
+		if layer.get_cell_source_id(top_right) == -1:
+			overlay_tr.set_cell(cell, 1, Vector2i(0, 0), 4096)
+
+
+func _make_overlay_layer(parent_layer: TileMapLayer) -> TileMapLayer:
+	var ol := TileMapLayer.new()
+	ol.tile_set       = my_tile_set
+	ol.scale          = parent_layer.scale
+	ol.position       = parent_layer.position 
+	ol.z_index        = parent_layer.z_index + 1
+	ol.y_sort_enabled = true
+	add_child(ol)
+	return ol
+
+func refresh_top_edge_overlays_for_cell(layer: TileMapLayer, cell: Vector2i) -> void:
+	var affected: Array[Vector2i] = [cell]
+	for dir in [
+		TileSet.CELL_NEIGHBOR_BOTTOM_LEFT_SIDE,
+		TileSet.CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE,
+	]:
+		affected.append(layer.get_neighbor_cell(cell, dir))
+	_apply_top_edge_overlays(layer, affected)
