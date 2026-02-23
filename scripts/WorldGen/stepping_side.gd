@@ -52,20 +52,16 @@ func _on_climb_up_area_area_exited(area: Area2D) -> void:
 	entered = false
 
 func _on_climb_down_area_area_entered(area: Area2D) -> void:
-	# Down area keeps its normal behavior; still respect max_step_height
 	if not area.is_in_group("climbing_area"):
 		return
-
 	max_step_height = GlobalPlayer.stats.step_height
 	if gen == null or layer == null or GlobalPlayer == null or GlobalPlayer.player == null:
 		return
-
 	var stack = gen.get_stack_height_at(layer, tile_cell)
 	if stack > max_step_height:
 		return
-
 	entered = true
-	GlobalPlayer.player.global_position.y += STEP_PIXEL_OFFSET * stack
+	GlobalPlayer.player.global_position.y += (STEP_PIXEL_OFFSET - 60) * stack
 	GlobalPlayer.player.global_position.x += (150 if flipped else -150) * stack
 	GlobalPlayer.coordinates.y -= stack
 	gen.transition_to_layer(int(layer.y_cord) - (stack - 1))

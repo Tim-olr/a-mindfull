@@ -555,6 +555,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0bry"]
+shader = ExtResource("13_7hhef")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_7hhef"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tb7ui"]
 shader = ExtResource("12_tb7ui")
 shader_parameter/saturation = 1.0
@@ -565,12 +571,6 @@ colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7hhef"]
 gradient = SubResource("Gradient_t0bry")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t0bry"]
-shader = ExtResource("13_7hhef")
-shader_parameter/saturation = 1.0
-
-[sub_resource type="Texture2DRD" id="Texture2DRD_7hhef"]
 
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -741,22 +741,33 @@ animation = &"walk_down"
 
 [node name="Effects" type="CanvasLayer" parent="PlayerVisuals" unique_id=2112952959]
 
-[node name="Gray" type="TextureRect" parent="PlayerVisuals/Effects" unique_id=1488027778]
-material = SubResource("ShaderMaterial_tb7ui")
-offset_left = -1993.0
-offset_top = -1205.0
-offset_right = 2065.0
-offset_bottom = 1277.0
-texture = SubResource("GradientTexture1D_7hhef")
-metadata/_edit_use_anchors_ = true
-
 [node name="Blue" type="TextureRect" parent="PlayerVisuals/Effects" unique_id=49469145]
 material = SubResource("ShaderMaterial_t0bry")
-offset_left = -2182.0
-offset_top = -1173.0
-offset_right = 2929.0
-offset_bottom = 1603.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2073.0
+offset_top = -1191.0
+offset_right = 33.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("Texture2DRD_7hhef")
+
+[node name="Effects2" type="CanvasLayer" parent="PlayerVisuals" unique_id=1555691599]
+
+[node name="Gray" type="TextureRect" parent="PlayerVisuals/Effects2" unique_id=1431032752]
+material = SubResource("ShaderMaterial_tb7ui")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2010.0
+offset_top = -1135.0
+offset_right = 81.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_7hhef")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1016626830]
 
