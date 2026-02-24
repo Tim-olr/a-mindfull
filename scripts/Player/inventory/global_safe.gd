@@ -1,4 +1,4 @@
 extends Node2D
 
-var safe := []
+var safe: Array[ItemResource] = []
 var currentInventory

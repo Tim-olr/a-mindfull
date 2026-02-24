@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_3spm7"]
 [ext_resource type="PackedScene" uid="uid://4kk8cevce5vq" path="res://spirit-game-project/scenes/items/consumables/apple.tscn" id="1_70j85"]
-[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_mq1xx"]
+[ext_resource type="Texture2D" uid="uid://cahvolts3rodj" path="res://spirit-game-project/assets/items/consumables/apple.png" id="3_70j85"]
 
 [resource]
 script = ExtResource("1_3spm7")
 isUsableItem = true
 itemScene = ExtResource("1_70j85")
+isStackable = true
+amount = 1
 rarity = 0
-txtr = ExtResource("2_mq1xx")
+txtr = ExtResource("3_70j85")
 Name = "Apple"
+description = "Regenerates some health. Consumable."
 metadata/_custom_type_script = "uid://eykeum4a21x1"

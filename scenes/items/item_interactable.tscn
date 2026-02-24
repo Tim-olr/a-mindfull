@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdtr3flr637uv" path="res://spirit-game-project/scripts/items/item_interactable.gd" id="1_hdnmr"]
 [ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://spirit-game-project/scripts/shaders/outline.gdshader" id="2_1idkf"]
-[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_6mnh5"]
+[ext_resource type="Texture2D" uid="uid://dxljrs61nfhmg" path="res://spirit-game-project/assets/items/consumables/apple.png" id="3_1idkf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ie7g"]
 shader = ExtResource("2_1idkf")
@@ -18,10 +18,11 @@ script = ExtResource("1_hdnmr")
 
 [node name="icon" type="Sprite2D" parent="." unique_id=177039136]
 material = SubResource("ShaderMaterial_0ie7g")
-texture = ExtResource("2_6mnh5")
+scale = Vector2(5, 5)
+texture = ExtResource("3_1idkf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1476647787]
-visible = false
+scale = Vector2(1.1070626, 1.1424145)
 shape = SubResource("CircleShape2D_hdnmr")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

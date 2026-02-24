@@ -32,12 +32,14 @@ func _ready() -> void:
 	mouse_exited.connect(_on_mouse_exited)
 
 	_ready_called = true
-	_update_visuals()
+	update_visuals()
 
 func set_item(new_item, count: int = 1) -> void:
 	item = new_item
-	item_count = count
-	_update_visuals()
+	if is_instance_valid(item):
+		item.inv_slot = self
+		item_count = count
+	update_visuals()
 	emit_signal("item_changed", slot_index)
 
 func set_selected(value: bool) -> void:
@@ -61,11 +63,11 @@ func set_selected(value: bool) -> void:
 	_update_selection_visuals()
 
 func _deselect_internal() -> void:
-	var was_selected := _is_selected
 	_is_selected = false
 	if currently_selected_slot == self:
 		currently_selected_slot = null
-		item.isSelected = false
+		if is_instance_valid(item):
+			item.isSelected = false
 	_update_selection_visuals()
 
 func deselect() -> void:
@@ -86,7 +88,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	_update_selection_visuals()
 
-func _update_visuals() -> void:
+func update_visuals() -> void:
 	if not _ready_called:
 		if txtr == null:
 			txtr = get_node_or_null("ItemIcon")
@@ -97,9 +99,9 @@ func _update_visuals() -> void:
 	if item != null:
 		txtr.texture = item.txtr if "txtr" in item else null
 		if count_label != null:
-			print("c: ", item_count)
-			count_label.text = str(item_count) if item_count > 1 else ""
-			count_label.visible = item_count > 1
+			item_count = item.amount
+			count_label.text = str(item_count) if item_count > 0 else ""
+			count_label.visible = item_count > 0
 		txtr.visible = true
 	else:
 		txtr.texture = null

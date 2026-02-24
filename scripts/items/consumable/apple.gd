@@ -1,4 +1,6 @@
 extends Item
 
 func do_thing():
-	GlobalPlayer.manager.heal(20)
+	if GlobalPlayer.manager.heal(20):
+		return true
+	return false

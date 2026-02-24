@@ -59,6 +59,8 @@ var isSelected: bool = false
 var original_bullet_pos: Vector2
 var original_bullet_rot: float
 
+var resource
+
 func _ready():
 	shooter = get_parent()
 	melee_hitbox.body_entered.connect(_on_melee_hitbox_entered)

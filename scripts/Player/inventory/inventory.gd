@@ -7,6 +7,8 @@ signal hotbar_selected(item_resource, slot_index: int)
 
 var occupiedSlots: int = 0
 
+var slots_with_items := []
+
 const MIN_HOTBAR_SLOTS = 6
 
 @onready var hotbar = $InventoryContainer/Hotbar
@@ -98,10 +100,12 @@ func add_item(item, count: int = 1) -> bool:
 		for s in slots:
 			if s.item == null:
 				s.set_item(item, count)
+				slots_with_items.append(s)
 				occupiedSlots += 1
 				return true
 			if s.item != null and s.item.Name == item.Name:
 				s.set_item(s.item, s.item_count + count)
+				slots_with_items.append(s)
 				return true
 	if occupiedSlots >= slotAmount:
 		return false
@@ -109,6 +113,7 @@ func add_item(item, count: int = 1) -> bool:
 		if s.item == null:
 			s.set_item(item, count)
 			occupiedSlots += 1
+			slots_with_items.append(s)
 			return true
 	return false
 

@@ -166,13 +166,14 @@ func hps_tick():
 
 func heal(amount):
 	if stats.hp >= stats.maxHp:
-		return
+		return false
 	var actual_heal = min(amount, stats.maxHp - stats.hp)
 	stats.hp += actual_heal
 	if actual_heal > 0:
 		healed()
 		health_bar.set_health(stats.hp)
 		GlobalhitMarker.show_hit_marker(actual_heal, GlobalPlayer.player, true)
+		return true
 
 func healed():
 	var tween = create_tween()

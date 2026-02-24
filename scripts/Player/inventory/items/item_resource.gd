@@ -19,6 +19,9 @@ class_name ItemResource
 @export var Name: String
 @export var description: String
 
+var inv_slot: InventorySlot = null
+var resource: ItemResource
+
 func _init() -> void:
 	if itemScene != null:
 		itemScene.set_resource(self)
