@@ -8,12 +8,13 @@ signal item_changed(slot_index: int)
 
 @export var slot_index: int = -1
 
-var item = null
+var item : ItemResource= null
 var item_count: int = 0
 var txtr: TextureRect = null
 var count_label: Label = null
 var _ready_called: bool = false
 var _is_selected: bool = false
+var scene
 
 static var currently_selected_slot: InventorySlot = null
 
@@ -50,8 +51,10 @@ func set_selected(value: bool) -> void:
 
 	if value:
 		currently_selected_slot = self
-		if item != null and item.isPlaceable and BuildingSystem.instance != null:
-			BuildingSystem.instance.activate(item as PlaceableItemResource)
+		scene = item.itemScene.instantiate()
+		scene.resource = item
+		GlobalPlayer.player.add_child(scene)
+		item.isSelected = true
 	else:
 		_deselect_internal()
 
@@ -62,12 +65,12 @@ func _deselect_internal() -> void:
 	_is_selected = false
 	if currently_selected_slot == self:
 		currently_selected_slot = null
-	if was_selected and item != null and item.isPlaceable and BuildingSystem.instance != null:
-		BuildingSystem.instance.deactivate()
+		item.isSelected = false
 	_update_selection_visuals()
 
 func deselect() -> void:
 	_deselect_internal()
+	scene.queue_free()
 
 func _update_selection_visuals() -> void:
 	if _is_selected:

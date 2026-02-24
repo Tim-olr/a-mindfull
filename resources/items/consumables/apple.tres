@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dgo2e3vtac0c8"]
+
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_3spm7"]
+[ext_resource type="PackedScene" uid="uid://4kk8cevce5vq" path="res://spirit-game-project/scenes/items/consumables/apple.tscn" id="1_70j85"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_mq1xx"]
+
+[resource]
+script = ExtResource("1_3spm7")
+isUsableItem = true
+itemScene = ExtResource("1_70j85")
+rarity = 0
+txtr = ExtResource("2_mq1xx")
+Name = "Apple"
+metadata/_custom_type_script = "uid://eykeum4a21x1"

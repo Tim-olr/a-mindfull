@@ -18,3 +18,7 @@ class_name ItemResource
 @export var txtr: Texture2D
 @export var Name: String
 @export var description: String
+
+func _init() -> void:
+	if itemScene != null:
+		itemScene.set_resource(self)

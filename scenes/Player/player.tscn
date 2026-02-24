@@ -11,21 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://jqii235rbcqp" path="res://spirit-game-project/scenes/Player/inventory/Inventory.tscn" id="8_lf5c0"]
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://spirit-game-project/scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
-[ext_resource type="Script" uid="uid://b4cwc0e8hidjf" path="res://spirit-game-project/scripts/Player/player_coordinates.gd" id="9_t0bry"]
+[ext_resource type="Script" path="res://spirit-game-project/scripts/Player/player_coordinates.gd" id="9_t0bry"]
 [ext_resource type="Texture2D" uid="uid://c5cyyhcwchc3x" path="res://spirit-game-project/assets/player/player_map.png" id="10_2du5a"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://spirit-game-project/scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t0bry"]
-radius = 7.3333335
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
-radius = 48.1664
+radius = 33.340004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4h5g"]
-radius = 48.1664
+radius = 32.693867
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uiqp4"]
 radius = 48.5077
@@ -642,19 +639,12 @@ visible = false
 scale = Vector2(95, 95)
 mesh = SubResource("SphereMesh_1kbk7")
 
-[node name="ClimbingArea" type="Area2D" parent="." unique_id=1410619507 groups=["climbing_area"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClimbingArea" unique_id=219574276]
-shape = SubResource("CircleShape2D_t0bry")
-
 [node name="PlayerArea" type="Area2D" parent="." unique_id=54834554]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=405685383]
-visible = false
 shape = SubResource("CircleShape2D_gqjuk")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1518453830]
-visible = false
 shape = SubResource("CircleShape2D_c4h5g")
 
 [node name="PlayerStats" type="Node2D" parent="." unique_id=1111926634]
