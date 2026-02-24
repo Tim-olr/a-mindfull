@@ -3,9 +3,34 @@
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
-[ext_resource type="PackedScene" uid="uid://bavktdkd86rkg" path="res://spirit-game-project/scenes/WorldGen/world_generator.tscn" id="4_5i8ky"]
 [ext_resource type="Resource" uid="uid://dlosobuv67fni" path="res://spirit-game-project/resources/items/tool/wooden_pickaxe.tres" id="6_diwni"]
+[ext_resource type="Script" uid="uid://bj4epowv4dhin" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_lmetf"]
 [ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
+[ext_resource type="Script" uid="uid://45qany136ivv" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="7_g1gc2"]
+[ext_resource type="Script" uid="uid://burd3vl7qg3q3" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="8_g76y0"]
+[ext_resource type="Script" uid="uid://b0uj88puqjffp" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="9_oluop"]
+[ext_resource type="Script" uid="uid://b6g20g5a35f1p" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="10_hur8m"]
+[ext_resource type="Script" uid="uid://by6jkx860oggl" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="11_tw0v7"]
+[ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://spirit-game-project/scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i4mw4"]
+
+[sub_resource type="Resource" id="Resource_mrqg5"]
+script = ExtResource("11_tw0v7")
+metadata/_custom_type_script = "uid://by6jkx860oggl"
+
+[sub_resource type="Resource" id="Resource_422w4"]
+resource_name = "Grass"
+script = ExtResource("10_hur8m")
+title = "Grass"
+tile = SubResource("Resource_mrqg5")
+
+[sub_resource type="Resource" id="Resource_jxdsh"]
+resource_name = "Settings"
+script = ExtResource("9_oluop")
+tiles = Array[ExtResource("10_hur8m")]([SubResource("Resource_422w4")])
+noise = SubResource("FastNoiseLite_i4mw4")
+metadata/_custom_type_script = "uid://b0uj88puqjffp"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -35,6 +60,21 @@ agent_radius = 200.0
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
+[node name="ThreadedTilemapGaeaRenderer" type="Node" parent="." unique_id=1664329481 node_paths=PackedStringArray("tile_map_layers", "generator")]
+script = ExtResource("6_lmetf")
+tile_map_layers = [NodePath("TileMapLayer")]
+generator = NodePath("NoiseGenerator")
+metadata/_custom_type_script = "uid://bj4epowv4dhin"
+
+[node name="NoiseGenerator" type="Node" parent="ThreadedTilemapGaeaRenderer" unique_id=336375229]
+script = ExtResource("7_g1gc2")
+settings = SubResource("Resource_jxdsh")
+metadata/_custom_type_script = "uid://45qany136ivv"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="ThreadedTilemapGaeaRenderer" unique_id=299113875]
+scale = Vector2(9, 9)
+tile_set = ExtResource("12_t3lwd")
+
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 position = Vector2(204, 78)
 
@@ -62,9 +102,8 @@ wait_time = 0.1
 one_shot = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=233197356]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_xiahp")
-
-[node name="WorldGenerator" parent="." unique_id=2131462431 instance=ExtResource("4_5i8ky")]
 
 [node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
 

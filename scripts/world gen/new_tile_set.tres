@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" format=3 uid="uid://cbxcu6pr0vivu"]
+
+[ext_resource type="Texture2D" uid="uid://c67joppmxj5dq" path="res://spirit-game-project/assets/world/blocks/ground_no_border.png" id="1_par1k"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xikm"]
+texture = ExtResource("1_par1k")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -7)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -7)
+2:0/0 = 0
+3:0/0 = 0
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(32, 16)
+sources/0 = SubResource("TileSetAtlasSource_1xikm")
