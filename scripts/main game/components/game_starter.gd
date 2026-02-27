@@ -4,6 +4,14 @@ extends Interactable
 
 func interacted():
 	GameManager.gameStarted = true
+	GlobalSafe.saved_inventory.clear()
+	for slot in GlobalPlayer.inventory.inventory.slots:
+		if slot.item != null:
+			GlobalSafe.saved_inventory.append({
+				"slot_index": slot.slot_index,
+				"item": slot.item,
+				"count": slot.item.amount
+			})
 	timer.start()
 	GlobalPlayer.visuals.showBlack()
 

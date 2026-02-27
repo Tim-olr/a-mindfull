@@ -37,6 +37,12 @@ func _process(delta: float) -> void:
 		for slot in slots_with_items:
 			if slot.item != null:
 				GlobalSafe.safe.append(slot.item)
+		if is_instance_valid(InventorySlot.held_item):
+			GlobalSafe.safe.append(InventorySlot.held_item)
+			InventorySlot.held_item = null
+			InventorySlot.held_count = 0
+			if is_instance_valid(InventorySlot.cursor_icon):
+				InventorySlot.cursor_icon.visible = false
 		safe_panel.visible = false
 
 func build_slots() -> void:
@@ -47,6 +53,7 @@ func build_slots() -> void:
 		var slot = slot_scene.instantiate()
 		safe_grid.add_child(slot)
 		slot.slot_index = i
+		slot.is_safe_slot = true
 		slot.custom_minimum_size = Vector2(slot_size, slot_size)
 		slot.connect("item_changed", Callable(self, "_on_slot_item_changed"))
 		for child in slot.find_children("*", "TextureRect", true, false):

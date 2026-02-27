@@ -8,5 +8,4 @@ func _ready() -> void:
 	print(playerSpirit.canAttack)
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
-	GlobalPlayer.inventory.inventory = GlobalSafe.currentInventory
 	print("safe: ", GlobalSafe.safe)

@@ -16,6 +16,7 @@ var count_label: Label = null
 var _ready_called: bool = false
 var _is_selected: bool = false
 var scene
+var is_safe_slot: bool = false
 
 static var currently_selected_slot: InventorySlot = null
 
@@ -75,7 +76,6 @@ func _input(event: InputEvent) -> void:
 		return
 	if not get_global_rect().has_point(get_global_mouse_position()):
 		return
-	# Mark handled immediately so no other slot's _input sees this same click.
 	get_viewport().set_input_as_handled()
 	if held_item != null:
 		if _is_selected:
@@ -83,6 +83,8 @@ func _input(event: InputEvent) -> void:
 		var swap = item
 		var swap_count = item_count
 		set_item(held_item, held_count)
+		if not is_safe_slot:
+			GlobalSafe.safe.erase(held_item)
 		held_item = swap
 		held_count = swap_count
 		if held_item != null:

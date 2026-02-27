@@ -1,4 +1,4 @@
 extends Node2D
 
 var safe: Array[ItemResource] = []
-var currentInventory
+var saved_inventory: Array[Dictionary] = []

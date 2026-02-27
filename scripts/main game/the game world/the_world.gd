@@ -16,7 +16,11 @@ func _ready() -> void:
 	playerSpirit.canAttack = true
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
-	GlobalPlayer.inventory.setPlayerInvToGlobal()
+	# Restore each item into the exact slot it came from
+	for entry in GlobalSafe.saved_inventory:
+		var idx: int = entry["slot_index"]
+		if idx >= 0 and idx < GlobalPlayer.inventory.inventory.slots.size():
+			GlobalPlayer.inventory.inventory.slots[idx].set_item(entry["item"], entry["count"])
 
 func _on_load_timer_timeout() -> void:
 	black.hide()

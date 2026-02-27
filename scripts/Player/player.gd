@@ -12,7 +12,6 @@ class_name  Player
 
 func _ready() -> void:
 	GlobalPlayer.player = self
-	GlobalSafe.currentInventory = player_inventory.inventory
 	GlobalPlayer.inventory = player_inventory
 	GlobalPlayer.camera = camera_2d
 	GlobalPlayer.manager = manager
