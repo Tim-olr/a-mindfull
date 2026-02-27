@@ -5,6 +5,8 @@ class_name SafeUI
 @export var slot_size: int = 64
 @export var panel_width: int = 400
 
+var done
+
 var slots: Array = []
 var slots_with_items := []
 var occupiedSlots: int = 0
@@ -43,7 +45,7 @@ func _process(delta: float) -> void:
 			InventorySlot.held_count = 0
 			if is_instance_valid(InventorySlot.cursor_icon):
 				InventorySlot.cursor_icon.visible = false
-		safe_panel.visible = false
+		safe_panel.visible = false 
 
 func build_slots() -> void:
 	slots.clear()
@@ -56,18 +58,45 @@ func build_slots() -> void:
 		slot.is_safe_slot = true
 		slot.custom_minimum_size = Vector2(slot_size, slot_size)
 		slot.connect("item_changed", Callable(self, "_on_slot_item_changed"))
-		for child in slot.find_children("*", "TextureRect", true, false):
-			child.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-			child.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-			child.set_anchors_preset(Control.PRESET_FULL_RECT)
+		var slot_tex = slot.get_node_or_null("SlotTexture")
+		if slot_tex:
+			slot_tex.set_anchors_preset(Control.PRESET_FULL_RECT)
+		var icon = slot.get_node_or_null("ItemIcon")
+		if icon:
+			icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon.anchor_left   = 0.15
+			icon.anchor_top    = 0.1
+			icon.anchor_right  = 0.9
+			icon.anchor_bottom = 0.9
+			icon.offset_left   = 4
+			icon.offset_top    = 2
+			icon.offset_right  = 0
+			icon.offset_bottom = 0
+		var label = slot.get_node_or_null("ItemCount")
+		if label:
+			label.add_theme_font_size_override("font_size", 200)
+			label.z_index = 1
+			label.anchor_left   = 0.7
+			label.anchor_top    = 0.5
+			label.anchor_right  = 1.0
+			label.anchor_bottom = 1.0
+			label.offset_left   = 0
+			label.offset_top    = 0
+			label.offset_right  = 10
+			label.offset_bottom = 0
+			label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+			label.vertical_alignment   = VERTICAL_ALIGNMENT_BOTTOM
 		slots.append(slot)
 
 func open() -> void:
+	for slot in slots:
+		slot.set_item(null)
+	slots_with_items.clear()
+	occupiedSlots = 0
 	safe_panel.visible = true
-	for i in range(GlobalSafe.safe.size()):
-		if i >= slots.size():
-			break
-		slots[i].set_item(GlobalSafe.safe[i], GlobalSafe.safe[i].amount)
+	for item in GlobalSafe.safe:
+		add_item(item, item.amount)
 
 func _on_close_pressed() -> void:
 	GlobalSafe.safe.clear()
@@ -80,6 +109,24 @@ func _on_slot_item_changed(index: int) -> void:
 	if index < 0 or index >= slots.size():
 		return
 	var slot = slots[index]
+	var icon = slot.get_node_or_null("ItemIcon")
+	if icon and not slot.done and slot.item != null:
+		if slot.item.isStackable:
+			icon.anchor_left   = 0.1
+			icon.anchor_top    = 0.05
+			icon.anchor_right  = 0.72
+			icon.anchor_bottom = 0.72
+		else:
+			icon.anchor_left   = 0.1
+			icon.anchor_top    = 0.1
+			icon.anchor_right  = 0.9
+			icon.anchor_bottom = 0.9
+		icon.offset_left   = 0
+		icon.offset_top    = 0
+		icon.offset_right  = 0
+		icon.offset_bottom = 0
+		slot.done = true
+	slot.update_visuals()
 	if slot.item != null:
 		if not slots_with_items.has(slot):
 			slots_with_items.append(slot)
@@ -92,7 +139,7 @@ func _on_slot_item_changed(index: int) -> void:
 func add_item(item, count: int = 1) -> bool:
 	if item == null:
 		return false
-	if "isStackable" in item and item.isStackable:
+	if item.isStackable:
 		for s in slots:
 			if s.item != null and s.item.Name == item.Name:
 				s.set_item(s.item, s.item_count + count)

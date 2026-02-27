@@ -7,6 +7,7 @@ func _ready() -> void:
 	Name = item.Name
 	description = item.description
 	icon.texture = item.txtr
+	print("i: ", icon.texture)
 	icon.material = icon.material.duplicate()
 	if item.has_scale:
 		scale = item.scale_mod

@@ -18,6 +18,8 @@ var _is_selected: bool = false
 var scene
 var is_safe_slot: bool = false
 
+var done := false
+
 static var currently_selected_slot: InventorySlot = null
 
 static var held_item: ItemResource = null
@@ -32,13 +34,8 @@ func _ready() -> void:
 		push_error("InventorySlot: missing child 'ItemIcon' (TextureRect).")
 	if count_label == null:
 		push_warning("InventorySlot: missing child 'ItemCount' (Label).")
-
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	# NOTE: Do NOT add pressed.connect(_pressed) here.
-	# _pressed() is a virtual that Godot's C++ Button already calls automatically.
-	# Connecting the signal manually too causes it to fire twice per click.
-
 	_ready_called = true
 	update_visuals()
 
@@ -83,7 +80,10 @@ func _input(event: InputEvent) -> void:
 		var swap = item
 		var swap_count = item_count
 		set_item(held_item, held_count)
-		if not is_safe_slot:
+		if is_safe_slot:
+			if not GlobalSafe.safe.has(held_item):
+				GlobalSafe.safe.append(held_item)
+		else:
 			GlobalSafe.safe.erase(held_item)
 		held_item = swap
 		held_count = swap_count
@@ -122,9 +122,11 @@ func set_item(new_item, count: int = 1) -> void:
 	if is_instance_valid(item):
 		item.inv_slot = self
 		item_count = count
+		item.amount = count
 	else:
 		item = null
 		item_count = 0
+		done = false
 	update_visuals()
 	emit_signal("item_changed", slot_index)
 
@@ -191,7 +193,7 @@ func update_visuals() -> void:
 		return
 	if item != null:
 		txtr.texture = item.txtr if "txtr" in item else null
-		if count_label != null:
+		if count_label != null and item.isStackable:
 			item_count = item.amount
 			count_label.text = str(item_count) if item_count > 0 else ""
 			count_label.visible = item_count > 0
