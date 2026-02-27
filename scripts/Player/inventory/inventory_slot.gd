@@ -34,7 +34,9 @@ func _ready() -> void:
 
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
-	pressed.connect(_pressed)
+	# NOTE: Do NOT add pressed.connect(_pressed) here.
+	# _pressed() is a virtual that Godot's C++ Button already calls automatically.
+	# Connecting the signal manually too causes it to fire twice per click.
 
 	_ready_called = true
 	update_visuals()
@@ -47,11 +49,11 @@ static func _init_cursor_icon(parent: Node) -> void:
 	mat.shader = OUTLINE
 	mat.set_shader_parameter("outline_thickness", 2)
 	cursor_icon.material = mat
-	cursor_icon.z_index = RenderingServer.CANVAS_ITEM_Z_MAX  
+	cursor_icon.z_index = RenderingServer.CANVAS_ITEM_Z_MAX
 	cursor_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cursor_icon.size = Vector2(250, 250)
 	cursor_icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	cursor_icon.modulate = Color(1.0, 1.0, 1.0, 0.7) 
+	cursor_icon.modulate = Color(1.0, 1.0, 1.0, 0.7)
 	cursor_icon.visible = false
 	parent.get_tree().root.add_child.call_deferred(cursor_icon)
 
@@ -69,29 +71,49 @@ func _pressed() -> void:
 		emit_signal("selected", slot_index)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
-		if get_global_rect().has_point(get_global_mouse_position()):
-			print("j")
-			if held_item != null:
-				var swap = item
-				var swap_count = item_count
-				set_item(held_item, held_count)
-				held_item = swap
-				held_count = swap_count
-				if held_item != null:
-					cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
-					cursor_icon.visible = true
-				else:
-					cursor_icon.texture = null
-					cursor_icon.visible = false
-			else:
-				if item == null:
-					return
-				held_item = item
-				held_count = item_count
-				set_item(null)
-				cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
-				cursor_icon.visible = true
+	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
+		return
+	if not get_global_rect().has_point(get_global_mouse_position()):
+		return
+	# Mark handled immediately so no other slot's _input sees this same click.
+	get_viewport().set_input_as_handled()
+	if held_item != null:
+		if _is_selected:
+			_clear_equip_state()
+		var swap = item
+		var swap_count = item_count
+		set_item(held_item, held_count)
+		held_item = swap
+		held_count = swap_count
+		if held_item != null:
+			cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
+			cursor_icon.visible = true
+		else:
+			cursor_icon.texture = null
+			cursor_icon.visible = false
+	else:
+		if item == null:
+			return
+		if _is_selected:
+			_clear_equip_state()
+		held_item = item
+		held_count = item_count
+		set_item(null)
+		cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
+		cursor_icon.visible = true
+
+func _clear_equip_state() -> void:
+	if is_instance_valid(scene):
+		scene.queue_free()
+		scene = null
+	_is_selected = false
+	if currently_selected_slot == self:
+		currently_selected_slot = null
+	if is_instance_valid(item):
+		if "isEquipped" in item:
+			item.isEquipped = false
+		item.isSelected = false
+	_update_selection_visuals()
 
 func set_item(new_item, count: int = 1) -> void:
 	item = new_item
@@ -130,7 +152,6 @@ func _deselect_internal() -> void:
 		currently_selected_slot = null
 		if is_instance_valid(item):
 			item.isSelected = false
-			# Unequip the item
 			if "isEquipped" in item:
 				item.isEquipped = false
 	_update_selection_visuals()
@@ -146,7 +167,6 @@ func _update_selection_visuals() -> void:
 		return
 	if _is_selected:
 		slot_texture.modulate = Color(2.0, 2.0, 2.0, 1.0)
-		# Dim the item icon to show it's bound/equipped — Terraria style
 		txtr.modulate = Color(1.0, 1.0, 1.0, 0.55)
 	elif is_hovered():
 		slot_texture.modulate = Color(1.5, 1.5, 1.5, 1.0)
