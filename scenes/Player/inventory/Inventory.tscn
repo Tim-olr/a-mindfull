@@ -5,20 +5,19 @@
 [node name="Inventory" type="Control" unique_id=1859743326]
 layout_mode = 3
 anchors_preset = 0
-mouse_filter = 2
 script = ExtResource("1_wocph")
 
 [node name="InventoryContainer" type="VBoxContainer" parent="." unique_id=1644716269]
 clip_contents = true
 layout_mode = 0
 offset_bottom = 4.0
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="Hotbar" type="HBoxContainer" parent="InventoryContainer" unique_id=655596111]
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="InventoryGrid" type="GridContainer" parent="InventoryContainer" unique_id=699346355]
 layout_mode = 2
-mouse_filter = 2
+mouse_filter = 0
 columns = 6

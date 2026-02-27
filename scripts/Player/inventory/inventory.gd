@@ -4,11 +4,8 @@ class_name ActualInv
 signal hotbar_selected(item_resource, slot_index: int)
 
 @export var slotAmount: int = 24
-
 var occupiedSlots: int = 0
-
 var slots_with_items := []
-
 const MIN_HOTBAR_SLOTS = 6
 
 @onready var hotbar = $InventoryContainer/Hotbar
@@ -21,7 +18,6 @@ var selected_slot_index: int = -1
 func _ready() -> void:
 	update_inventory_slots()
 	inventory_grid.visible = false
-	inventory_grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func clear_container(container: Node) -> void:
 	for child in container.get_children():
@@ -52,70 +48,69 @@ func _on_slot_selected(index: int) -> void:
 		return
 	if index >= MIN_HOTBAR_SLOTS:
 		return
+	if selected_slot_index == index:
+		selected_slot_index = -1
+		update_hotbar_selection()
+		emit_signal("hotbar_selected", null, index)
+		return
+
 	selected_slot_index = index
 	var slot: Button = slots[index]
 	emit_signal("hotbar_selected", slot.item, index)
 	update_hotbar_selection()
 
 func _on_slot_item_changed(index: int) -> void:
-	if index != selected_slot_index:
+	if index < 0 or index >= slots.size():
 		return
 	var slot = slots[index]
-	if slot == null or slot.item == null:
+	
+	if slot.item != null:
+		if not slots_with_items.has(slot):
+			slots_with_items.append(slot)
+			occupiedSlots += 1
+	else:
+		if slots_with_items.has(slot):
+			slots_with_items.erase(slot)
+			occupiedSlots -= 1
+
+	if index == selected_slot_index and slot.item == null:
 		selected_slot_index = -1
 		emit_signal("hotbar_selected", null, index)
 		update_hotbar_selection()
-
-func _input(event):
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			Key.KEY_1:
-				_select_hotbar_number(1)
-			Key.KEY_2:
-				_select_hotbar_number(2)
-			Key.KEY_3:
-				_select_hotbar_number(3)
-			Key.KEY_4:
-				_select_hotbar_number(4)
-			Key.KEY_5:
-				_select_hotbar_number(5)
-			Key.KEY_6:
-				_select_hotbar_number(6)
-	if event.is_action_pressed("open_inventory"):
-		inventory_grid.visible = !inventory_grid.visible
-		inventory_grid.mouse_filter = Control.MOUSE_FILTER_STOP if inventory_grid.visible else Control.MOUSE_FILTER_IGNORE
-
-func _select_hotbar_number(n: int) -> void:
-	var index = n - 1
-	if index < 0 or index >= MIN_HOTBAR_SLOTS:
-		return
-	if index >= slots.size():
-		return
-	_on_slot_selected(index)
 
 func add_item(item, count: int = 1) -> bool:
 	if item == null:
 		return false
 	if "isStackable" in item and item.isStackable:
 		for s in slots:
-			if s.item == null:
-				s.set_item(item, count)
-				slots_with_items.append(s)
-				occupiedSlots += 1
-				return true
 			if s.item != null and s.item.Name == item.Name:
 				s.set_item(s.item, s.item_count + count)
-				slots_with_items.append(s)
 				return true
 	if occupiedSlots >= slotAmount:
 		return false
 	for s in slots:
 		if s.item == null:
 			s.set_item(item, count)
-			occupiedSlots += 1
-			slots_with_items.append(s)
 			return true
 	return false
+
+func _input(event):
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			Key.KEY_1: _select_hotbar_number(1)
+			Key.KEY_2: _select_hotbar_number(2)
+			Key.KEY_3: _select_hotbar_number(3)
+			Key.KEY_4: _select_hotbar_number(4)
+			Key.KEY_5: _select_hotbar_number(5)
+			Key.KEY_6: _select_hotbar_number(6)
+	if event.is_action_pressed("open_inventory"):
+		inventory_grid.visible = !inventory_grid.visible
+
+func _select_hotbar_number(n: int) -> void:
+	var index = n - 1
+	if index < 0 or index >= MIN_HOTBAR_SLOTS or index >= slots.size():
+		return
+	_on_slot_selected(index)
 
 func update_hotbar_selection() -> void:
 	for i in range(MIN_HOTBAR_SLOTS):
@@ -128,7 +123,7 @@ func update_hotbar_selection() -> void:
 			else:
 				s.modulate = Color(1.0, 0.9, 0.5, 1.0)
 		else:
-			if "set_selected" in s:
-				s.set_selected(false)
+			if "deselect" in s:
+				s.deselect()
 			else:
 				s.modulate = Color(1.0, 1.0, 1.0, 1.0)

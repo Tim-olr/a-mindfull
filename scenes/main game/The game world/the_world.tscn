@@ -81,6 +81,7 @@ script = ExtResource("1_87ryk")
 [node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
 y_sort_enabled = true
 position = Vector2(296, 359)
+scale = Vector2(6, 6)
 item = ExtResource("3_g76y0")
 Name = "Apple"
 

@@ -90,7 +90,7 @@ func _process(_delta: float) -> void:
 			bullet_stars_pos = shooter.bullet_start_pos
 			global_position = shooter.global_position
 			bullet_stars_pos.look_at(get_global_mouse_position())
-		if Input.is_action_just_pressed("spirit_attack") and shooter.out and shooter.canAttack:
+		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.canAttack:
 			perform_attack()
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:

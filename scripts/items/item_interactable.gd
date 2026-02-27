@@ -8,6 +8,8 @@ func _ready() -> void:
 	description = item.description
 	icon.texture = item.txtr
 	icon.material = icon.material.duplicate()
+	if item.has_scale:
+		scale = item.scale_mod
 
 func interacted():
 	GlobalPlayer.inventory.inventory.add_item(item)

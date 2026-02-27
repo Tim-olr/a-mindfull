@@ -11,14 +11,15 @@ shader_parameter/outline_thickness = 2.0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hdnmr"]
-radius = 75.326
+radius = 17.560923
 
 [node name="ItemInteractable" type="Area2D" unique_id=877810067 groups=["interactables"]]
+position = Vector2(10, 0)
+scale = Vector2(10, 10)
 script = ExtResource("1_hdnmr")
 
 [node name="icon" type="Sprite2D" parent="." unique_id=177039136]
 material = SubResource("ShaderMaterial_0ie7g")
-scale = Vector2(5, 5)
 texture = ExtResource("3_1idkf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1476647787]

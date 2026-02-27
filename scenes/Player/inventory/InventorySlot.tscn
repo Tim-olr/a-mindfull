@@ -11,10 +11,8 @@ shader_parameter/outline_thickness = 2.0
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 
 [node name="InventorySlot" type="Button" unique_id=1332280298]
-focus_mode = 0
 theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
 theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
-toggle_mode = true
 script = ExtResource("1_uvwsa")
 
 [node name="SlotTexture" type="TextureRect" parent="." unique_id=1743848595]
@@ -43,3 +41,5 @@ offset_bottom = 39.0
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/font_size = 25
 text = "2"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

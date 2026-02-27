@@ -12,3 +12,4 @@ rarity = 0
 txtr = ExtResource("3_jsec3")
 Name = "AR"
 description = "AR"
+scale_mod = Vector2(6, 6)
