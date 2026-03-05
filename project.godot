@@ -22,10 +22,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://spirit-game-project/scripts/main game/game_manager.gd"
-GlobalPlayer="*res://spirit-game-project/scripts/Player/GlobalPlayer.gd"
-GlobalWorld="*res://spirit-game-project/scripts/main game/the game world/GlobalWorld.gd"
-GlobalSafe="*res://spirit-game-project/scripts/Player/inventory/safe/global_safe.gd"
+GameManager="*uid://du3bcindtvcx0"
+GlobalPlayer="*uid://br1nyi7ps7d55"
+GlobalWorld="*uid://cursbc857e54k"
+GlobalSafe="*uid://cn7yvsmy5gls3"
 GlobalhitMarker="*uid://ivxlhrg3mot2"
 
 [display]
@@ -48,6 +48,7 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
 
 folder_colors={
 "res://assets/": "red",
+"res://resources/": "teal",
 "res://scenes/": "purple",
 "res://scripts/": "green",
 "res://spirit-game-project/assets/": "red",

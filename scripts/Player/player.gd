@@ -18,4 +18,3 @@ func _ready() -> void:
 	GlobalPlayer.movement = player_movement
 	GlobalPlayer.spiritMarker = spirit_bullet_marker
 	GlobalPlayer.specials = player_specials
-	GlobalPlayer.coordinates = player_coordinates
