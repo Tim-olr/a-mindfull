@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5cyyhcwchc3x"
-path="res://.godot/imported/player_map.png-128a85cd6f60bfc1e327ca8453cc6899.ctex"
+path="res://.godot/imported/player_map.png-2b0c26adc587ac5e269bb767468ebbe0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/player_map.png"
-dest_files=["res://.godot/imported/player_map.png-128a85cd6f60bfc1e327ca8453cc6899.ctex"]
+source_file="res://spirit-game-project/assets/player/player_map.png"
+dest_files=["res://.godot/imported/player_map.png-2b0c26adc587ac5e269bb767468ebbe0.ctex"]
 
 [params]
 

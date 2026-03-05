@@ -1,8 +1,6 @@
-res://scripts/global/
-res://scripts/Player/inventory/safe/
-res://scripts/main game/the game world/
-res://scripts/Player/
-res://scripts/main game/
-res://scenes/main game/components/
-res://scenes/main game/
-res://scenes/Player/
+res://scripts/Player
+res://scenes/main game/components
+res://scenes/main game
+res://scripts/main game
+res://scenes/Player
+res://scenes/extraction

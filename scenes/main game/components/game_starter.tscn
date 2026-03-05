@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8hsu3b3gsqo3"]
 
-[ext_resource type="Script" uid="uid://54yy3rrwjxy" path="res://scripts/main game/components/game_starter.gd" id="1_qjvtd"]
+[ext_resource type="Script" uid="uid://54yy3rrwjxy" path="res://spirit-game-project/scripts/main game/components/game_starter.gd" id="1_qjvtd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_so6nt"]
 radius = 75.326

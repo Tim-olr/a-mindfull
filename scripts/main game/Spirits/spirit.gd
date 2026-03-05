@@ -9,6 +9,7 @@ class_name Spirit
 @export var out: bool = false
 @export var canGetAttacked: bool = true
 @export var size:= Vector2(1,1)
+@export_enum("All Rounder", "Attacker", "Intel", "Trapper", "Evader", "Support") var tag
 @export_category("ability")
 @export var activeAbilityCooldown: float
 @export var hasAbilityDuration: bool

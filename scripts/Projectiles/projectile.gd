@@ -19,10 +19,9 @@ var knockback_force: float = 0.0
 
 var shake
 var projectile_sprite_size:= Vector2(0, 0)
-
 var targets_hit_times: Dictionary = {}
 
-@export_enum("Constant", "Accelerate", "Decelerate") var speed_mode: int = 0
+@export var speed_mode: int = 0
 @export var end_speed_multiplier: float = 1.0
 
 @export var hasInfPierce: bool = false
@@ -51,6 +50,8 @@ func _ready() -> void:
 		life_time.start(lifetime)
 	collision_area.monitoring = true
 	collision_area.monitorable = true
+	collision_mask = 1
+	collision_area.collision_mask = 1 | 2 | 4
 	if is_laser:
 		if shooter_group == "player":
 			projectile_sprite.global_position = proj_middle.global_position
@@ -172,7 +173,7 @@ func _check_overlaps() -> void:
 				break
 		if should_ignore:
 			continue
-		if body.is_in_group("wall"):
+		if body.is_in_group("wall") and not canPhaseThroughWall:
 			go_away()
 			return
 		if body.is_in_group("enemy") or body.is_in_group("player") or body.is_in_group("spirit"):
