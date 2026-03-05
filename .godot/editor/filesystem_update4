@@ -86,3 +86,6 @@ res://scenes/Projectile/projectile.tscn
 res://scripts/items/item_interactable.gd
 res://scripts/main game/Spirits/spirit.gd
 res://scripts/Projectiles/projectile.gd
+res://scenes/Physics objects/physics_object.tscn
+res://scripts/Physics objects/physics_object.gd
+res://scenes/items/item_interactable.tscn

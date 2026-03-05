@@ -48,6 +48,7 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
 
 folder_colors={
 "res://assets/": "red",
+"res://resources/": "teal",
 "res://scenes/": "purple",
 "res://scripts/": "green",
 "res://spirit-game-project/assets/": "red",

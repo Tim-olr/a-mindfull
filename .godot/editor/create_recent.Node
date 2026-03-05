@@ -1,5 +1,6 @@
-res://addons/gaea/generators/2D/noise_generator/noise_generator.gd
+Sprite2D
 CollisionShape2D
+RigidBody2D
 Area2D
 Node2D
 MeshInstance2D
@@ -11,5 +12,3 @@ ScrollContainer
 RichTextLabel
 TextureRect
 MarginContainer
-VBoxContainer
-FlowContainer

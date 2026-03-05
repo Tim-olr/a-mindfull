@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cgwfugy5k2bsj"]
 
-[ext_resource type="Script" uid="uid://bdtr3flr637uv" path="res://spirit-game-project/scripts/items/item_interactable.gd" id="1_hdnmr"]
-[ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://spirit-game-project/scripts/shaders/outline.gdshader" id="2_1idkf"]
-[ext_resource type="Texture2D" uid="uid://dxljrs61nfhmg" path="res://spirit-game-project/assets/items/consumables/apple.png" id="3_1idkf"]
+[ext_resource type="Script" uid="uid://bdtr3flr637uv" path="res://scripts/items/item_interactable.gd" id="1_hdnmr"]
+[ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://scripts/shaders/outline.gdshader" id="2_1idkf"]
+[ext_resource type="Texture2D" uid="uid://dxljrs61nfhmg" path="res://assets/items/consumables/apple.png" id="3_1idkf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ie7g"]
 shader = ExtResource("2_1idkf")
