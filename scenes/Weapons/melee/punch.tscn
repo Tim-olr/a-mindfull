@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bmxmn6xb00hvq"]
+
+[ext_resource type="Script" uid="uid://csycm8dvfboi2" path="res://spirit-game-project/scripts/Weapons/melee/punch.gd" id="1_1iodv"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_3s2ln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wmvtm"]
+size = Vector2(86, 79)
+
+[node name="Punch" type="Node2D" unique_id=1055671558]
+script = ExtResource("1_1iodv")
+damageMod = 5.0
+bulletSizeMod = Vector2(1, 1)
+melee = true
+description = "Punch em!"
+Name = "Punch"
+rarity = "common"
+cameraShakeAmount = 20.0
+is_stab = true
+stab_distance = 100.0
+attack_duration = 0.5
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=366610791]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=2046549406]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=2100522377]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1807622158]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_wmvtm")
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1814665947]
+position = Vector2(2.5, 0.4999981)
+scale = Vector2(0.679688, 0.6171875)
+texture = ExtResource("2_3s2ln")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

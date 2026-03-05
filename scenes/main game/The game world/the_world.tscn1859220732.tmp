@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bheqsxiy5xkwj"]
+
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
+[ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
+[ext_resource type="PackedScene" uid="uid://bavktdkd86rkg" path="res://spirit-game-project/scenes/WorldGen/world_generator.tscn" id="4_5i8ky"]
+[ext_resource type="Resource" uid="uid://bq23mbuc0u4ax" path="res://spirit-game-project/resources/items/blocks/grass_block.tres" id="6_diwni"]
+[ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
+shader = ExtResource("3_8i5hg")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Gradient" id="Gradient_8i5hg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lmetf"]
+gradient = SubResource("Gradient_8i5hg")
+
+[sub_resource type="Gradient" id="Gradient_13bug"]
+offsets = PackedFloat32Array(0.993506, 0.993976, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
+gradient = SubResource("Gradient_13bug")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xiahp"]
+vertices = PackedVector2Array(589, 1293, 589, -642, 20029.61, -4381.3984, 20747.281, 21020.406, -15143.148, -4093.6484, 80, -642, -14784.828, 21092.594, 80, 1293)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(7, 6, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20224, -4583, 20953, 21220, -14982, 21293, -15346, -4292)])
+agent_radius = 200.0
+
+[node name="TheWorld" type="Node2D" unique_id=341922483]
+y_sort_enabled = true
+script = ExtResource("1_87ryk")
+
+[node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
+position = Vector2(204, 78)
+
+[node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
+
+[node name="Gray" type="TextureRect" parent="Effects" unique_id=427023759]
+material = SubResource("ShaderMaterial_s3014")
+offset_left = -1993.0
+offset_top = -1205.0
+offset_right = 2065.0
+offset_bottom = 1277.0
+texture = SubResource("GradientTexture1D_lmetf")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374598864]
+visible = false
+
+[node name="Black" type="Sprite2D" parent="CanvasLayer" unique_id=2014012042]
+position = Vector2(963, 542)
+scale = Vector2(7.516, 1083)
+texture = SubResource("GradientTexture1D_87ryk")
+
+[node name="LoadTimer" type="Timer" parent="." unique_id=1475466570]
+wait_time = 0.1
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=233197356]
+navigation_polygon = SubResource("NavigationPolygon_xiahp")
+
+[node name="WorldGenerator" parent="." unique_id=2131462431 instance=ExtResource("4_5i8ky")]
+
+[node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
+
+[node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
+
+[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
+z_index = 10
+position = Vector2(224, 241)
+item = ExtResource("6_diwni")
+
+[connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

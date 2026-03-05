@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://ctd72ls07tcc7"]
+
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd" id="1_g70ao"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_tuwil"]
+[ext_resource type="PackedScene" uid="uid://dndtlivdt7geg" path="res://spirit-game-project/scenes/main game/spirits/spirits/silver_bullet.tscn" id="2_g6caq"]
+
+[resource]
+script = ExtResource("1_g70ao")
+quality = 1
+Name = "Silver Bullet"
+description = "test"
+icon = ExtResource("1_tuwil")
+scene = ExtResource("2_g6caq")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

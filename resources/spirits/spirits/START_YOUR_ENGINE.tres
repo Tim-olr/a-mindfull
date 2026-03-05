@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://cuynql6xkmyqf"]
+
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd" id="1_67biv"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_p6a65"]
+[ext_resource type="PackedScene" uid="uid://04gl4ydnwh77" path="res://spirit-game-project/scenes/main game/spirits/spirits/start_your_engine.tscn" id="2_curmu"]
+
+[resource]
+script = ExtResource("1_67biv")
+quality = 3
+Name = "START YOUR ENGINE"
+icon = ExtResource("1_p6a65")
+scene = ExtResource("2_curmu")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

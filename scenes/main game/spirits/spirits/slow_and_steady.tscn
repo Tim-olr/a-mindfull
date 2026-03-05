@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://bmi78m3rsxqwc"]
+
+[ext_resource type="Script" uid="uid://byxccfeyfqido" path="res://spirit-game-project/scripts/main game/Spirits/spirits/slow_and_steady.gd" id="1_j1ges"]
+[ext_resource type="PackedScene" uid="uid://c8ptl0a5yo1sq" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/slow_and_steady.tscn" id="2_2vq31"]
+
+[sub_resource type="Animation" id="Animation_ry537"]
+resource_name = "BringIn"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(12.996, 1),
+"update": 0,
+"values": [Vector2(130, 130), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(9.51365, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.388235), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vdfrk"]
+resource_name = "BringOut"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 12.996),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(130, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 9.51365),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.388235)]
+}
+
+[sub_resource type="Animation" id="Animation_gjxxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6pyyh"]
+_data = {
+&"BringIn": SubResource("Animation_ry537"),
+&"BringOut": SubResource("Animation_vdfrk"),
+&"RESET": SubResource("Animation_gjxxu")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_j1ges"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vq31"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxu2i"]
+size = Vector2(136, 136)
+
+[node name="SlowAndSteady" type="CharacterBody2D" unique_id=944006544 groups=["spirit"]]
+script = ExtResource("1_j1ges")
+Name = "SLOW AND STEADY"
+attackDamage = 40.0
+attackType = "slow ranged"
+activeAbilityCooldown = 20.0
+hasAbilityDuration = true
+abilityDuration = 5.0
+bulletAmountMod = 1
+hasWeapon = true
+weaponScene = ExtResource("2_2vq31")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1561319965]
+libraries/ = SubResource("AnimationLibrary_6pyyh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1906765020]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1e-05, 1e-05)
+mesh = SubResource("SphereMesh_j1ges")
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=274570860]
+one_shot = true
+
+[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=1303877419]
+one_shot = true
+
+[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=989432650]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=295780062]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=892538439]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_2vq31")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=816533224]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_bxu2i")
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
+[connection signal="timeout" from="AbilityDurationTimedOut" to="." method="_on_ability_duration_timed_out_timeout"]

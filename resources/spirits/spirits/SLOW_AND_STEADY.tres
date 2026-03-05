@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://c3upgqyh0tkb3"]
+
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd" id="1_h1ci8"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_ycg1k"]
+[ext_resource type="PackedScene" uid="uid://bmi78m3rsxqwc" path="res://spirit-game-project/scenes/main game/spirits/spirits/slow_and_steady.tscn" id="2_howr0"]
+
+[resource]
+script = ExtResource("1_h1ci8")
+quality = 2
+Name = "SLOW AND STEADY"
+description = "he's slow and steady"
+icon = ExtResource("1_ycg1k")
+scene = ExtResource("2_howr0")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

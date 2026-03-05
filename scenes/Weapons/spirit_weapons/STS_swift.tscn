@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b6pw0tovbsmg"]
+
+[ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/sts_swift.gd" id="1_mk8rp"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_eojiy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eojiy"]
+size = Vector2(86, 20)
+
+[node name="StsSwift" type="Node2D" unique_id=582732314]
+script = ExtResource("1_mk8rp")
+damageMod = -7.0
+bulletLifeTimeMod = 1.0
+bulletAmountMod = 8
+rotationAdditionMod = 30.0
+projectileSpeedMod = 600.0
+bulletSizeMod = Vector2(-0.7, -0.7)
+shootCooldown = 0.05
+gun = true
+description = "a"
+Name = "a"
+rarity = "common"
+bulletScene = ExtResource("2_eojiy")
+knockback_force = 300.0
+doRandomRotAndPos = true
+pos_scatter_radius = 100.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=624585340]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1871950465]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=323617591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1322581993]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_eojiy")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

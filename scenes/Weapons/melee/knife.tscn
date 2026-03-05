@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bufkm578dapyu"]
+
+[ext_resource type="Script" uid="uid://duytdo1a4s0t6" path="res://spirit-game-project/scripts/Weapons/melee/knife.gd" id="1_dkffk"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_hpbmo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkffk"]
+size = Vector2(86, 20)
+
+[node name="Knife" type="Node2D" unique_id=883448634]
+script = ExtResource("1_dkffk")
+pierceMod = 2
+damageMod = 10.0
+bulletSizeMod = Vector2(1, 1)
+shootCooldown = -0.2
+melee = true
+damage = 2.0
+description = "stabbie stab!"
+Name = "Knife"
+rarity = "common"
+cameraShakeAmount = 15.0
+is_stab = true
+stab_distance = 150.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=2084720442]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=505140779]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=810346268]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=778400622]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_dkffk")
+
+[node name="Sprite2D" type="Sprite2D" parent="BulletStarsPos/MeleeHitbox" unique_id=704653663]
+position = Vector2(2.5, 1)
+scale = Vector2(0.679688, 0.15625)
+texture = ExtResource("2_hpbmo")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

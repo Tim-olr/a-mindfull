@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://go86jkrdk0wl"]
+
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd" id="1_ndlnl"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_r4f71"]
+[ext_resource type="PackedScene" uid="uid://di864m3ss3v4a" path="res://spirit-game-project/scenes/main game/spirits/spirits/a_peaceful_world.tscn" id="2_a2oid"]
+
+[resource]
+script = ExtResource("1_ndlnl")
+quality = 2
+Name = "A PEACEFUL WORLD"
+description = "w"
+icon = ExtResource("1_r4f71")
+scene = ExtResource("2_a2oid")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

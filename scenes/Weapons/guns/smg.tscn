@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c7ugbef8o7i7e"]
+
+[ext_resource type="Script" uid="uid://bj8uf8qsrrin1" path="res://spirit-game-project/scripts/Weapons/guns/smg.gd" id="1_7ut2w"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_eyfox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uprcp"]
+size = Vector2(86, 20)
+
+[node name="smg" type="Node2D" unique_id=225370864]
+script = ExtResource("1_7ut2w")
+damageMod = -5.0
+bulletLifeTimeMod = 1.0
+projectileSpeedMod = 900.0
+bulletSizeMod = Vector2(-0.5, -0.5)
+shootCooldown = -0.8
+gun = true
+description = "Very fast"
+Name = "SMG"
+rarity = "common"
+bulletScene = ExtResource("2_eyfox")
+doConsecShooting = true
+cameraShakeAmount = 5.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=53666180]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=646628391]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1517655780]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=2048416348]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_uprcp")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

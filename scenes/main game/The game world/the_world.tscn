@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://bheqsxiy5xkwj"]
+
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_27o51"]
+[ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://spirit-game-project/scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://spirit-game-project/scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
+[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://spirit-game-project/resources/items/weapons/assault_rifle.tres" id="3_g76y0"]
+[ext_resource type="Script" uid="uid://bj4epowv4dhin" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_lmetf"]
+[ext_resource type="PackedScene" uid="uid://cgwfugy5k2bsj" path="res://spirit-game-project/scenes/items/item_interactable.tscn" id="6_ox3eu"]
+[ext_resource type="Script" uid="uid://45qany136ivv" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="7_g1gc2"]
+[ext_resource type="Script" uid="uid://burd3vl7qg3q3" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="8_g76y0"]
+[ext_resource type="Script" uid="uid://b0uj88puqjffp" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="9_oluop"]
+[ext_resource type="Script" uid="uid://b6g20g5a35f1p" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="10_hur8m"]
+[ext_resource type="Script" uid="uid://by6jkx860oggl" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="11_tw0v7"]
+[ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://spirit-game-project/scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
+[ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://spirit-game-project/scenes/main game/The game world/extraction_point.tscn" id="14_g76y0"]
+[ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://spirit-game-project/resources/items/material/duct_tape.tres" id="15_hur8m"]
+[ext_resource type="Resource" uid="uid://dgo2e3vtac0c8" path="res://spirit-game-project/resources/items/consumables/apple.tres" id="15_oluop"]
+[ext_resource type="PackedScene" uid="uid://dbx3ckrl2jw4x" path="res://spirit-game-project/scenes/PhysicsObject/physics_object.tscn" id="16_hur8m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
+shader = ExtResource("3_8i5hg")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Gradient" id="Gradient_8i5hg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lmetf"]
+gradient = SubResource("Gradient_8i5hg")
+
+[sub_resource type="Gradient" id="Gradient_13bug"]
+offsets = PackedFloat32Array(0.993506, 0.993976, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
+gradient = SubResource("Gradient_13bug")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xiahp"]
+vertices = PackedVector2Array(589, 1293, 589, -642, 20029.61, -4381.3984, 20747.281, 21020.406, -15143.148, -4093.6484, 80, -642, -14784.828, 21092.594, 80, 1293)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(0, 3, 6, 7), PackedInt32Array(7, 6, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20224, -4583, 20953, 21220, -14982, 21293, -15346, -4292)])
+agent_radius = 200.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_i4mw4"]
+seed = 868677814
+
+[sub_resource type="Resource" id="Resource_mrqg5"]
+script = ExtResource("11_tw0v7")
+source_id = 1
+metadata/_custom_type_script = "uid://by6jkx860oggl"
+
+[sub_resource type="Resource" id="Resource_422w4"]
+resource_name = "Grass"
+script = ExtResource("10_hur8m")
+title = "Grass"
+tile = SubResource("Resource_mrqg5")
+
+[sub_resource type="Resource" id="Resource_lmetf"]
+script = ExtResource("11_tw0v7")
+source_id = 1
+atlas_coord = Vector2i(1, 0)
+metadata/_custom_type_script = "uid://by6jkx860oggl"
+
+[sub_resource type="Resource" id="Resource_g1gc2"]
+resource_name = "Dirt"
+script = ExtResource("10_hur8m")
+title = "Dirt"
+tile = SubResource("Resource_lmetf")
+min = 0.16900000000000004
+max = 0.8
+
+[sub_resource type="Resource" id="Resource_jxdsh"]
+resource_name = "Settings"
+script = ExtResource("9_oluop")
+tiles = Array[ExtResource("10_hur8m")]([SubResource("Resource_422w4"), SubResource("Resource_g1gc2")])
+noise = SubResource("FastNoiseLite_i4mw4")
+infinite = true
+modifiers = Array[ExtResource("8_g76y0")]([null])
+metadata/_custom_type_script = "uid://b0uj88puqjffp"
+
+[node name="TheWorld" type="Node2D" unique_id=341922483]
+y_sort_enabled = true
+script = ExtResource("1_87ryk")
+
+[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
+y_sort_enabled = true
+position = Vector2(1560, 570)
+scale = Vector2(6, 6)
+item = ExtResource("3_g76y0")
+Name = "Apple"
+
+[node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
+z_index = 0
+position = Vector2(115, 245)
+
+[node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
+
+[node name="Gray" type="TextureRect" parent="Effects" unique_id=427023759]
+material = SubResource("ShaderMaterial_s3014")
+offset_left = -2065.0
+offset_top = -1131.0
+offset_right = 1993.0
+offset_bottom = 1351.0
+texture = SubResource("GradientTexture1D_lmetf")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374598864]
+visible = false
+
+[node name="Black" type="Sprite2D" parent="CanvasLayer" unique_id=2014012042]
+position = Vector2(963, 542)
+scale = Vector2(7.516, 1083)
+texture = SubResource("GradientTexture1D_87ryk")
+
+[node name="LoadTimer" type="Timer" parent="." unique_id=1475466570]
+wait_time = 0.1
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=233197356]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_xiahp")
+
+[node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
+y_sort_enabled = true
+
+[node name="ThreadedTilemapGaeaRenderer" type="Node" parent="." unique_id=1664329481 node_paths=PackedStringArray("tile_map_layers", "generator")]
+script = ExtResource("6_lmetf")
+tile_map_layers = [NodePath("TileMapLayer")]
+generator = NodePath("NoiseGenerator")
+metadata/_custom_type_script = "uid://bj4epowv4dhin"
+
+[node name="NoiseGenerator" type="Node" parent="ThreadedTilemapGaeaRenderer" unique_id=336375229]
+script = ExtResource("7_g1gc2")
+settings = SubResource("Resource_jxdsh")
+tile_size = Vector2i(288, 180)
+metadata/_custom_type_script = "uid://45qany136ivv"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="ThreadedTilemapGaeaRenderer" unique_id=299113875]
+z_index = -2
+scale = Vector2(9, 9)
+tile_set = ExtResource("12_t3lwd")
+
+[node name="ItemInteractable3" parent="." unique_id=1912222407 instance=ExtResource("6_ox3eu")]
+y_sort_enabled = true
+position = Vector2(1910, 468)
+scale = Vector2(6, 6)
+item = ExtResource("15_hur8m")
+Name = "Apple"
+
+[node name="ExtractionPoint" parent="." unique_id=1012182749 instance=ExtResource("14_g76y0")]
+y_sort_enabled = true
+position = Vector2(1501.9999, 994)
+rotation = 0.023968369
+scale = Vector2(1, 0.99804443)
+
+[node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
+z_index = 10
+
+[node name="ItemInteractable2" parent="." unique_id=393669994 instance=ExtResource("6_ox3eu")]
+y_sort_enabled = true
+position = Vector2(2023, 811)
+scale = Vector2(6, 6)
+item = ExtResource("15_oluop")
+Name = "Apple"
+
+[node name="PhysicsObject" parent="." unique_id=640917952 instance=ExtResource("16_hur8m")]
+position = Vector2(2056, 1218)
+stops_bullets = false
+
+[connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

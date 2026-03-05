@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dgmmjdo2t04f0"]
+
+[ext_resource type="Script" uid="uid://dmjpslqlj8ida" path="res://spirit-game-project/scripts/Player/inventory/safe/safeUi.gd" id="1_ayjp0"]
+
+[node name="SafeUi" type="Control" unique_id=1199611452]
+z_index = 1002
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ayjp0")
+slot_size = 70

@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" format=3 uid="uid://cbxcu6pr0vivu"]
+
+[ext_resource type="Texture2D" uid="uid://c67joppmxj5dq" path="res://spirit-game-project/assets/world/blocks/ground_no_border.png" id="1_par1k"]
+[ext_resource type="Texture2D" uid="uid://dl563rhjkr488" path="res://spirit-game-project/assets/world/blocks/non-iso-ground.png" id="2_1xikm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xikm"]
+texture = ExtResource("1_par1k")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -7)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -7)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -7)
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -7)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, -16, 0, 0, 8, 16, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_72r46"]
+texture = ExtResource("2_1xikm")
+texture_region_size = Vector2i(32, 20)
+0:0/0 = 0
+1:0/0 = 0
+
+[resource]
+tile_layout = 5
+tile_size = Vector2i(32, 20)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_1xikm")
+sources/1 = SubResource("TileSetAtlasSource_72r46")

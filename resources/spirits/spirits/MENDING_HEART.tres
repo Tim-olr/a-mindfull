@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://dm7jqgd30rno5"]
+
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_ex5kw"]
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd" id="1_hlgpl"]
+[ext_resource type="PackedScene" uid="uid://bt0l1cywchr6f" path="res://spirit-game-project/scenes/main game/spirits/spirits/mending_heart.tscn" id="2_ex5kw"]
+
+[resource]
+script = ExtResource("1_hlgpl")
+quality = 1
+Name = "MENDING HEART"
+description = "test"
+icon = ExtResource("1_ex5kw")
+scene = ExtResource("2_ex5kw")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"
