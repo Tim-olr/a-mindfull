@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://spirit-game-project/scenes/main game/The game world/extraction_point.tscn" id="14_g76y0"]
 [ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://spirit-game-project/resources/items/material/duct_tape.tres" id="15_hur8m"]
 [ext_resource type="Resource" uid="uid://dgo2e3vtac0c8" path="res://spirit-game-project/resources/items/consumables/apple.tres" id="15_oluop"]
+[ext_resource type="PackedScene" uid="uid://dbx3ckrl2jw4x" path="res://spirit-game-project/scenes/PhysicsObject/physics_object.tscn" id="16_hur8m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -45,6 +46,7 @@ seed = 868677814
 
 [sub_resource type="Resource" id="Resource_mrqg5"]
 script = ExtResource("11_tw0v7")
+source_id = 1
 metadata/_custom_type_script = "uid://by6jkx860oggl"
 
 [sub_resource type="Resource" id="Resource_422w4"]
@@ -55,6 +57,7 @@ tile = SubResource("Resource_mrqg5")
 
 [sub_resource type="Resource" id="Resource_lmetf"]
 script = ExtResource("11_tw0v7")
+source_id = 1
 atlas_coord = Vector2i(1, 0)
 metadata/_custom_type_script = "uid://by6jkx860oggl"
 
@@ -81,7 +84,7 @@ script = ExtResource("1_87ryk")
 
 [node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
 y_sort_enabled = true
-position = Vector2(296, 359)
+position = Vector2(1560, 570)
 scale = Vector2(6, 6)
 item = ExtResource("3_g76y0")
 Name = "Apple"
@@ -129,7 +132,7 @@ metadata/_custom_type_script = "uid://bj4epowv4dhin"
 [node name="NoiseGenerator" type="Node" parent="ThreadedTilemapGaeaRenderer" unique_id=336375229]
 script = ExtResource("7_g1gc2")
 settings = SubResource("Resource_jxdsh")
-tile_size = Vector2i(288, 144)
+tile_size = Vector2i(288, 180)
 metadata/_custom_type_script = "uid://45qany136ivv"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ThreadedTilemapGaeaRenderer" unique_id=299113875]
@@ -139,14 +142,14 @@ tile_set = ExtResource("12_t3lwd")
 
 [node name="ItemInteractable3" parent="." unique_id=1912222407 instance=ExtResource("6_ox3eu")]
 y_sort_enabled = true
-position = Vector2(522, 224)
+position = Vector2(1910, 468)
 scale = Vector2(6, 6)
 item = ExtResource("15_hur8m")
 Name = "Apple"
 
 [node name="ExtractionPoint" parent="." unique_id=1012182749 instance=ExtResource("14_g76y0")]
 y_sort_enabled = true
-position = Vector2(-152, 636.00006)
+position = Vector2(1501.9999, 994)
 rotation = 0.023968369
 scale = Vector2(1, 0.99804443)
 
@@ -155,9 +158,13 @@ z_index = 10
 
 [node name="ItemInteractable2" parent="." unique_id=393669994 instance=ExtResource("6_ox3eu")]
 y_sort_enabled = true
-position = Vector2(622, 453)
+position = Vector2(2023, 811)
 scale = Vector2(6, 6)
 item = ExtResource("15_oluop")
 Name = "Apple"
+
+[node name="PhysicsObject" parent="." unique_id=640917952 instance=ExtResource("16_hur8m")]
+position = Vector2(2056, 1218)
+stops_bullets = false
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

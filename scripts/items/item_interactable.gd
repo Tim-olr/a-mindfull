@@ -1,4 +1,5 @@
 extends Interactable
+class_name ItemInteractable
 
 @export var item: ItemResource
 @onready var icon: Sprite2D = $icon
