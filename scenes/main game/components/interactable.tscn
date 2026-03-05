@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfwo2v3qhgc6j"]
-
-[ext_resource type="Script" uid="uid://bkw1rrnmt1nl2" path="res://spirit-game-project/scripts/main game/components/interactable.gd" id="1_3ojj7"]
-
-[node name="Interactable" type="Area2D"]
-script = ExtResource("1_3ojj7")

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://7uxtj688n133"]
-
-[ext_resource type="Script" uid="uid://cn7yvsmy5gls3" path="res://spirit-game-project/scripts/Player/inventory/safe/global_safe.gd" id="1_mjuat"]
-
-[node name="GlobalSafe" type="Node2D" unique_id=1466587507]
-script = ExtResource("1_mjuat")

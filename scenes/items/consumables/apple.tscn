@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://4kk8cevce5vq"]
-
-[ext_resource type="Script" uid="uid://bgjc5rasvvhty" path="res://spirit-game-project/scripts/items/consumable/apple.gd" id="1_elldk"]
-
-[node name="Apple" type="Node2D" unique_id=192364922]
-script = ExtResource("1_elldk")

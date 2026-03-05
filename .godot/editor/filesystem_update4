@@ -1,2 +1,88 @@
 res://scenes/Player/player.tscn
-res://scripts/Player/player_manager.gd
+res://scripts/Player/inventory/safe/safeUi.gd
+res://scripts/Player/inventory/inventory.gd
+res://scripts/main game/Spirits/spirits/shift_the_sand.gd
+res://scripts/Player/player.gd
+res://scenes/main game/The game world/extraction_point.tscn
+res://scripts/main game/the game world/extraction_point.gd
+res://scenes/main game/components/game_starter.tscn
+res://scripts/main game/components/game_starter.gd
+res://scenes/main game/The game world/the_world.tscn
+res://scripts/world gen/new_tile_set.tres
+res://addons/gaea/editor/download_update_panel.tscn
+res://addons/gaea/editor/update_button.tscn
+res://addons/gaea/grid.gd
+res://addons/gaea/plugin.gd
+res://addons/gaea/editor/download_update_panel.gd
+res://addons/gaea/editor/generator_buttons.gd
+res://addons/gaea/editor/inspector_plugin.gd
+res://addons/gaea/editor/threshold_visualizer.gd
+res://addons/gaea/editor/update_button.gd
+res://addons/gaea/generators/generator.gd
+res://addons/gaea/generators/2D/chunk_aware_generator_2d.gd
+res://addons/gaea/generators/2D/generator_2d.gd
+res://addons/gaea/generators/2D/generator_settings_2d.gd
+res://addons/gaea/generators/2D/grid_2d.gd
+res://addons/gaea/generators/2D/cellular_generator/cellular_generator.gd
+res://addons/gaea/generators/2D/cellular_generator/cellular_generator_settings.gd
+res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.gd
+res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d_settings.gd
+res://addons/gaea/generators/2D/noise_generator/noise_generator.gd
+res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd
+res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd
+res://addons/gaea/generators/2D/walker_generator/walker_generator.gd
+res://addons/gaea/generators/2D/walker_generator/walker_generator_settings.gd
+res://addons/gaea/generators/2D/wave_function_generator/wave_function_2d_entry.gd
+res://addons/gaea/generators/2D/wave_function_generator/wave_function_generator_2d.gd
+res://addons/gaea/generators/2D/wave_function_generator/wave_function_generator_2d_settings.gd
+res://addons/gaea/generators/3D/chunk_aware_generator_3d.gd
+res://addons/gaea/generators/3D/generator_3d.gd
+res://addons/gaea/generators/3D/generator_settings_3d.gd
+res://addons/gaea/generators/3D/grid_3d.gd
+res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d.gd
+res://addons/gaea/generators/3D/heightmap_generator_3d/heightmap_generator_3d_settings.gd
+res://addons/gaea/modifiers/modifier.gd
+res://addons/gaea/modifiers/2D/advanced_modifier.gd
+res://addons/gaea/modifiers/2D/carver.gd
+res://addons/gaea/modifiers/2D/chunk_aware_modifier_2d.gd
+res://addons/gaea/modifiers/2D/fill.gd
+res://addons/gaea/modifiers/2D/generate_borders.gd
+res://addons/gaea/modifiers/2D/heightmap_painter.gd
+res://addons/gaea/modifiers/2D/modifier_2d.gd
+res://addons/gaea/modifiers/2D/noise_painter.gd
+res://addons/gaea/modifiers/2D/remove_disconnected.gd
+res://addons/gaea/modifiers/2D/smooth.gd
+res://addons/gaea/modifiers/2D/walls.gd
+res://addons/gaea/modifiers/2D/conditions/condition_2d.gd
+res://addons/gaea/modifiers/2D/conditions/offset_condition_2d.gd
+res://addons/gaea/modifiers/3D/advanced_modifier.gd
+res://addons/gaea/modifiers/3D/carver_3d.gd
+res://addons/gaea/modifiers/3D/chunk_aware_modifier_3d.gd
+res://addons/gaea/modifiers/3D/heightmap_painter_3d.gd
+res://addons/gaea/modifiers/3D/modifier_3d.gd
+res://addons/gaea/modifiers/3D/noise_painter_3d.gd
+res://addons/gaea/modifiers/3D/conditions/condition_3d.gd
+res://addons/gaea/modifiers/3D/conditions/offset_condition_3d.gd
+res://addons/gaea/modifiers/conditions/chance_condition.gd
+res://addons/gaea/modifiers/conditions/condition.gd
+res://addons/gaea/modifiers/conditions/noise_condition.gd
+res://addons/gaea/others/chunk_loader_2d.gd
+res://addons/gaea/others/chunk_loader_3d.gd
+res://addons/gaea/others/falloff_map.gd
+res://addons/gaea/others/threaded_chunk_loader_2d.gd
+res://addons/gaea/others/threaded_chunk_loader_3d.gd
+res://addons/gaea/renderers/gaea_renderer.gd
+res://addons/gaea/renderers/2D/gaea_renderer_2d.gd
+res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd
+res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd
+res://addons/gaea/renderers/3D/gaea_renderer_3d.gd
+res://addons/gaea/renderers/3D/gridmap_gaea_renderer.gd
+res://addons/gaea/renderers/3D/threaded_gridmap_gaea_renderer.gd
+res://addons/gaea/tile_info/gridmap_tile_info.gd
+res://addons/gaea/tile_info/random_tile_info.gd
+res://addons/gaea/tile_info/tilemap_tile_info.gd
+res://addons/gaea/tile_info/tile_info.gd
+res://scenes/Projectile/projectile.tscn
+res://scripts/items/item_interactable.gd
+res://scripts/main game/Spirits/spirit.gd
+res://scripts/Projectiles/projectile.gd

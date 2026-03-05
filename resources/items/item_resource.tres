@@ -1,7 +1,0 @@
-[gd_resource type="Resource" format=3 uid="uid://csyr6v1ewry1u"]
-
-[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_6fbtn"]
-
-[resource]
-script = ExtResource("1_6fbtn")
-rarity = null

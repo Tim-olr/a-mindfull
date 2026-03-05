@@ -15,7 +15,6 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="extraction roguelike"
-run/main_scene="uid://cjun8ius5qflf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
@@ -47,9 +46,6 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://assets/": "red",
-"res://scenes/": "purple",
-"res://scripts/": "green",
 "res://spirit-game-project/assets/": "red",
 "res://spirit-game-project/resources/": "teal",
 "res://spirit-game-project/scenes/": "purple",
