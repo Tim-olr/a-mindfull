@@ -10,7 +10,7 @@ const MIN_HOTBAR_SLOTS = 6
 
 @onready var hotbar = $InventoryContainer/Hotbar
 @onready var inventory_grid = $InventoryContainer/InventoryGrid
-@onready var slot_scene = preload("res://spirit-game-project/scenes/Player/inventory/InventorySlot.tscn")
+@onready var slot_scene = preload("res://scenes/Player/inventory/InventorySlot.tscn")
 
 var slots: Array = []
 var selected_slot_index: int = -1

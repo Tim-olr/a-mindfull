@@ -2,8 +2,8 @@ extends Spirit
 
 @export_enum("Chunk", "Swift") var mode := 0
 
-@onready var chunkGun = preload("res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_Chunk.tscn")
-@onready var swiftGun = preload("res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_swift.tscn")
+@onready var chunkGun = preload("res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn")
+@onready var swiftGun = preload("res://scenes/Weapons/spirit_weapons/STS_swift.tscn")
 var passiveRemMode : int
 var addedHp
 var addedDmg

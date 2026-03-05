@@ -14,7 +14,7 @@ var safe_panel: Panel
 var safe_grid: GridContainer
 var close_button: Button
 
-const slot_scene = preload("res://spirit-game-project/scenes/Player/inventory/InventorySlot.tscn")
+const slot_scene = preload("res://scenes/Player/inventory/InventorySlot.tscn")
 
 func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)

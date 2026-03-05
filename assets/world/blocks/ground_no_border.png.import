@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c67joppmxj5dq"
-path="res://.godot/imported/ground_no_border.png-ec1f6d89c759e2f3aea64cb0ed6b02f5.ctex"
+path="res://.godot/imported/ground_no_border.png-f7e4084cb29bb5cf51061f26747db27a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spirit-game-project/assets/world/blocks/ground_no_border.png"
-dest_files=["res://.godot/imported/ground_no_border.png-ec1f6d89c759e2f3aea64cb0ed6b02f5.ctex"]
+source_file="res://assets/world/blocks/ground_no_border.png"
+dest_files=["res://.godot/imported/ground_no_border.png-f7e4084cb29bb5cf51061f26747db27a.ctex"]
 
 [params]
 
