@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7m8teqbhlqsk"
-path="res://.godot/imported/assault_rifle.png-60c8e2e5a9581e0cf1a9913617323dca.ctex"
+path="res://.godot/imported/assault_rifle.png-0129ac080529473563d626ad07aa2d18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/items/weapons/assault_rifle.png"
-dest_files=["res://.godot/imported/assault_rifle.png-60c8e2e5a9581e0cf1a9913617323dca.ctex"]
+source_file="res://spirit-game-project/assets/items/weapons/assault_rifle.png"
+dest_files=["res://.godot/imported/assault_rifle.png-0129ac080529473563d626ad07aa2d18.ctex"]
 
 [params]
 

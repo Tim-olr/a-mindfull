@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://14383tcq1fb7"
-path="res://.godot/imported/extracting_stone.png-0c37d0f2f9b5bc7cd300b6bc420d2abe.ctex"
+path="res://.godot/imported/extracting_stone.png-19d7c178477af47ab1d18ece2cc41ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/extraction/extracting_stone.png"
-dest_files=["res://.godot/imported/extracting_stone.png-0c37d0f2f9b5bc7cd300b6bc420d2abe.ctex"]
+source_file="res://spirit-game-project/assets/world/extraction/extracting_stone.png"
+dest_files=["res://.godot/imported/extracting_stone.png-19d7c178477af47ab1d18ece2cc41ce5.ctex"]
 
 [params]
 

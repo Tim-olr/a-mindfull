@@ -18,4 +18,4 @@ func interacted():
 				GlobalSafe.safe.append(dup)
 		else:
 			GlobalSafe.safe.append(inv_item.duplicate())
-	get_tree().change_scene_to_file("res://scenes/main game/game.tscn")
+	get_tree().change_scene_to_file("res://spirit-game-project/scenes/main game/game.tscn")

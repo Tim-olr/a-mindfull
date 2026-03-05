@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://da8qg1qf0g4wu"]
 
-[ext_resource type="Script" uid="uid://bi72xqebn68j8" path="res://scripts/main game/the game world/extraction_point.gd" id="1_quvji"]
-[ext_resource type="Texture2D" uid="uid://14383tcq1fb7" path="res://assets/world/extraction/extracting_stone.png" id="2_sxgmm"]
+[ext_resource type="Script" uid="uid://bi72xqebn68j8" path="res://spirit-game-project/scripts/main game/the game world/extraction_point.gd" id="1_quvji"]
+[ext_resource type="Texture2D" uid="uid://14383tcq1fb7" path="res://spirit-game-project/assets/world/extraction/extracting_stone.png" id="2_sxgmm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quvji"]
 radius = 101.4002

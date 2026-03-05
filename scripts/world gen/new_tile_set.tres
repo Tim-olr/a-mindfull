@@ -1,11 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://cbxcu6pr0vivu"]
 
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://c67joppmxj5dq" path="res://spirit-game-project/assets/world/blocks/ground_no_border.png" id="1_par1k"]
 [ext_resource type="Texture2D" uid="uid://dl563rhjkr488" path="res://spirit-game-project/assets/world/blocks/non-iso-ground.png" id="2_1xikm"]
-=======
-[ext_resource type="Texture2D" uid="uid://c67joppmxj5dq" path="res://assets/world/blocks/ground_no_border.png" id="1_par1k"]
->>>>>>> pls-work
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xikm"]
 texture = ExtResource("1_par1k")

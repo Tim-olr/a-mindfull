@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci615ibt1a44"
-path="res://.godot/imported/inv_slot.png-68788d14a904962885fe6893f5119f2d.ctex"
+path="res://.godot/imported/inv_slot.png-7a29fe41650cc975c6fd75dac49a6ab9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/inventory/inv_slot.png"
-dest_files=["res://.godot/imported/inv_slot.png-68788d14a904962885fe6893f5119f2d.ctex"]
+source_file="res://spirit-game-project/assets/player/inventory/inv_slot.png"
+dest_files=["res://.godot/imported/inv_slot.png-7a29fe41650cc975c6fd75dac49a6ab9.ctex"]
 
 [params]
 
