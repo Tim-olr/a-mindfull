@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2ximxjg3n2gm"
+path="res://.godot/imported/Storm.wav-759653fedea38caeb6ad6a6f14f795d7.sample"
+
+[deps]
+
+source_file="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Audio/Sounds/Ambient/Storm.wav"
+dest_files=["res://.godot/imported/Storm.wav-759653fedea38caeb6ad6a6f14f795d7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

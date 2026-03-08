@@ -1,3 +1,4 @@
-res://scenes/Player/player.tscn
+res://scenes/main game/The game world/the_world.tscn
 res://scripts/world gen/new_tile_set.tres
+res://scenes/Player/player.tscn
 res://scripts/Player/GlobalPlayer.gd
