@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://scenes/main game/The game world/extraction_point.tscn" id="14_g76y0"]
 [ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="15_hur8m"]
 [ext_resource type="Resource" uid="uid://dgo2e3vtac0c8" path="res://resources/items/consumables/apple.tres" id="15_oluop"]
+[ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bhd4a"]
+rough = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -63,6 +67,16 @@ noise = SubResource("FastNoiseLite_o6xy1")
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
+
+[node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
+position = Vector2(-90, 271)
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_bhd4a")
+gravity_scale = 0.0
+pushable = true
+friction = 2.0
+max_health = 10
+health = 10
 
 [node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
 y_sort_enabled = true

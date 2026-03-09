@@ -1,4 +1,8 @@
 res://scenes/main game/The game world/the_world.tscn
 res://scripts/world gen/new_tile_set.tres
 res://scenes/Player/player.tscn
-res://scripts/Player/GlobalPlayer.gd
+res://scripts/Physics objects/physics_object.gd
+res://scenes/Physics objects/physics_object.tscn
+res://scripts/Player/player_movement.gd
+res://scripts/Player/player.gd
+res://scripts/main game/the game world/the_world.gd

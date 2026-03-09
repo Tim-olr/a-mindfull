@@ -10,6 +10,7 @@ class_name PhysicsObject
 @export var pushable: bool
 @export var can_pass_through: bool
 @export var stops_bullets: bool = true
+@export var friction: float = 20.0
 
 @export_category("Loot Settings")
 @export var drops_something: bool
@@ -24,21 +25,32 @@ class_name PhysicsObject
 @export var damage_resistance: int = 0
 @export_enum("Axe", "Pickaxe", "Bullet", "Shovel") var prefered_tool
 @export_range(0, 100, 0.1) var damage_amplifier = 0.0
+@export var hide_txtr: bool = false
 
 func _ready() -> void:
-	if drops_something:
-		var interactable = ItemInteractable.new()
-		drop.amount = drop_amount
-		interactable.item = drop
-		GlobalWorld.theWorld.add_child(interactable)
 	init_health()
 	init_settings()
 
+func _physics_process(delta: float) -> void:
+	if health <= 0:
+		if drops_something:
+			var interactable = ItemInteractable.new()
+			drop.amount = drop_amount
+			interactable.item = drop
+			GlobalWorld.theWorld.add_child(interactable)
+		queue_free()
+
 func init_settings():
+	linear_damp = friction
+	if hide_txtr:
+		visible = false
+	else:
+		visible = true
 	if !pushable:
 		freeze = true
 	else:
 		freeze = false
+		linear_damp = 20.0
 	if can_pass_through and stops_bullets:
 		collision_layer = 4
 	elif can_pass_through:
