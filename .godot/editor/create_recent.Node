@@ -1,8 +1,9 @@
-CharacterBody2D
-RigidBody2D
-Sprite2D
+res://scripts/main game/Spirits/spirit.gd
 CollisionShape2D
 Area2D
+Sprite2D
+RigidBody2D
+CharacterBody2D
 Node2D
 MeshInstance2D
 Button
@@ -12,4 +13,3 @@ GridContainer
 ScrollContainer
 RichTextLabel
 TextureRect
-MarginContainer

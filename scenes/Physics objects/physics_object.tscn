@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_on3r0"]
 size = Vector2(23.199997, 24.399998)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hireg"]
+size = Vector2(123, 128)
+
 [node name="PhysicsObject" type="RigidBody2D" unique_id=985011151]
 script = ExtResource("1_on3r0")
 
@@ -15,3 +18,11 @@ texture = ExtResource("1_ps810")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=235504448]
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_on3r0")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=483448108]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=952118646]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_hireg")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

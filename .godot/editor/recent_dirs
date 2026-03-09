@@ -1,7 +1,9 @@
 res://resources/spirits/spirits/
-res://scripts/Weapons/spirit_weapons/
 res://scenes/main game/spirits/spirits/
+res://scripts/Weapons/spirit_weapons/
 res://scripts/main game/Spirits/spirits/
+res://scenes/Physics objects/spirits/
+res://scripts/Physics objects/spirits/
 res://resources/items/material/
 res://scenes/Physics objects/trees/
 res://scripts/Physics objects/trees/

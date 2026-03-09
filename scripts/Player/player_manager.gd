@@ -158,7 +158,7 @@ func die():
 		player_sprites.play("death")
 		await player_sprites.animation_finished
 	tree.paused = false
-	tree.call_deferred("change_scene_to_file", "res://spirit-game-project/scenes/main game/game.tscn")
+	tree.call_deferred("change_scene_to_file", "res://scenes/main game/game.tscn")
 
 func hps_tick():
 	if canHps:

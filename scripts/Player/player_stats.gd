@@ -21,6 +21,9 @@ var playerSpiritScene: CharacterBody2D
 @export var knockback_resistance: float = 0.0  # 0 = no resistance, 1 = full resistance
 @export var step_height: int = 1
 @export var climb_time: float
+@export var do_more_damage_to_enemies_with_hp_percent: bool = false
+@export var enemy_health_percentage_min: int = 100
+@export var damage_mult_for_dmdtewhp: float = 0.0
 
 var hps: float
 var canAttack: bool

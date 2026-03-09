@@ -31,6 +31,7 @@ class_name Weapon
 
 @export var doRandomRotAndPos: bool = false
 @export var pos_scatter_radius: float = 0.0
+@export var has_no_cooldown := false
 
 @export_group("Projectile Speed Over Time")
 @export_enum("Constant", "Accelerate", "Decelerate") var bullet_speed_mode: int = 0
@@ -123,14 +124,15 @@ func _get_shooter_attack_speed() -> float:
 	return 0.5
 
 func perform_attack():
-	if shooter.is_in_group("spirit"):
+	if shooter.is_in_group("spirit") and !has_no_cooldown:
 		shooter.canAttack = false
 		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + shootCooldown)
 		attack_cooldown.start()
 	else:
-		shooter.stats.canAttack = false
-		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
-		attack_cooldown.start()
+		if !has_no_cooldown:
+			shooter.stats.canAttack = false
+			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
+			attack_cooldown.start()
 	if gun:
 		shoot()
 	elif melee:
@@ -295,9 +297,9 @@ func shoot():
 		bullet.hasInfPierce = hasInfPierce
 		bullet.canKeepTicking = canKeepTicking
 		bullet.tick_interval = tick_interval
-		bullet.do_more_damage_to_enemies_with_hp_percent = do_more_damage_to_enemies_with_hp_percent
-		bullet.enemy_health_percentage_min = enemy_health_percentage_min
-		bullet.damage_mult_for_dmdtewhp = damage_mult_for_dmdtewhp
+		bullet.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
+		bullet.enemy_health_percentage_min = GlobalPlayer.stats.enemy_health_percentage_min
+		bullet.damage_mult_for_dmdtewhp = GlobalPlayer.stats.damage_mult_for_dmdtewhp
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot: float = base_rot

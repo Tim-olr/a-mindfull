@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://scripts/Player/player_stats.gd" id="2_s4a0o"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://scripts/Player/player_manager.gd" id="3_ly2qd"]
-[ext_resource type="Resource" uid="uid://1hd6naer35ki" path="res://resources/spirits/spirits/JESTERS_GRIN.tres" id="3_wyey8"]
+[ext_resource type="Resource" uid="uid://o6ar6aqim4op" path="res://resources/spirits/spirits/SPREAD_LIKE_FIRE.tres" id="3_wyey8"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="PackedScene" uid="uid://dgmmjdo2t04f0" path="res://scenes/Player/inventory/safe/safe_ui.tscn" id="7_2pfsf"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://scripts/Player/inventory/player_inventory.gd" id="7_3ragq"]
@@ -639,7 +639,7 @@ visible = false
 scale = Vector2(95, 95)
 mesh = SubResource("SphereMesh_1kbk7")
 
-[node name="PlayerArea" type="Area2D" parent="." unique_id=54834554]
+[node name="PlayerArea" type="Area2D" parent="." unique_id=54834554 groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=405685383]
 shape = SubResource("CircleShape2D_gqjuk")

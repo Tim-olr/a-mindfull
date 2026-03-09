@@ -7,10 +7,10 @@ extends Node
 @export var heal_color := Color.GREEN
 @export var font_size := 50
 
-func show_hit_marker(amount: int, target: Node2D, is_heal: bool) -> void:
+func show_hit_marker(amount: float, target: Node2D, is_heal: bool) -> void:
 	var world = GlobalWorld.dmgNrs
 	var label = Label.new()
-	label.text = str(abs(amount))
+	label.text = str(amount)
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_constant_override("shadow_outline_size", 20)
 	label.add_theme_color_override("font_shadow_color", Color.BLACK)

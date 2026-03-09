@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bhlmdcdtc0aiy"]
+
+[ext_resource type="Script" uid="uid://cnbc22a0lhy43" path="res://scripts/Physics objects/spirits/jesters_grin_bomb.gd" id="1_u8lse"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_usoa1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwwf6"]
+size = Vector2(109, 110)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usoa1"]
+radius = 232.05388
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usoa1"]
+size = Vector2(123, 128)
+
+[node name="JestersGrin_bomb" type="RigidBody2D" unique_id=1957764331]
+script = ExtResource("1_u8lse")
+can_pass_through = true
+stops_bullets = false
+max_health = 1
+has_on_touch = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=956353856]
+texture = ExtResource("2_usoa1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=805034537]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_lwwf6")
+
+[node name="ExplodeArea" type="Area2D" parent="." unique_id=754266403]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeArea" unique_id=1685185609]
+shape = SubResource("CircleShape2D_usoa1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1229402049]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1448121380]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_usoa1")
+
+[connection signal="area_entered" from="ExplodeArea" to="." method="_on_explode_area_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

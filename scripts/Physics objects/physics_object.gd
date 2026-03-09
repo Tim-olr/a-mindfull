@@ -26,6 +26,7 @@ class_name PhysicsObject
 @export_enum("Axe", "Pickaxe", "Bullet", "Shovel") var prefered_tool
 @export_range(0, 100, 0.1) var damage_amplifier = 0.0
 @export var hide_txtr: bool = false
+@export var has_on_touch: bool = false
 
 func _ready() -> void:
 	init_health()
@@ -65,3 +66,9 @@ func init_settings():
 
 func init_health():
 	health = max_health
+
+func on_touch(_area):
+	pass
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	on_touch(area)
