@@ -12,25 +12,19 @@ class_name Enemy
 @onready var attack_speed: Timer = $attack_speed
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $"UI enemy/HealthBar"
-
-@export var knockback_resistance: float = 0.0 
-
-var knockbackVelocity = Vector2.ZERO 
-var knockback_decay: float = 10.0 
-
+@export var knockback_resistance: float = 0.0
+var knockbackVelocity = Vector2.ZERO
+var knockback_decay: float = 10.0
 var canWalk := true
-
 var isMelee: bool = false
-
 var died := false
-
 var attacking := false
-
 var direction
 
 func _ready() -> void:
 	base.texture = texture
 	await get_tree().physics_frame
+	stats.max_hp = stats.hp
 	health_bar.init_health(stats.hp)
 	if weapon != null:
 		var wep = weapon.instantiate()
@@ -50,7 +44,6 @@ func _physics_process(delta: float) -> void:
 		knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, knockback_decay * delta)
 		if knockbackVelocity.length() < 1.0:
 			knockbackVelocity = Vector2.ZERO
-	
 	if !attacking and canWalk and GlobalPlayer.player:
 		nav_agent.target_position = GlobalPlayer.player.global_position
 		if not nav_agent.is_navigation_finished():

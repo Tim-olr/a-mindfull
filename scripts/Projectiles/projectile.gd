@@ -29,6 +29,10 @@ var targets_hit_times: Dictionary = {}
 @export var canKeepTicking: bool = false
 @export var tick_interval: float = 0.1
 
+var do_more_damage_to_enemies_with_hp_percent: bool = false
+var enemy_health_percentage_min: int = 100
+var damage_mult_for_dmdtewhp: float = 0.0
+
 var _initial_speed: float = 0.0
 var _elapsed: float = 0.0
 
@@ -215,11 +219,19 @@ func hit(hitBody):
 
 func do_damage(hitBody):
 	var id = hitBody.get_instance_id()
+	var total_damage = damage
+	if do_more_damage_to_enemies_with_hp_percent and hitBody.is_in_group("enemy"):
+		var enemy_stats = hitBody.get("stats")
+		if enemy_stats != null and enemy_stats.max_hp > 0:
+			var hp_percent = (float(enemy_stats.hp) / float(enemy_stats.max_hp)) * 100.0
+			if hp_percent >= enemy_health_percentage_min:
+				print("Yeehaw")
+				total_damage *= damage_mult_for_dmdtewhp
 	if hitBody.is_in_group("enemy") or hitBody.is_in_group("spirit"):
 		if hitBody.has_method("damage"):
-			hitBody.damage(damage, get_parent().get_parent(), shake)
+			hitBody.damage(total_damage, get_parent().get_parent(), shake)
 		elif hitBody.get_parent().has_method("damage"):
-			hitBody.get_parent().damage(damage, get_parent(), 0)
+			hitBody.get_parent().damage(total_damage, get_parent(), 0)
 		targets_hit_times[id] = _elapsed
 		if not hasInfPierce:
 			pierce -= 1
@@ -227,9 +239,9 @@ func do_damage(hitBody):
 				go_away()
 	elif hitBody.is_in_group("player"):
 		if hitBody.manager.has_method("damage"):
-			hitBody.manager.damage(damage, get_parent().get_parent(), shake)
+			hitBody.manager.damage(total_damage, get_parent().get_parent(), shake)
 		elif hitBody.get_parent().manager.has_method("damage"):
-			hitBody.get_parent().manager.damage(damage, get_parent().get_parent(), shake)
+			hitBody.get_parent().manager.damage(total_damage, get_parent().get_parent(), shake)
 		targets_hit_times[id] = _elapsed
 		if not hasInfPierce:
 			pierce -= 1

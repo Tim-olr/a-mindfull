@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kqprvh4qgnic"]
 
-[ext_resource type="Script" uid="uid://b2jv88fufhq1" path="res://spirit-game-project/scripts/Projectiles/projectile.gd" id="1_gmfsf"]
+[ext_resource type="Script" uid="uid://b2jv88fufhq1" path="res://scripts/Projectiles/projectile.gd" id="1_gmfsf"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_mvg1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvg1l"]

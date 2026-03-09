@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="PackedScene" uid="uid://cioco2pfro1aw" path="res://scenes/enemy/enemies/bonkus.tscn" id="2_qyfmo"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://resources/items/weapons/assault_rifle.tres" id="3_g76y0"]
 [ext_resource type="Script" uid="uid://bhj0vrakipunv" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_lmetf"]
@@ -67,6 +68,9 @@ noise = SubResource("FastNoiseLite_o6xy1")
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
+
+[node name="Bonkus" parent="." unique_id=149083672 instance=ExtResource("2_qyfmo")]
+position = Vector2(773, 331)
 
 [node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
 position = Vector2(-90, 271)

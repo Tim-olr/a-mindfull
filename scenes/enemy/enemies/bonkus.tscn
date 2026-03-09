@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cioco2pfro1aw"]
 
-[ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://spirit-game-project/scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
+[ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_wqe0a"]
-[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_ihpvw"]
-[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="3_tk08l"]
-[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="5_v4h5t"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_ihpvw"]
+[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://scenes/Weapons/melee/knife.tscn" id="3_tk08l"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_v4h5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpvw"]
 size = Vector2(132, 131)

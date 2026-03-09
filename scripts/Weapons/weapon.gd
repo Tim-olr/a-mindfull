@@ -20,6 +20,11 @@ class_name Weapon
 @export var cameraShakeAmount: float
 @export var knockback_force: float = 500.0
 
+@export_category("other")
+@export var do_more_damage_to_enemies_with_hp_percent: bool = false
+@export var enemy_health_percentage_min: int = 100
+@export var damage_mult_for_dmdtewhp: float = 0.0
+
 @export var hasInfPierce: bool = false
 @export var canKeepTicking: bool = false
 @export var tick_interval: float = 0.1
@@ -290,6 +295,9 @@ func shoot():
 		bullet.hasInfPierce = hasInfPierce
 		bullet.canKeepTicking = canKeepTicking
 		bullet.tick_interval = tick_interval
+		bullet.do_more_damage_to_enemies_with_hp_percent = do_more_damage_to_enemies_with_hp_percent
+		bullet.enemy_health_percentage_min = enemy_health_percentage_min
+		bullet.damage_mult_for_dmdtewhp = damage_mult_for_dmdtewhp
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot: float = base_rot

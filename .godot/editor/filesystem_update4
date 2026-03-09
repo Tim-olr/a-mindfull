@@ -6,3 +6,17 @@ res://scenes/Physics objects/physics_object.tscn
 res://scripts/Player/player_movement.gd
 res://scripts/Player/player.gd
 res://scripts/main game/the game world/the_world.gd
+res://scripts/Physics objects/trees/tree.gd
+res://scenes/Physics objects/trees/tree.tscn
+res://resources/items/material/wood.tres
+res://scripts/main game/Spirits/spirits/jesers_grin.gd
+res://scenes/Weapons/spirit_weapons/jesters_grin.tscn
+res://scripts/Weapons/spirit_weapons/jesters_grin.gd
+res://scenes/main game/spirits/spirits/jesers_grin.tscn
+res://resources/spirits/spirits/JESTERS_GRIN.tres
+res://scripts/Weapons/weapon.gd
+res://scenes/Projectile/projectile.tscn
+res://scripts/Projectiles/projectile.gd
+res://scenes/enemy/enemies/bonkus.tscn
+res://scripts/enemy/enemy_stats.gd
+res://scripts/enemy/general_enemy.gd

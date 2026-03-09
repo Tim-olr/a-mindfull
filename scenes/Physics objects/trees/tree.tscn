@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bpffwbqr1h4xc"]
+
+[ext_resource type="Script" uid="uid://b4qfme54ubmef" path="res://scripts/Physics objects/trees/tree.gd" id="1_njiun"]
+[ext_resource type="Resource" uid="uid://bhc1068767vyv" path="res://resources/items/material/wood.tres" id="2_5m0rx"]
+
+[node name="Tree" type="RigidBody2D" unique_id=2118686401]
+script = ExtResource("1_njiun")
+Name = "Tree"
+drops_something = true
+drop = ExtResource("2_5m0rx")
+drop_amount = 3
+max_health = 80
+health = 80
+prefered_tool = 0
+damage_amplifier = 15.0

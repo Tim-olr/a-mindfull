@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://1hd6naer35ki"]
+
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_as7n4"]
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://scripts/main game/Spirits/SpiritResource.gd" id="1_gknyh"]
+[ext_resource type="PackedScene" uid="uid://p0mh7ox7fi4p" path="res://scenes/main game/spirits/spirits/jesers_grin.tscn" id="2_xlsnr"]
+
+[resource]
+script = ExtResource("1_gknyh")
+Name = "JESTERS GRIN"
+description = "hehe"
+icon = ExtResource("1_as7n4")
+scene = ExtResource("2_xlsnr")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

@@ -1,6 +1,7 @@
+CharacterBody2D
+RigidBody2D
 Sprite2D
 CollisionShape2D
-RigidBody2D
 Area2D
 Node2D
 MeshInstance2D
