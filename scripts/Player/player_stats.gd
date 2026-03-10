@@ -24,6 +24,7 @@ var playerSpiritScene: CharacterBody2D
 @export var do_more_damage_to_enemies_with_hp_percent: bool = false
 @export var enemy_health_percentage_min: int = 100
 @export var damage_mult_for_dmdtewhp: float = 0.0
+@export var damage_reduction: float = 0.0 # 0.0 = no reduction, -.2 = 20% reduction, 1.0 =  full reduction
 
 var hps: float
 var canAttack: bool
