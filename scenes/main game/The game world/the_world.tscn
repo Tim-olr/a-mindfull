@@ -70,7 +70,7 @@ y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
 [node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("2_qyfmo")]
-position = Vector2(392, 588)
+position = Vector2(1020, 811)
 
 [node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
 position = Vector2(-90, 271)

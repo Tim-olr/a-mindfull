@@ -125,6 +125,8 @@ func damage(damage_amount, attacker, shake):
 
 func spirit_damage(damage_amount, attacker, shake):
 	if spiritCanGetDamaged:
+		var reduction_am = damage_amount * stats.damage_reduction
+		damage_amount -= reduction_am
 		stats.hp -= damage_amount
 		damaged(shake)
 		health_bar.set_health(stats.hp)

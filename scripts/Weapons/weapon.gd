@@ -19,6 +19,7 @@ class_name Weapon
 @export var doConsecShooting := false
 @export var cameraShakeAmount: float
 @export var knockback_force: float = 500.0
+@export var shoot_in_circle: bool = false
 
 @export_category("other")
 @export var do_more_damage_to_enemies_with_hp_percent: bool = false
@@ -65,6 +66,8 @@ var isSelected: bool = false
 var original_bullet_pos: Vector2
 var original_bullet_rot: float
 
+var attackable: bool = true
+
 var resource
 
 func _ready():
@@ -96,7 +99,7 @@ func _process(_delta: float) -> void:
 			bullet_stars_pos = shooter.bullet_start_pos
 			global_position = shooter.global_position
 			bullet_stars_pos.look_at(get_global_mouse_position())
-		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.canAttack:
+		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.canAttack and attackable:
 			perform_attack()
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
@@ -303,7 +306,9 @@ func shoot():
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot: float = base_rot
-		if total_bullets > 1 and !doConsecShooting:
+		if shoot_in_circle:
+			current_rot = i * deg_to_rad(spread_angle_deg) * 2
+		elif total_bullets > 1 and !doConsecShooting:
 			if doRandomRotAndPos:
 				current_rot = base_rot + randf_range(-spread_angle * 0.5, spread_angle * 0.5)
 			else:
