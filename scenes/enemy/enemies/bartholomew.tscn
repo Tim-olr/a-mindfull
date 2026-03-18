@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dg08cdh3iur8r"]
 
-[ext_resource type="Script" uid="uid://dq4ncj4j44bnx" path="res://spirit-game-project/scripts/enemy/enemies/bartholomew.gd" id="1_mtfaw"]
+[ext_resource type="Script" uid="uid://dq4ncj4j44bnx" path="res://scripts/enemy/enemies/bartholomew.gd" id="1_mtfaw"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_1i77l"]
-[ext_resource type="PackedScene" uid="uid://cwbppuqdsjqxj" path="res://spirit-game-project/scenes/Weapons/guns/burst_rifle.tscn" id="3_1i77l"]
-[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_24app"]
-[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="5_24app"]
+[ext_resource type="PackedScene" uid="uid://cwbppuqdsjqxj" path="res://scenes/Weapons/guns/burst_rifle.tscn" id="3_1i77l"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_24app"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_24app"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rejkr"]
 size = Vector2(181, 180)
@@ -22,6 +22,7 @@ texture = ExtResource("2_1i77l")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_1i77l")
+shard_amount = 20.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=732410884 groups=["enemy"]]
 

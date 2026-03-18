@@ -13,6 +13,8 @@ class_name Enemy
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $"UI enemy/HealthBar"
 @export var knockback_resistance: float = 0.0
+@export var can_drop_shards := true
+@export var shard_amount := 0.0
 var knockbackVelocity = Vector2.ZERO
 var knockback_decay: float = 10.0
 var canWalk := true
@@ -68,7 +70,18 @@ func damage(damageAmount, _dmgr, _camShake):
 func die():
 	canWalk = false
 	died = true
+	give_shards()
 	queue_free()
+
+func give_shards(amount := 0.0):
+	if !can_drop_shards:
+		return
+	var real_amount: float
+	if amount == 0.0:
+		real_amount = shard_amount
+	else: 
+		real_amount = amount
+	GlobalPlayer.stats.add_shards(real_amount)
 
 func attack(_b):
 	pass

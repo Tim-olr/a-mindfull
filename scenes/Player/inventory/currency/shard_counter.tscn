@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://byxetoyvngan6"]
+
+[ext_resource type="Texture2D" uid="uid://ig5v0cabcc4s" path="res://assets/player/currency/shard_counter.png" id="1_eh3v0"]
+[ext_resource type="Script" uid="uid://cqdw7japasmjl" path="res://scripts/Player/inventory/currency/shard_counter.gd" id="1_ul755"]
+[ext_resource type="Texture2D" uid="uid://ercqgcdqy41n" path="res://assets/player/currency/shard.png" id="2_ul755"]
+
+[node name="shard_counter" type="Control" unique_id=599853496]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ul755")
+
+[node name="counter_bg" type="Sprite2D" parent="." unique_id=1055289710]
+texture = ExtResource("1_eh3v0")
+
+[node name="shard_icon" type="Sprite2D" parent="." unique_id=791333688]
+position = Vector2(-53, 0)
+texture = ExtResource("2_ul755")
+
+[node name="amount" type="Label" parent="." unique_id=675620812]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -15.0
+offset_right = 47.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 20
+text = "1000000"

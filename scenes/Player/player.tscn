@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
 [ext_resource type="Texture2D" uid="uid://c5cyyhcwchc3x" path="res://assets/player/player_map.png" id="10_2du5a"]
+[ext_resource type="PackedScene" uid="uid://byxetoyvngan6" path="res://scenes/Player/inventory/currency/shard_counter.tscn" id="12_1bwnf"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
 
@@ -726,6 +727,14 @@ offset_top = -665.0
 offset_right = 1005.0
 offset_bottom = -638.0
 scale = Vector2(2, 2)
+
+[node name="shard_counter" parent="PlayerVisuals/UI" unique_id=599853496 instance=ExtResource("12_1bwnf")]
+layout_mode = 0
+offset_left = 1003.3334
+offset_top = -414.66672
+offset_right = 1003.3334
+offset_bottom = -414.66672
+scale = Vector2(3.5, 3.5)
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="PlayerVisuals" unique_id=98449750]
 position = Vector2(-3, 6.9999995)

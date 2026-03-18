@@ -22,6 +22,7 @@ texture = ExtResource("2_wqe0a")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_tk08l")
+shard_amount = 50.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=496845371 groups=["enemy"]]
 

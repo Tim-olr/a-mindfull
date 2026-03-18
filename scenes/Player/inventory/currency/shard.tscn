@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://7ah1gsa23ilk"]
+
+[ext_resource type="Texture2D" uid="uid://ercqgcdqy41n" path="res://assets/player/currency/shard.png" id="1_p2011"]
+
+[node name="shard" type="Sprite2D" unique_id=774263118]
+texture = ExtResource("1_p2011")

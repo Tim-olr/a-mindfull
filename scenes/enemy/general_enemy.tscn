@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://1pqu781ccyqc"]
 
-[ext_resource type="Script" uid="uid://dk7stsacyc270" path="res://spirit-game-project/scripts/enemy/general_enemy.gd" id="1_rthla"]
+[ext_resource type="Script" uid="uid://dk7stsacyc270" path="res://scripts/enemy/general_enemy.gd" id="1_rthla"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_jf28e"]
-[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_x2xsk"]
-[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="4_8fp8n"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_x2xsk"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="4_8fp8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqlc4"]
 size = Vector2(136, 136)

@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cjun8ius5qflf"]
 
-[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://spirit-game-project/scenes/Player/player.tscn" id="1_6av20"]
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_6av20"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_h2mqu"]
-[ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://spirit-game-project/scripts/main game/game.gd" id="1_yg2su"]
-[ext_resource type="PackedScene" uid="uid://b8hsu3b3gsqo3" path="res://spirit-game-project/scenes/main game/components/game_starter.tscn" id="2_13bug"]
-[ext_resource type="PackedScene" uid="uid://rm7o5ewaew2x" path="res://spirit-game-project/scenes/main game/The game world/safe_interactable.tscn" id="5_cub4b"]
+[ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://scripts/main game/game.gd" id="1_yg2su"]
+[ext_resource type="PackedScene" uid="uid://b8hsu3b3gsqo3" path="res://scenes/main game/components/game_starter.tscn" id="2_13bug"]
+[ext_resource type="PackedScene" uid="uid://rm7o5ewaew2x" path="res://scenes/main game/The game world/safe_interactable.tscn" id="5_cub4b"]
+[ext_resource type="PackedScene" uid="uid://dyra80jgha5ev" path="res://scenes/main game/shard_counter_lobby.tscn" id="6_s3tdl"]
 
 [node name="Game" type="Node2D" unique_id=1324580435]
 script = ExtResource("1_yg2su")
@@ -19,3 +20,7 @@ texture = ExtResource("1_h2mqu")
 
 [node name="SafeInteractable" parent="." unique_id=1927641315 instance=ExtResource("5_cub4b")]
 position = Vector2(356, -146)
+
+[node name="shard_counter_lobby" parent="." unique_id=1660248420 instance=ExtResource("6_s3tdl")]
+position = Vector2(978, -145)
+scale = Vector2(5, 5)

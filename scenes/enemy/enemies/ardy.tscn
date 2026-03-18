@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://vmce3i1bf5v1"]
 
-[ext_resource type="Script" uid="uid://h37umafjgmrp" path="res://spirit-game-project/scripts/enemy/enemies/ardy.gd" id="1_pqvuk"]
+[ext_resource type="Script" uid="uid://h37umafjgmrp" path="res://scripts/enemy/enemies/ardy.gd" id="1_pqvuk"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_bjdtj"]
-[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://spirit-game-project/scenes/Weapons/melee/knife.tscn" id="3_bjdtj"]
-[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://spirit-game-project/scripts/enemy/enemy_stats.gd" id="3_eotki"]
-[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://spirit-game-project/scenes/generalComponents/health_bar.tscn" id="5_eotki"]
+[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://scenes/Weapons/melee/knife.tscn" id="3_bjdtj"]
+[ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_eotki"]
+[ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_eotki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_710da"]
 size = Vector2(87, 84)
@@ -22,6 +22,7 @@ texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_bjdtj")
+shard_amount = 10.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=58544561 groups=["enemy"]]
 

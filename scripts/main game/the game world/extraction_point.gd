@@ -18,4 +18,5 @@ func interacted():
 				GlobalSafe.safe.append(dup)
 		else:
 			GlobalSafe.safe.append(inv_item.duplicate())
+	GlobalSafe.shards += GlobalPlayer.stats.shards
 	get_tree().change_scene_to_file("res://scenes/main game/game.tscn")
