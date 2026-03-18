@@ -34,6 +34,14 @@ func _ready() -> void:
 		push_error("InventorySlot: missing child 'ItemIcon' (TextureRect).")
 	if count_label == null:
 		push_warning("InventorySlot: missing child 'ItemCount' (Label).")
+	# Give this slot's icon its own shader material instance so each slot
+	# can show a different outline colour independently.
+	if txtr != null:
+		var mat := ShaderMaterial.new()
+		mat.shader = OUTLINE
+		mat.set_shader_parameter("outline_thickness", 2.0)
+		mat.set_shader_parameter("outline_color", Color.TRANSPARENT)
+		txtr.material = mat
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	_ready_called = true
@@ -87,12 +95,7 @@ func _input(event: InputEvent) -> void:
 			GlobalSafe.safe.erase(held_item)
 		held_item = swap
 		held_count = swap_count
-		if held_item != null:
-			cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
-			cursor_icon.visible = true
-		else:
-			cursor_icon.texture = null
-			cursor_icon.visible = false
+		_apply_cursor_icon(held_item)
 	else:
 		if item == null:
 			return
@@ -101,8 +104,33 @@ func _input(event: InputEvent) -> void:
 		held_item = item
 		held_count = item_count
 		set_item(null)
-		cursor_icon.texture = held_item.txtr if "txtr" in held_item else null
-		cursor_icon.visible = true
+		_apply_cursor_icon(held_item)
+
+## Updates the floating cursor icon texture + rarity outline, or clears it.
+static func _apply_cursor_icon(res: ItemResource) -> void:
+	if not is_instance_valid(cursor_icon):
+		return
+	if res != null:
+		cursor_icon.texture = res.txtr if "txtr" in res else null
+		cursor_icon.visible = cursor_icon.texture != null
+		if cursor_icon.material is ShaderMaterial:
+			cursor_icon.material.set_shader_parameter(
+				"outline_color", res.calculate_rarity_outline()
+			)
+	else:
+		cursor_icon.texture = null
+		cursor_icon.visible = false
+
+## Updates the in-slot icon's rarity outline colour.
+func _apply_slot_outline() -> void:
+	if txtr == null or not txtr.material is ShaderMaterial:
+		return
+	if item != null:
+		txtr.material.set_shader_parameter("outline_color", item.calculate_rarity_outline())
+		txtr.material.set_shader_parameter("outline_thickness", 2.0)
+	else:
+		# Hide outline when slot is empty
+		txtr.material.set_shader_parameter("outline_color", Color.TRANSPARENT)
 
 func _clear_equip_state() -> void:
 	if is_instance_valid(scene):
@@ -204,6 +232,7 @@ func update_visuals() -> void:
 		if count_label != null:
 			count_label.text = ""
 			count_label.visible = false
+	_apply_slot_outline()
 	_update_selection_visuals()
 
 func _on_pressed() -> void:

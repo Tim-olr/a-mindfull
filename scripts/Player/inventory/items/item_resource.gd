@@ -16,7 +16,7 @@ class_name ItemResource
 @export var amount: int
 
 @export_category("general_settings")
-@export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity
+@export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity = 0
 @export var txtr: Texture2D
 @export var Name: String
 @export var description: String
@@ -28,3 +28,11 @@ var resource: ItemResource
 func _init() -> void:
 	if itemScene != null:
 		itemScene.set_resource(self)
+
+func calculate_rarity_outline():
+	match rarity:
+		0: return Color.WHITE
+		1: return Color.GREEN
+		2: return Color.BLUE
+		3: return Color.PURPLE
+		4: return Color.ORANGE

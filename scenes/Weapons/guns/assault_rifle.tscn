@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgmhxyrly6au7"]
 
-[ext_resource type="Script" uid="uid://cfghi8o63dudf" path="res://spirit-game-project/scripts/Weapons/guns/assault_rifle.gd" id="1_0xx0w"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_7e2mb"]
+[ext_resource type="Script" uid="uid://cfghi8o63dudf" path="res://scripts/Weapons/guns/assault_rifle.gd" id="1_0xx0w"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_7e2mb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7e2mb"]
 size = Vector2(86, 20)

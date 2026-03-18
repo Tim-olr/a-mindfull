@@ -13,3 +13,10 @@ res://scenes/main game/The game world/the_world.tscn
 res://scripts/main game/the game world/the_world.gd
 res://scenes/main game/shard_counter_lobby.tscn
 res://scripts/main game/shard_counter_lobby.gd
+res://scenes/Weapons/guns/assault_rifle.tscn
+res://scripts/Player/inventory/items/item_resource.gd
+res://scenes/items/item_interactable.tscn
+res://scripts/shaders/outline.gdshader
+res://scripts/items/item_interactable.gd
+res://scripts/Player/inventory/inventory_slot.gd
+res://resources/items/weapons/assault_rifle.tres

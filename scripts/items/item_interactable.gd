@@ -10,6 +10,7 @@ func _ready() -> void:
 	icon.texture = item.txtr
 	print("i: ", icon.texture)
 	icon.material = icon.material.duplicate()
+	icon.material.set_shader_parameter("outline_color", item.calculate_rarity_outline())
 	if item.has_scale:
 		scale = item.scale_mod
 
