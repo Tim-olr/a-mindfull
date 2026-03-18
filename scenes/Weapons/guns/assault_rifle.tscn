@@ -15,7 +15,6 @@ shootCooldown = -0.3
 gun = true
 description = "Nice little gun"
 Name = "Assault Rifle"
-rarity = "Common"
 bulletScene = ExtResource("2_7e2mb")
 doConsecShooting = true
 cameraShakeAmount = 6.0

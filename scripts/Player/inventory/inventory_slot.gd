@@ -34,8 +34,6 @@ func _ready() -> void:
 		push_error("InventorySlot: missing child 'ItemIcon' (TextureRect).")
 	if count_label == null:
 		push_warning("InventorySlot: missing child 'ItemCount' (Label).")
-	# Give this slot's icon its own shader material instance so each slot
-	# can show a different outline colour independently.
 	if txtr != null:
 		var mat := ShaderMaterial.new()
 		mat.shader = OUTLINE
@@ -106,7 +104,6 @@ func _input(event: InputEvent) -> void:
 		set_item(null)
 		_apply_cursor_icon(held_item)
 
-## Updates the floating cursor icon texture + rarity outline, or clears it.
 static func _apply_cursor_icon(res: ItemResource) -> void:
 	if not is_instance_valid(cursor_icon):
 		return
@@ -121,7 +118,6 @@ static func _apply_cursor_icon(res: ItemResource) -> void:
 		cursor_icon.texture = null
 		cursor_icon.visible = false
 
-## Updates the in-slot icon's rarity outline colour.
 func _apply_slot_outline() -> void:
 	if txtr == null or not txtr.material is ShaderMaterial:
 		return
@@ -129,7 +125,6 @@ func _apply_slot_outline() -> void:
 		txtr.material.set_shader_parameter("outline_color", item.calculate_rarity_outline())
 		txtr.material.set_shader_parameter("outline_thickness", 2.0)
 	else:
-		# Hide outline when slot is empty
 		txtr.material.set_shader_parameter("outline_color", Color.TRANSPARENT)
 
 func _clear_equip_state() -> void:
@@ -172,8 +167,9 @@ func set_selected(value: bool) -> void:
 			if is_instance_valid(scene):
 				scene.queue_free()
 			scene = item.itemScene.instantiate()
-			scene.resource = item
 			GlobalPlayer.player.add_child(scene)
+			scene.resource = item
+			scene.isSelected = true
 	else:
 		_deselect_internal()
 	_update_selection_visuals()

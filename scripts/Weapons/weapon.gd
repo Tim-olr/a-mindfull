@@ -14,7 +14,7 @@ class_name Weapon
 @export var melee: bool
 @export var description: String
 @export var Name: String
-@export var rarity: String
+@export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity: int = 0
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
 @export var cameraShakeAmount: float
@@ -66,9 +66,22 @@ var isSelected: bool = false
 var original_bullet_pos: Vector2
 var original_bullet_rot: float
 
+var rarity_damage:   float = 0.0
+var rarity_speed:    float = 0.0
+var rarity_cooldown: float = 0.0
+var rarity_lifetime: float = 0.0
+var rarity_amount:   int   = 0
+var rarity_size:     float = 0.0
+
 var attackable: bool = true
 
-var resource
+var prev_rarity
+
+var resource: ItemResource:
+	set(val):
+		resource = val
+		if is_instance_valid(val):
+			calc_rarity_stats()
 
 func _ready():
 	shooter = get_parent()
@@ -115,6 +128,42 @@ func _process(_delta: float) -> void:
 							perform_attack()
 							break
 
+func calc_rarity_stats():
+	rarity = resource.rarity
+	print("calc_rarity_stats called | rarity=", rarity, " | rarity_applied=", resource.rarity_applied, " | bonus_damage=", resource.bonus_damage)
+	if resource.rarity_applied:
+		rarity_damage   = resource.bonus_damage
+		rarity_cooldown = resource.bonus_cooldown_sub
+		rarity_lifetime = resource.bonus_lifetime
+		rarity_size     = resource.bonus_size
+		return
+	resource.rarity_applied = true
+	if rarity == 1:
+		rarity_damage   = 2.0
+		rarity_cooldown = 0.05
+		rarity_lifetime = 0.1
+	elif rarity == 2:
+		rarity_damage   = 5.0
+		rarity_cooldown = 0.12
+		rarity_lifetime = 0.2
+		rarity_size     = 0.1
+	elif rarity == 3:
+		rarity_damage   = 9.0
+		rarity_cooldown = 0.20
+		rarity_lifetime = 0.35
+		rarity_size     = 0.18
+	elif rarity == 4:
+		rarity_damage   = 15.0
+		rarity_cooldown = 0.30
+		rarity_lifetime = 0.5
+		rarity_size     = 0.28
+	resource.bonus_damage       = rarity_damage
+	resource.bonus_speed        = rarity_speed
+	resource.bonus_cooldown_sub = rarity_cooldown
+	resource.bonus_lifetime     = rarity_lifetime
+	resource.bonus_amount       = rarity_amount
+	resource.bonus_size         = rarity_size
+
 func _get_shooter_attack_speed() -> float:
 	var val = shooter.get("attackSpeed")
 	if typeof(val) == TYPE_FLOAT or typeof(val) == TYPE_INT:
@@ -127,23 +176,24 @@ func _get_shooter_attack_speed() -> float:
 	return 0.5
 
 func perform_attack():
+	var effective_cooldown = maxf(shootCooldown - rarity_cooldown, 0.05)
 	if shooter.is_in_group("spirit") and !has_no_cooldown:
 		shooter.canAttack = false
-		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + shootCooldown)
+		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + effective_cooldown)
 		attack_cooldown.start()
 	else:
 		if !has_no_cooldown:
 			shooter.stats.canAttack = false
-			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
+			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + effective_cooldown)
 			attack_cooldown.start()
 	if gun:
 		shoot()
 	elif melee:
 		var total_attacks
 		if shooter.is_in_group("spirit"):
-			total_attacks = shooter.bulletAmountMod + bulletAmountMod
+			total_attacks = shooter.bulletAmountMod + bulletAmountMod + rarity_amount
 		else:
-			total_attacks = shooter.stats.bulletAmount + bulletAmountMod
+			total_attacks = shooter.stats.bulletAmount + bulletAmountMod + rarity_amount
 		for i in range(total_attacks):
 			await do_melee_animation()
 			if i < total_attacks - 1:
@@ -202,9 +252,9 @@ func do_damage(hitBody):
 	var target = _find_entity_root(hitBody)
 	var total_damage
 	if shooter.is_in_group("spirit"):
-		total_damage = shooter.attackDamage + damageMod
+		total_damage = shooter.attackDamage + damageMod + rarity_damage
 	else:
-		total_damage = shooter.stats.attackDamage + damageMod
+		total_damage = shooter.stats.attackDamage + damageMod + rarity_damage
 	if target.is_in_group("enemy"):
 		if target.has_method("damage"):
 			target.damage(total_damage)
@@ -259,21 +309,23 @@ func shoot():
 	var bullet_lifetime
 	var bullet_size
 	if shooter.is_in_group("spirit"):
-		total_bullets = shooter.bulletAmountMod + bulletAmountMod
+		total_bullets    = shooter.bulletAmountMod + bulletAmountMod + rarity_amount
 		spread_angle_deg = shooter.rotationAdditionMod + rotationAdditionMod
-		projectile_speed = shooter.projectileSpeed + projectileSpeedMod
-		pierce = shooter.pierce + pierceMod
-		attack_damage = shooter.attackDamage + damageMod
-		bullet_lifetime = shooter.lifetime + bulletLifeTimeMod
-		bullet_size = shooter.bulletSize + bulletSizeMod
+		projectile_speed = shooter.projectileSpeed + projectileSpeedMod + rarity_speed
+		pierce           = shooter.pierce + pierceMod
+		attack_damage    = shooter.attackDamage + damageMod + rarity_damage
+		bullet_lifetime  = shooter.lifetime + bulletLifeTimeMod + rarity_lifetime
+		bullet_size      = shooter.bulletSize + bulletSizeMod + Vector2(rarity_size, rarity_size)
 	else:
-		total_bullets = shooter.stats.bulletAmount + bulletAmountMod
+		total_bullets    = shooter.stats.bulletAmount + bulletAmountMod + rarity_amount
 		spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
-		projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
-		pierce = shooter.stats.pierce + pierceMod
-		attack_damage = shooter.stats.attackDamage + damageMod
-		bullet_lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
-		bullet_size = shooter.stats.bulletSize + bulletSizeMod
+		projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod + rarity_speed
+		pierce           = shooter.stats.pierce + pierceMod
+		attack_damage    = shooter.stats.attackDamage + damageMod + rarity_damage
+		bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod + rarity_lifetime
+		bullet_size      = shooter.stats.bulletSize + bulletSizeMod + Vector2(rarity_size, rarity_size)
+	if shooter.is_in_group("player"):
+		calc_rarity_stats()
 	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
 	var aim_pos: Vector2
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
@@ -296,13 +348,13 @@ func shoot():
 			bullet.shooter_group = "enemy"
 		elif shooter.is_in_group("spirit"):
 			bullet.shooter_group = "spirit"
-		bullet.knockback_force = knockback_force
-		bullet.hasInfPierce = hasInfPierce
-		bullet.canKeepTicking = canKeepTicking
-		bullet.tick_interval = tick_interval
+		bullet.knockback_force   = knockback_force
+		bullet.hasInfPierce      = hasInfPierce
+		bullet.canKeepTicking    = canKeepTicking
+		bullet.tick_interval     = tick_interval
 		bullet.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
-		bullet.enemy_health_percentage_min = GlobalPlayer.stats.enemy_health_percentage_min
-		bullet.damage_mult_for_dmdtewhp = GlobalPlayer.stats.damage_mult_for_dmdtewhp
+		bullet.enemy_health_percentage_min  = GlobalPlayer.stats.enemy_health_percentage_min
+		bullet.damage_mult_for_dmdtewhp     = GlobalPlayer.stats.damage_mult_for_dmdtewhp
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot: float = base_rot
@@ -315,39 +367,34 @@ func shoot():
 				current_rot = _evenly_spaced_angle(base_rot, i, total_bullets, spread_angle)
 		else:
 			current_rot = base_rot
-
-		bullet.rot = current_rot
-		bullet.rotation = current_rot
-		bullet.projectileSpeed = projectile_speed
-		bullet.speed_mode = bullet_speed_mode
+		bullet.rot                  = current_rot
+		bullet.rotation             = current_rot
+		bullet.projectileSpeed      = projectile_speed
+		bullet.speed_mode           = bullet_speed_mode
 		bullet.end_speed_multiplier = bullet_end_speed_multiplier
-		bullet.pierce = pierce
-		bullet.damage = attack_damage
-		bullet.lifetime = bullet_lifetime
+		bullet.pierce               = pierce
+		bullet.damage               = attack_damage
+		bullet.lifetime             = bullet_lifetime
 		bullet.set_scale(bullet_size)
-
 		var final_pos = bullet_stars_pos.global_position if bullet_stars_pos else spawn_pos
 		if pos_scatter_radius > 0.0:
-			var forward_dist = randf() * pos_scatter_radius
+			var forward_dist   = randf() * pos_scatter_radius
 			var forward_offset = Vector2(forward_dist, 0).rotated(base_rot)
 			final_pos += forward_offset
-		bullet.global_position = final_pos
-
-		bullet.shake = cameraShakeAmount
-		bullet.is_laser = is_laser
-		bullet.laser_max_length = laser_max_length
-		bullet.laser_width = laser_width
-		bullet.projectile_sprite_size = Vector2(laser_max_length, laser_width)
-		bullet.canPhaseThroughWall = canPhaseThroughWall
-		bullet.is_attached_to_shooter = laser_attach_to_shooter
-		bullet.attached_shooter = shooter if laser_attach_to_shooter else null
+		bullet.global_position          = final_pos
+		bullet.shake                    = cameraShakeAmount
+		bullet.is_laser                 = is_laser
+		bullet.laser_max_length         = laser_max_length
+		bullet.laser_width              = laser_width
+		bullet.projectile_sprite_size   = Vector2(laser_max_length, laser_width)
+		bullet.canPhaseThroughWall      = canPhaseThroughWall
+		bullet.is_attached_to_shooter   = laser_attach_to_shooter
+		bullet.attached_shooter         = shooter if laser_attach_to_shooter else null
 		GlobalWorld.projectiles.add_child(bullet)
-
 		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
 			while Input.is_action_pressed("attack"):
 				if is_instance_valid(get_tree()):
 					await get_tree().process_frame
-
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout
 

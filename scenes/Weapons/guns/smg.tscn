@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c7ugbef8o7i7e"]
 
-[ext_resource type="Script" uid="uid://bj8uf8qsrrin1" path="res://spirit-game-project/scripts/Weapons/guns/smg.gd" id="1_7ut2w"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_eyfox"]
+[ext_resource type="Script" uid="uid://bj8uf8qsrrin1" path="res://scripts/Weapons/guns/smg.gd" id="1_7ut2w"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_eyfox"]
+[ext_resource type="Resource" uid="uid://ck7g7loj24uwc" path="res://resources/items/weapons/smg.tres" id="3_ce5lg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uprcp"]
 size = Vector2(86, 20)
@@ -16,10 +17,10 @@ shootCooldown = -0.8
 gun = true
 description = "Very fast"
 Name = "SMG"
-rarity = "common"
 bulletScene = ExtResource("2_eyfox")
 doConsecShooting = true
 cameraShakeAmount = 5.0
+resource = ExtResource("3_ce5lg")
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=53666180]
 one_shot = true

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cwbppuqdsjqxj"]
 
-[ext_resource type="Script" uid="uid://dwgbqg2e5ykv4" path="res://spirit-game-project/scripts/Weapons/guns/burst_rifle.gd" id="1_3dcqj"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_ynmbx"]
+[ext_resource type="Script" uid="uid://dwgbqg2e5ykv4" path="res://scripts/Weapons/guns/burst_rifle.gd" id="1_3dcqj"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_ynmbx"]
+[ext_resource type="Resource" uid="uid://bocy88njjr211" path="res://resources/items/weapons/burst_rifle.tres" id="3_6dtey"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyfox"]
 size = Vector2(86, 20)
@@ -17,10 +18,10 @@ shootCooldown = -0.2
 gun = true
 description = "Shoot in a 3 bullet sequence"
 Name = "Burst Rifle"
-rarity = "Common"
 bulletScene = ExtResource("2_ynmbx")
 doConsecShooting = true
 cameraShakeAmount = 10.0
+resource = ExtResource("3_6dtey")
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1967878743]
 one_shot = true

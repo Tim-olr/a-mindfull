@@ -20,3 +20,7 @@ res://scripts/shaders/outline.gdshader
 res://scripts/items/item_interactable.gd
 res://scripts/Player/inventory/inventory_slot.gd
 res://resources/items/weapons/assault_rifle.tres
+res://scripts/Weapons/weapon.gd
+res://scenes/Weapons/guns/smg.tscn
+res://scenes/Weapons/guns/burst_rifle.tscn
+res://scenes/Weapons/guns/sniper.tscn

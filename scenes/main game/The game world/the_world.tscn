@@ -69,9 +69,6 @@ noise = SubResource("FastNoiseLite_o6xy1")
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
-[node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("2_qyfmo")]
-position = Vector2(1020, 811)
-
 [node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
 position = Vector2(-90, 271)
 mass = 10.0
@@ -161,5 +158,8 @@ position = Vector2(622, 453)
 scale = Vector2(6, 6)
 item = ExtResource("15_oluop")
 Name = "Apple"
+
+[node name="Bartholomew" parent="." unique_id=1109733940 instance=ExtResource("2_qyfmo")]
+position = Vector2(1050, 797)
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]
