@@ -63,7 +63,7 @@ static func _init_cursor_icon(parent: Node) -> void:
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(cursor_icon):
-		cursor_icon.global_position = get_global_mouse_position() - cursor_icon.size / 2
+		cursor_icon.global_position = get_global_mouse_position() - cursor_icon.size / 2.0
 
 func _pressed() -> void:
 	_init_cursor_icon(self)
@@ -111,9 +111,7 @@ static func _apply_cursor_icon(res: ItemResource) -> void:
 		cursor_icon.texture = res.txtr if "txtr" in res else null
 		cursor_icon.visible = cursor_icon.texture != null
 		if cursor_icon.material is ShaderMaterial:
-			cursor_icon.material.set_shader_parameter(
-				"outline_color", res.calculate_rarity_outline()
-			)
+			cursor_icon.material.set_shader_parameter("outline_color", res.calculate_rarity_outline())
 	else:
 		cursor_icon.texture = null
 		cursor_icon.visible = false
@@ -168,7 +166,7 @@ func set_selected(value: bool) -> void:
 				scene.queue_free()
 			scene = item.itemScene.instantiate()
 			GlobalPlayer.player.add_child(scene)
-			scene.resource = item
+			scene.initialize(item)
 			scene.isSelected = true
 	else:
 		_deselect_internal()
