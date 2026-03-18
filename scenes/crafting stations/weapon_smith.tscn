@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dq1uygukg2rfw"]
+
+[ext_resource type="Script" uid="uid://bnqmnr6v2cmy0" path="res://scripts/items/crafting/craftingstationNode.gd" id="1_ox2eo"]
+[ext_resource type="Resource" uid="uid://dr2eeqk33ennr" path="res://resources/crafting/stations/weapon_smith.tres" id="2_kybgc"]
+[ext_resource type="Script" uid="uid://cs0qmne7um313" path="res://scripts/items/crafting/craftingGUI.gd" id="3_pgl8e"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="4_kybgc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgl8e"]
+size = Vector2(117, 119)
+
+[node name="WeaponSmith" type="Area2D" unique_id=1042522218 node_paths=PackedStringArray("crafting_ui")]
+script = ExtResource("1_ox2eo")
+station_resource = ExtResource("2_kybgc")
+crafting_ui = NodePath("Control")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1566440485]
+texture = ExtResource("4_kybgc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=801650871]
+position = Vector2(-3.5, -0.5)
+shape = SubResource("RectangleShape2D_pgl8e")
+
+[node name="Control" type="Control" parent="." unique_id=661723838]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_pgl8e")

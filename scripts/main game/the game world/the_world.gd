@@ -7,6 +7,7 @@ extends Node2D
 func _ready() -> void:
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
+	GameManager.is_in_lobby = false
 	GlobalWorld.projectiles = projectiles
 	GlobalWorld.theWorld = self
 	GlobalWorld.dmgNrs = dmg_nrs

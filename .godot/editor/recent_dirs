@@ -1,5 +1,8 @@
-res://scenes/main game/
 res://scripts/main game/
+res://scenes/crafting stations/
+res://resources/crafting/stations/
+res://scripts/global/
+res://scenes/main game/
 res://scripts/Player/inventory/currency/
 res://scenes/Player/inventory/currency/
 res://scripts/Weapons/spirit_weapons/
@@ -14,9 +17,6 @@ res://scenes/Physics objects/trees/
 res://scripts/Physics objects/trees/
 res://scripts/Physics objects/
 res://scenes/Physics objects/
-res://scripts/global/
 res://scripts/Player/inventory/safe/
 res://scripts/main game/the game world/
 res://scripts/Player/
-res://scenes/main game/components/
-res://scenes/Player/

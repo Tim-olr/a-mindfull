@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="CraftingStationResource" format=3 uid="uid://dr2eeqk33ennr"]
+
+[ext_resource type="Script" uid="uid://gt5w86458vfa" path="res://scripts/items/crafting/StationlevelData.gd" id="1_ckl0f"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_s44q1"]
+[ext_resource type="Script" uid="uid://dd0i0abxjm5ie" path="res://scripts/items/crafting/CraftingStationResource.gd" id="2_geywn"]
+[ext_resource type="Script" uid="uid://cvebgp6i540ld" path="res://scripts/items/crafting/craftingRecipe.gd" id="3_yto34"]
+[ext_resource type="Texture2D" uid="uid://b7m8teqbhlqsk" path="res://assets/items/weapons/assault_rifle.png" id="4_5s6lw"]
+[ext_resource type="Script" uid="uid://b48ej0hl7jx1h" path="res://scripts/items/crafting/ingerdientData.gd" id="5_lfcar"]
+[ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="6_3dlrk"]
+[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://resources/items/weapons/assault_rifle.tres" id="9_5ucwp"]
+
+[sub_resource type="Resource" id="Resource_6vqs3"]
+script = ExtResource("5_lfcar")
+item_resource = ExtResource("6_3dlrk")
+metadata/_custom_type_script = "uid://b48ej0hl7jx1h"
+
+[sub_resource type="Resource" id="Resource_p8qff"]
+script = ExtResource("3_yto34")
+recipe_name = "Assault Rifle"
+result_item = ExtResource("9_5ucwp")
+ingredients = Array[ExtResource("5_lfcar")]([SubResource("Resource_6vqs3")])
+needs_shards = true
+shard_cost = 10.0
+icon = ExtResource("4_5s6lw")
+description = "PEW PEW"
+metadata/_custom_type_script = "uid://cvebgp6i540ld"
+
+[sub_resource type="Resource" id="Resource_qrv7m"]
+script = ExtResource("1_ckl0f")
+recipes = Array[ExtResource("3_yto34")]([SubResource("Resource_p8qff")])
+upgrade_needs_shards = true
+upgrade_shard_cost = 500.0
+level_name = "1"
+level_description = "Level 1"
+metadata/_custom_type_script = "uid://gt5w86458vfa"
+
+[resource]
+script = ExtResource("2_geywn")
+station_name = "Weapon Smith"
+icon = ExtResource("1_s44q1")
+levels = Array[ExtResource("1_ckl0f")]([SubResource("Resource_qrv7m")])
+metadata/_custom_type_script = "uid://dd0i0abxjm5ie"

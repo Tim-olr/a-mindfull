@@ -1,1 +1,2 @@
-res://scripts/main game/Spirits/SpiritResource.gd
+res://scripts/items/crafting/CraftingStationResource.gd
+Resource

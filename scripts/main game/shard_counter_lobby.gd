@@ -10,4 +10,6 @@ func change_amount(amount):
 		pass #implement nice add up thingy
 	elif amount < 0:
 		pass # implement nice decrease thingy
+	if !is_instance_valid(amount_label):
+		amount_label = Label.new()
 	amount_label.text = str(GlobalSafe.shards)
