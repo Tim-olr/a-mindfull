@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c7ekf3ejt5u8g"]
 
-[ext_resource type="Script" uid="uid://clmioc8lvnee4" path="res://spirit-game-project/scripts/main game/Spirits/spirits/keep_me_close.gd" id="1_iis75"]
-[ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/TestLaser.tscn" id="2_n2n30"]
+[ext_resource type="Script" uid="uid://clmioc8lvnee4" path="res://scripts/main game/Spirits/spirits/keep_me_close.gd" id="1_iis75"]
+[ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://scenes/Weapons/spirit_weapons/TestLaser.tscn" id="2_n2n30"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_1fh8l"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -109,8 +110,6 @@ size = Vector2(1.6, 1.6)
 activeAbilityCooldown = 30.0
 hasAbilityDuration = true
 abilityDuration = 7.0
-bulletAmountMod = 1
-bulletSize = Vector2(1, 1)
 hasWeapon = true
 weaponScene = ExtResource("2_n2n30")
 
@@ -140,6 +139,9 @@ shape = SubResource("CircleShape2D_n2n30")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1723689249]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_n2n30")
+
+[node name="stats" type="Node2D" parent="." unique_id=1896885990]
+script = ExtResource("3_1fh8l")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

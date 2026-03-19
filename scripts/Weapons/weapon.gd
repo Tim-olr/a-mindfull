@@ -81,45 +81,7 @@ func _ready() -> void:
 func initialize(res: ItemResource) -> void:
 	resource = res
 	rarity = res.rarity
-
-func _rarity_damage() -> float:
-	match rarity:
-		1: return 2.0
-		2: return 5.0
-		3: return 9.0
-		4: return 15.0
-	return 0.0
-
-func _rarity_speed() -> float:
-	match rarity:
-		1: return 15.0
-		2: return 35.0
-		3: return 60.0
-		4: return 100.0
-	return 0.0
-
-func _rarity_cooldown_reduction() -> float:
-	match rarity:
-		1: return 0.05
-		2: return 0.12
-		3: return 0.20
-		4: return 0.30
-	return 0.0
-
-func _rarity_lifetime() -> float:
-	match rarity:
-		1: return 0.1
-		2: return 0.2
-		3: return 0.35
-		4: return 0.5
-	return 0.0
-
-func _rarity_size() -> float:
-	match rarity:
-		2: return 0.1
-		3: return 0.18
-		4: return 0.28
-	return 0.0
+	damageMod += rarity_damage_buff()
 
 func _process(_delta: float) -> void:
 	if isSelected:
@@ -169,15 +131,14 @@ func _get_shooter_attack_speed() -> float:
 	return 0.5
 
 func perform_attack() -> void:
-	var effective_cooldown = maxf(shootCooldown - _rarity_cooldown_reduction(), 0.05)
 	if shooter.is_in_group("spirit") and !has_no_cooldown:
 		shooter.canAttack = false
-		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + effective_cooldown)
+		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + shootCooldown)
 		attack_cooldown.start()
 	else:
 		if !has_no_cooldown:
 			shooter.stats.canAttack = false
-			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + effective_cooldown)
+			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
 			attack_cooldown.start()
 	if gun:
 		shoot()
@@ -245,9 +206,9 @@ func do_damage(hitBody: Node) -> void:
 	var target = _find_entity_root(hitBody)
 	var total_damage: float
 	if shooter.is_in_group("spirit"):
-		total_damage = shooter.attackDamage + damageMod + _rarity_damage()
+		total_damage = shooter.attackDamage + damageMod
 	else:
-		total_damage = shooter.stats.attackDamage + damageMod + _rarity_damage()
+		total_damage = shooter.stats.attackDamage + damageMod
 	if target.is_in_group("enemy"):
 		if target.has_method("damage"):
 			target.damage(total_damage)
@@ -293,6 +254,14 @@ func _evenly_spaced_angle(base_rot: float, index: int, count: int, cone: float) 
 	var t = float(index) / float(count - 1)
 	return base_rot + lerp(-cone * 0.5, cone * 0.5, t)
 
+func rarity_damage_buff():
+	match rarity:
+		1: return 5.0
+		2: return 10.0
+		3: return 20.0
+		4: return 35.0
+	return 0 
+
 func shoot() -> void:
 	var total_bullets: int
 	var spread_angle_deg: float
@@ -301,22 +270,13 @@ func shoot() -> void:
 	var attack_damage: float
 	var bullet_lifetime: float
 	var bullet_size: Vector2
-	if shooter.is_in_group("spirit"):
-		total_bullets    = shooter.bulletAmountMod + bulletAmountMod
-		spread_angle_deg = shooter.rotationAdditionMod + rotationAdditionMod
-		projectile_speed = shooter.projectileSpeed + projectileSpeedMod + _rarity_speed()
-		pierce           = shooter.pierce + pierceMod
-		attack_damage    = shooter.attackDamage + damageMod + _rarity_damage()
-		bullet_lifetime  = shooter.lifetime + bulletLifeTimeMod + _rarity_lifetime()
-		bullet_size      = shooter.bulletSize + bulletSizeMod + Vector2(_rarity_size(), _rarity_size())
-	else:
-		total_bullets    = shooter.stats.bulletAmount + bulletAmountMod
-		spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
-		projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod + _rarity_speed()
-		pierce           = shooter.stats.pierce + pierceMod
-		attack_damage    = shooter.stats.attackDamage + damageMod + _rarity_damage()
-		bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod + _rarity_lifetime()
-		bullet_size      = shooter.stats.bulletSize + bulletSizeMod + Vector2(_rarity_size(), _rarity_size())
+	total_bullets    = shooter.stats.bulletAmount + bulletAmountMod
+	spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+	projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
+	pierce           = shooter.stats.pierce + pierceMod
+	attack_damage    = shooter.stats.attackDamage + damageMod
+	bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
+	bullet_size      = shooter.stats.bulletSize + bulletSizeMod
 	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
 	var aim_pos: Vector2
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bmi78m3rsxqwc"]
 
-[ext_resource type="Script" uid="uid://byxccfeyfqido" path="res://spirit-game-project/scripts/main game/Spirits/spirits/slow_and_steady.gd" id="1_j1ges"]
-[ext_resource type="PackedScene" uid="uid://c8ptl0a5yo1sq" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/slow_and_steady.tscn" id="2_2vq31"]
+[ext_resource type="Script" uid="uid://byxccfeyfqido" path="res://scripts/main game/Spirits/spirits/slow_and_steady.gd" id="1_j1ges"]
+[ext_resource type="PackedScene" uid="uid://c8ptl0a5yo1sq" path="res://scenes/Weapons/spirit_weapons/slow_and_steady.tscn" id="2_2vq31"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_2qvgn"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -104,12 +105,10 @@ size = Vector2(136, 136)
 [node name="SlowAndSteady" type="CharacterBody2D" unique_id=944006544 groups=["spirit"]]
 script = ExtResource("1_j1ges")
 Name = "SLOW AND STEADY"
-attackDamage = 40.0
 attackType = "slow ranged"
 activeAbilityCooldown = 20.0
 hasAbilityDuration = true
 abilityDuration = 5.0
-bulletAmountMod = 1
 hasWeapon = true
 weaponScene = ExtResource("2_2vq31")
 
@@ -139,6 +138,9 @@ shape = SubResource("CircleShape2D_2vq31")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=816533224]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_bxu2i")
+
+[node name="stats" type="Node2D" parent="." unique_id=1755383704]
+script = ExtResource("3_2qvgn")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

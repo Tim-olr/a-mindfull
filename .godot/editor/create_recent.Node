@@ -1,3 +1,4 @@
+Node2D
 Sprite2D
 CollisionShape2D
 Button
@@ -7,7 +8,6 @@ Control
 ItemList
 TabBar
 Area2D
-Node2D
 AspectRatioContainer
 HBoxContainer
 RigidBody2D

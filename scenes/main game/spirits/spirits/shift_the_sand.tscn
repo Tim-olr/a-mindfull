@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c40vnwtu3jrul"]
 
-[ext_resource type="Script" uid="uid://d31ktld32j6nb" path="res://spirit-game-project/scripts/main game/Spirits/spirits/shift_the_sand.gd" id="1_kt7lo"]
-[ext_resource type="PackedScene" uid="uid://b2rbhbs2uhqb4" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_Chunk.tscn" id="2_n8ceb"]
+[ext_resource type="Script" uid="uid://d31ktld32j6nb" path="res://scripts/main game/Spirits/spirits/shift_the_sand.gd" id="1_kt7lo"]
+[ext_resource type="PackedScene" uid="uid://b2rbhbs2uhqb4" path="res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn" id="2_n8ceb"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_fci14"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -140,6 +141,9 @@ shape = SubResource("CircleShape2D_dymly")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1665865154]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_nmyta")
+
+[node name="stats" type="Node2D" parent="." unique_id=299210882]
+script = ExtResource("3_fci14")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

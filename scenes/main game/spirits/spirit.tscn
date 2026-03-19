@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ubmawdsqley6"]
 
-[ext_resource type="Script" uid="uid://odgjkiyrneke" path="res://spirit-game-project/scripts/main game/Spirits/spirit.gd" id="1_vdfrk"]
+[ext_resource type="Script" uid="uid://odgjkiyrneke" path="res://scripts/main game/Spirits/spirit.gd" id="1_vdfrk"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="2_lx6j1"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -103,7 +104,6 @@ size = Vector2(136, 136)
 [node name="Spirit" type="CharacterBody2D" unique_id=1991023785]
 script = ExtResource("1_vdfrk")
 Name = "teest"
-attackDamage = 1.0
 attackType = "test"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1213760863]
@@ -132,6 +132,9 @@ shape = SubResource("RectangleShape2D_vdfrk")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=626258236]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_gjxxu")
+
+[node name="stats" type="Node2D" parent="." unique_id=117574572]
+script = ExtResource("2_lx6j1")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

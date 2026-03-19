@@ -167,6 +167,7 @@ func set_selected(value: bool) -> void:
 			scene = item.itemScene.instantiate()
 			GlobalPlayer.player.add_child(scene)
 			scene.initialize(item)
+			print("jaja: ", scene)
 			scene.isSelected = true
 	else:
 		_deselect_internal()

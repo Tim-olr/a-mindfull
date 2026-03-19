@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfp3akm017jtm" path="res://scripts/main game/Spirits/spirits/spread_like_fire.gd" id="1_vl8ty"]
 [ext_resource type="PackedScene" uid="uid://7kvpjm62stgy" path="res://scenes/Weapons/spirit_weapons/spread_like_fire.tscn" id="2_mqpfr"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_loutp"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -105,7 +106,6 @@ size = Vector2(136, 136)
 script = ExtResource("1_vl8ty")
 Name = "spread like fire"
 activeAbilityCooldown = 5.0
-hasWeapon = true
 weaponScene = ExtResource("2_mqpfr")
 metadata/_custom_type_script = "uid://odgjkiyrneke"
 
@@ -135,6 +135,9 @@ shape = SubResource("CircleShape2D_t0hmj")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=150669425]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_c8rmf")
+
+[node name="stats" type="Node2D" parent="." unique_id=1668865029]
+script = ExtResource("3_loutp")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

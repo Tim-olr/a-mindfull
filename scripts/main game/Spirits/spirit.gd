@@ -4,7 +4,6 @@ class_name Spirit
 
 @export_category("generic")
 @export var Name: String
-@export var attackDamage: float
 @export var attackType: String
 @export var out: bool = false
 @export var canGetAttacked: bool = true
@@ -13,14 +12,6 @@ class_name Spirit
 @export var activeAbilityCooldown: float
 @export var hasAbilityDuration: bool
 @export var abilityDuration: float
-@export_category("projectile_settings")
-@export var attackCooldown: float
-@export var lifetime: float
-@export var projectileSpeed: float
-@export var pierce: int
-@export var rotationAdditionMod: float
-@export var bulletAmountMod: int
-@export var bulletSize: Vector2
 @export_category("other_attack_settings")
 @export var hasWeapon: bool
 @export var hasStandaloneShooting: bool
@@ -45,6 +36,8 @@ var weapo: Weapon
 @onready var enemycollision: CollisionShape2D = $enemycollision
 
 var host: CharacterBody2D
+
+@onready var stats: Node2D = $stats
 
 func _ready() -> void:
 	if hasWeapon:
@@ -124,28 +117,6 @@ func active_ability():
 
 func remove_ability():
 	pass
-
-func set_projectile(bulletScene):
-	if hasStandaloneShooting:
-		var total_bullets = bulletAmountMod
-		var spread_angle = rotationAdditionMod
-		var start_rotation = bullet_start_pos.rotation
-		for i in total_bullets:
-			var bullet = bulletScene.instantiate()
-			if bullet.get("shooter_group") != null:
-				bullet.shooter_group = "player"
-			var current_rot = start_rotation + (i * spread_angle)
-			bullet.global_position = bullet_start_pos.global_position
-			bullet.rot = current_rot
-			bullet.rotation = current_rot
-			bullet.damage = attackDamage
-			bullet.projectileSpeed = projectileSpeed
-			bullet.lifetime = lifetime
-			bullet.pierce = pierce
-			bullet.set_scale(bulletSize)
-			bullet.shake = 0.0
-			GlobalWorld.projectiles.add_child(bullet) 
-			return bullet
 
 func _on_attack_cooldown_timer_timeout() -> void:
 	canAttack = true

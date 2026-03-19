@@ -1,2 +1,2 @@
-res://scripts/items/crafting/CraftingStationResource.gd
+res://scripts/Player/inventory/items/item_resource.gd
 Resource

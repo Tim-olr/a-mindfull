@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://di864m3ss3v4a"]
 
-[ext_resource type="Script" uid="uid://cx7mnhm1efw77" path="res://spirit-game-project/scripts/main game/Spirits/spirits/a_peaceful_world.gd" id="1_8qysl"]
+[ext_resource type="Script" uid="uid://cx7mnhm1efw77" path="res://scripts/main game/Spirits/spirits/a_peaceful_world.gd" id="1_8qysl"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="2_4ofv2"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -132,6 +133,9 @@ shape = SubResource("CircleShape2D_aufaj")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1048066864]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_2ace0")
+
+[node name="stats" type="Node2D" parent="." unique_id=196345418]
+script = ExtResource("2_4ofv2")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

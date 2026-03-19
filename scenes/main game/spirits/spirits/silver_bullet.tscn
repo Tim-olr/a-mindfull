@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dndtlivdt7geg"]
 
-[ext_resource type="Script" uid="uid://bkwsciciajwil" path="res://spirit-game-project/scripts/main game/Spirits/spirits/silver_bullet.gd" id="1_kwwd0"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_bcdgv"]
-[ext_resource type="PackedScene" uid="uid://cx624efybkweb" path="res://spirit-game-project/scenes/Weapons/spirit_weapons/silver_bullet.tscn" id="2_ukrjp"]
+[ext_resource type="Script" uid="uid://bkwsciciajwil" path="res://scripts/main game/Spirits/spirits/silver_bullet.gd" id="1_kwwd0"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_bcdgv"]
+[ext_resource type="PackedScene" uid="uid://cx624efybkweb" path="res://scenes/Weapons/spirit_weapons/silver_bullet.tscn" id="2_ukrjp"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="4_4acf6"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -147,6 +148,9 @@ shape = SubResource("CircleShape2D_ukrjp")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1094133448]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ukrjp")
+
+[node name="stats" type="Node2D" parent="." unique_id=1023182871]
+script = ExtResource("4_4acf6")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

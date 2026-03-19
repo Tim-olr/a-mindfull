@@ -39,17 +39,7 @@ func _ready() -> void:
 func get_weapon() -> Node:
 	return _weapon_instance
 
-func _on_inventory_hotbar_selected(item_resource, slot_index: int) -> void:
-	if item_resource == null:
-		unequip_weapon()
-		await _block_shoot_for(0.7)
-		return
-	if not item_resource.isWeapon:
-		unequip_weapon()
-		await _block_shoot_for(0.7)
-		return
-	equip_weapon_from_item(item_resource)
-	await _block_shoot_for(0.7)
+
 
 func _block_shoot_for(seconds: float) -> void:
 	if stats != null:

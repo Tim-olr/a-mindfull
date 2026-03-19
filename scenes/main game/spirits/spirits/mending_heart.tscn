@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bt0l1cywchr6f"]
 
-[ext_resource type="Script" uid="uid://dkawy2jgic08g" path="res://spirit-game-project/scripts/main game/Spirits/spirits/mending_heart.gd" id="1_rx7lu"]
-[ext_resource type="PackedScene" uid="uid://bmxmn6xb00hvq" path="res://spirit-game-project/scenes/Weapons/melee/punch.tscn" id="2_pln2i"]
+[ext_resource type="Script" uid="uid://dkawy2jgic08g" path="res://scripts/main game/Spirits/spirits/mending_heart.gd" id="1_rx7lu"]
+[ext_resource type="PackedScene" uid="uid://bmxmn6xb00hvq" path="res://scenes/Weapons/melee/punch.tscn" id="2_pln2i"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_wy731"]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -107,10 +108,8 @@ size = Vector2(136, 136)
 [node name="MendingHeart" type="CharacterBody2D" unique_id=37072058 groups=["spirit"]]
 script = ExtResource("1_rx7lu")
 Name = "MENDING HEART"
-attackDamage = 30.0
 attackType = "close / melee"
 activeAbilityCooldown = 20.0
-bulletAmountMod = 1
 hasWeapon = true
 weaponScene = ExtResource("2_pln2i")
 
@@ -145,6 +144,9 @@ shape = SubResource("CircleShape2D_gkuut")
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=198303900]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_pln2i")
+
+[node name="stats" type="Node2D" parent="." unique_id=456138558]
+script = ExtResource("3_wy731")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

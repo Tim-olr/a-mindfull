@@ -18,7 +18,7 @@ var knockback_force: float = 0.0
 @export var txtr: Texture2D
 
 var shake
-var projectile_sprite_size:= Vector2(0, 0)
+var projectile_sprite_size := Vector2(0, 0)
 
 var targets_hit_times: Dictionary = {}
 
@@ -53,7 +53,7 @@ func _ready() -> void:
 	_elapsed = 0.0
 	if lifetime > 0.0:
 		life_time.start(lifetime)
-	collision_area.monitoring = true
+	collision_area.monitoring  = true
 	collision_area.monitorable = true
 	if is_laser:
 		if shooter_group == "player":
@@ -224,9 +224,7 @@ func do_damage(hitBody):
 		var enemy_stats = hitBody.get("stats")
 		if enemy_stats != null and enemy_stats.max_hp > 0:
 			var hp_percent = (float(enemy_stats.hp) / float(enemy_stats.max_hp)) * 100.0
-			print("h: ", hp_percent)
 			if hp_percent >= enemy_health_percentage_min:
-				print("Yeehaw")
 				total_damage *= damage_mult_for_dmdtewhp
 	if hitBody.is_in_group("enemy") or hitBody.is_in_group("spirit"):
 		if hitBody.has_method("damage"):
