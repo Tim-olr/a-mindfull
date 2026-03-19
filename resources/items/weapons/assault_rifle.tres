@@ -8,7 +8,7 @@
 script = ExtResource("1_djics")
 isWeapon = true
 itemScene = ExtResource("1_q8xmj")
-rarity = 2
+rarity = 0
 txtr = ExtResource("3_jsec3")
 Name = "AR"
 description = "AR"

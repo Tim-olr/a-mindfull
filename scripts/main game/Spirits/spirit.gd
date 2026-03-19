@@ -20,7 +20,6 @@ class_name Spirit
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var bullet_start_pos: Marker2D = GlobalPlayer.spiritMarker
 
-var canAttack: bool = false
 var canAbility: bool = true
 
 var weapo: Weapon
@@ -100,7 +99,7 @@ func bring_in():
 		enemycollision.disabled = true
 
 func check_can_attack():
-	if canAttack:
+	if stats.canAttack:
 		return true
 
 func attack():
@@ -119,7 +118,7 @@ func remove_ability():
 	pass
 
 func _on_attack_cooldown_timer_timeout() -> void:
-	canAttack = true
+	stats.canAttack = true
 
 func _on_active_ability_timer_timeout() -> void:
 	canAbility = true

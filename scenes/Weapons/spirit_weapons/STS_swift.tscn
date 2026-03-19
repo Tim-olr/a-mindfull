@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6pw0tovbsmg"]
 
-[ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/sts_swift.gd" id="1_mk8rp"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_eojiy"]
+[ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://scripts/Weapons/spirit_weapons/sts_swift.gd" id="1_mk8rp"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_eojiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eojiy"]
 size = Vector2(86, 20)
@@ -18,7 +18,6 @@ shootCooldown = 0.05
 gun = true
 description = "a"
 Name = "a"
-rarity = "common"
 bulletScene = ExtResource("2_eojiy")
 knockback_force = 300.0
 doRandomRotAndPos = true

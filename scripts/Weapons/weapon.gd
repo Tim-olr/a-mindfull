@@ -103,7 +103,7 @@ func _process(_delta: float) -> void:
 			bullet_stars_pos = shooter.bullet_start_pos
 			global_position = shooter.global_position
 			bullet_stars_pos.look_at(get_global_mouse_position())
-		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.canAttack and attackable:
+		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.stats.canAttack and attackable:
 			perform_attack()
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
@@ -131,23 +131,14 @@ func _get_shooter_attack_speed() -> float:
 	return 0.5
 
 func perform_attack() -> void:
-	if shooter.is_in_group("spirit") and !has_no_cooldown:
-		shooter.canAttack = false
-		attack_cooldown.set_wait_time(_get_shooter_attack_speed() + shootCooldown)
+	if !has_no_cooldown:
+		shooter.stats.canAttack = false
+		attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
 		attack_cooldown.start()
-	else:
-		if !has_no_cooldown:
-			shooter.stats.canAttack = false
-			attack_cooldown.set_wait_time(shooter.stats.attackSpeed + shootCooldown)
-			attack_cooldown.start()
 	if gun:
 		shoot()
 	elif melee:
-		var total_attacks: int
-		if shooter.is_in_group("spirit"):
-			total_attacks = shooter.bulletAmountMod + bulletAmountMod
-		else:
-			total_attacks = shooter.stats.bulletAmount + bulletAmountMod
+		var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
 		for i in range(total_attacks):
 			await do_melee_animation()
 			if i < total_attacks - 1:
@@ -176,10 +167,7 @@ func do_melee_animation() -> void:
 		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0.0).rotated(current_rot), attack_duration / 2.0)
 		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration / 2.0)
 	await tween.finished
-	if shooter.is_in_group("spirit"):
-		shooter.canAttack = true
-	else:
-		shooter.stats.canAttack = true
+	shooter.stats.canAttack = true
 	if bullet_stars_pos:
 		bullet_stars_pos.position = original_bullet_pos
 		bullet_stars_pos.rotation = original_bullet_rot
@@ -204,11 +192,7 @@ func hit(hitBody: Node) -> void:
 
 func do_damage(hitBody: Node) -> void:
 	var target = _find_entity_root(hitBody)
-	var total_damage: float
-	if shooter.is_in_group("spirit"):
-		total_damage = shooter.attackDamage + damageMod
-	else:
-		total_damage = shooter.stats.attackDamage + damageMod
+	var total_damage = shooter.stats.attackDamage + damageMod
 	if target.is_in_group("enemy"):
 		if target.has_method("damage"):
 			target.damage(total_damage)
@@ -348,10 +332,7 @@ func shoot() -> void:
 			await get_tree().create_timer(0.1).timeout
 
 func _on_attack_cooldown_timeout() -> void:
-	if shooter and shooter.is_in_group("spirit"):
-		shooter.canAttack = true
-	elif shooter and (shooter.is_in_group("player") or shooter.is_in_group("enemy")):
-		shooter.stats.canAttack = true
+	shooter.stats.canAttack = true
 
 func _find_entity_root(n: Node) -> Node:
 	var cur = n

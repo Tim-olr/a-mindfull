@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2rbhbs2uhqb4"]
 
-[ext_resource type="Script" uid="uid://c02o3gb185hpa" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/sts_chunk.gd" id="1_yls4x"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_wokg5"]
+[ext_resource type="Script" uid="uid://c02o3gb185hpa" path="res://scripts/Weapons/spirit_weapons/sts_chunk.gd" id="1_yls4x"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_wokg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yls4x"]
 size = Vector2(86, 20)
@@ -10,13 +10,13 @@ size = Vector2(86, 20)
 script = ExtResource("1_yls4x")
 damageMod = 40.0
 bulletLifeTimeMod = 0.9
+bulletAmountMod = 1
 projectileSpeedMod = 500.0
-bulletSizeMod = Vector2(0.2, 0.2)
+bulletSizeMod = Vector2(1, 1)
 shootCooldown = 0.8
 gun = true
 description = "STS Chunk gun"
 Name = "STS Chunk "
-rarity = "common"
 bulletScene = ExtResource("2_wokg5")
 doConsecShooting = true
 bullet_speed_mode = 2

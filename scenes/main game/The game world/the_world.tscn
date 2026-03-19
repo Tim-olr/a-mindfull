@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="15_hur8m"]
 [ext_resource type="Resource" uid="uid://dgo2e3vtac0c8" path="res://resources/items/consumables/apple.tres" id="15_oluop"]
 [ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
+[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://scenes/enemy/enemies/ardy.tscn" id="17_qyfmo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bhd4a"]
 rough = true
@@ -157,5 +158,8 @@ position = Vector2(622, 453)
 scale = Vector2(6, 6)
 item = ExtResource("15_oluop")
 Name = "Apple"
+
+[node name="Ardy" parent="." unique_id=1356096532 instance=ExtResource("17_qyfmo")]
+position = Vector2(977, 1077)
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]
