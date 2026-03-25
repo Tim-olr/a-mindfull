@@ -1,39 +1,39 @@
 extends Control
 class_name ShopUI
 
-## ─────────────────────────────────────────────
-##  ShopUI  —  fully self-contained, no scene file needed.
-##  Add a bare Control node anywhere, attach this script.
-##  Reparents itself onto a CanvasLayer automatically.
-## ─────────────────────────────────────────────
-
-# ── Palette (mirrors CraftingUI) ───────────────
-const C_BG          := Color(0.07, 0.08, 0.10)
-const C_PANEL       := Color(0.11, 0.13, 0.16)
-const C_PANEL_DARK  := Color(0.06, 0.07, 0.09)
+const C_BG          := Color(0.10, 0.09, 0.08)
+const C_PANEL       := Color(0.15, 0.13, 0.11)
+const C_PANEL_DARK  := Color(0.08, 0.07, 0.06)
 const C_PANEL_GLASS := Color(1, 1, 1, 0.03)
-const C_BORDER      := Color(0.20, 0.23, 0.28)
-const C_BORDER_LIT  := Color(0.35, 0.40, 0.50)
-const C_ACCENT      := Color(0.95, 0.72, 0.22)
-const C_ACCENT_DIM  := Color(0.55, 0.40, 0.08)
-const C_TEXT        := Color(0.93, 0.91, 0.87)
-const C_TEXT_DIM    := Color(0.48, 0.46, 0.44)
-const C_TEXT_MICRO  := Color(0.32, 0.31, 0.30)
-const C_GREEN       := Color(0.30, 0.82, 0.48)
-const C_RED         := Color(0.92, 0.33, 0.30)
-const C_SAFE        := Color(0.38, 0.72, 0.98)
-const C_BTN_HOVER   := Color(1.00, 0.80, 0.28)
-const C_BTN_PRESS   := Color(0.60, 0.42, 0.08)
-const C_BADGE_BG    := Color(0.18, 0.20, 0.24)
+const C_BORDER      := Color(0.28, 0.24, 0.19)
+const C_BORDER_LIT  := Color(0.50, 0.43, 0.32)
+const C_ACCENT      := Color(0.78, 0.62, 0.38)
+const C_ACCENT_DIM  := Color(0.38, 0.29, 0.14)
+const C_TEXT        := Color(0.88, 0.84, 0.76)
+const C_TEXT_DIM    := Color(0.52, 0.48, 0.42)
+const C_TEXT_MICRO  := Color(0.36, 0.33, 0.29)
+const C_GREEN       := Color(0.46, 0.70, 0.42)
+const C_RED         := Color(0.75, 0.35, 0.32)
+const C_SAFE        := Color(0.46, 0.62, 0.76)
+const C_BTN_HOVER   := Color(0.88, 0.72, 0.46)
+const C_BTN_PRESS   := Color(0.48, 0.36, 0.16)
+const C_BADGE_BG    := Color(0.20, 0.18, 0.15)
 
-# ── Layout ──────────────────────────────────────
+const RARITY_NAMES  := ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+const RARITY_COLORS := [
+	Color(0.85, 0.85, 0.85),
+	Color(0.30, 0.80, 0.30),
+	Color(0.30, 0.50, 0.95),
+	Color(0.65, 0.30, 0.90),
+	Color(1.00, 0.55, 0.10),
+]
+
 const W       := 1170
 const H       := 780
 const PAD     := 21
 const LIST_W  := 345
 const _CORNER := 9
 
-# ── Nodes ─────────────────────────────────────
 var _station_label:   Label
 var _subtitle_label:  Label
 var _item_list:       VBoxContainer
@@ -47,15 +47,18 @@ var _qty_box:         SpinBox
 var _buy_button:      Button
 var _close_button:    Button
 
-# ── State ─────────────────────────────────────
+var _upgrade_panel:         Control
+var _upgrade_weapon_label:  Label
+var _upgrade_rarity_label:  Label
+var _upgrade_arrow_label:   Label
+var _upgrade_next_label:    Label
+var _upgrade_cost_container:VBoxContainer
+var _upgrade_button:        Button
+
 var _station:       ShopStationNode = null
 var _selected_item: ShopItem        = null
 var _open_tween:    Tween           = null
 
-
-# ════════════════════════════════════════════════
-#  Bootstrap
-# ════════════════════════════════════════════════
 
 func _ready() -> void:
 	if not get_parent() is CanvasLayer:
@@ -70,10 +73,6 @@ func _ready() -> void:
 	_build_ui()
 	hide()
 
-
-# ════════════════════════════════════════════════
-#  Public API
-# ════════════════════════════════════════════════
 
 func open_for_station(station: ShopStationNode) -> void:
 	_station       = station
@@ -99,10 +98,6 @@ func close() -> void:
 	_open_tween.chain().tween_callback(hide)
 
 
-# ════════════════════════════════════════════════
-#  Build UI
-# ════════════════════════════════════════════════
-
 func _build_ui() -> void:
 	set_anchors_preset(Control.PRESET_CENTER)
 	custom_minimum_size = Vector2(W, H)
@@ -110,15 +105,12 @@ func _build_ui() -> void:
 	pivot_offset        = size / 2.0
 	position            = get_viewport().get_visible_rect().size / 2.0 - size / 2.0
 
-	# Drop shadow
 	var shadow := _make_box(Vector2(W, H), Vector2(12, 12), Color(0, 0, 0, 0.6))
 	add_child(shadow)
 
-	# Main background
 	var bg := _make_box(Vector2(W, H), Vector2.ZERO, C_BG, C_BORDER)
 	add_child(bg)
 
-	# Gold gradient top stripe
 	var grad          := Gradient.new()
 	grad.set_color(0, C_ACCENT)
 	grad.set_color(1, Color(C_ACCENT.r, C_ACCENT.g, C_ACCENT.b, 0.0))
@@ -131,23 +123,20 @@ func _build_ui() -> void:
 	stripe.position     = Vector2.ZERO
 	bg.add_child(stripe)
 
-	# Shop title
 	_station_label                      = _lbl("", 23, C_ACCENT, true)
 	_station_label.position             = Vector2(0, 10)
 	_station_label.size                 = Vector2(W, 30)
 	_station_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	bg.add_child(_station_label)
 
-	# Shop subtitle (description first line)
 	_subtitle_label                      = _lbl("", 14, C_TEXT_DIM)
 	_subtitle_label.position             = Vector2(0, 40)
 	_subtitle_label.size                 = Vector2(W, 18)
 	_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	bg.add_child(_subtitle_label)
 
-	# Close button
 	_close_button          = Button.new()
-	_close_button.text     = "✕"
+	_close_button.text     = "X"
 	_close_button.position = Vector2(W - PAD - 48, 8)
 	_close_button.size     = Vector2(48, 40)
 	_close_button.flat     = true
@@ -158,11 +147,9 @@ func _build_ui() -> void:
 	_close_button.pressed.connect(close)
 	bg.add_child(_close_button)
 
-	# ── Body ──────────────────────────────────
 	var body_y := 65
 	var body_h := H - body_y - PAD
 
-	# ── Left panel ────────────────────────────
 	var lp := _make_box(Vector2(LIST_W, body_h), Vector2(PAD, body_y), C_PANEL_DARK, C_BORDER)
 	bg.add_child(lp)
 
@@ -181,25 +168,21 @@ func _build_ui() -> void:
 	_item_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(_item_list)
 
-	# ── Right panel ───────────────────────────
 	var rw   := W - PAD * 2 - LIST_W - 15
 	var rp_x := PAD + LIST_W + 15
 	var rp   := _make_box(Vector2(rw, body_h), Vector2(rp_x, body_y), C_PANEL, C_BORDER)
 	bg.add_child(rp)
 
-	# Large item name
 	_item_name_label          = _lbl("Select an item", 22, C_ACCENT, true)
 	_item_name_label.position = Vector2(PAD, PAD)
 	_item_name_label.size     = Vector2(rw - PAD * 2, 36)
 	rp.add_child(_item_name_label)
 
-	# Amount subtitle
 	_item_amount_lbl          = _lbl("", 16, C_TEXT_DIM)
 	_item_amount_lbl.position = Vector2(PAD, PAD + 40)
 	_item_amount_lbl.size     = Vector2(rw - PAD * 2, 24)
 	rp.add_child(_item_amount_lbl)
 
-	# Item icon (64×64)
 	_item_icon               = TextureRect.new()
 	_item_icon.position      = Vector2(PAD, PAD + 72)
 	_item_icon.size          = Vector2(64, 64)
@@ -207,32 +190,27 @@ func _build_ui() -> void:
 	_item_icon.stretch_mode  = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	rp.add_child(_item_icon)
 
-	# Description
 	_item_desc_label               = _lbl("", 17, C_TEXT_DIM)
 	_item_desc_label.position      = Vector2(PAD, PAD + 148)
 	_item_desc_label.size          = Vector2(rw - PAD * 2, 90)
 	_item_desc_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	rp.add_child(_item_desc_label)
 
-	# Divider
 	var div      := ColorRect.new()
 	div.color     = C_ACCENT_DIM
 	div.size      = Vector2(rw - PAD * 2, 2)
 	div.position  = Vector2(PAD, PAD + 246)
 	rp.add_child(div)
 
-	# Price section header
 	var ph      := _lbl("PRICE", 14, C_TEXT_DIM, true)
 	ph.position  = Vector2(PAD, PAD + 258)
 	rp.add_child(ph)
 
-	# Price content container
 	_price_container          = VBoxContainer.new()
 	_price_container.position = Vector2(PAD, PAD + 282)
 	_price_container.size     = Vector2(rw - PAD * 2, 180)
 	rp.add_child(_price_container)
 
-	# Quantity spinner
 	_qty_box               = SpinBox.new()
 	_qty_box.position      = Vector2(PAD, body_h - 138)
 	_qty_box.size          = Vector2(160, 40)
@@ -244,15 +222,64 @@ func _build_ui() -> void:
 	_qty_box.hide()
 	rp.add_child(_qty_box)
 
-	# Buy button
-	_buy_button = _action_btn("🛒  Buy", Vector2(PAD, body_h - 78), Vector2(rw - PAD * 2, 60))
+	_buy_button = _action_btn("Buy", Vector2(PAD, body_h - 78), Vector2(rw - PAD * 2, 60))
 	_buy_button.pressed.connect(_on_buy_pressed)
 	rp.add_child(_buy_button)
 
+	_upgrade_panel          = Control.new()
+	_upgrade_panel.position = Vector2(PAD, body_y)
+	_upgrade_panel.size     = Vector2(rw, body_h)
+	_upgrade_panel.visible  = false
+	bg.add_child(_upgrade_panel)
 
-# ════════════════════════════════════════════════
-#  Refresh
-# ════════════════════════════════════════════════
+	var up_bg := _make_box(Vector2(rw, body_h), Vector2.ZERO, C_PANEL, C_BORDER)
+	_upgrade_panel.add_child(up_bg)
+
+	var up_title      := _lbl("WEAPON RARITY UPGRADE", 20, C_ACCENT, true)
+	up_title.position  = Vector2(PAD, PAD)
+	up_title.size      = Vector2(rw - PAD * 2, 30)
+	up_bg.add_child(up_title)
+
+	var up_div      := ColorRect.new()
+	up_div.color     = C_ACCENT_DIM
+	up_div.size      = Vector2(rw - PAD * 2, 2)
+	up_div.position  = Vector2(PAD, PAD + 40)
+	up_bg.add_child(up_div)
+
+	_upgrade_weapon_label               = _lbl("No weapon equipped", 19, C_TEXT)
+	_upgrade_weapon_label.position      = Vector2(PAD, PAD + 54)
+	_upgrade_weapon_label.size          = Vector2(rw - PAD * 2, 30)
+	_upgrade_weapon_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	up_bg.add_child(_upgrade_weapon_label)
+
+	var rarity_row       := HBoxContainer.new()
+	rarity_row.position   = Vector2(PAD, PAD + 94)
+	rarity_row.size       = Vector2(rw - PAD * 2, 36)
+	rarity_row.add_theme_constant_override("separation", 12)
+	up_bg.add_child(rarity_row)
+
+	_upgrade_rarity_label = _lbl("", 22, C_TEXT, true)
+	rarity_row.add_child(_upgrade_rarity_label)
+
+	_upgrade_arrow_label = _lbl("->", 22, C_TEXT_DIM, true)
+	rarity_row.add_child(_upgrade_arrow_label)
+
+	_upgrade_next_label = _lbl("", 22, C_TEXT, true)
+	rarity_row.add_child(_upgrade_next_label)
+
+	var cost_header      := _lbl("UPGRADE COST", 14, C_TEXT_DIM, true)
+	cost_header.position  = Vector2(PAD, PAD + 146)
+	up_bg.add_child(cost_header)
+
+	_upgrade_cost_container          = VBoxContainer.new()
+	_upgrade_cost_container.position = Vector2(PAD, PAD + 170)
+	_upgrade_cost_container.size     = Vector2(rw - PAD * 2, 300)
+	up_bg.add_child(_upgrade_cost_container)
+
+	_upgrade_button = _action_btn("Upgrade", Vector2(PAD, body_h - 78), Vector2(rw - PAD * 2, 60))
+	_upgrade_button.pressed.connect(_on_upgrade_rarity_pressed)
+	up_bg.add_child(_upgrade_button)
+
 
 func _refresh() -> void:
 	if _station == null or _station.shop_resource == null:
@@ -260,18 +287,160 @@ func _refresh() -> void:
 	var res := _station.shop_resource
 	_station_label.text = res.shop_name.to_upper()
 
-	# Subtitle: first line of description
 	var desc_lines := res.description.split("\n")
 	_subtitle_label.text = desc_lines[0] if desc_lines.size() > 0 else ""
 
-	_populate_item_list()
-	if _selected_item != null:
-		_show_item(_selected_item)
+	var is_upgrade_shop := _station.upgrade_weapon_rarity
+
+	if _item_list.get_parent().get_parent():
+		pass
+
+	_upgrade_panel.visible = is_upgrade_shop
+
+	var rp_node := _buy_button.get_parent()
+	rp_node.visible = not is_upgrade_shop
+
+	var lp_node := _item_list.get_parent().get_parent()
+	lp_node.visible = not is_upgrade_shop
+
+	if is_upgrade_shop:
+		_refresh_upgrade_panel()
+	else:
+		_populate_item_list()
+		if _selected_item != null:
+			_show_item(_selected_item)
 
 
-# ════════════════════════════════════════════════
-#  Item list
-# ════════════════════════════════════════════════
+func _refresh_upgrade_panel() -> void:
+	var weapon := _get_equipped_weapon()
+
+	if weapon == null or weapon.resource == null:
+		_upgrade_weapon_label.text   = "No weapon equipped"
+		_upgrade_rarity_label.text   = ""
+		_upgrade_arrow_label.text    = ""
+		_upgrade_next_label.text     = ""
+		_upgrade_button.disabled     = true
+		_style_action_btn(_upgrade_button, true)
+		for c in _upgrade_cost_container.get_children():
+			c.queue_free()
+		return
+
+	var res        := weapon.resource
+	var cur_rarity = res.rarity
+	var max_rarity := 4
+
+	_upgrade_weapon_label.text = res.Name
+
+	if cur_rarity >= max_rarity:
+		_upgrade_rarity_label.text  = RARITY_NAMES[cur_rarity]
+		_upgrade_rarity_label.add_theme_color_override("font_color", RARITY_COLORS[cur_rarity])
+		_upgrade_arrow_label.text   = ""
+		_upgrade_next_label.text    = "Max rarity reached"
+		_upgrade_next_label.add_theme_color_override("font_color", C_TEXT_DIM)
+		_upgrade_button.disabled    = true
+		_style_action_btn(_upgrade_button, true)
+		for c in _upgrade_cost_container.get_children():
+			c.queue_free()
+		return
+
+	var next_rarity = cur_rarity + 1
+
+	_upgrade_rarity_label.text = RARITY_NAMES[cur_rarity]
+	_upgrade_rarity_label.add_theme_color_override("font_color", RARITY_COLORS[cur_rarity])
+	_upgrade_arrow_label.text  = "->"
+	_upgrade_next_label.text   = RARITY_NAMES[next_rarity]
+	_upgrade_next_label.add_theme_color_override("font_color", RARITY_COLORS[next_rarity])
+
+	for c in _upgrade_cost_container.get_children():
+		c.queue_free()
+
+	var upgrade_data := _get_upgrade_cost_data(next_rarity)
+
+	for cost_entry in upgrade_data:
+		if cost_entry.type == "shards":
+			var have  := Crafting.available_shards()
+			var label := "%.0f / %.0f shards" % [have, cost_entry.amount]
+			if GameManager.is_in_lobby:
+				label += "  (player + safe)"
+			var lbl := _lbl(label, 18, C_GREEN if have >= cost_entry.amount else C_RED)
+			_upgrade_cost_container.add_child(lbl)
+		elif cost_entry.type == "item":
+			var have := Crafting.get_material_count(cost_entry.item_resource)
+			_upgrade_cost_container.add_child(
+				_ing_row(cost_entry.item_resource.Name, cost_entry.amount, have)
+			)
+
+	var can_afford_upgrade := _can_afford_upgrade(next_rarity)
+	_upgrade_button.disabled = not can_afford_upgrade
+	_style_action_btn(_upgrade_button, not can_afford_upgrade)
+
+
+func _get_upgrade_cost_data(target_rarity: int) -> Array:
+	if _station == null or _station.shop_resource == null:
+		return []
+	var res := _station.shop_resource
+	if not res.has_method("get_rarity_upgrade_costs"):
+		var shard_costs := [0, 50, 150, 350, 700]
+		return [{ "type": "shards", "amount": shard_costs[target_rarity] }]
+	return res.get_rarity_upgrade_costs(target_rarity)
+
+
+func _can_afford_upgrade(target_rarity: int) -> bool:
+	var costs := _get_upgrade_cost_data(target_rarity)
+	for cost_entry in costs:
+		if cost_entry.type == "shards":
+			if Crafting.available_shards() < cost_entry.amount:
+				return false
+		elif cost_entry.type == "item":
+			if Crafting.get_material_count(cost_entry.item_resource) < cost_entry.amount:
+				return false
+	return true
+
+
+func _on_upgrade_rarity_pressed() -> void:
+	var weapon := _get_equipped_weapon()
+	if weapon == null or weapon.resource == null:
+		return
+
+	var res := weapon.resource
+	var cur_rarity = res.rarity
+	if cur_rarity >= 4:
+		return
+
+	var next_rarity = cur_rarity + 1
+	if not _can_afford_upgrade(next_rarity):
+		return
+
+	var costs := _get_upgrade_cost_data(next_rarity)
+	for cost_entry in costs:
+		if cost_entry.type == "shards":
+			Crafting._consume_shards(cost_entry.amount)
+		elif cost_entry.type == "item":
+			Crafting._consume_material(cost_entry.item_resource, cost_entry.amount)
+
+	var old_damage_buff = weapon.rarity_damage_buff()
+	res.rarity           = next_rarity
+	var new_damage_buff  = weapon.rarity_damage_buff()
+	weapon.damageMod    += (new_damage_buff - old_damage_buff)
+	res.rarity_applied   = true
+
+	_upgrade_button.text     = "Upgraded!"
+	_upgrade_button.disabled = true
+	_style_action_btn(_upgrade_button, true)
+	weapon.change_rarity(next_rarity)
+	await get_tree().create_timer(1.2).timeout
+	if is_instance_valid(_upgrade_button):
+		_upgrade_button.text = "Upgrade"
+		_refresh_upgrade_panel()
+
+
+func _get_equipped_weapon() -> Weapon:
+	if GlobalPlayer.player == null:
+		return null
+	var player := GlobalPlayer.manager
+	print("wep: ", player.get_weapon())
+	return player.get_weapon()
+
 
 func _populate_item_list() -> void:
 	for b in _item_buttons:
@@ -306,7 +475,6 @@ func _populate_item_list() -> void:
 		sb_h.content_margin_left = 48
 		btn.add_theme_stylebox_override("hover", sb_h)
 
-		# Small icon
 		var icon_tex := shop_item.get_icon()
 		if icon_tex:
 			var icon_rect           := TextureRect.new()
@@ -317,7 +485,6 @@ func _populate_item_list() -> void:
 			icon_rect.mouse_filter   = Control.MOUSE_FILTER_IGNORE
 			btn.add_child(icon_rect)
 		else:
-			# Grey placeholder
 			var ph_rect         := ColorRect.new()
 			ph_rect.color        = C_BORDER
 			ph_rect.position     = Vector2(8, 11)
@@ -327,27 +494,25 @@ func _populate_item_list() -> void:
 
 		btn.text = shop_item.get_display_name()
 
-		# Price chip
 		var price_txt := _price_text(shop_item)
 		var price_col := C_ACCENT if shop_item.price_type == ShopItem.PriceType.SHARDS else C_TEXT_DIM
-		var price_chip        := _pill_label(price_txt, price_col, C_BADGE_BG)
-		price_chip.position    = Vector2(LIST_W - 105, 12)
-		price_chip.size        = Vector2(95, 30)
+		var price_chip         := _pill_label(price_txt, price_col, C_BADGE_BG)
+		price_chip.position     = Vector2(LIST_W - 105, 12)
+		price_chip.size         = Vector2(95, 30)
 		price_chip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		btn.add_child(price_chip)
 
-		# Stock badge
 		var stock_txt := ""
 		if not in_stock:
 			stock_txt = "sold out"
 		elif shop_item.stock == -1:
-			stock_txt = "∞"
+			stock_txt = "unlimited"
 		else:
 			stock_txt = "x%d" % shop_item.stock
 		var stock_col  := C_TEXT_MICRO if in_stock else C_RED
 		var stock_chip := _pill_label(stock_txt, stock_col, C_PANEL_DARK)
-		stock_chip.position    = Vector2(LIST_W - 105, 42)
-		stock_chip.size        = Vector2(95, 22)
+		stock_chip.position     = Vector2(LIST_W - 105, 42)
+		stock_chip.size         = Vector2(95, 22)
 		stock_chip.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		btn.add_child(stock_chip)
 
@@ -364,7 +529,7 @@ func _populate_item_list() -> void:
 func _price_text(shop_item: ShopItem) -> String:
 	match shop_item.price_type:
 		ShopItem.PriceType.SHARDS:
-			return "◈ %.0f" % shop_item.shard_price
+			return "%.0f shards" % shop_item.shard_price
 		ShopItem.PriceType.ITEMS:
 			return "Barter"
 		ShopItem.PriceType.FREE:
@@ -375,20 +540,15 @@ func _price_text(shop_item: ShopItem) -> String:
 func _select_item(shop_item: ShopItem, btn_idx: int) -> void:
 	_selected_item = shop_item
 	_show_item(shop_item)
-	# Highlight selected button
 	for i in _item_buttons.size():
 		var active := i == btn_idx
 		var sb     := StyleBoxFlat.new()
-		sb.bg_color          = Color(C_ACCENT.r, C_ACCENT.g, C_ACCENT.b, 0.14) if active else Color.TRANSPARENT
-		sb.border_width_left = 6 if active else 0
-		sb.border_color      = C_ACCENT
+		sb.bg_color            = Color(C_ACCENT.r, C_ACCENT.g, C_ACCENT.b, 0.14) if active else Color.TRANSPARENT
+		sb.border_width_left   = 6 if active else 0
+		sb.border_color        = C_ACCENT
 		sb.content_margin_left = 48
 		_item_buttons[i].add_theme_stylebox_override("normal", sb)
 
-
-# ════════════════════════════════════════════════
-#  Item detail panel
-# ════════════════════════════════════════════════
 
 func _show_item(shop_item: ShopItem) -> void:
 	_item_name_label.text = shop_item.get_display_name().to_upper()
@@ -396,7 +556,6 @@ func _show_item(shop_item: ShopItem) -> void:
 	_item_icon.texture    = shop_item.get_icon()
 	_item_desc_label.text = shop_item.description
 
-	# Price section
 	for c in _price_container.get_children():
 		c.queue_free()
 
@@ -405,7 +564,7 @@ func _show_item(shop_item: ShopItem) -> void:
 			var avail := Crafting.available_shards()
 			var qty   := int(_qty_box.value)
 			var cost  := shop_item.shard_price * qty
-			var label := "◈  %.0f / %.0f shards" % [avail, cost]
+			var label := "%.0f / %.0f shards" % [avail, cost]
 			if GameManager.is_in_lobby:
 				label += "  (player + safe)"
 			var lbl       := _lbl(label, 18, C_GREEN if avail >= cost else C_RED)
@@ -422,9 +581,8 @@ func _show_item(shop_item: ShopItem) -> void:
 				)
 
 		ShopItem.PriceType.FREE:
-			_price_container.add_child(_lbl("Free!", 20, C_GREEN, true))
+			_price_container.add_child(_lbl("Free", 20, C_GREEN, true))
 
-	# Quantity spinner
 	var is_stackable := shop_item.item_resource != null and shop_item.item_resource.isStackable
 	if is_stackable:
 		_qty_box.show()
@@ -440,15 +598,10 @@ func _show_item(shop_item: ShopItem) -> void:
 		_qty_box.hide()
 		_qty_box.value = 1
 
-	# Buy button state
 	_buy_button.disabled = not (shop_item.is_in_stock() and can_afford(shop_item, int(_qty_box.value)))
-	_buy_button.text     = "🛒  Buy"
+	_buy_button.text     = "Buy"
 	_style_action_btn(_buy_button, _buy_button.disabled)
 
-
-# ════════════════════════════════════════════════
-#  Affordability
-# ════════════════════════════════════════════════
 
 func can_afford(shop_item: ShopItem, qty: int) -> bool:
 	match shop_item.price_type:
@@ -466,10 +619,6 @@ func can_afford(shop_item: ShopItem, qty: int) -> bool:
 	return false
 
 
-# ════════════════════════════════════════════════
-#  Buy
-# ════════════════════════════════════════════════
-
 func _on_buy_pressed() -> void:
 	if _selected_item == null or _station == null:
 		return
@@ -479,7 +628,6 @@ func _on_buy_pressed() -> void:
 	if not can_afford(_selected_item, qty):
 		return
 
-	# Deduct cost
 	match _selected_item.price_type:
 		ShopItem.PriceType.SHARDS:
 			Crafting._consume_shards(_selected_item.shard_price * qty)
@@ -491,33 +639,25 @@ func _on_buy_pressed() -> void:
 		ShopItem.PriceType.FREE:
 			pass
 
-	# Give item
 	Crafting._give_item(_selected_item.item_resource, _selected_item.amount * qty)
 
-	# Decrement stock
 	if _selected_item.stock != -1:
 		_selected_item.stock -= qty
 
-	# Refresh UI
 	_populate_item_list()
 	_show_item(_selected_item)
 
-	# Feedback
-	_buy_button.text     = "✓  Bought!"
+	_buy_button.text     = "Bought!"
 	_buy_button.disabled = true
 	await get_tree().create_timer(1.2).timeout
 	if is_instance_valid(_buy_button):
-		_buy_button.text = "🛒  Buy"
+		_buy_button.text = "Buy"
 		if _selected_item != null:
 			_show_item(_selected_item)
 
 
-# ════════════════════════════════════════════════
-#  Widget helpers
-# ════════════════════════════════════════════════
-
 func _make_box(sz: Vector2, pos: Vector2, bg_col: Color,
-			   border_col: Color = Color.TRANSPARENT) -> Control:
+		border_col: Color = Color.TRANSPARENT) -> Control:
 	var c      := Control.new()
 	c.size      = sz
 	c.position  = pos
@@ -566,7 +706,7 @@ func _ing_row(item_name: String, need: int, have: int) -> HBoxContainer:
 	row.custom_minimum_size = Vector2(0, 33)
 	row.add_theme_constant_override("separation", 6)
 
-	var dot := _lbl("▸", 18, C_BORDER_LIT)
+	var dot := _lbl("-", 18, C_BORDER_LIT)
 	dot.custom_minimum_size = Vector2(18, 0)
 	row.add_child(dot)
 

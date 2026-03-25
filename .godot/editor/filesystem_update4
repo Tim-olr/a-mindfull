@@ -1,0 +1,19 @@
+res://scripts/items/crafting/craftingGUI.gd
+res://scripts/items/crafting/StationlevelData.gd
+res://scenes/crafting stations/weapon_smith.tscn
+res://scripts/shaders/outline.gdshader
+res://resources/crafting/stations/weapon_smith.tres
+res://scripts/world gen/new_tile_set.tres
+res://scenes/shops/BurgerStand.tscn
+res://scripts/items/shop/burger_stand/burger_stand.gd
+res://scripts/Player/player_stats.gd
+res://scenes/Player/player.tscn
+res://scenes/main game/The game world/the_world.tscn
+res://scripts/items/shop/ShopStationNode.gd
+res://scenes/Weapons/guns/assault_rifle.tscn
+res://scripts/Weapons/weapon.gd
+res://scripts/items/shop/ShopUI.gd
+res://scripts/items/shop/shops/weapon_handler.gd
+res://scenes/shops/weapon_handler.tscn
+res://scripts/Player/player_manager.gd
+res://scripts/Player/inventory/inventory_slot.gd

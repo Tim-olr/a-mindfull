@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cmvp38wwqbknv"]
+
+[ext_resource type="Script" uid="uid://bgmeqcn7lm0wm" path="res://scripts/items/shop/shops/burger_stand.gd" id="1_w0rs0"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_w0rs0"]
+[ext_resource type="Script" uid="uid://cn4hfq8f44qg7" path="res://scripts/items/shop/ShopItem.gd" id="3_nuj4j"]
+[ext_resource type="Script" uid="uid://0ube3bs4gpfq" path="res://scripts/items/shop/ShopResource.gd" id="4_a8ll0"]
+[ext_resource type="Script" uid="uid://do7cse8us07hg" path="res://scripts/items/shop/ShopUI.gd" id="5_8guc5"]
+
+[sub_resource type="Resource" id="Resource_nuj4j"]
+script = ExtResource("4_a8ll0")
+shop_name = "Burger Stand"
+icon = ExtResource("2_w0rs0")
+description = "MMMMH YUM"
+metadata/_custom_type_script = "uid://0ube3bs4gpfq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h78jt"]
+
+[node name="BurgerStand" type="Area2D" unique_id=1979257133]
+script = ExtResource("1_w0rs0")
+cost = 50.0
+shop_resource = SubResource("Resource_nuj4j")
+opens_menu = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2039697308]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_h78jt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1834946442]
+texture = ExtResource("2_w0rs0")
+
+[node name="ShopUI" type="Control" parent="." unique_id=1528181446]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_8guc5")
+metadata/_custom_type_script = "uid://do7cse8us07hg"

@@ -39,5 +39,10 @@ func add_shards(amount):
 	shards += amount
 	shard_counter.change_amount(0)
 
+func remove_shards(amount):
+	if shards >= amount:
+		shards -= amount
+		shard_counter.change_amount(0)
+
 func _ready() -> void:
 	GlobalPlayer.stats = self

@@ -664,6 +664,7 @@ dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 4000
 climb_time = 0.2
+shards = 500.0
 
 [node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
 script = ExtResource("3_ly2qd")

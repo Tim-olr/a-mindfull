@@ -59,6 +59,8 @@ var melee_active: bool = false
 var detection_area: Area2D
 var isSelected: bool = false
 
+var rarity_damage: float
+
 @onready var attack_cooldown: Timer = $attack_cooldown
 @onready var bullet_stars_pos = $BulletStarsPos
 @onready var melee_hitbox: Area2D = $BulletStarsPos/MeleeHitbox
@@ -69,6 +71,7 @@ var original_bullet_rot: float
 var attackable: bool = true
 var resource: ItemResource = null
 
+
 func _ready() -> void:
 	shooter = get_parent()
 	melee_hitbox.body_entered.connect(_on_melee_hitbox_entered)
@@ -78,10 +81,12 @@ func _ready() -> void:
 	if shooter.is_in_group("enemy") and melee:
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
 
+
 func initialize(res: ItemResource) -> void:
 	resource = res
 	rarity = res.rarity
-	damageMod += rarity_damage_buff()
+	rarity_damage += rarity_damage_buff()
+
 
 func _process(_delta: float) -> void:
 	if isSelected:
@@ -119,6 +124,7 @@ func _process(_delta: float) -> void:
 							perform_attack()
 							break
 
+
 func _get_shooter_attack_speed() -> float:
 	var val = shooter.get("attackSpeed")
 	if typeof(val) == TYPE_FLOAT or typeof(val) == TYPE_INT:
@@ -129,6 +135,7 @@ func _get_shooter_attack_speed() -> float:
 		if typeof(s_val) == TYPE_FLOAT or typeof(s_val) == TYPE_INT:
 			return float(s_val)
 	return 0.5
+
 
 func perform_attack() -> void:
 	if !has_no_cooldown:
@@ -144,6 +151,7 @@ func perform_attack() -> void:
 			if i < total_attacks - 1:
 				var wait_time = 0.1 if doConsecShooting else attack_duration
 				await get_tree().create_timer(wait_time).timeout
+
 
 func do_melee_animation() -> void:
 	targets_hit.clear()
@@ -173,6 +181,7 @@ func do_melee_animation() -> void:
 		bullet_stars_pos.rotation = original_bullet_rot
 	melee_active = false
 
+
 func _on_melee_hitbox_entered(body: Node) -> void:
 	if !melee_active:
 		return
@@ -186,13 +195,15 @@ func _on_melee_hitbox_entered(body: Node) -> void:
 		if target.is_in_group("player") or target.is_in_group("spirit"):
 			hit(target)
 
+
 func hit(hitBody: Node) -> void:
 	do_damage(hitBody)
 	apply_knockback_to_target(hitBody)
 
+
 func do_damage(hitBody: Node) -> void:
 	var target = _find_entity_root(hitBody)
-	var total_damage = shooter.stats.attackDamage + damageMod
+	var total_damage = shooter.stats.attackDamage + damageMod + rarity_damage
 	if target.is_in_group("enemy"):
 		if target.has_method("damage"):
 			target.damage(total_damage)
@@ -213,6 +224,7 @@ func do_damage(hitBody: Node) -> void:
 			target.damage(total_damage, get_parent(), cameraShakeAmount)
 		targets_hit.append(target)
 
+
 func apply_knockback_to_target(hitBody: Node) -> void:
 	var target = _find_entity_root(hitBody)
 	if knockback_force <= 0.0:
@@ -232,11 +244,13 @@ func apply_knockback_to_target(hitBody: Node) -> void:
 			if pmgr and pmgr.has_method("apply_knockback"):
 				pmgr.apply_knockback(knockback_direction, knockback_force)
 
+
 func _evenly_spaced_angle(base_rot: float, index: int, count: int, cone: float) -> float:
 	if count <= 1:
 		return base_rot
 	var t = float(index) / float(count - 1)
 	return base_rot + lerp(-cone * 0.5, cone * 0.5, t)
+
 
 func rarity_damage_buff():
 	match rarity:
@@ -244,7 +258,8 @@ func rarity_damage_buff():
 		2: return 10.0
 		3: return 20.0
 		4: return 35.0
-	return 0 
+	return 0
+
 
 func shoot() -> void:
 	var total_bullets: int
@@ -258,7 +273,7 @@ func shoot() -> void:
 	spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
 	projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
 	pierce           = shooter.stats.pierce + pierceMod
-	attack_damage    = shooter.stats.attackDamage + damageMod
+	attack_damage    = shooter.stats.attackDamage + damageMod + rarity_damage
 	bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
 	bullet_size      = shooter.stats.bulletSize + bulletSizeMod
 	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
@@ -331,8 +346,10 @@ func shoot() -> void:
 		if doConsecShooting:
 			await get_tree().create_timer(0.1).timeout
 
+
 func _on_attack_cooldown_timeout() -> void:
 	shooter.stats.canAttack = true
+
 
 func _find_entity_root(n: Node) -> Node:
 	var cur = n
@@ -343,3 +360,9 @@ func _find_entity_root(n: Node) -> Node:
 			break
 		cur = cur.get_parent()
 	return n
+
+func change_rarity(r: int):
+	rarity = r
+	resource.rarity = r
+	resource.calculate_rarity_outline()
+	rarity_damage = rarity_damage_buff()

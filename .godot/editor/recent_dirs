@@ -1,3 +1,5 @@
+res://scenes/shops/
+res://scripts/items/shop/
 res://scripts/main game/Spirits/
 res://scenes/Weapons/guns/
 res://resources/items/weapons/
@@ -18,5 +20,3 @@ res://scenes/Physics objects/spirits/
 res://scripts/Physics objects/spirits/
 res://resources/items/material/
 res://scenes/Physics objects/trees/
-res://scripts/Physics objects/trees/
-res://scripts/Physics objects/

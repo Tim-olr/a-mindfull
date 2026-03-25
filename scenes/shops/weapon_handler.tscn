@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dfq4aksfohtrf"]
+
+[ext_resource type="Script" uid="uid://cjic6465pmhd2" path="res://scripts/items/shop/shops/weapon_handler.gd" id="1_ykw0x"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_ddbwn"]
+[ext_resource type="Script" uid="uid://cn4hfq8f44qg7" path="res://scripts/items/shop/ShopItem.gd" id="3_3g2hf"]
+[ext_resource type="Script" uid="uid://do7cse8us07hg" path="res://scripts/items/shop/ShopUI.gd" id="3_ddbwn"]
+[ext_resource type="Script" uid="uid://0ube3bs4gpfq" path="res://scripts/items/shop/ShopResource.gd" id="4_3yq3n"]
+
+[sub_resource type="Resource" id="Resource_caql0"]
+script = ExtResource("4_3yq3n")
+shop_name = "Weapon Handler"
+icon = ExtResource("2_ddbwn")
+description = "Upgrade your weapons!"
+metadata/_custom_type_script = "uid://0ube3bs4gpfq"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25awx"]
+
+[node name="WeaponHandler" type="Area2D" unique_id=161303713 node_paths=PackedStringArray("shop_ui")]
+script = ExtResource("1_ykw0x")
+shop_resource = SubResource("Resource_caql0")
+shop_ui = NodePath("ShopUI")
+upgrade_weapon_rarity = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1516103161]
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_25awx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=459597947]
+texture = ExtResource("2_ddbwn")
+
+[node name="ShopUI" type="Control" parent="." unique_id=528856690]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ddbwn")
+metadata/_custom_type_script = "uid://do7cse8us07hg"

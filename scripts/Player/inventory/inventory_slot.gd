@@ -64,7 +64,8 @@ static func _init_cursor_icon(parent: Node) -> void:
 func _process(_delta: float) -> void:
 	if is_instance_valid(cursor_icon):
 		cursor_icon.global_position = get_global_mouse_position() - cursor_icon.size / 2.0
-
+	if item != null:
+		_apply_slot_outline()
 func _pressed() -> void:
 	_init_cursor_icon(self)
 	if held_item == null:
@@ -129,6 +130,8 @@ func _clear_equip_state() -> void:
 	if is_instance_valid(scene):
 		scene.queue_free()
 		scene = null
+	if is_instance_valid(GlobalPlayer.manager) and not is_instance_valid(GlobalPlayer.manager._weapon_instance):
+		GlobalPlayer.manager._weapon_instance = null
 	_is_selected = false
 	if currently_selected_slot == self:
 		currently_selected_slot = null
@@ -164,11 +167,15 @@ func set_selected(value: bool) -> void:
 		if item.itemScene != null:
 			if is_instance_valid(scene):
 				scene.queue_free()
+				scene = null
 			scene = item.itemScene.instantiate()
 			GlobalPlayer.player.add_child(scene)
+			if is_instance_valid(GlobalPlayer.manager):
+				GlobalPlayer.manager._weapon_instance = scene
 			scene.initialize(item)
-			print("jaja: ", scene)
 			scene.isSelected = true
+			if is_instance_valid(GlobalPlayer.stats):
+				GlobalPlayer.stats.canAttack = true
 	else:
 		_deselect_internal()
 	_update_selection_visuals()
@@ -188,6 +195,8 @@ func deselect() -> void:
 	if is_instance_valid(scene):
 		scene.queue_free()
 		scene = null
+	if is_instance_valid(GlobalPlayer.manager) and not is_instance_valid(GlobalPlayer.manager._weapon_instance):
+		GlobalPlayer.manager._weapon_instance = null
 
 func _update_selection_visuals() -> void:
 	if txtr == null:

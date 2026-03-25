@@ -1,13 +1,14 @@
-Node2D
+res://scripts/items/shop/ShopUI.gd
 Sprite2D
 CollisionShape2D
+Area2D
+Node2D
 Button
 Label
 VBoxContainer
 Control
 ItemList
 TabBar
-Area2D
 AspectRatioContainer
 HBoxContainer
 RigidBody2D

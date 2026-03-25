@@ -39,8 +39,6 @@ func _ready() -> void:
 func get_weapon() -> Node:
 	return _weapon_instance
 
-
-
 func _block_shoot_for(seconds: float) -> void:
 	if stats != null:
 		stats.canAttack = false
