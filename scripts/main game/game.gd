@@ -8,3 +8,4 @@ func _ready() -> void:
 	GlobalPlayer.player.add_child(playerSpirit)
 	print("safe: ", GlobalSafe.safe)
 	GameManager.is_in_lobby = true
+	
