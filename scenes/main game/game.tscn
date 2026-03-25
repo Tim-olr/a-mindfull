@@ -18,6 +18,9 @@ position = Vector2(-166, -126)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1332988175]
 texture = ExtResource("1_h2mqu")
 
+[node name="ScrapBroker" parent="." unique_id=517874945 instance=ExtResource("8_s8872")]
+position = Vector2(660, -107)
+
 [node name="Player" parent="." unique_id=1406596225 instance=ExtResource("1_6av20")]
 
 [node name="SafeInteractable" parent="." unique_id=1927641315 instance=ExtResource("5_cub4b")]
@@ -29,6 +32,3 @@ scale = Vector2(6, 6)
 
 [node name="WeaponSmith" parent="." unique_id=1042522218 instance=ExtResource("7_3ibp6")]
 position = Vector2(238, -392)
-
-[node name="ScrapBroker" parent="." unique_id=517874945 instance=ExtResource("8_s8872")]
-position = Vector2(660, -107)

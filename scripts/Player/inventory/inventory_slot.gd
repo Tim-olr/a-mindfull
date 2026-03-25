@@ -23,6 +23,7 @@ static var currently_selected_slot: InventorySlot = null
 static var held_item:   ItemResource = null
 static var held_count:  int          = 0
 static var cursor_icon: TextureRect  = null
+static var _cursor_layer: CanvasLayer = null
 
 const C_BG            := Color(0.09, 0.10, 0.12)
 const C_SLOT_NORMAL   := Color(0.13, 0.14, 0.17)
@@ -102,27 +103,30 @@ func _apply_slot_style() -> void:
 static func _init_cursor_icon(parent: Node) -> void:
 	if is_instance_valid(cursor_icon):
 		return
+	_cursor_layer        = CanvasLayer.new()
+	_cursor_layer.name   = "CursorIconLayer"
+	_cursor_layer.layer  = 100
+	parent.get_tree().root.add_child.call_deferred(_cursor_layer)
+
 	cursor_icon              = TextureRect.new()
 	cursor_icon.name         = "CursorHeldItem"
 	var mat                  := ShaderMaterial.new()
 	mat.shader               = load("uid://b00dsthkd2ybg")
 	mat.set_shader_parameter("outline_thickness", 3)
 	cursor_icon.material     = mat
-	cursor_icon.z_index      = RenderingServer.CANVAS_ITEM_Z_MAX
 	cursor_icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	cursor_icon.size         = Vector2(56, 56)
 	cursor_icon.expand_mode  = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	cursor_icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	cursor_icon.modulate     = Color(1.0, 1.0, 1.0, 0.85)
 	cursor_icon.visible      = false
-	cursor_icon.top_level    = true
-	cursor_icon.scale = Vector2(2, 2)
-	parent.get_tree().root.add_child.call_deferred(cursor_icon)
+	cursor_icon.scale        = Vector2(2, 2)
+	_cursor_layer.add_child.call_deferred(cursor_icon)
 
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(cursor_icon) and cursor_icon.visible:
-		cursor_icon.global_position = get_global_mouse_position()
+		cursor_icon.position = cursor_icon.get_viewport().get_mouse_position() - (cursor_icon.size * cursor_icon.scale) / 2.0
 	if item != null:
 		_apply_slot_outline()
 

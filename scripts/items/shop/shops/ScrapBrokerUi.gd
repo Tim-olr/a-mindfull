@@ -18,6 +18,13 @@ const H       := 560
 const PAD     := 21
 const RADIUS  := 9
 
+const SIDE_PAD     := 12
+const SIDE_W       := 240
+const SIDE_SLOT    := 54
+const SIDE_GAP     := 5
+const SIDE_COLS    := 4
+const SIDE_MAX_H   := 420
+
 const SHARD_RANGES: Dictionary = {
 	0: Vector2(40,   120),
 	1: Vector2(120,  280),
@@ -49,6 +56,20 @@ var _title_label: Label
 var _spirit_core_resource: ItemResource = null
 var _drop_zone: Control
 
+var _inv_panel: Control
+var _inv_scroll: ScrollContainer
+var _inv_grid: Control
+var _inv_cap_label: Label
+var _inv_slots: Array = []
+
+var _safe_panel: Control
+var _safe_scroll: ScrollContainer
+var _safe_grid: Control
+var _safe_cap_label: Label
+var _safe_slots: Array = []
+var _safe_slots_with_items := []
+var _safe_occupied: int = 0
+
 
 func _ready() -> void:
 	if not get_parent() is CanvasLayer:
@@ -68,6 +89,8 @@ func open() -> void:
 	_slot_count = 0
 	_refresh_slot()
 	_refresh_preview()
+	_rebuild_inv_slots()
+	_rebuild_safe_slots()
 	show()
 	_animate_in()
 
@@ -77,6 +100,7 @@ func close() -> void:
 		_return_slot_item()
 	_slot_item = null
 	_slot_count = 0
+	_save_safe_back()
 	hide()
 
 
@@ -85,17 +109,24 @@ func set_spirit_core_resource(res: ItemResource) -> void:
 
 
 func _build_ui() -> void:
-	set_anchors_preset(Control.PRESET_CENTER)
-	custom_minimum_size = Vector2(W, H)
-	size                = Vector2(W, H)
-	pivot_offset        = size / 2.0
-	position            = get_viewport().get_visible_rect().size / 2.0 - size / 2.0
+	set_anchors_preset(Control.PRESET_FULL_RECT)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var viewport_size := get_viewport().get_visible_rect().size
+	var center_x      := (viewport_size.x - W) / 2.0
+	var center_y      := (viewport_size.y - H) / 2.0
+
+	var main_panel       := Control.new()
+	main_panel.position   = Vector2(center_x, center_y)
+	main_panel.size       = Vector2(W, H)
+	main_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(main_panel)
 
 	var shadow := _make_box(Vector2(W + 16, H + 16), Vector2(-8, -8), Color(0, 0, 0, 0.55))
-	add_child(shadow)
+	main_panel.add_child(shadow)
 
 	var bg := _make_box(Vector2(W, H), Vector2.ZERO, C_BG, C_BORDER)
-	add_child(bg)
+	main_panel.add_child(bg)
 
 	var stripe      := ColorRect.new()
 	stripe.color     = C_ACCENT
@@ -240,6 +271,235 @@ func _build_ui() -> void:
 	close_btn.add_theme_stylebox_override("focus",   StyleBoxEmpty.new())
 	close_btn.pressed.connect(close)
 	bg.add_child(close_btn)
+
+	_inv_panel = _build_side_panel("INVENTORY", Vector2(center_x - SIDE_W - SIDE_PAD, center_y))
+	add_child(_inv_panel)
+
+	_inv_cap_label = _inv_panel.get_meta("cap_label")
+	_inv_scroll    = _inv_panel.get_meta("scroll")
+	_inv_grid      = _inv_panel.get_meta("grid")
+
+	_safe_panel = _build_side_panel("SAFE", Vector2(center_x + W + SIDE_PAD, center_y))
+	add_child(_safe_panel)
+
+	_safe_cap_label = _safe_panel.get_meta("cap_label")
+	_safe_scroll    = _safe_panel.get_meta("scroll")
+	_safe_grid      = _safe_panel.get_meta("grid")
+
+
+func _build_side_panel(title_text: String, pos: Vector2) -> Control:
+	var panel_w  := SIDE_W
+	var header_h := 38
+	var panel_h  := SIDE_MAX_H
+
+	var root       := Control.new()
+	root.position   = pos
+	root.size       = Vector2(panel_w, panel_h)
+	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var shadow := _make_box(Vector2(panel_w + 8, panel_h + 8), Vector2(-4, -4), Color(0, 0, 0, 0.35))
+	root.add_child(shadow)
+
+	var bg := _make_box(Vector2(panel_w, panel_h), Vector2.ZERO, C_BG, C_BORDER)
+	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(bg)
+
+	var stripe      := ColorRect.new()
+	stripe.color     = C_ACCENT
+	stripe.size      = Vector2(panel_w, 3)
+	stripe.position  = Vector2.ZERO
+	stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg.add_child(stripe)
+
+	var title_lbl                      := _lbl(title_text, 13, C_ACCENT, true)
+	title_lbl.position                  = Vector2(SIDE_PAD, 7)
+	title_lbl.size                      = Vector2(panel_w - SIDE_PAD * 2, 22)
+	title_lbl.horizontal_alignment      = HORIZONTAL_ALIGNMENT_LEFT
+	title_lbl.mouse_filter              = Control.MOUSE_FILTER_IGNORE
+	bg.add_child(title_lbl)
+
+	var cap_lbl                      := _lbl("", 11, C_TEXT_DIM)
+	cap_lbl.position                  = Vector2(SIDE_PAD, 7)
+	cap_lbl.size                      = Vector2(panel_w - SIDE_PAD * 2, 22)
+	cap_lbl.horizontal_alignment      = HORIZONTAL_ALIGNMENT_RIGHT
+	cap_lbl.mouse_filter              = Control.MOUSE_FILTER_IGNORE
+	bg.add_child(cap_lbl)
+
+	var sep      := ColorRect.new()
+	sep.color     = C_BORDER
+	sep.size      = Vector2(panel_w - SIDE_PAD * 2, 1)
+	sep.position  = Vector2(SIDE_PAD, 30)
+	sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg.add_child(sep)
+
+	var scroll                  := ScrollContainer.new()
+	scroll.position              = Vector2(SIDE_PAD, header_h)
+	scroll.size                  = Vector2(panel_w - SIDE_PAD * 2, panel_h - header_h - SIDE_PAD)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.vertical_scroll_mode  = ScrollContainer.SCROLL_MODE_AUTO
+
+	var scroll_sb := StyleBoxFlat.new()
+	scroll_sb.bg_color = Color.TRANSPARENT
+	scroll.add_theme_stylebox_override("panel", scroll_sb)
+
+	var grabber_sb := StyleBoxFlat.new()
+	grabber_sb.bg_color = C_BORDER
+	grabber_sb.set_corner_radius_all(3)
+	grabber_sb.content_margin_left  = 4
+	grabber_sb.content_margin_right = 4
+
+	var track_sb := StyleBoxFlat.new()
+	track_sb.bg_color = Color(C_BG.r, C_BG.g, C_BG.b, 0.5)
+	track_sb.content_margin_left  = 4
+	track_sb.content_margin_right = 4
+
+	scroll.add_theme_stylebox_override("grabber",         grabber_sb)
+	scroll.add_theme_stylebox_override("grabber_highlight", grabber_sb)
+	scroll.add_theme_stylebox_override("grabber_pressed", grabber_sb)
+	scroll.add_theme_stylebox_override("scroll",          track_sb)
+	bg.add_child(scroll)
+
+	var grid       := Control.new()
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scroll.add_child(grid)
+
+	root.set_meta("cap_label", cap_lbl)
+	root.set_meta("scroll", scroll)
+	root.set_meta("grid", grid)
+
+	return root
+
+
+func _rebuild_inv_slots() -> void:
+	_inv_slots.clear()
+	for child in _inv_grid.get_children():
+		child.queue_free()
+
+	if not is_instance_valid(GlobalPlayer.inventory):
+		return
+	var inv: ActualInv = GlobalPlayer.inventory.inventory
+	if inv == null:
+		return
+
+	var slot_scene_res = preload("res://scenes/Player/inventory/InventorySlot.tscn")
+	var idx := 0
+	for src_slot in inv.slots:
+		var slot = slot_scene_res.instantiate()
+		slot.slot_index          = idx
+		slot.custom_minimum_size = Vector2(SIDE_SLOT, SIDE_SLOT)
+		slot.size                = Vector2(SIDE_SLOT, SIDE_SLOT)
+
+		var col := idx % SIDE_COLS
+		var row := idx / SIDE_COLS
+		slot.position = Vector2(col * (SIDE_SLOT + SIDE_GAP), row * (SIDE_SLOT + SIDE_GAP))
+
+		_inv_grid.add_child(slot)
+
+		if src_slot.item != null:
+			var item_dup = src_slot.item
+			slot.set_item(item_dup, src_slot.item_count)
+		_inv_slots.append(slot)
+		idx += 1
+
+	var rows := ceili(float(idx) / float(SIDE_COLS))
+	_inv_grid.custom_minimum_size = Vector2(
+		SIDE_COLS * SIDE_SLOT + (SIDE_COLS - 1) * SIDE_GAP,
+		rows * SIDE_SLOT + maxi(rows - 1, 0) * SIDE_GAP
+	)
+
+	_inv_cap_label.text = "%d / %d" % [inv.occupiedSlots, inv.slotAmount]
+
+
+func _rebuild_safe_slots() -> void:
+	_safe_slots.clear()
+	_safe_slots_with_items.clear()
+	_safe_occupied = 0
+	for child in _safe_grid.get_children():
+		child.queue_free()
+
+	var slot_scene_res = preload("res://scenes/Player/inventory/InventorySlot.tscn")
+	var safe_items: Array = GlobalSafe.safe
+	var count := maxi(safe_items.size() + 8, 24)
+
+	for i in range(count):
+		var slot = slot_scene_res.instantiate()
+		slot.slot_index          = i
+		slot.is_safe_slot        = true
+		slot.custom_minimum_size = Vector2(SIDE_SLOT, SIDE_SLOT)
+		slot.size                = Vector2(SIDE_SLOT, SIDE_SLOT)
+		slot.connect("item_changed", Callable(self, "_on_safe_slot_changed"))
+
+		var col := i % SIDE_COLS
+		var row := i / SIDE_COLS
+		slot.position = Vector2(col * (SIDE_SLOT + SIDE_GAP), row * (SIDE_SLOT + SIDE_GAP))
+
+		_safe_grid.add_child(slot)
+		_safe_slots.append(slot)
+
+	for idx in range(safe_items.size()):
+		if idx < _safe_slots.size():
+			var item = safe_items[idx]
+			_safe_slots[idx].set_item(item, item.amount)
+			_safe_slots_with_items.append(_safe_slots[idx])
+			_safe_occupied += 1
+
+	_resize_safe_grid()
+	_safe_cap_label.text = "%d" % _safe_occupied
+
+
+func _on_safe_slot_changed(index: int) -> void:
+	if index < 0 or index >= _safe_slots.size():
+		return
+	var slot = _safe_slots[index]
+	if slot.item != null:
+		if not _safe_slots_with_items.has(slot):
+			_safe_slots_with_items.append(slot)
+			_safe_occupied += 1
+	else:
+		if _safe_slots_with_items.has(slot):
+			_safe_slots_with_items.erase(slot)
+			_safe_occupied -= 1
+	_safe_cap_label.text = "%d" % _safe_occupied
+
+	if _safe_occupied >= _safe_slots.size() - 2:
+		_expand_safe_slots(8)
+
+
+func _expand_safe_slots(amount: int) -> void:
+	var slot_scene_res = preload("res://scenes/Player/inventory/InventorySlot.tscn")
+	var start := _safe_slots.size()
+	for i in range(amount):
+		var idx  := start + i
+		var slot  = slot_scene_res.instantiate()
+		slot.slot_index          = idx
+		slot.is_safe_slot        = true
+		slot.custom_minimum_size = Vector2(SIDE_SLOT, SIDE_SLOT)
+		slot.size                = Vector2(SIDE_SLOT, SIDE_SLOT)
+		slot.connect("item_changed", Callable(self, "_on_safe_slot_changed"))
+
+		var col := idx % SIDE_COLS
+		var row := idx / SIDE_COLS
+		slot.position = Vector2(col * (SIDE_SLOT + SIDE_GAP), row * (SIDE_SLOT + SIDE_GAP))
+
+		_safe_grid.add_child(slot)
+		_safe_slots.append(slot)
+	_resize_safe_grid()
+
+
+func _resize_safe_grid() -> void:
+	var rows := ceili(float(_safe_slots.size()) / float(SIDE_COLS))
+	_safe_grid.custom_minimum_size = Vector2(
+		SIDE_COLS * SIDE_SLOT + (SIDE_COLS - 1) * SIDE_GAP,
+		rows * SIDE_SLOT + maxi(rows - 1, 0) * SIDE_GAP
+	)
+
+
+func _save_safe_back() -> void:
+	GlobalSafe.safe.clear()
+	for slot in _safe_slots_with_items:
+		if slot.item != null:
+			GlobalSafe.safe.append(slot.item)
 
 
 func _input(event: InputEvent) -> void:
@@ -386,10 +646,10 @@ func _refresh_preview() -> void:
 
 	var spirit_chance: float = SPIRIT_CHANCE.get(rarity_idx, 0.0)
 	if spirit_chance > 0.0:
-		_spirit_label.text     = "✦  %.0f%% chance: Spirit Core" % (spirit_chance * 100.0)
+		_spirit_label.text     = "%.0f%% chance: Spirit Core" % (spirit_chance * 100.0)
 		_spirit_label.modulate = C_SPIRIT
 	else:
-		_spirit_label.text     = "✦  No Spirit Core chance"
+		_spirit_label.text     = "No Spirit Core chance"
 		_spirit_label.modulate = C_TEXT_DIM
 	_spirit_label.show()
 
@@ -400,7 +660,7 @@ func _refresh_preview() -> void:
 func _animate_in() -> void:
 	modulate     = Color(1, 1, 1, 0)
 	scale        = Vector2(0.92, 0.92)
-	pivot_offset = size / 2.0
+	pivot_offset = get_viewport().get_visible_rect().size / 2.0
 	var tw := create_tween().set_parallel(true)
 	tw.tween_property(self, "modulate", Color.WHITE, 0.18)
 	tw.tween_property(self, "scale",    Vector2.ONE,  0.18).set_trans(Tween.TRANS_BACK)

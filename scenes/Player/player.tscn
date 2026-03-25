@@ -17,17 +17,6 @@
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
-radius = 33.340004
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_c4h5g"]
-radius = 32.693867
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uiqp4"]
-radius = 48.5077
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_2du5a"]
 atlas = ExtResource("10_2du5a")
 region = Rect2(672, 448, 96, 64)
@@ -570,6 +559,17 @@ colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7hhef"]
 gradient = SubResource("Gradient_t0bry")
 
+[sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
+radius = 33.340004
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4h5g"]
+radius = 32.693867
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uiqp4"]
+radius = 48.5077
+
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
@@ -635,19 +635,6 @@ y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_s4a0o")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]
-visible = false
-scale = Vector2(95, 95)
-mesh = SubResource("SphereMesh_1kbk7")
-
-[node name="PlayerArea" type="Area2D" parent="." unique_id=54834554 groups=["player"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=405685383]
-shape = SubResource("CircleShape2D_gqjuk")
-
-[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1518453830]
-shape = SubResource("CircleShape2D_c4h5g")
-
 [node name="PlayerStats" type="Node2D" parent="." unique_id=1111926634]
 script = ExtResource("2_s4a0o")
 speed = 400.0
@@ -666,30 +653,6 @@ dashAmount = 4000
 climb_time = 0.2
 shards = 500.0
 
-[node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
-script = ExtResource("3_ly2qd")
-inventory_node_path = NodePath("../PlayerInventory/Inventory")
-
-[node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerManager/InteractArea" unique_id=1722034112]
-shape = SubResource("CircleShape2D_uiqp4")
-
-[node name="HPSTimer" type="Timer" parent="PlayerManager" unique_id=29365474]
-autostart = true
-
-[node name="PlayerMovement" type="Node2D" parent="." unique_id=563886157]
-script = ExtResource("1_pyt2a")
-
-[node name="DashCooldown" type="Timer" parent="PlayerMovement" unique_id=1870434932]
-one_shot = true
-
-[node name="ImmunityTime" type="Timer" parent="PlayerMovement" unique_id=308731058]
-one_shot = true
-
-[node name="ClimbTimer" type="Timer" parent="PlayerMovement" unique_id=1358047029]
-one_shot = true
-
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
 script = ExtResource("7_3ragq")
 
@@ -707,9 +670,6 @@ offset_top = -1057.3334
 offset_right = -2698.0
 offset_bottom = -1057.3334
 scale = Vector2(2, 2)
-
-[node name="PlayerSpecials" type="Node2D" parent="." unique_id=1411606192]
-script = ExtResource("8_67ne4")
 
 [node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")
@@ -772,6 +732,46 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_7hhef")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]
+visible = false
+scale = Vector2(95, 95)
+mesh = SubResource("SphereMesh_1kbk7")
+
+[node name="PlayerArea" type="Area2D" parent="." unique_id=54834554 groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=405685383]
+shape = SubResource("CircleShape2D_gqjuk")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=1518453830]
+shape = SubResource("CircleShape2D_c4h5g")
+
+[node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
+script = ExtResource("3_ly2qd")
+inventory_node_path = NodePath("../PlayerInventory/Inventory")
+
+[node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerManager/InteractArea" unique_id=1722034112]
+shape = SubResource("CircleShape2D_uiqp4")
+
+[node name="HPSTimer" type="Timer" parent="PlayerManager" unique_id=29365474]
+autostart = true
+
+[node name="PlayerMovement" type="Node2D" parent="." unique_id=563886157]
+script = ExtResource("1_pyt2a")
+
+[node name="DashCooldown" type="Timer" parent="PlayerMovement" unique_id=1870434932]
+one_shot = true
+
+[node name="ImmunityTime" type="Timer" parent="PlayerMovement" unique_id=308731058]
+one_shot = true
+
+[node name="ClimbTimer" type="Timer" parent="PlayerMovement" unique_id=1358047029]
+one_shot = true
+
+[node name="PlayerSpecials" type="Node2D" parent="." unique_id=1411606192]
+script = ExtResource("8_67ne4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1016626830]
 
