@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://rm7o5ewaew2x" path="res://scenes/main game/The game world/safe_interactable.tscn" id="5_cub4b"]
 [ext_resource type="PackedScene" uid="uid://dyra80jgha5ev" path="res://scenes/main game/shard_counter_lobby.tscn" id="6_s3tdl"]
 [ext_resource type="PackedScene" uid="uid://dq1uygukg2rfw" path="res://scenes/crafting stations/weapon_smith.tscn" id="7_3ibp6"]
+[ext_resource type="PackedScene" uid="uid://c5jukn0wfauak" path="res://scenes/shops/scrap_broker.tscn" id="8_s8872"]
 
 [node name="Game" type="Node2D" unique_id=1324580435]
 script = ExtResource("1_yg2su")
@@ -28,3 +29,6 @@ scale = Vector2(6, 6)
 
 [node name="WeaponSmith" parent="." unique_id=1042522218 instance=ExtResource("7_3ibp6")]
 position = Vector2(238, -392)
+
+[node name="ScrapBroker" parent="." unique_id=517874945 instance=ExtResource("8_s8872")]
+position = Vector2(660, -107)

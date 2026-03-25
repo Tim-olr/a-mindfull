@@ -17,6 +17,7 @@ class_name PlayerManager
 var canGetDamaged: bool = true
 var spiritCanGetDamaged := true
 var _weapon_instance: Node = null
+var _active_interactable: Interactable = null
 
 func _ready() -> void:
 	if inventory_node_path != null and inventory_node_path != NodePath(""):
@@ -35,6 +36,7 @@ func _ready() -> void:
 			add_child(inst)
 		inst.set("shooter", player_node)
 		inst.set("isSelected", true)
+	interact_area.area_exited.connect(_on_interact_area_exited)
 
 func get_weapon() -> Node:
 	return _weapon_instance
@@ -89,15 +91,27 @@ func _process(_delta: float) -> void:
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("interact"):
+		if _active_interactable != null:
+			_active_interactable.close_interaction()
+			_active_interactable = null
+			return
 		for i in interact_area.get_overlapping_areas():
-			if i.is_in_group("interactables"):
+			if i.is_in_group("interactables") and i is Interactable:
 				i.interacted()
+				if i._is_active:
+					_active_interactable = i
+				break
 	if Input.is_action_just_pressed("embrace"):
 		if not stats.playerSpiritScene.out:
 			stats.playerSpiritScene.bring_out()
 			stats.playerSpiritScene.host = get_parent()
 		elif stats.playerSpiritScene.out:
 			stats.playerSpiritScene.bring_in()
+
+func _on_interact_area_exited(area: Area2D) -> void:
+	if area == _active_interactable:
+		_active_interactable.close_interaction()
+		_active_interactable = null
 
 func damage(damage_amount, attacker, shake):
 	if canGetDamaged:
@@ -122,7 +136,7 @@ func spirit_damage(damage_amount, attacker, shake):
 		if attacker != null:
 			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
 			apply_knockback(knockback_direction, 200.0)
-	
+
 func damaged(shake):
 	if movement_controller:
 		movement_controller.play_priority_animation("hurt", false)

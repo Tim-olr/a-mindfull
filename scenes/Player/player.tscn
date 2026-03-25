@@ -694,18 +694,18 @@ one_shot = true
 script = ExtResource("7_3ragq")
 
 [node name="Inventory" parent="PlayerInventory" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
-z_index = 101
-offset_left = -1224.0001
-offset_top = -647.0
-offset_right = -1224.0001
-offset_bottom = -647.0
-scale = Vector2(15, 15)
+z_index = 1001
+offset_left = -1454.6666
+offset_top = -902.6666
+offset_right = -1454.6666
+offset_bottom = -902.6666
+scale = Vector2(1.5, 1.5)
 
 [node name="SafeUi" parent="PlayerInventory" unique_id=1199611452 instance=ExtResource("7_2pfsf")]
-offset_left = 1226.6667
-offset_top = -276.66666
-offset_right = 1226.6667
-offset_bottom = -276.66666
+offset_left = -2698.0
+offset_top = -1057.3334
+offset_right = -2698.0
+offset_bottom = -1057.3334
 scale = Vector2(2, 2)
 
 [node name="PlayerSpecials" type="Node2D" parent="." unique_id=1411606192]

@@ -17,3 +17,19 @@ res://scripts/items/shop/shops/weapon_handler.gd
 res://scenes/shops/weapon_handler.tscn
 res://scripts/Player/player_manager.gd
 res://scripts/Player/inventory/inventory_slot.gd
+res://scenes/main game/game.tscn
+res://scripts/items/shop/shops/ScrapBrokerUi.gd
+res://scripts/items/shop/shops/ScrapBrokerNode.gd
+res://resources/items/material/spirit_core.tres
+res://scripts/Player/inventory/inventory.gd
+res://scripts/Player/inventory/safe/safeUi.gd
+res://scenes/shops/scrap_broker.tscn
+res://scenes/Player/inventory/safe/safe_ui.tscn
+res://scenes/items/item_interactable.tscn
+res://scripts/items/item.gd
+res://scenes/items/consumables/apple.tscn
+res://scripts/Player/inventory/items/item_resource.gd
+res://scripts/main game/components/interactable.gd
+res://scripts/main game/the game world/safe_interactable.gd
+res://scripts/main game/game.gd
+res://scripts/main game/shard_counter_lobby.gd

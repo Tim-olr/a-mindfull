@@ -23,7 +23,6 @@ class_name ItemResource
 @export var scale_mod: Vector2
 
 var inv_slot: InventorySlot = null
-var resource: ItemResource
 var rarity_applied: bool = false
 
 var bonus_damage:       float   = 0.0
@@ -32,10 +31,6 @@ var bonus_cooldown_sub: float   = 0.0
 var bonus_lifetime:     float   = 0.0
 var bonus_amount:       int     = 0
 var bonus_size:         float   = 0.0
-
-func _init() -> void:
-	if itemScene != null:
-		itemScene.resource = self
 
 func calculate_rarity_outline():
 	match rarity:
