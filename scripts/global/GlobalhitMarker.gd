@@ -30,24 +30,24 @@ func show_hit_marker(amount: float, target: Node2D, is_heal: bool) -> void:
 			tween.play()
 			return
 
-	var label = Label.new()
-	label.text = str(snappedf(amount, 0.1))
-	label.add_theme_font_size_override("font_size", font_size)
-	label.add_theme_constant_override("shadow_outline_size", 20)
-	label.add_theme_color_override("font_shadow_color", Color.BLACK)
-	label.modulate = heal_color if is_heal else damage_color
-	label.position = spawn_pos
-	label.z_index = 1000
-	world.add_child(label)
+	var label2 = Label.new()
+	label2.text = str(snappedf(amount, 0.1))
+	label2.add_theme_font_size_override("font_size", font_size)
+	label2.add_theme_constant_override("shadow_outline_size", 20)
+	label2.add_theme_color_override("font_shadow_color", Color.BLACK)
+	label2.modulate = heal_color if is_heal else damage_color
+	label2.position = spawn_pos
+	label2.z_index = 1000
+	world.add_child(label2)
 
-	var tween = create_tween()
-	tween.tween_property(label, "position:y", spawn_pos.y + float_height, float_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "modulate:a", 0.0, float_duration - fade_start).set_delay(fade_start)
+	var tween2 = create_tween()
+	tween2.tween_property(label2, "position:y", spawn_pos.y + float_height, float_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween2.tween_property(label2, "modulate:a", 0.0, float_duration - fade_start).set_delay(fade_start)
 
-	var marker_data = {"label": label, "tween": tween, "amount": snappedf(amount, 0.1), "is_heal": is_heal}
+	var marker_data = {"label": label2, "tween": tween2, "amount": snappedf(amount, 0.1), "is_heal": is_heal}
 	_active_markers.append(marker_data)
-	tween.tween_callback(func(): _remove_marker(marker_data))
-	tween.play()
+	tween2.tween_callback(func(): _remove_marker(marker_data))
+	tween2.play()
 
 func _remove_marker(marker: Dictionary) -> void:
 	if marker["label"]:

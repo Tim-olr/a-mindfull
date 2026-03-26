@@ -1,12 +1,11 @@
 extends Node2D
 
-@onready var amount_label: Label = $amount
+@export var amount_label: Label
 
 func _ready() -> void:
 	change_amount(0)
 
 func change_amount(amount):
-	print("he")
 	if amount > 0:
 		pass #implement nice add up thingy
 	elif amount < 0:

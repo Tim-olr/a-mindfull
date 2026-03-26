@@ -140,6 +140,7 @@ shape = SubResource("RectangleShape2D_nmyta")
 
 [node name="stats" type="Node2D" parent="." unique_id=299210882]
 script = ExtResource("3_fci14")
+attackSpeed = 0.1
 bulletSize = Vector2(0.2, 0.2)
 attackDamage = 10.0
 

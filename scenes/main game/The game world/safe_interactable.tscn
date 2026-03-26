@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://rm7o5ewaew2x"]
 
-[ext_resource type="Script" uid="uid://rlxyac54uxl7" path="res://spirit-game-project/scripts/main game/the game world/safe_interactable.gd" id="1_2cuuk"]
+[ext_resource type="Script" uid="uid://rlxyac54uxl7" path="res://scripts/main game/the game world/safe_interactable.gd" id="1_2cuuk"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_a6wpo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pg0v7"]
-size = Vector2(127, 124)
+size = Vector2(124.25, 119.5)
 
 [node name="SafeInteractable" type="Area2D" unique_id=1927641315 groups=["interactables"]]
 script = ExtResource("1_2cuuk")
@@ -13,5 +13,6 @@ script = ExtResource("1_2cuuk")
 texture = ExtResource("2_a6wpo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584437493]
-position = Vector2(2.5, 0)
+position = Vector2(-0.25, 0.5)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_pg0v7")

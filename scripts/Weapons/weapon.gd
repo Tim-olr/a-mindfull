@@ -69,7 +69,7 @@ var original_bullet_pos: Vector2
 var original_bullet_rot: float
 
 var attackable: bool = true
-var resource: ItemResource = null
+var resource: ItemResource
 
 
 func _ready() -> void:
@@ -81,12 +81,10 @@ func _ready() -> void:
 	if shooter.is_in_group("enemy") and melee:
 		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
 
-
 func initialize(res: ItemResource) -> void:
 	resource = res
 	rarity = res.rarity
 	rarity_damage += rarity_damage_buff()
-
 
 func _process(_delta: float) -> void:
 	if isSelected:
@@ -338,7 +336,10 @@ func shoot() -> void:
 		bullet.canPhaseThroughWall    = canPhaseThroughWall
 		bullet.is_attached_to_shooter = laser_attach_to_shooter
 		bullet.attached_shooter       = shooter if laser_attach_to_shooter else null
-		GlobalWorld.projectiles.add_child(bullet)
+		if !GameManager.is_in_lobby:
+			GlobalWorld.projectiles.add_child(bullet)
+		elif GameManager.is_in_lobby:
+			GlobalPlayer.player.get_parent().add_child(bullet)
 		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
 			while Input.is_action_pressed("attack"):
 				if is_instance_valid(get_tree()):

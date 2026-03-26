@@ -14,7 +14,7 @@
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
 [ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://scenes/main game/The game world/extraction_point.tscn" id="14_g76y0"]
 [ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="15_hur8m"]
-[ext_resource type="Resource" uid="uid://dgo2e3vtac0c8" path="res://resources/items/consumables/apple.tres" id="15_oluop"]
+[ext_resource type="Resource" uid="uid://dfekj8b60xk25" path="res://resources/items/consumables/apple.tres" id="15_oluop"]
 [ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
 [ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://scenes/enemy/enemies/ardy.tscn" id="17_qyfmo"]
 [ext_resource type="PackedScene" uid="uid://dfq4aksfohtrf" path="res://scenes/shops/weapon_handler.tscn" id="18_6th7i"]
@@ -70,6 +70,11 @@ noise = SubResource("FastNoiseLite_o6xy1")
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
+[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
+item = ExtResource("3_g76y0")
+Name = "Assault Rifle"
+description = "Pew"
+
 [node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
 position = Vector2(-90, 271)
 mass = 10.0
@@ -79,13 +84,6 @@ pushable = true
 friction = 2.0
 max_health = 10
 health = 10
-
-[node name="ItemInteractable" parent="." unique_id=877810067 instance=ExtResource("6_ox3eu")]
-y_sort_enabled = true
-position = Vector2(296, 359)
-scale = Vector2(6, 6)
-item = ExtResource("3_g76y0")
-Name = "Apple"
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 z_index = 0

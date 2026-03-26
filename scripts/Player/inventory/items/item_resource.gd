@@ -16,7 +16,7 @@ class_name ItemResource
 @export var amount: int
 
 @export_category("general_settings")
-@export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity
+@export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity: int
 @export var txtr: Texture2D
 @export var Name: String
 @export var description: String

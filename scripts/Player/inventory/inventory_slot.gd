@@ -242,10 +242,9 @@ func set_selected(value: bool) -> void:
 				scene.queue_free()
 				scene = null
 			scene = item.itemScene.instantiate()
-			GlobalPlayer.player.add_child(scene)
-			if is_instance_valid(GlobalPlayer.manager):
-				GlobalPlayer.manager._weapon_instance = scene
 			scene.initialize(item)
+			GlobalPlayer.player.add_child(scene)
+			GlobalPlayer.manager._weapon_instance = scene
 			scene.isSelected = true
 			if is_instance_valid(GlobalPlayer.stats):
 				GlobalPlayer.stats.canAttack = true

@@ -313,7 +313,6 @@ func _refresh() -> void:
 
 func _refresh_upgrade_panel() -> void:
 	var weapon := _get_equipped_weapon()
-
 	if weapon == null or weapon.resource == null:
 		_upgrade_weapon_label.text   = "No weapon equipped"
 		_upgrade_rarity_label.text   = ""
@@ -438,7 +437,6 @@ func _get_equipped_weapon() -> Weapon:
 	if GlobalPlayer.player == null:
 		return null
 	var player := GlobalPlayer.manager
-	print("wep: ", player.get_weapon())
 	return player.get_weapon()
 
 

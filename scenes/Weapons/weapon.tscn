@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci80gkextgb66"]
 
-[ext_resource type="Script" uid="uid://yt26tbo0l8dw" path="res://spirit-game-project/scripts/Weapons/weapon.gd" id="1_d3qks"]
+[ext_resource type="Script" uid="uid://yt26tbo0l8dw" path="res://scripts/Weapons/weapon.gd" id="1_d3qks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3qks"]
 size = Vector2(86, 20)

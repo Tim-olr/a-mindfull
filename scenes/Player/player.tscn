@@ -651,7 +651,7 @@ dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 4000
 climb_time = 0.2
-shards = 500.0
+shards = 10000.0
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
 script = ExtResource("7_3ragq")

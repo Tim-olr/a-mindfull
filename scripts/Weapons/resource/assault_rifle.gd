@@ -1,0 +1,2 @@
+extends ItemResource
+class_name AssaultRifleRes

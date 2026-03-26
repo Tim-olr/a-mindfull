@@ -4,6 +4,8 @@ extends Node2D
 @onready var projectiles: Node2D = $projectiles
 @onready var dmg_nrs: Node2D = $dmgNrs
 
+const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
+
 func _ready() -> void:
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
@@ -23,7 +25,6 @@ func _ready() -> void:
 
 func _on_load_timer_timeout() -> void:
 	black.hide()
-
 
 func _on_refresh_timer_timeout() -> void:
 	pass # Replace with function body.
