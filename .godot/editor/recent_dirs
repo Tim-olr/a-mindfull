@@ -1,3 +1,10 @@
+res://scripts/main game/Buildings/
+res://scenes/main game/Buildings/
+res://scripts/main game/generation/
+res://scripts/main game/pools/
+res://scenes/enemy/enemies/
+res://scenes/main game/Spawner/
+res://scripts/main game/spawner/
 res://scenes/items/consumables/
 res://resources/items/consumables/
 res://scenes/shops/
@@ -6,7 +13,6 @@ res://scripts/items/shop/
 res://scripts/main game/Spirits/
 res://scenes/Weapons/guns/
 res://resources/items/weapons/
-res://scenes/enemy/enemies/
 res://scripts/main game/
 res://scenes/crafting stations/
 res://resources/crafting/stations/
@@ -14,9 +20,3 @@ res://scripts/global/
 res://scenes/main game/
 res://scripts/Player/inventory/currency/
 res://scenes/Player/inventory/currency/
-res://scripts/Weapons/spirit_weapons/
-res://scenes/Weapons/spirit_weapons/
-res://resources/spirits/spirits/
-res://scenes/main game/spirits/spirits/
-res://scripts/main game/Spirits/spirits/
-res://scenes/Physics objects/spirits/

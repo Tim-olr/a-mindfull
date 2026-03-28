@@ -3,6 +3,7 @@ extends Node2D
 @onready var shard_counter_lobby: Node2D = $shard_counter_lobby
 
 func _ready() -> void:
+	get_tree().paused = false
 	GlobalPlayer.stats.canAttack = false
 	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
 	playerSpirit.host = GlobalPlayer.player

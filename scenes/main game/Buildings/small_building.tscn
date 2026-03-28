@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://clb3ussoahufy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6krw6"]
+size = Vector2(25, 373)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h6i2n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmf53"]
+size = Vector2(25.000004, 510)
+
+[node name="SmallBuilding" type="Node2D" unique_id=620982097]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1313417951]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1075627988]
+position = Vector2(5.5, 189.5)
+shape = SubResource("RectangleShape2D_6krw6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D" unique_id=702397567]
+position = Vector2(6.000001, 190.25)
+scale = Vector2(26.000002, 381.5)
+mesh = SubResource("BoxMesh_h6i2n")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1591451762]
+position = Vector2(500, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2064017420]
+position = Vector2(5.5, 189.5)
+shape = SubResource("RectangleShape2D_6krw6")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D2" unique_id=965043366]
+position = Vector2(6.9999986, 191.25)
+scale = Vector2(27.999998, 383.5)
+mesh = SubResource("BoxMesh_h6i2n")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=941146653]
+position = Vector2(379, 6.5)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=292432924]
+position = Vector2(8.000004, 129)
+shape = SubResource("RectangleShape2D_gmf53")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D3" unique_id=2079928482]
+position = Vector2(6.9999986, 120.464294)
+scale = Vector2(27.999998, 525.0714)
+mesh = SubResource("BoxMesh_h6i2n")

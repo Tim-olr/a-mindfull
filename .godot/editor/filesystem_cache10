@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1774514902
+::res://::1774678232
 icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1772738358::1772739340::1::::<><><>0<>0<>81340f9a0cc78dd1638d6171a1881f90<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 LICENSE.md::TextFile::-1::1774263726::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1772735592::0::1::::<><><>0<>0<><>::
@@ -2585,23 +2585,23 @@ nine_path_panel.png::CompressedTexture2D::3795767556223809551::1772984955::17729
 extracting_stone.png::CompressedTexture2D::1886537396571265958::1772739238::1772739340::1::::<><><>0<>0<>77547b68b344c8fec23879000e7feb82<>res://.godot/imported/extracting_stone.png-0c37d0f2f9b5bc7cd300b6bc420d2abe.ctex::
 ::res://resources/::1773830084
 ::res://resources/crafting/::1773830091
-::res://resources/crafting/stations/::1774432817
-weapon_smith.tres::Resource/CraftingStationResource::8408461460563581535::1774432817::0::1::::<><><>0<>0<><>::uid://gt5w86458vfa::::res://scripts/items/crafting/StationlevelData.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dd0i0abxjm5ie::::res://scripts/items/crafting/CraftingStationResource.gd<>uid://cvebgp6i540ld::::res://scripts/items/crafting/craftingRecipe.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png<>uid://b48ej0hl7jx1h::::res://scripts/items/crafting/ingerdientData.gd<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dfpc56k7tagqa::::res://resources/items/weapons/assault_rifle.tres
+::res://resources/crafting/stations/::1774677697
+weapon_smith.tres::Resource/CraftingStationResource::8408461460563581535::1774677697::0::1::::<><><>0<>0<><>::uid://gt5w86458vfa::::res://scripts/items/crafting/StationlevelData.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dd0i0abxjm5ie::::res://scripts/items/crafting/CraftingStationResource.gd<>uid://cvebgp6i540ld::::res://scripts/items/crafting/craftingRecipe.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png<>uid://b48ej0hl7jx1h::::res://scripts/items/crafting/ingerdientData.gd<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dfpc56k7tagqa::::res://resources/items/weapons/assault_rifle.tres
 ::res://resources/items/::1772739238
 item_resource.tres::Resource::6086874310823407056::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
 ::res://resources/items/blocks/::1772739238
 dirt_block.tres::Resource/PlaceableItemResource::8077110637981531618::1772739238::0::1::::<><><>0<>0<><>::uid://ds5uoc3rvxx4a::::res://spirit-game-project/scripts/Player/inventory/items/placable_item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
 grass_block.tres::Resource/PlaceableItemResource::3566901970130090235::1772739238::0::1::::<><><>0<>0<><>::uid://ds5uoc3rvxx4a::::res://spirit-game-project/scripts/Player/inventory/items/placable_item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
-::res://resources/items/consumables/::1772739238
-apple.tres::Resource/ItemResource::7610944407402725881::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://4kk8cevce5vq::::res://spirit-game-project/scenes/items/consumables/apple.tscn<>uid://dxljrs61nfhmg::::res://spirit-game-project/assets/items/consumables/apple.png
+::res://resources/items/consumables/::1774515015
+apple.tres::Resource/ItemResource::7519088758616695108::1774515015::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://c0e033fema0if::::res://scenes/items/consumables/Apple.tscn
 ::res://resources/items/material/::1774439807
 duct_tape.tres::Resource/ItemResource::2010898763933019363::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://ci615ibt1a44::::res://spirit-game-project/assets/player/inventory/inv_slot.png
 scrap.tres::Resource/ItemResource::5175555339734404441::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
 spirit_core.tres::Resource/ItemResource::3552381473708112925::1774439807::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
 wires.tres::Resource/ItemResource::5750163188953785933::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
 wood.tres::Resource/ItemResource::2883496312026040777::1773052986::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd
-::res://resources/items/weapons/::1773913993
-assault_rifle.tres::Resource/ItemResource::7541348588534271592::1773913993::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://bgmhxyrly6au7::::res://scenes/Weapons/guns/assault_rifle.tscn<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png
+::res://resources/items/weapons/::1774522255
+assault_rifle.tres::Resource/AssaultRifleRes::7541348588534271592::1774522255::0::1::::<><><>0<>0<><>::uid://bgmhxyrly6au7::::res://scenes/Weapons/guns/assault_rifle.tscn<>uid://btmwaxbgp72yo::::res://scripts/Weapons/resource/assault_rifle.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png
 burst_rifle.tres::Resource/ItemResource::5922771840877986696::1773909044::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd
 smg.tres::Resource/ItemResource::5541211939088271222::1772739238::0::1::::<><><>0<>0<><>::uid://c7ugbef8o7i7e::::res://spirit-game-project/scenes/Weapons/guns/smg.tscn<>uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
 sts_chunk.tres::Resource/ItemResource::8846710566689719006::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://b2rbhbs2uhqb4::::res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://dowoda6idxfva::::res://icon.svg
@@ -2622,50 +2622,53 @@ START_YOUR_ENGINE.tres::Resource/SpiritResource::6226981826557393317::1772739238
 ::res://scenes/::1774433023
 ::res://scenes/crafting stations/::1774432817
 weapon_smith.tscn::PackedScene::8337214916302064764::1774432817::0::1::::<><><>0<>0<><>::uid://bnqmnr6v2cmy0::::res://scripts/items/crafting/craftingstationNode.gd<>uid://dr2eeqk33ennr::::res://resources/crafting/stations/weapon_smith.tres<>uid://cs0qmne7um313::::res://scripts/items/crafting/craftingGUI.gd<>uid://dowoda6idxfva::::res://icon.svg
-::res://scenes/enemy/::1773829026
-general_enemy.tscn::PackedScene::1856884521571950898::1773829026::0::1::::<><><>0<>0<><>::uid://dk7stsacyc270::::res://scripts/enemy/general_enemy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
+::res://scenes/enemy/::1774530912
+general_enemy.tscn::PackedScene::1856884521571950898::1774530912::0::1::::<><><>0<>0<><>::uid://dk7stsacyc270::::res://scripts/enemy/general_enemy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
 ::res://scenes/enemy/enemies/::1773908931
 ardy.tscn::PackedScene::1498868310803678548::1773828336::0::1::::<><><>0<>0<><>::uid://h37umafjgmrp::::res://scripts/enemy/enemies/ardy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://bufkm578dapyu::::res://scenes/Weapons/melee/knife.tscn<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
 bartholomew.tscn::PackedScene::7634011958775465751::1773908931::0::1::::<><><>0<>0<><>::uid://dq4ncj4j44bnx::::res://scripts/enemy/enemies/bartholomew.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cwbppuqdsjqxj::::res://scenes/Weapons/guns/burst_rifle.tscn<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
 bonkus.tscn::PackedScene::5363401281700494814::1773828336::0::1::::<><><>0<>0<><>::uid://bwr6ybe2ea4mf::::res://scripts/enemy/enemies/bonkus.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://bufkm578dapyu::::res://scenes/Weapons/melee/knife.tscn<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
 ::res://scenes/generalComponents/::1772739238
 health_bar.tscn::PackedScene::1752478481456652092::1772739238::0::1::::<><><>0<>0<><>::uid://duowp1jcbm06j::::res://spirit-game-project/scripts/generalComponents/health_bar.gd
-::res://scenes/items/::1774441682
-item_interactable.tscn::PackedScene::5239730394238537641::1774441682::0::1::::<><><>0<>0<><>::uid://bdtr3flr637uv::::res://scripts/items/item_interactable.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
-::res://scenes/items/consumables/::1774442196
-apple.tscn::PackedScene::2056786456352990258::1774442196::0::1::::<><><>0<>0<><>::uid://bgjc5rasvvhty::::res://scripts/items/consumable/apple.gd<>uid://dgo2e3vtac0c8::::res://resources/items/consumables/apple.tres
-::res://scenes/main game/::1774444122
-game.tscn::PackedScene::5446677219255966895::1774444122::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dowoda6idxfva::::res://icon.svg<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://b8hsu3b3gsqo3::::res://scenes/main game/components/game_starter.tscn<>uid://rm7o5ewaew2x::::res://scenes/main game/The game world/safe_interactable.tscn<>uid://dyra80jgha5ev::::res://scenes/main game/shard_counter_lobby.tscn<>uid://dq1uygukg2rfw::::res://scenes/crafting stations/weapon_smith.tscn<>uid://c5jukn0wfauak::::res://scenes/shops/scrap_broker.tscn
+::res://scenes/items/::1774520740
+item_interactable.tscn::PackedScene::5239730394238537641::1774520740::0::1::::<><><>0<>0<><>::uid://bdtr3flr637uv::::res://scripts/items/item_interactable.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
+::res://scenes/items/consumables/::1774515037
+apple.tscn::PackedScene::6537389374977382521::1774515037::0::1::::<><><>0<>0<><>::uid://bgjc5rasvvhty::::res://scripts/items/consumable/apple.gd
+::res://scenes/main game/::1774529348
+game.tscn::PackedScene::5446677219255966895::1774517763::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dowoda6idxfva::::res://icon.svg<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://b8hsu3b3gsqo3::::res://scenes/main game/components/game_starter.tscn<>uid://rm7o5ewaew2x::::res://scenes/main game/The game world/safe_interactable.tscn<>uid://dyra80jgha5ev::::res://scenes/main game/shard_counter_lobby.tscn<>uid://dq1uygukg2rfw::::res://scenes/crafting stations/weapon_smith.tscn<>uid://c5jukn0wfauak::::res://scenes/shops/scrap_broker.tscn
 hub_world.tscn::PackedScene::3567103794714643578::1772739238::0::1::::<><><>0<>0<><>::
-shard_counter_lobby.tscn::PackedScene::8878948978678953221::1773835130::0::1::::<><><>0<>0<><>::uid://cwk3uktvc4bsf::::res://scripts/main game/shard_counter_lobby.gd<>uid://ig5v0cabcc4s::::res://assets/player/currency/shard_counter.png<>uid://ercqgcdqy41n::::res://assets/player/currency/shard.png
+shard_counter_lobby.tscn::PackedScene::8878948978678953221::1774520637::0::1::::<><><>0<>0<><>::uid://cwk3uktvc4bsf::::res://scripts/main game/shard_counter_lobby.gd<>uid://ig5v0cabcc4s::::res://assets/player/currency/shard_counter.png<>uid://ercqgcdqy41n::::res://assets/player/currency/shard.png
 ::res://scenes/main game/components/::1772739315
 GameManager.tscn::PackedScene::6959828211951700669::1772739238::0::1::::<><><>0<>0<><>::uid://du3bcindtvcx0::::res://spirit-game-project/scripts/main game/game_manager.gd
 game_starter.tscn::PackedScene::4718233263254027240::1772739315::0::1::::<><><>0<>0<><>::uid://54yy3rrwjxy::::res://scripts/main game/components/game_starter.gd
 interactable.tscn::PackedScene::5170101297481278799::1772739238::0::1::::<><><>0<>0<><>::uid://bkw1rrnmt1nl2::::res://spirit-game-project/scripts/main game/components/interactable.gd
+::res://scenes/main game/Spawner/::1774678215
+enemy_spawner.tscn::PackedScene::9217583839858452731::1774678215::0::1::::<><><>0<>0<><>::uid://coqmkgx6f1afe::::res://scripts/main game/spawner/enemy_spawner.gd<>uid://dk7stsacyc270::::res://scripts/enemy/general_enemy.gd<>uid://dbucotluf2tvo::::res://scenes/main game/Spawner/spawn_pos.gd
+spawn_pos.gd::GDScript::7270885900751707916::1774677770::0::1::::SpawnPosHolder<>Node2D<><>0<>0<><>::
 ::res://scenes/main game/spirits/::1773909609
 spirit.tscn::PackedScene::1406571015415678263::1773909609::0::1::::<><><>0<>0<><>::uid://odgjkiyrneke::::res://scripts/main game/Spirits/spirit.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/spirits/spirits/::1773913718
+::res://scenes/main game/spirits/spirits/::1774517698
 a_peaceful_world.tscn::PackedScene::7790831955244280046::1773909558::0::1::::<><><>0<>0<><>::uid://cx7mnhm1efw77::::res://scripts/main game/Spirits/spirits/a_peaceful_world.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 jesers_grin.tscn::PackedScene::1105184906354962705::1773909557::0::1::::<><><>0<>0<><>::uid://b2a0fykxtq3s1::::res://scripts/main game/Spirits/spirits/jesers_grin.gd<>uid://c88ikobhaor73::::res://scenes/Weapons/spirit_weapons/jesters_grin.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 keep_me_close.tscn::PackedScene::7027759450985200888::1773909557::0::1::::<><><>0<>0<><>::uid://clmioc8lvnee4::::res://scripts/main game/Spirits/spirits/keep_me_close.gd<>uid://cj07e6dbe35xf::::res://scenes/Weapons/spirit_weapons/TestLaser.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 mending_heart.tscn::PackedScene::3772332617353723263::1773909556::0::1::::<><><>0<>0<><>::uid://dkawy2jgic08g::::res://scripts/main game/Spirits/spirits/mending_heart.gd<>uid://bmxmn6xb00hvq::::res://scenes/Weapons/melee/punch.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-shift_the_sand.tscn::PackedScene::6861226734720982079::1773913718::0::1::::<><><>0<>0<><>::uid://d31ktld32j6nb::::res://scripts/main game/Spirits/spirits/shift_the_sand.gd<>uid://b2rbhbs2uhqb4::::res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
+shift_the_sand.tscn::PackedScene::6861226734720982079::1774517698::0::1::::<><><>0<>0<><>::uid://d31ktld32j6nb::::res://scripts/main game/Spirits/spirits/shift_the_sand.gd<>uid://b2rbhbs2uhqb4::::res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 silver_bullet.tscn::PackedScene::8079083871022075510::1773909555::0::1::::<><><>0<>0<><>::uid://bkwsciciajwil::::res://scripts/main game/Spirits/spirits/silver_bullet.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cx624efybkweb::::res://scenes/Weapons/spirit_weapons/silver_bullet.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 slow_and_steady.tscn::PackedScene::3247204378681461158::1773909554::0::1::::<><><>0<>0<><>::uid://byxccfeyfqido::::res://scripts/main game/Spirits/spirits/slow_and_steady.gd<>uid://c8ptl0a5yo1sq::::res://scenes/Weapons/spirit_weapons/slow_and_steady.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 spread_like_fire.tscn::PackedScene::5918048217149318596::1773909844::0::1::::<><><>0<>0<><>::uid://dfp3akm017jtm::::res://scripts/main game/Spirits/spirits/spread_like_fire.gd<>uid://7kvpjm62stgy::::res://scenes/Weapons/spirit_weapons/spread_like_fire.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 start_your_engine.tscn::PackedScene::1814973551915108444::1773909552::0::1::::<><><>0<>0<><>::uid://nin568tacu87::::res://scripts/main game/Spirits/spirits/start_your_engine.gd<>uid://blhyo4ujkh0t4::::res://scenes/Weapons/spirit_weapons/start_your_engine.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/The game world/::1774445971
+::res://scenes/main game/The game world/::1774530965
 extraction_point.tscn::PackedScene::7228370094195798612::1773826907::0::1::::<><><>0<>0<><>::uid://bi72xqebn68j8::::res://scripts/main game/the game world/extraction_point.gd<>uid://14383tcq1fb7::::res://assets/world/extraction/extracting_stone.png
 safe_interactable.tscn::PackedScene::1219952402657948133::1774445971::0::1::::<><><>0<>0<><>::uid://rlxyac54uxl7::::res://scripts/main game/the game world/safe_interactable.gd<>uid://dowoda6idxfva::::res://icon.svg
-the_world.tscn::PackedScene::2887004937877063605::1774434872::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dby2ukjy8dom4::::res://scripts/main game/the game world/the_world.gd<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://dfpc56k7tagqa::::res://resources/items/weapons/assault_rifle.tres<>uid://bhj0vrakipunv::::res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd<>uid://cgwfugy5k2bsj::::res://scenes/items/item_interactable.tscn<>uid://hi321e2tcnjw::::res://addons/gaea/generators/2D/noise_generator/noise_generator.gd<>uid://bd2akqf17fyjb::::res://addons/gaea/modifiers/2D/modifier_2d.gd<>uid://dxsihunogdu87::::res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd<>uid://bro6ouvy1btim::::res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd<>uid://4nlrejx7j7jf::::res://addons/gaea/tile_info/tilemap_tile_info.gd<>uid://cbxcu6pr0vivu::::res://scripts/world gen/new_tile_set.tres<>uid://da8qg1qf0g4wu::::res://scenes/main game/The game world/extraction_point.tscn<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dgo2e3vtac0c8::::res://resources/items/consumables/apple.tres<>uid://bwv08oeqvuexq::::res://scenes/Physics objects/physics_object.tscn<>uid://vmce3i1bf5v1::::res://scenes/enemy/enemies/ardy.tscn<>uid://dfq4aksfohtrf::::res://scenes/shops/weapon_handler.tscn
+the_world.tscn::PackedScene::2887004937877063605::1774530965::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dby2ukjy8dom4::::res://scripts/main game/the game world/the_world.gd<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://bgmhxyrly6au7::::res://scenes/Weapons/guns/assault_rifle.tscn<>uid://btmwaxbgp72yo::::res://scripts/Weapons/resource/assault_rifle.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png<>uid://bhj0vrakipunv::::res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd<>uid://cgwfugy5k2bsj::::res://scenes/items/item_interactable.tscn<>uid://hi321e2tcnjw::::res://addons/gaea/generators/2D/noise_generator/noise_generator.gd<>uid://bd2akqf17fyjb::::res://addons/gaea/modifiers/2D/modifier_2d.gd<>uid://dxsihunogdu87::::res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd<>uid://bro6ouvy1btim::::res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd<>uid://4nlrejx7j7jf::::res://addons/gaea/tile_info/tilemap_tile_info.gd<>uid://cbxcu6pr0vivu::::res://scripts/world gen/new_tile_set.tres<>uid://da8qg1qf0g4wu::::res://scenes/main game/The game world/extraction_point.tscn<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dfekj8b60xk25::::res://resources/items/consumables/apple.tres<>uid://bwv08oeqvuexq::::res://scenes/Physics objects/physics_object.tscn<>uid://vmce3i1bf5v1::::res://scenes/enemy/enemies/ardy.tscn<>uid://dfq4aksfohtrf::::res://scenes/shops/weapon_handler.tscn<>uid://dg08cdh3iur8r::::res://scenes/enemy/enemies/bartholomew.tscn
 ::res://scenes/Physics objects/::1773058983
 physics_object.tscn::PackedScene::3975504774845032990::1773058983::0::1::::<><><>0<>0<><>::uid://cf00aahfatipu::::res://scripts/Physics objects/physics_object.gd<>uid://dowoda6idxfva::::res://icon.svg
 ::res://scenes/Physics objects/spirits/::1773059992
 jesters_grin_bomb.tscn::PackedScene::2901184816296939696::1773059992::0::1::::<><><>0<>0<><>::uid://cnbc22a0lhy43::::res://scripts/Physics objects/spirits/jesters_grin_bomb.gd<>uid://dowoda6idxfva::::res://icon.svg
 ::res://scenes/Physics objects/trees/::1773053029
 tree.tscn::PackedScene::3449918177511302908::1773053029::0::1::::<><><>0<>0<><>::uid://b4qfme54ubmef::::res://scripts/Physics objects/trees/tree.gd<>uid://bhc1068767vyv::::res://resources/items/material/wood.tres
-::res://scenes/Player/::1774444387
-player.tscn::PackedScene::538315797829068015::1774444387::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://scripts/Player/player_movement.gd<>uid://b0nykv8sstij6::::res://scripts/Player/player.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd<>uid://cs2184gpso1g1::::res://resources/spirits/spirits/SHIFT_THE_SAND.tres<>uid://84meb3bqjfvg::::res://scripts/Player/player_manager.gd<>uid://6rsohixmelnm::::res://scripts/Player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://scenes/Player/inventory/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://scripts/Player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://scripts/Player/player_specials.gd<>uid://jqii235rbcqp::::res://scenes/Player/inventory/Inventory.tscn<>uid://dj1cj1xd2h1ka::::res://scripts/Player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn<>uid://c5cyyhcwchc3x::::res://assets/player/player_map.png<>uid://byxetoyvngan6::::res://scenes/Player/inventory/currency/shard_counter.tscn<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://scripts/shaders/blue_filter.gdshader
+::res://scenes/Player/::1774522877
+player.tscn::PackedScene::538315797829068015::1774522877::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://scripts/Player/player_movement.gd<>uid://b0nykv8sstij6::::res://scripts/Player/player.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd<>uid://cs2184gpso1g1::::res://resources/spirits/spirits/SHIFT_THE_SAND.tres<>uid://84meb3bqjfvg::::res://scripts/Player/player_manager.gd<>uid://6rsohixmelnm::::res://scripts/Player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://scenes/Player/inventory/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://scripts/Player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://scripts/Player/player_specials.gd<>uid://jqii235rbcqp::::res://scenes/Player/inventory/Inventory.tscn<>uid://dj1cj1xd2h1ka::::res://scripts/Player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn<>uid://c5cyyhcwchc3x::::res://assets/player/player_map.png<>uid://byxetoyvngan6::::res://scenes/Player/inventory/currency/shard_counter.tscn<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://scripts/shaders/blue_filter.gdshader
 ::res://scenes/Player/inventory/::1773827487
 global_safe.tscn::PackedScene::2288761494559151764::1772739238::0::1::::<><><>0<>0<><>::uid://cn7yvsmy5gls3::::res://spirit-game-project/scripts/Player/inventory/safe/global_safe.gd
 Inventory.tscn::PackedScene::665231121871418895::1772739238::0::1::::<><><>0<>0<><>::uid://td88g75lk23b::::res://spirit-game-project/scripts/Player/inventory/inventory.gd
@@ -2677,14 +2680,14 @@ shard_counter.tscn::PackedScene::4118711190778472569::1773827973::0::1::::<><><>
 safe_ui.tscn::PackedScene::7605912502465031823::1774442716::0::1::::<><><>0<>0<><>::uid://dmjpslqlj8ida::::res://scripts/Player/inventory/safe/safeUi.gd
 ::res://scenes/Projectile/::1773057276
 projectile.tscn::PackedScene::735860708976404182::1773057276::0::1::::<><><>0<>0<><>::uid://b2jv88fufhq1::::res://scripts/Projectiles/projectile.gd<>uid://dowoda6idxfva::::res://icon.svg
-::res://scenes/shops/::1774445469
+::res://scenes/shops/::1774521873
 BurgerStand.tscn::PackedScene::5659421949275943999::1774434665::0::1::::<><><>0<>0<><>::uid://bgmeqcn7lm0wm::::res://scripts/items/shop/shops/burger_stand.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cn4hfq8f44qg7::::res://scripts/items/shop/ShopItem.gd<>uid://0ube3bs4gpfq::::res://scripts/items/shop/ShopResource.gd<>uid://do7cse8us07hg::::res://scripts/items/shop/ShopUI.gd
 scrap_broker.tscn::PackedScene::6898318996538036266::1774445469::0::1::::<><><>0<>0<><>::uid://bnalklnljqwup::::res://scripts/items/shop/shops/ScrapBrokerNode.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://bqu2g6wu4ec2p::::res://resources/items/material/spirit_core.tres<>uid://bdcldahoqai88::::res://scripts/items/shop/shops/ScrapBrokerUi.gd
-weapon_handler.tscn::PackedScene::7544997659410813387::1774438517::0::1::::<><><>0<>0<><>::uid://cjic6465pmhd2::::res://scripts/items/shop/shops/weapon_handler.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cn4hfq8f44qg7::::res://scripts/items/shop/ShopItem.gd<>uid://do7cse8us07hg::::res://scripts/items/shop/ShopUI.gd<>uid://0ube3bs4gpfq::::res://scripts/items/shop/ShopResource.gd
-::res://scenes/Weapons/::1772739238
-weapon.tscn::PackedScene::5404005754440387073::1772739238::0::1::::<><><>0<>0<><>::uid://yt26tbo0l8dw::::res://spirit-game-project/scripts/Weapons/weapon.gd
-::res://scenes/Weapons/guns/::1774438788
-assault_rifle.tscn::PackedScene::2832793658134349920::1774438788::0::1::::<><><>0<>0<><>::uid://cfghi8o63dudf::::res://scripts/Weapons/guns/assault_rifle.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
+weapon_handler.tscn::PackedScene::7544997659410813387::1774521873::0::1::::<><><>0<>0<><>::uid://cjic6465pmhd2::::res://scripts/items/shop/shops/weapon_handler.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cn4hfq8f44qg7::::res://scripts/items/shop/ShopItem.gd<>uid://do7cse8us07hg::::res://scripts/items/shop/ShopUI.gd<>uid://0ube3bs4gpfq::::res://scripts/items/shop/ShopResource.gd
+::res://scenes/Weapons/::1774515145
+weapon.tscn::PackedScene::5404005754440387073::1774515145::0::1::::<><><>0<>0<><>::uid://yt26tbo0l8dw::::res://scripts/Weapons/weapon.gd
+::res://scenes/Weapons/guns/::1774522543
+assault_rifle.tscn::PackedScene::2832793658134349920::1774522543::0::1::::<><><>0<>0<><>::uid://cfghi8o63dudf::::res://scripts/Weapons/guns/assault_rifle.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 burst_rifle.tscn::PackedScene::6319998922321651615::1773910906::0::1::::<><><>0<>0<><>::uid://dwgbqg2e5ykv4::::res://scripts/Weapons/guns/burst_rifle.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 pistol.tscn::PackedScene::6981005920075728888::1772739238::0::1::::<><><>0<>0<><>::uid://cwnmwn3j0i1hx::::res://spirit-game-project/scripts/Weapons/guns/pistol.gd<>uid://kqprvh4qgnic::::res://spirit-game-project/scenes/Projectile/projectile.tscn
 shotgun.tscn::PackedScene::826090062738499332::1772739238::0::1::::<><><>0<>0<><>::uid://cc7n7yq1i6bfp::::res://spirit-game-project/scripts/Weapons/guns/shotgun.gd<>uid://kqprvh4qgnic::::res://spirit-game-project/scenes/Projectile/projectile.tscn
@@ -2693,7 +2696,7 @@ sniper.tscn::PackedScene::5472832145771834221::1773838364::0::1::::<><><>0<>0<><
 ::res://scenes/Weapons/melee/::1772739238
 knife.tscn::PackedScene::3801149671316212816::1772739238::0::1::::<><><>0<>0<><>::uid://duytdo1a4s0t6::::res://spirit-game-project/scripts/Weapons/melee/knife.gd<>uid://dowoda6idxfva::::res://icon.svg
 punch.tscn::PackedScene::3276920978761017006::1772739238::0::1::::<><><>0<>0<><>::uid://csycm8dvfboi2::::res://spirit-game-project/scripts/Weapons/melee/punch.gd<>uid://dowoda6idxfva::::res://icon.svg
-::res://scenes/Weapons/spirit_weapons/::1773913907
+::res://scenes/Weapons/spirit_weapons/::1774515530
 jesters_grin.tscn::PackedScene::7157702004396749488::1773057550::0::1::::<><><>0<>0<><>::uid://bg4111ttosr0g::::res://scripts/Weapons/spirit_weapons/jesters_grin.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 silver_bullet.tscn::PackedScene::6452871847174364289::1772739238::0::1::::<><><>0<>0<><>::uid://ck2nmc60vxovr::::res://spirit-game-project/scripts/Weapons/spirit_weapons/silver_bullet.gd<>uid://kqprvh4qgnic::::res://spirit-game-project/scenes/Projectile/projectile.tscn
 slf_fire_ring.tscn::PackedScene::1281020644612643680::1773133214::0::1::::<><><>0<>0<><>::uid://c07ssb2a20065::::res://scripts/Weapons/spirit_weapons/slf_fire_ring.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
@@ -2701,24 +2704,24 @@ slow_and_steady.tscn::PackedScene::7121213454827153420::1772739238::0::1::::<><>
 spread_like_fire.tscn::PackedScene::2267989110407416400::1773133810::0::1::::<><><>0<>0<><>::uid://xfmjjvo61u83::::res://scripts/Weapons/spirit_weapons/spread_like_fire.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 start_your_engine.tscn::PackedScene::3174432371426768767::1772739238::0::1::::<><><>0<>0<><>::uid://c2o28nt1cyagi::::res://spirit-game-project/scripts/Weapons/spirit_weapons/start_your_engine.gd<>uid://kqprvh4qgnic::::res://spirit-game-project/scenes/Projectile/projectile.tscn
 STS_Chunk.tscn::PackedScene::4316687182872698839::1773913907::0::1::::<><><>0<>0<><>::uid://c02o3gb185hpa::::res://scripts/Weapons/spirit_weapons/sts_chunk.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-STS_swift.tscn::PackedScene::135135939470547134::1773913862::0::1::::<><><>0<>0<><>::uid://3qlpy1xpbgo0::::res://scripts/Weapons/spirit_weapons/sts_swift.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
+STS_swift.tscn::PackedScene::135135939470547134::1774515530::0::1::::<><><>0<>0<><>::uid://3qlpy1xpbgo0::::res://scripts/Weapons/spirit_weapons/sts_swift.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 TestLaser.tscn::PackedScene::5458102123834318859::1772739238::0::1::::<><><>0<>0<><>::uid://d1nawydecsmi7::::res://spirit-game-project/scripts/Weapons/spirit_weapons/keep_me_close.gd<>uid://kqprvh4qgnic::::res://spirit-game-project/scenes/Projectile/projectile.tscn
 ::res://scripts/::1772739798
-::res://scripts/enemy/::1773826835
+::res://scripts/enemy/::1774530912
 enemy_stats.gd::GDScript::8903866278421097433::1773054840::0::1::::<>Node2D<><>0<>0<><>::
-general_enemy.gd::GDScript::7928338357086885653::1773826835::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
+general_enemy.gd::GDScript::7928338357086885653::1774530912::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
 ::res://scripts/enemy/enemies/::1772739238
 ardy.gd::GDScript::551103772746181345::1772739238::0::1::::<>Enemy<><>0<>0<><>::
 bartholomew.gd::GDScript::8342943914607621997::1772739238::0::1::::<>Enemy<><>0<>0<><>::
 bonkus.gd::GDScript::3967594811313011121::1772739238::0::1::::<>Enemy<><>0<>0<><>::
 ::res://scripts/generalComponents/::1772739238
 health_bar.gd::GDScript::8593304152749275643::1772739238::0::1::::<>ProgressBar<><>0<>0<><>::
-::res://scripts/global/::1773835246
+::res://scripts/global/::1774515761
 craftingManager.gd::GDScript::5190789142655573095::1773835246::0::1::::CraftingManager<>Node<><>0<>0<><>::
-GlobalhitMarker.gd::GDScript::606279210741741433::1773135303::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/items/::1774442196
+GlobalhitMarker.gd::GDScript::606279210741741433::1774515761::0::1::::<>Node<><>0<>0<><>::
+::res://scripts/items/::1774521274
 item.gd::GDScript::3995992329048961044::1774442196::0::1::::Item<>Node<><>0<>0<><>::
-item_interactable.gd::GDScript::2637292863465267053::1773910360::0::1::::ItemInteractable<>Interactable<><>0<>0<><>::
+item_interactable.gd::GDScript::2637292863465267053::1774521274::0::1::::ItemInteractable<>Interactable<><>0<>0<><>::
 ::res://scripts/items/consumable/::1772739238
 apple.gd::GDScript::2826309046854200434::1772739238::0::1::::<>Item<><>0<>0<><>::
 ::res://scripts/items/crafting/::1774433467
@@ -2728,42 +2731,44 @@ craftingstationNode.gd::GDScript::3332658456062647321::1773834640::0::1::::Craft
 CraftingStationResource.gd::GDScript::7421968409237001628::1773829890::0::1::::CraftingStationResource<>Resource<><>0<>0<><>::
 ingerdientData.gd::GDScript::4490281879636540863::1773830055::0::1::::IngredientData<>Resource<><>0<>0<><>::
 StationlevelData.gd::GDScript::462218818922762182::1774431641::0::1::::StationLevelData<>Resource<><>0<>0<><>::
-::res://scripts/items/shop/::1774438517
+::res://scripts/items/shop/::1774521873
 ShopItem.gd::GDScript::5745598129086483780::1774431622::0::1::::ShopItem<>Resource<><>0<>0<><>::
 ShopResource.gd::GDScript::1796077979255844342::1774431622::0::1::::ShopResource<>Resource<><>0<>0<><>::
 ShopStationNode.gd::GDScript::7424377216570203152::1774434453::0::1::::ShopStationNode<>Area2D<><>0<>0<><>::
-ShopUI.gd::GDScript::8208119790423219100::1774438517::0::1::::ShopUI<>Control<><>0<>0<><>::
+ShopUI.gd::GDScript::8208119790423219100::1774521873::0::1::::ShopUI<>Control<><>0<>0<><>::
 ::res://scripts/items/shop/shops/::1774444779
 burger_stand.gd::GDScript::2832597845841849132::1774433747::0::1::::<>ShopStationNode<><>0<>0<><>::
 ScrapBrokerNode.gd::GDScript::3299561994198782783::1774439691::0::1::::ScrapBrokerNode<>Area2D<><>0<>0<><>::
 ScrapBrokerUi.gd::GDScript::2601789225888582179::1774444779::0::1::::ScrapBrokerUI<>Control<><>0<>0<><>::
 weapon_handler.gd::GDScript::5421234348207235181::1774434665::0::1::::<>ShopStationNode<><>0<>0<><>::
-::res://scripts/main game/::1774444011
+::res://scripts/main game/::1774529266
 game.gd::GDScript::3552846528166844466::1774443937::0::1::::<>Node2D<><>0<>0<><>::
 game_manager.gd::GDScript::8620906229965984551::1773834192::0::1::::<>Node2D<><>0<>0<><>::
-shard_counter_lobby.gd::GDScript::6339376052181814741::1774444011::0::1::::<>Node2D<><>0<>0<><>::
+shard_counter_lobby.gd::GDScript::6339376052181814741::1774520637::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/main game/components/::1774442984
 game_starter.gd::GDScript::63736289076661162::1772739315::0::1::::<>Interactable<><>0<>0<><>::
 interactable.gd::GDScript::3135335344522113925::1774442984::0::1::::Interactable<>Area2D<><>0<>0<><>::
+::res://scripts/main game/spawner/::1774678171
+enemy_spawner.gd::GDScript::5789262036322662766::1774678171::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/main game/Spirits/::1773913718
 spirit.gd::GDScript::989217857001996128::1773913151::0::1::::Spirit<>CharacterBody2D<><>0<>0<><>::
 SpiritResource.gd::GDScript::3214645966207574939::1772739238::0::1::::SpiritResource<>Resource<><>0<>0<><>::
 stats.gd::GDScript::9004821242240843880::1773913718::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/main game/Spirits/spirits/::1773913350
+::res://scripts/main game/Spirits/spirits/::1774515556
 a_peaceful_world.gd::GDScript::6453997065812814432::1772739238::0::1::::<>Spirit<><>0<>0<><>::
 jesers_grin.gd::GDScript::4283047592788176126::1773059959::0::1::::<>Spirit<><>0<>0<><>::
 keep_me_close.gd::GDScript::5570202074063690381::1772739238::0::1::::<>Spirit<><>0<>0<><>::
 mending_heart.gd::GDScript::7862530552671312220::1772739238::0::1::::<>Spirit<><>0<>0<><>::
-shift_the_sand.gd::GDScript::9178865178261549551::1773913350::0::1::::<>Spirit<><>0<>0<><>::
+shift_the_sand.gd::GDScript::9178865178261549551::1774515556::0::1::::<>Spirit<><>0<>0<><>::
 silver_bullet.gd::GDScript::3134822331760618939::1772739238::0::1::::<>Spirit<><>0<>0<><>::
 slow_and_steady.gd::GDScript::4118558894816334308::1772739238::0::1::::<>Spirit<><>0<>0<><>::
 spread_like_fire.gd::GDScript::7542872556320876278::1773134835::0::1::::<>Spirit<><>0<>0<><>::
 start_your_engine.gd::GDScript::929814564115786242::1772739238::0::1::::<>Spirit<><>0<>0<><>::
-::res://scripts/main game/the game world/::1774442991
+::res://scripts/main game/the game world/::1774521274
 extraction_point.gd::GDScript::3015672799608664767::1773826907::0::1::::<>Interactable<><>0<>0<><>::
 GlobalWorld.gd::GDScript::6212807511060831612::1772739238::0::1::::<>Node<><>0<>0<><>::
 safe_interactable.gd::GDScript::1217357851520792610::1774442991::0::1::::<>Interactable<><>0<>0<><>::
-the_world.gd::GDScript::7280671575768987605::1773913262::0::1::::<>Node2D<><>0<>0<><>::
+the_world.gd::GDScript::7280671575768987605::1774521274::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/Physics objects/::1773059340
 physics_object.gd::GDScript::5176912965288584618::1773059340::0::1::::PhysicsObject<>RigidBody2D<><>0<>0<><>::
 ::res://scripts/Physics objects/spirits/::1773059992
@@ -2780,27 +2785,27 @@ player_stats.gd::GDScript::6699601115607886984::1774433368::0::1::::PlayerStats<
 player_visuals.gd::GDScript::2212066862665592498::1772739238::0::1::::PlayerVisuals<>Node2D<><>0<>0<><>::
 ::res://scripts/Player/camera/::1772739238
 camera_2d.gd::GDScript::7844774372868123972::1772739238::0::1::::<>Camera2D<><>0<>0<><>::
-::res://scripts/Player/inventory/::1774445469
+::res://scripts/Player/inventory/::1774522480
 inventory.gd::GDScript::1341844120296979301::1774441838::0::1::::ActualInv<>Control<><>0<>0<><>::
-inventory_slot.gd::GDScript::5748015588328504924::1774445469::0::1::::InventorySlot<>Button<><>0<>0<><>::
+inventory_slot.gd::GDScript::5748015588328504924::1774522480::0::1::::InventorySlot<>Button<><>0<>0<><>::
 player_inventory.gd::GDScript::5917061835956502976::1772739238::0::1::::PlayerInv<>Node2D<><>0<>0<><>::
 ::res://scripts/Player/inventory/currency/::1773828188
 shard_counter.gd::GDScript::5903449391495122781::1773828188::0::1::::<>Control<><>0<>0<><>::
-::res://scripts/Player/inventory/items/::1774442174
-item_resource.gd::GDScript::330915824076223624::1774442174::0::1::::ItemResource<>Resource<><>0<>0<><>::
+::res://scripts/Player/inventory/items/::1774522544
+item_resource.gd::GDScript::330915824076223624::1774522543::0::1::::ItemResource<>Resource<><>0<>0<><>::
 ::res://scripts/Player/inventory/safe/::1774443001
 global_safe.gd::GDScript::5752852097397678908::1773834982::0::1::::<>Node2D<><>0<>0<><>::
 safeUi.gd::GDScript::8021051076690860158::1774443001::0::1::::SafeUI<>Control<><>0<>0<><>::
 ::res://scripts/Projectiles/::1773908107
 projectile.gd::GDScript::126512782107756830::1773908107::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
-::res://scripts/shaders/::1774432817
+::res://scripts/shaders/::1774677697
 blue_filter.gdshader::Shader::5097217208791447235::1772739238::0::1::::<><><>0<>0<><>::
 grayscale.gdshader::Shader::6780060105885750950::1772739238::0::1::::<><><>0<>0<><>::
-outline.gdshader::Shader::4192966522980728464::1774432817::0::1::::<><><>0<>0<><>::
-::res://scripts/Weapons/::1774438584
-weapon.gd::GDScript::1725451143214091368::1774438584::0::1::::Weapon<>Node2D<><>0<>0<><>::
-::res://scripts/Weapons/guns/::1772739238
-assault_rifle.gd::GDScript::5136612913745200371::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+outline.gdshader::Shader::4192966522980728464::1774677697::0::1::::<><><>0<>0<><>::
+::res://scripts/Weapons/::1774522544
+weapon.gd::GDScript::1725451143214091368::1774522544::0::1::::Weapon<>Node2D<><>0<>0<><>::
+::res://scripts/Weapons/guns/::1774522365
+assault_rifle.gd::GDScript::5136612913745200371::1774522365::0::1::::<>Weapon<><>0<>0<><>::
 burst_rifle.gd::GDScript::8715892524408226543::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 pistol.gd::GDScript::6344601456105544413::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 shotgun.gd::GDScript::4980126895573606005::1772739238::0::1::::<>Weapon<><>0<>0<><>::
@@ -2809,6 +2814,8 @@ sniper.gd::GDScript::4560773191138233318::1772739238::0::1::::<>Weapon<><>0<>0<>
 ::res://scripts/Weapons/melee/::1772739238
 knife.gd::GDScript::8613743745712970601::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 punch.gd::GDScript::6085930221346460699::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+::res://scripts/Weapons/resource/::1774522365
+assault_rifle.gd::GDScript::3746118229581100954::1774522365::0::1::::AssaultRifleRes<>ItemResource<><>0<>0<><>::
 ::res://scripts/Weapons/spirit_weapons/::1773132683
 jesters_grin.gd::GDScript::2869047168683581612::1773053448::0::1::::<>Weapon<><>0<>0<><>::
 keep_me_close.gd::GDScript::9011049449316782672::1772739238::0::1::::<>Weapon<><>0<>0<><>::
@@ -2819,5 +2826,5 @@ spread_like_fire.gd::GDScript::1625410474332997902::1773060111::0::1::::<>Weapon
 start_your_engine.gd::GDScript::6698540437513242420::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 sts_chunk.gd::GDScript::6584201015736206362::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 sts_swift.gd::GDScript::1999013641549292517::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-::res://scripts/world gen/::1774432817
-new_tile_set.tres::TileSet::4890669701433806870::1774432817::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png
+::res://scripts/world gen/::1774677697
+new_tile_set.tres::TileSet::4890669701433806870::1774677697::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png

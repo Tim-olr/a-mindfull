@@ -15,6 +15,8 @@ class_name Enemy
 @export var knockback_resistance: float = 0.0
 @export var can_drop_shards := true
 @export var shard_amount := 0.0
+@export var separation_radius: float = 30.0
+@export var separation_force: float = 10
 var knockbackVelocity = Vector2.ZERO
 var knockback_decay: float = 10.0
 var canWalk := true
@@ -31,6 +33,7 @@ func _ready() -> void:
 	if weapon != null:
 		var wep = weapon.instantiate()
 		add_child(wep)
+	add_to_group("enemy")
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0 and !died:
@@ -41,19 +44,35 @@ func _process(_delta: float) -> void:
 	if direction == Vector2(0, 0):
 		return
 
+func get_separation_velocity() -> Vector2:
+	var sep = Vector2.ZERO
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		if enemy == self or not is_instance_valid(enemy):
+			continue
+		var diff = global_position - enemy.global_position
+		var dist = diff.length()
+		if dist < separation_radius and dist > 0.0:
+			sep += diff.normalized() * (separation_radius - dist) / separation_radius
+	return sep.normalized() * separation_force if sep.length() > 0.0 else Vector2.ZERO
+
 func _physics_process(delta: float) -> void:
 	if knockbackVelocity.length() > 0:
 		knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, knockback_decay * delta)
 		if knockbackVelocity.length() < 1.0:
 			knockbackVelocity = Vector2.ZERO
+	var sep_velocity = get_separation_velocity()
 	if !attacking and canWalk and GlobalPlayer.player:
 		nav_agent.target_position = GlobalPlayer.player.global_position
 		if not nav_agent.is_navigation_finished():
 			var next_path_pos = nav_agent.get_next_path_position()
 			var new_velocity = global_position.direction_to(next_path_pos) * stats.speed
-			nav_agent.set_velocity(new_velocity + knockbackVelocity)
-	elif knockbackVelocity.length() > 0:
-		velocity = knockbackVelocity
+			nav_agent.set_velocity(new_velocity + knockbackVelocity + sep_velocity)
+		elif sep_velocity.length() > 0.0:
+			velocity = sep_velocity + knockbackVelocity
+			move_and_slide()
+	elif knockbackVelocity.length() > 0 or sep_velocity.length() > 0.0:
+		velocity = knockbackVelocity + sep_velocity
 		move_and_slide()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
@@ -79,7 +98,7 @@ func give_shards(amount := 0.0):
 	var real_amount: float
 	if amount == 0.0:
 		real_amount = shard_amount
-	else: 
+	else:
 		real_amount = amount
 	GlobalPlayer.stats.add_shards(real_amount)
 
