@@ -1,6 +1,6 @@
 CollisionShape2D
-StaticBody2D
 MeshInstance2D
+StaticBody2D
 Area2D
 Node
 Node2D

@@ -13,6 +13,7 @@ class_name PlayerManager
 @export var inventory_node_path: NodePath = NodePath("")
 @export var knockback_resistance: float = 0.0
 @export var canHps: bool = false
+@export var god_mode: bool = false
 
 var canGetDamaged: bool = true
 var spiritCanGetDamaged := true
@@ -114,6 +115,8 @@ func _on_interact_area_exited(area: Area2D) -> void:
 		_active_interactable = null
 
 func damage(damage_amount, attacker, shake):
+	if god_mode:
+		return
 	if canGetDamaged:
 		var reduction_am = damage_amount * stats.damage_reduction
 		damage_amount -= reduction_am
@@ -126,6 +129,8 @@ func damage(damage_amount, attacker, shake):
 			apply_knockback(knockback_direction, 200.0)
 
 func spirit_damage(damage_amount, attacker, shake):
+	if god_mode:
+		return
 	if spiritCanGetDamaged:
 		var reduction_am = damage_amount * stats.damage_reduction
 		damage_amount -= reduction_am

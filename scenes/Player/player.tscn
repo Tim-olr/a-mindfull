@@ -749,6 +749,7 @@ shape = SubResource("CircleShape2D_c4h5g")
 [node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
 script = ExtResource("3_ly2qd")
 inventory_node_path = NodePath("../PlayerInventory/Inventory")
+god_mode = true
 
 [node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
 
