@@ -1,9 +1,7 @@
-res://scenes/main game/Spawner/enemy_spawner.tscn
+res://scenes/main game/The game world/the_world.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scripts/main game/spawner/enemy_spawner.gd
-res://scenes/main game/The game world/the_world.tscn
-res://scripts/main game/spawner/spawners.gd
-res://scenes/Player/player.tscn
-res://scripts/Player/player_manager.gd
+res://scripts/world gen/biome_resource.gd
+res://scripts/main game/generation/procedural_generation.gd
+res://scripts/world gen/terrain_info_res.gd

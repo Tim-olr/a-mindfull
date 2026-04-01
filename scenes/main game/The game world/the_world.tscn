@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://ce7a42dhweonl" path="res://scripts/main game/pools/building_pools.gd" id="11_o686i"]
 [ext_resource type="Script" uid="uid://ds6tiutvmxwl7" path="res://scripts/main game/pools/pools.gd" id="11_r115u"]
 [ext_resource type="Script" uid="uid://4nlrejx7j7jf" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="11_tw0v7"]
+[ext_resource type="Script" uid="uid://cf11tsw12100c" path="res://scripts/world gen/biome_resource.gd" id="12_6th7i"]
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
+[ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
 [ext_resource type="Script" uid="uid://do422kabgv17m" path="res://scripts/main game/spawner/spawners.gd" id="15_bhd4a"]
 [ext_resource type="PackedScene" uid="uid://clb3ussoahufy" path="res://scenes/main game/Buildings/small_building.tscn" id="15_o6xy1"]
 [ext_resource type="PackedScene" uid="uid://d4lci2tduaiwp" path="res://scenes/main game/Spawner/enemy_spawner.tscn" id="16_bhd4a"]
@@ -71,6 +73,31 @@ tiles = Array[ExtResource("10_hur8m")]([SubResource("Resource_qyfmo"), SubResour
 noise = SubResource("FastNoiseLite_o6xy1")
 infinite = true
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6th7i"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es1ek"]
+noise = SubResource("FastNoiseLite_6th7i")
+seamless = true
+
+[sub_resource type="Resource" id="Resource_pu32c"]
+script = ExtResource("13_es1ek")
+terrain_name = "Dirt"
+metadata/_custom_type_script = "uid://c62pvs4ve04ip"
+
+[sub_resource type="Resource" id="Resource_hskh1"]
+script = ExtResource("13_es1ek")
+terrain_name = "Grass"
+terrain_id = 1
+metadata/_custom_type_script = "uid://c62pvs4ve04ip"
+
+[sub_resource type="Resource" id="Resource_7urgk"]
+script = ExtResource("12_6th7i")
+biome_name = "Plains"
+tile_set = ExtResource("12_t3lwd")
+terrain_infos = Array[ExtResource("13_es1ek")]([SubResource("Resource_pu32c"), SubResource("Resource_hskh1")])
+noise = SubResource("NoiseTexture2D_es1ek")
+metadata/_custom_type_script = "uid://cf11tsw12100c"
+
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 script = ExtResource("1_87ryk")
 
@@ -113,6 +140,7 @@ generator = NodePath("NoiseGenerator")
 script = ExtResource("7_g1gc2")
 settings = SubResource("Resource_6th7i")
 tile_size = Vector2i(144, 144)
+generate_on_ready = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ThreadedTilemapGaeaRenderer2" unique_id=299113875]
 z_index = -2
@@ -124,6 +152,7 @@ z_index = 10
 
 [node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904]
 script = ExtResource("11_cvtyc")
+biomes = Array[ExtResource("12_6th7i")]([SubResource("Resource_7urgk")])
 
 [node name="Pools" type="Node" parent="ProceduralGeneration" unique_id=2107102405]
 script = ExtResource("11_r115u")
