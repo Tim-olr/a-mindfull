@@ -28,11 +28,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_13bug")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6th7i"]
-noise_type = 2
-frequency = 0.0111
-fractal_type = 3
+frequency = 0.0251
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es1ek"]
+width = 1000
+height = 1000
 noise = SubResource("FastNoiseLite_6th7i")
 seamless = true
 
@@ -98,6 +98,7 @@ z_index = 10
 [node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904 node_paths=PackedStringArray("tile_map", "objects_node", "shops_node", "spawners_node", "extraction_node", "buildings_node")]
 script = ExtResource("11_cvtyc")
 biomes = Array[ExtResource("12_6th7i")]([SubResource("Resource_7urgk")])
+world_size = Vector2i(700, 700)
 tile_map = NodePath("../TileMapLayer")
 objects_node = NodePath("../PhysicsObjects")
 shops_node = NodePath("../Shops")
