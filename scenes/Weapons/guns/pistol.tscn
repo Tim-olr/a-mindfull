@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6pwfat6wbqi7"]
 
-[ext_resource type="Script" uid="uid://cwnmwn3j0i1hx" path="res://spirit-game-project/scripts/Weapons/guns/pistol.gd" id="1_3roqf"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_1thyv"]
+[ext_resource type="Script" uid="uid://cwnmwn3j0i1hx" path="res://scripts/Weapons/guns/pistol.gd" id="1_3roqf"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_1thyv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1thyv"]
 size = Vector2(86, 20)
@@ -9,14 +9,12 @@ size = Vector2(86, 20)
 [node name="Pistol" type="Node2D" unique_id=1714587889]
 script = ExtResource("1_3roqf")
 bulletLifeTimeMod = 0.6
-projectileSpeedMod = 1000.0
-bulletSizeMod = Vector2(-0.7, -0.7)
+projectileSpeedMod = 500.0
+bulletSizeMod = Vector2(0.1, 0.1)
 shootCooldown = -0.2
 gun = true
-damage = 5.0
 description = "medium damage and medium shooting"
 Name = "Pistol"
-rarity = "common"
 bulletScene = ExtResource("2_1thyv")
 doConsecShooting = true
 cameraShakeAmount = 10.0

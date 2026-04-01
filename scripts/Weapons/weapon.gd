@@ -273,7 +273,7 @@ func shoot() -> void:
 	pierce           = shooter.stats.pierce + pierceMod
 	attack_damage    = shooter.stats.attackDamage + damageMod + rarity_damage
 	bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
-	bullet_size      = shooter.stats.bulletSize + bulletSizeMod
+	bullet_size      = bulletSizeMod
 	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
 	var aim_pos: Vector2
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):

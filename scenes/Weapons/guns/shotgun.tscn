@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://l1ft2sc4ae4k"]
 
-[ext_resource type="Script" uid="uid://cc7n7yq1i6bfp" path="res://spirit-game-project/scripts/Weapons/guns/shotgun.gd" id="1_6ia3g"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_csdkt"]
+[ext_resource type="Script" uid="uid://cc7n7yq1i6bfp" path="res://scripts/Weapons/guns/shotgun.gd" id="1_6ia3g"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_csdkt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csdkt"]
 size = Vector2(86, 20)
@@ -12,14 +12,12 @@ damageMod = 10.0
 bulletLifeTimeMod = -0.3
 bulletAmountMod = 2
 rotationAdditionMod = 0.3
-projectileSpeedMod = 600.0
-bulletSizeMod = Vector2(-0.5, -0.5)
+projectileSpeedMod = 300.0
+bulletSizeMod = Vector2(0.3, 0.3)
 shootCooldown = 0.2
 gun = true
-damage = 10.0
 description = "shoots 3 bullets"
 Name = "Shotgun"
-rarity = "Common"
 bulletScene = ExtResource("2_csdkt")
 cameraShakeAmount = 30.0
 

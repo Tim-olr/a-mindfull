@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cx624efybkweb"]
 
-[ext_resource type="Script" uid="uid://ck2nmc60vxovr" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/silver_bullet.gd" id="1_e5hkp"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_k4kwo"]
+[ext_resource type="Script" uid="uid://ck2nmc60vxovr" path="res://scripts/Weapons/spirit_weapons/silver_bullet.gd" id="1_e5hkp"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_k4kwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mexf"]
 size = Vector2(86, 20)
@@ -11,8 +11,8 @@ script = ExtResource("1_e5hkp")
 damageMod = 2.0
 bulletLifeTimeMod = 2.0
 bulletAmountMod = 1
-projectileSpeedMod = 800.0
-bulletSizeMod = Vector2(0.3, 0.3)
+projectileSpeedMod = 400.0
+bulletSizeMod = Vector2(0.1, 0.1)
 shootCooldown = 0.3
 gun = true
 bulletScene = ExtResource("2_k4kwo")

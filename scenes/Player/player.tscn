@@ -562,13 +562,13 @@ gradient = SubResource("Gradient_t0bry")
 [sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
-radius = 33.340004
+radius = 11.045361
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4h5g"]
-radius = 32.693867
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uiqp4"]
-radius = 48.5077
+radius = 11.0
 
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -632,12 +632,11 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=856193928 groups=["player"]]
 z_index = 21
 y_sort_enabled = true
-scale = Vector2(1.5, 1.5)
 script = ExtResource("1_s4a0o")
 
 [node name="PlayerStats" type="Node2D" parent="." unique_id=1111926634]
 script = ExtResource("2_s4a0o")
-speed = 400.0
+speed = 80.0
 hp = 100.0
 maxHp = 100.0
 attackDamage = 10.0
@@ -649,20 +648,21 @@ bulletSize = Vector2(1, 1)
 attackSpeed = 1.0
 dashImmuneTime = 1.0
 dashCooldown = 1.0
-dashAmount = 4000
+dashAmount = 2000
 climb_time = 0.2
 shards = 10000.0
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
+position = Vector2(985, 521)
 script = ExtResource("7_3ragq")
 
 [node name="Inventory" parent="PlayerInventory" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
 z_index = 1001
-offset_left = -1454.6666
-offset_top = -902.6666
-offset_right = -1454.6666
-offset_bottom = -902.6666
-scale = Vector2(1.5, 1.5)
+offset_left = -1265.0
+offset_top = -688.0
+offset_right = -1265.0
+offset_bottom = -688.0
+scale = Vector2(0.3, 0.3)
 
 [node name="SafeUi" parent="PlayerInventory" unique_id=1199611452 instance=ExtResource("7_2pfsf")]
 offset_left = -2698.0
@@ -677,29 +677,30 @@ script = ExtResource("5_ly2qd")
 [node name="UI" type="Control" parent="PlayerVisuals" unique_id=727823785]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 83.0
+offset_top = -49.0
+offset_right = 123.0
+offset_bottom = -9.0
 
 [node name="HealthBar" parent="PlayerVisuals/UI" unique_id=387592992 instance=ExtResource("9_lf5c0")]
 z_index = 18
 layout_mode = 0
-offset_left = 765.0
-offset_top = -665.0
-offset_right = 1005.0
-offset_bottom = -638.0
-scale = Vector2(2, 2)
+offset_left = 36.0
+offset_top = -97.0
+offset_right = 276.0
+offset_bottom = -70.0
+scale = Vector2(0.6, 0.6)
 
 [node name="shard_counter" parent="PlayerVisuals/UI" unique_id=599853496 instance=ExtResource("12_1bwnf")]
 layout_mode = 0
-offset_left = 1003.3334
-offset_top = -414.66672
-offset_right = 1003.3334
-offset_bottom = -414.66672
-scale = Vector2(3.5, 3.5)
+offset_left = 121.0
+offset_top = -44.0
+offset_right = 121.0
+offset_bottom = -44.0
+scale = Vector2(0.8, 0.8)
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="PlayerVisuals" unique_id=98449750]
 position = Vector2(-3, 6.9999995)
-scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_x5xxc")
 animation = &"walk_down"
 
@@ -786,7 +787,7 @@ texture = SubResource("GradientTexture1D_cib4j")
 libraries/ = SubResource("AnimationLibrary_3ragq")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1047571954]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(3.5, 3.5)
 script = ExtResource("9_06t3u")
 shakeFade = 7.0
 

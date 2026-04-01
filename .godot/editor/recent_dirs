@@ -1,3 +1,4 @@
+res://assets/fotns/
 res://scripts/main game/spawner/
 res://scripts/main game/Buildings/
 res://scenes/main game/Buildings/
@@ -19,4 +20,3 @@ res://resources/crafting/stations/
 res://scripts/global/
 res://scenes/main game/
 res://scripts/Player/inventory/currency/
-res://scenes/Player/inventory/currency/

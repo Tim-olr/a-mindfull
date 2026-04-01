@@ -12,18 +12,17 @@ damageMod = 0.1
 bulletLifeTimeMod = 0.7
 bulletAmountMod = 2
 rotationAdditionMod = 30.0
-projectileSpeedMod = 1000.0
-bulletSizeMod = Vector2(0.2, 0.2)
+projectileSpeedMod = 300.0
+bulletSizeMod = Vector2(0.1, 0.1)
 gun = true
 description = "fire!"
 Name = "spread like fire"
-rarity = "common"
 bulletScene = ExtResource("2_x8dtx")
 knockback_force = 100.0
 hasInfPierce = true
 canKeepTicking = true
 doRandomRotAndPos = true
-pos_scatter_radius = 100.0
+pos_scatter_radius = 50.0
 has_no_cooldown = true
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1734952779]

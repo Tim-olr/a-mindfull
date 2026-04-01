@@ -69,7 +69,7 @@ func active_ability():
 		remove_passive()
 		mode = 1
 		changeWeap()
-		size = Vector2(0.9, 0.9)
+		size = Vector2(0.15, 0.15)
 		set_scale(size)
 		stats.attackSpeed = 0.05
 		stats.canAttack = true
@@ -80,6 +80,6 @@ func active_ability():
 		changeWeap()
 		stats.attackSpeed = 0.8
 		stats.canAttack = true
-		size = Vector2(1.3, 1.3)
+		size = Vector2(0.2, 0.2)
 		set_scale(size)
 		apply_passive()

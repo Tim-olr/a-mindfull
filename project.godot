@@ -71,6 +71,10 @@ step_up=""
 world_gen=""
 climbing_area=""
 
+[gui]
+
+theme/custom_font="uid://dqefpat5dtml2"
+
 [input]
 
 interact={

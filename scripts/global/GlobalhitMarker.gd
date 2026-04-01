@@ -24,6 +24,7 @@ func show_hit_marker(amount: float, target: Node2D, is_heal: bool) -> void:
 			label.position.y = spawn_pos.y
 			var tween = create_tween()
 			marker["tween"] = tween
+			marker.scale = Vector2(0.3, 0.3)
 			tween.tween_property(label, "position:y", spawn_pos.y + float_height, float_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 			tween.tween_property(label, "modulate:a", 0.0, float_duration - fade_start).set_delay(fade_start)
 			tween.tween_callback(func(): _remove_marker(marker))
@@ -38,6 +39,7 @@ func show_hit_marker(amount: float, target: Node2D, is_heal: bool) -> void:
 	label2.modulate = heal_color if is_heal else damage_color
 	label2.position = spawn_pos
 	label2.z_index = 1000
+	label2.scale = Vector2(0.3, 0.3)
 	world.add_child(label2)
 
 	var tween2 = create_tween()

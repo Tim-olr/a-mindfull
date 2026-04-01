@@ -24,7 +24,7 @@ var canAbility: bool = true
 
 var weapo: Weapon
 
-@export var follow_distance: float = 150.0
+@export var follow_distance: float = 25.0
 @export var smooth_speed: float = 8.0
 
 @export var projectile: PackedScene

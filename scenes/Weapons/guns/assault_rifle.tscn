@@ -9,8 +9,8 @@ size = Vector2(86, 20)
 [node name="AssaultRifle" type="Node2D" unique_id=1235406962]
 script = ExtResource("1_0xx0w")
 bulletLifeTimeMod = 1.0
-projectileSpeedMod = 1000.0
-bulletSizeMod = Vector2(-0.4, -0.4)
+projectileSpeedMod = 500.0
+bulletSizeMod = Vector2(0.2, 0.2)
 shootCooldown = -0.3
 gun = true
 description = "Nice little gun"

@@ -16,6 +16,7 @@ size = Vector2(113, 114)
 size = Vector2(91, 86)
 
 [node name="Ardy" type="CharacterBody2D" unique_id=1356096532 node_paths=PackedStringArray("area", "base") groups=["enemy"]]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_pqvuk")
 Name = "Ardy"
 texture = ExtResource("2_bjdtj")

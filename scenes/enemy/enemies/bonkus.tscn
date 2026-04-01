@@ -16,6 +16,7 @@ size = Vector2(211, 195)
 size = Vector2(136, 136)
 
 [node name="Bonkus" type="CharacterBody2D" unique_id=149083672 node_paths=PackedStringArray("area", "base") groups=["enemy"]]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_1yn7j")
 Name = "Bonkus"
 texture = ExtResource("2_wqe0a")

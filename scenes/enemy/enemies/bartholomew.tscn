@@ -16,6 +16,7 @@ size = Vector2(290, 257)
 size = Vector2(177, 178)
 
 [node name="Bartholomew" type="CharacterBody2D" unique_id=1109733940 node_paths=PackedStringArray("area", "base") groups=["enemy"]]
+scale = Vector2(0.2, 0.2)
 script = ExtResource("1_mtfaw")
 Name = "Bartholomew"
 texture = ExtResource("2_1i77l")

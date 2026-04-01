@@ -77,7 +77,6 @@ func _fix_empty_cells():
 
 func _spawn_biome_scenes(b: Biome):
 	var half := world_size / 2
-
 	_spawn_batch(b.physics_objects, b.min_objects,   b.max_objects,   objects_node,    half)
 	_spawn_batch(b.biome_shops,     b.min_shops,     b.max_shops,     shops_node,      half)
 	_spawn_batch(b.enemy_spawners,  b.min_spawners,  b.max_spawners,  spawners_node,   half)
