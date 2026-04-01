@@ -15,6 +15,5 @@ func spawn():
 			randf_range(-world_size.y, world_size.y)
 		)
 		GlobalPlayer.player.get_parent().add_child.call_deferred(spawner)
-		print("lolo: ", spawner.global_position)
 		await get_tree().process_frame
 		await get_tree().process_frame

@@ -1,23 +1,12 @@
-[gd_scene format=3 uid="uid://bheqsxiy5xkwj"]
+[gd_scene format=4 uid="uid://bheqsxiy5xkwj"]
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://scripts/main game/the game world/the_world.gd" id="1_87ryk"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
-[ext_resource type="Script" uid="uid://bhj0vrakipunv" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_lmetf"]
-[ext_resource type="Script" uid="uid://hi321e2tcnjw" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="7_g1gc2"]
-[ext_resource type="Script" uid="uid://bd2akqf17fyjb" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="8_g76y0"]
-[ext_resource type="Script" uid="uid://dxsihunogdu87" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="9_oluop"]
-[ext_resource type="Script" uid="uid://bro6ouvy1btim" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="10_hur8m"]
 [ext_resource type="Script" uid="uid://dmhxx1k4rqs68" path="res://scripts/main game/generation/procedural_generation.gd" id="11_cvtyc"]
-[ext_resource type="Script" uid="uid://ce7a42dhweonl" path="res://scripts/main game/pools/building_pools.gd" id="11_o686i"]
-[ext_resource type="Script" uid="uid://ds6tiutvmxwl7" path="res://scripts/main game/pools/pools.gd" id="11_r115u"]
-[ext_resource type="Script" uid="uid://4nlrejx7j7jf" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="11_tw0v7"]
 [ext_resource type="Script" uid="uid://cf11tsw12100c" path="res://scripts/world gen/biome_resource.gd" id="12_6th7i"]
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
 [ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
-[ext_resource type="Script" uid="uid://do422kabgv17m" path="res://scripts/main game/spawner/spawners.gd" id="15_bhd4a"]
-[ext_resource type="PackedScene" uid="uid://clb3ussoahufy" path="res://scenes/main game/Buildings/small_building.tscn" id="15_o6xy1"]
-[ext_resource type="PackedScene" uid="uid://d4lci2tduaiwp" path="res://scenes/main game/Spawner/enemy_spawner.tscn" id="16_bhd4a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -37,43 +26,10 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
 gradient = SubResource("Gradient_13bug")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_o6xy1"]
-seed = 693588502
-frequency = 0.0137
-
-[sub_resource type="Resource" id="Resource_bhd4a"]
-script = ExtResource("11_tw0v7")
-type = 1
-terrain = 1
-layer = 1
-
-[sub_resource type="Resource" id="Resource_qyfmo"]
-resource_name = "Grass"
-script = ExtResource("10_hur8m")
-title = "Grass"
-tile = SubResource("Resource_bhd4a")
-min = -0.243
-max = 0.3620000000000001
-
-[sub_resource type="Resource" id="Resource_o6xy1"]
-script = ExtResource("11_tw0v7")
-type = 1
-metadata/_custom_type_script = "uid://4nlrejx7j7jf"
-
-[sub_resource type="Resource" id="Resource_es1ek"]
-resource_name = "Dirt"
-script = ExtResource("10_hur8m")
-title = "Dirt"
-tile = SubResource("Resource_o6xy1")
-
-[sub_resource type="Resource" id="Resource_6th7i"]
-resource_name = "Settings"
-script = ExtResource("9_oluop")
-tiles = Array[ExtResource("10_hur8m")]([SubResource("Resource_qyfmo"), SubResource("Resource_es1ek")])
-noise = SubResource("FastNoiseLite_o6xy1")
-infinite = true
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6th7i"]
+noise_type = 2
+frequency = 0.0111
+fractal_type = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es1ek"]
 noise = SubResource("FastNoiseLite_6th7i")
@@ -99,11 +55,11 @@ noise = SubResource("NoiseTexture2D_es1ek")
 metadata/_custom_type_script = "uid://cf11tsw12100c"
 
 [node name="TheWorld" type="Node2D" unique_id=341922483]
+y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 z_index = 0
-y_sort_enabled = false
 position = Vector2(115, 245)
 
 [node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
@@ -130,40 +86,41 @@ wait_time = 0.1
 one_shot = true
 
 [node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
-
-[node name="ThreadedTilemapGaeaRenderer2" type="Node" parent="." unique_id=571891885 node_paths=PackedStringArray("tile_map_layers", "generator")]
-script = ExtResource("6_lmetf")
-tile_map_layers = [NodePath("TileMapLayer")]
-generator = NodePath("NoiseGenerator")
-
-[node name="NoiseGenerator" type="Node" parent="ThreadedTilemapGaeaRenderer2" unique_id=906480857]
-script = ExtResource("7_g1gc2")
-settings = SubResource("Resource_6th7i")
-tile_size = Vector2i(144, 144)
-generate_on_ready = false
-
-[node name="TileMapLayer" type="TileMapLayer" parent="ThreadedTilemapGaeaRenderer2" unique_id=299113875]
-z_index = -2
-scale = Vector2(9, 9)
-tile_set = ExtResource("12_t3lwd")
+y_sort_enabled = true
 
 [node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
 z_index = 10
 
-[node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904]
+[node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904 node_paths=PackedStringArray("tile_map", "objects_node", "shops_node", "spawners_node", "extraction_node", "buildings_node")]
 script = ExtResource("11_cvtyc")
 biomes = Array[ExtResource("12_6th7i")]([SubResource("Resource_7urgk")])
+tile_map = NodePath("../TileMapLayer")
+objects_node = NodePath("../PhysicsObjects")
+shops_node = NodePath("../Shops")
+spawners_node = NodePath("../EnemySpawners")
+extraction_node = NodePath("../Extractions")
+buildings_node = NodePath("../Buildings")
 
-[node name="Pools" type="Node" parent="ProceduralGeneration" unique_id=2107102405]
-script = ExtResource("11_r115u")
+[node name="Buildings" type="Node2D" parent="." unique_id=2053666728]
+y_sort_enabled = true
 
-[node name="BuildingPools" type="Node" parent="ProceduralGeneration/Pools" unique_id=428998462]
-script = ExtResource("11_o686i")
-building_pool = Array[PackedScene]([ExtResource("15_o6xy1")])
+[node name="EnemySpawners" type="Node2D" parent="." unique_id=2013779954]
+y_sort_enabled = true
 
-[node name="Spawners" type="Node" parent="ProceduralGeneration" unique_id=530327740]
-script = ExtResource("15_bhd4a")
-enemy_spawners = Array[PackedScene]([ExtResource("16_bhd4a")])
-world_size = Vector2(2356, 2356)
+[node name="PhysicsObjects" type="Node2D" parent="." unique_id=2061058935]
+y_sort_enabled = true
+
+[node name="Shops" type="Node2D" parent="." unique_id=473385869]
+y_sort_enabled = true
+
+[node name="Extractions" type="Node2D" parent="." unique_id=1062428593]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=299113875]
+z_index = -2
+y_sort_enabled = true
+scale = Vector2(9, 9)
+tile_map_data = PackedByteArray("AAD+//7/AQAMAAsAAAD+////AQAMAAsAAAD/////AQAMAAsAAAAAAAAAAQAMAAgAAAAAAP7/AQALAAsAAAD7//7/AQAMAAgAAAD7////AQAMAAsAAAD8////AQAMAAgAAAD9////AQALAAsAAAD///7/AQALAAsAAAD9//7/AQAMAAsAAAD7/wAAAQAOAAsAAAD6/wEAAQALAAsAAAAAAP//AQAMAAgAAAD6////AQAMAAsAAAD6/wAAAQAMAAsAAAD9/wAAAQAMAAsAAAD8/wAAAQAOAAsAAAD+/wAAAQAOAAsAAAD//wAAAQAOAAsAAAD//wEAAQAOAAsAAAAAAAEAAQALAAsAAAD8/wEAAQALAAsAAAD9/wEAAQALAAsAAAD7/wEAAQAMAAsAAAD+/wEAAQAOAAsAAAD8//7/AQALAAsAAAD6//7/AQAMAAgAAAD4//3/AQAOAAwAAAD4//7/AQAOAAwAAAD4////AQAPAAwAAAD4/wAAAQALAAwAAAD3/wAAAQAMAAwAAAD3/wEAAQAMAAwAAAD3/wIAAQANAAwAAAD4/wIAAQAMAAwAAAD4/wEAAQANAAwAAAD4/wMAAQAOAAwAAAD5/wMAAQANAAwAAAD6/wMAAQAMAAwAAAD7/wMAAQALAAwAAAD8/wMAAQALAAwAAAD9/wMAAQAMAAwAAAD+/wMAAQAOAAwAAAD//wMAAQANAAwAAAAAAAMAAQAPAAwAAAABAAMAAQAPAAwAAAACAAMAAQAPAAwAAAACAAIAAQALAAwAAAACAAEAAQAPAAwAAAACAAAAAQAPAAwAAAACAP//AQANAAwAAAACAP7/AQANAAwAAAACAP3/AQAMAAwAAAACAPz/AQAOAAwAAAABAPz/AQAMAAwAAAAAAPz/AQAMAAwAAAD///z/AQAMAAwAAAD+//z/AQAOAAwAAAD9//z/AQALAAwAAAD8//z/AQAMAAwAAAD7//z/AQAMAAwAAAD6//z/AQALAAwAAAD5//z/AQALAAwAAAD4//z/AQALAAwAAAD+//b/AQAMAAgAAAD9//b/AQAMAAsAAAD///b/AQALAAsAAAD9//f/AQAOAAsAAAD+//f/AQAMAAgAAAD///f/AQALAAsAAAD8//b/AQALAAsAAAD8//f/AQAMAAsAAAD+//j/AQAMAAgAAAD///j/AQAOAAsAAAAAAPj/AQAOAAsAAAABAPf/AQAMAAgAAAAAAPf/AQAMAAgAAAD9//j/AQAMAAsAAAD8//j/AQAMAAsAAAD6//X/AQAPAAwAAAD6//b/AQALAAwAAAD5//b/AQAMAAwAAAD5//f/AQAMAAwAAAD6//f/AQAPAAwAAAD6//j/AQAOAAwAAAD6//n/AQAPAAwAAAA=")
+tile_set = ExtResource("12_t3lwd")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

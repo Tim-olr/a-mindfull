@@ -26,3 +26,6 @@ class_name Biome
 @export var extraction_points: Array[PackedScene]
 @export var min_points: int
 @export var max_points: int
+@export var buildings: Array[PackedScene]
+@export var min_buildings: int
+@export var max_buildings: int
