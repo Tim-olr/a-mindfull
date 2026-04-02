@@ -18,7 +18,7 @@ class_name Weapon
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
 @export var cameraShakeAmount: float
-@export var knockback_force: float = 500.0
+@export var knockback_force: float = 250.0
 @export var shoot_in_circle: bool = false
 
 @export_category("other")

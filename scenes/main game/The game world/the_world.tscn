@@ -93,12 +93,12 @@ one_shot = true
 y_sort_enabled = true
 
 [node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
+process_mode = 4
 z_index = 10
 
 [node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904 node_paths=PackedStringArray("tile_map", "objects_node", "shops_node", "spawners_node", "extraction_node", "buildings_node")]
 script = ExtResource("11_cvtyc")
 biomes = Array[ExtResource("12_6th7i")]([SubResource("Resource_7urgk")])
-world_size = Vector2i(700, 700)
 tile_map = NodePath("../TileMapLayer")
 objects_node = NodePath("../PhysicsObjects")
 shops_node = NodePath("../Shops")

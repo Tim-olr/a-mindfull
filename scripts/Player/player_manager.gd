@@ -143,10 +143,9 @@ func spirit_damage(damage_amount, attacker, shake):
 			apply_knockback(knockback_direction, 200.0)
 
 func damaged(shake):
-	if movement_controller:
-		movement_controller.play_priority_animation("hurt", false)
-	else:
-		player_sprites.play("hurt")
+	var tween = create_tween()
+	tween.tween_property(player_sprites, "modulate", Color.RED, 0.1)
+	tween.tween_property(player_sprites, "modulate", Color.WHITE, 0.1)
 	GlobalPlayer.camera.apply_shake(shake)
 
 func die():

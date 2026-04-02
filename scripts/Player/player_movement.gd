@@ -63,7 +63,6 @@ func dodge():
 		player_sprites.flip_h = true
 	elif direction.x > 0:
 		player_sprites.flip_h = false
-	player_sprites.play("dodge")
 	_dodge_token += 1
 	var token = _dodge_token
 	call_deferred("_deferred_wait_for_dodge", token)
@@ -106,10 +105,9 @@ func wait_for_animation(anim_name: String):
 	movement_enabled = true
 
 func handle_animations():
-	if isDodgingAnim:
-		return
 	if is_priority_animation:
 		return
+
 	if direction == Vector2.ZERO:
 		match last_movement_direction:
 			Vector2.UP:
@@ -125,31 +123,9 @@ func handle_animations():
 				player_sprites.flip_h = false
 				player_sprites.play("idle_down")
 		return
-	var dx = direction.x
-	var dy = direction.y
-	var adx = abs(dx)
-	var ady = abs(dy)
-	if adx > 0.1 and ady > 0.1:
-		if dy < 0:
-			if dx < 0:
-				player_sprites.flip_h = false
-				if player_sprites.animation != "walk_left_up":
-					player_sprites.play("walk_left_up")
-			else:
-				player_sprites.flip_h = true
-				if player_sprites.animation != "walk_left_up":
-					player_sprites.play("walk_left_up")
-		else:
-			if dx > 0:
-				player_sprites.flip_h = false
-				if player_sprites.animation != "walk_right_down":
-					player_sprites.play("walk_right_down")
-			else:
-				player_sprites.flip_h = true
-				if player_sprites.animation != "walk_right_down":
-					player_sprites.play("walk_right_down")
-	elif adx >= ady:
-		if dx > 0:
+
+	if abs(direction.x) >= abs(direction.y):
+		if direction.x > 0:
 			player_sprites.flip_h = false
 			if player_sprites.animation != "walk_right":
 				player_sprites.play("walk_right")
@@ -158,7 +134,7 @@ func handle_animations():
 			if player_sprites.animation != "walk_right":
 				player_sprites.play("walk_right")
 	else:
-		if dy < 0:
+		if direction.y < 0:
 			player_sprites.flip_h = false
 			if player_sprites.animation != "walk_up":
 				player_sprites.play("walk_up")
