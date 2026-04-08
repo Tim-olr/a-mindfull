@@ -25,6 +25,7 @@ class_name Weapon
 @export var do_more_damage_to_enemies_with_hp_percent: bool = false
 @export var enemy_health_percentage_min: int = 100
 @export var damage_mult_for_dmdtewhp: float = 0.0
+@export var projectile_sprite: Texture2D
 
 @export var hasInfPierce: bool = false
 @export var canKeepTicking: bool = false
@@ -303,6 +304,8 @@ func shoot() -> void:
 		bullet.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
 		bullet.enemy_health_percentage_min               = GlobalPlayer.stats.enemy_health_percentage_min
 		bullet.damage_mult_for_dmdtewhp                  = GlobalPlayer.stats.damage_mult_for_dmdtewhp
+		if projectile_sprite != null:
+			bullet.projectile_sprite.texture = projectile_sprite
 		if shooter.is_in_group("player"):
 			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 		var current_rot: float = base_rot

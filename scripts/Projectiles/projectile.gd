@@ -12,7 +12,7 @@ var rot: float = 0.0
 @onready var area_shape: CollisionShape2D = $CollisionArea/AreaShape
 var shooter_group: String = ""
 var knockback_force: float = 0.0
-@onready var projectile_sprite: Button = $CollisionArea/AreaShape/ProjectileSprite
+@export var projectile_sprite: Sprite2D
 @onready var proj_middle: Marker2D = $ProjMiddle
 
 @export var txtr: Texture2D

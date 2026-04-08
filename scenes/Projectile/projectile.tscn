@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://kqprvh4qgnic"]
 
 [ext_resource type="Script" uid="uid://b2jv88fufhq1" path="res://scripts/Projectiles/projectile.gd" id="1_gmfsf"]
-[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_mvg1l"]
+[ext_resource type="Texture2D" uid="uid://c6atimakc5b4a" path="res://assets/other/projectiles/bullet.png" id="2_tbm3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvg1l"]
-size = Vector2(122, 127)
+size = Vector2(12, 6)
 
-[node name="Projectile" type="CharacterBody2D" unique_id=1162203950]
+[node name="Projectile" type="CharacterBody2D" unique_id=1162203950 node_paths=PackedStringArray("projectile_sprite")]
 script = ExtResource("1_gmfsf")
+projectile_sprite = NodePath("Sprite2D")
 
 [node name="LifeTime" type="Timer" parent="." unique_id=1214404922]
 one_shot = true
@@ -17,18 +18,9 @@ one_shot = true
 [node name="AreaShape" type="CollisionShape2D" parent="CollisionArea" unique_id=144967991]
 shape = SubResource("RectangleShape2D_mvg1l")
 
-[node name="ProjectileSprite" type="Button" parent="CollisionArea/AreaShape" unique_id=2104938420]
-offset_left = -62.0
-offset_top = -62.0
-offset_right = 62.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-button_mask = 0
-icon = ExtResource("2_mvg1l")
-expand_icon = true
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionArea/AreaShape/ProjectileSprite" unique_id=1413770052]
-
 [node name="ProjMiddle" type="Marker2D" parent="." unique_id=1072879033]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=370085567]
+texture = ExtResource("2_tbm3g")
 
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

@@ -1,10 +1,9 @@
-res://scenes/Player/player.tscn
+res://scenes/Projectile/projectile.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scripts/Player/player_movement.gd
-res://scripts/Player/player_manager.gd
-res://scenes/main game/The game world/the_world.tscn
-res://scripts/global/GlobalhitMarker.gd
-res://scenes/Weapons/weapon.tscn
+res://scripts/Projectiles/projectile.gd
+res://scenes/Weapons/guns/assault_rifle.tscn
+res://scenes/Weapons/spirit_weapons/STS_swift.tscn
+res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn
 res://scripts/Weapons/weapon.gd
