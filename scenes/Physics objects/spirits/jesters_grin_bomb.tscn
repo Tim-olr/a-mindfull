@@ -1,22 +1,143 @@
 [gd_scene format=3 uid="uid://bhlmdcdtc0aiy"]
 
 [ext_resource type="Script" uid="uid://cnbc22a0lhy43" path="res://scripts/Physics objects/spirits/jesters_grin_bomb.gd" id="1_u8lse"]
-[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_usoa1"]
+[ext_resource type="Texture2D" uid="uid://cog51xqj66r5" path="res://assets/other/projectiles/jesters_grin_bomb.png" id="2_usoa1"]
+[ext_resource type="Texture2D" uid="uid://cybyemvq7ucnh" path="res://assets/other/projectiles/explosion-Sheet.png" id="3_lwwf6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwwf6"]
 size = Vector2(109, 110)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usoa1"]
-radius = 232.05388
+radius = 32.01562
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6fku"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pswqp"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0y87"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c12dq"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70osh"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juk1v"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36c36"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg2ga"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0bev"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as37f"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo316"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjbml"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n23uq"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0clv0"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5mm1"]
+atlas = ExtResource("3_lwwf6")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1rksq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6fku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pswqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0y87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c12dq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70osh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juk1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36c36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg2ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0bev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as37f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bo316")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjbml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n23uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0clv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5mm1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}, {
+"frames": [],
+"loop": false,
+"name": &"nun",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_usoa1"]
 size = Vector2(123, 128)
 
 [node name="JestersGrin_bomb" type="RigidBody2D" unique_id=1957764331]
 script = ExtResource("1_u8lse")
+Name = "Jesters grin bomb"
 can_pass_through = true
 stops_bullets = false
-max_health = 1
+max_health = 1000000
+health = 1000000
 has_on_touch = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=956353856]
@@ -24,6 +145,7 @@ texture = ExtResource("2_usoa1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=805034537]
 position = Vector2(-0.5, 0)
+scale = Vector2(0.13, 0.13)
 shape = SubResource("RectangleShape2D_lwwf6")
 
 [node name="ExplodeArea" type="Area2D" parent="." unique_id=754266403]
@@ -31,10 +153,16 @@ shape = SubResource("RectangleShape2D_lwwf6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeArea" unique_id=1685185609]
 shape = SubResource("CircleShape2D_usoa1")
 
+[node name="explosionanim" type="AnimatedSprite2D" parent="ExplodeArea" unique_id=972576073]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1rksq")
+animation = &"nun"
+
 [node name="Area2D" type="Area2D" parent="." unique_id=1229402049]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1448121380]
 position = Vector2(-0.5, 0)
+scale = Vector2(0.24, 0.24)
 shape = SubResource("RectangleShape2D_usoa1")
 
 [connection signal="area_entered" from="ExplodeArea" to="." method="_on_explode_area_area_entered"]

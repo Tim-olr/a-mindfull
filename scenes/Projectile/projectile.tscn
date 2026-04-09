@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://kqprvh4qgnic"]
 
 [ext_resource type="Script" uid="uid://b2jv88fufhq1" path="res://scripts/Projectiles/projectile.gd" id="1_gmfsf"]
-[ext_resource type="Texture2D" uid="uid://c6atimakc5b4a" path="res://assets/other/projectiles/bullet.png" id="2_tbm3g"]
+[ext_resource type="Texture2D" uid="uid://3s26xrerirrd" path="res://assets/other/projectiles/generic_bullet.png" id="2_tbm3g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvg1l"]
-size = Vector2(12, 6)
+size = Vector2(8, 8)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=1162203950 node_paths=PackedStringArray("projectile_sprite")]
 script = ExtResource("1_gmfsf")
 projectile_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=370085567]
+texture = ExtResource("2_tbm3g")
 
 [node name="LifeTime" type="Timer" parent="." unique_id=1214404922]
 one_shot = true
@@ -19,8 +22,5 @@ one_shot = true
 shape = SubResource("RectangleShape2D_mvg1l")
 
 [node name="ProjMiddle" type="Marker2D" parent="." unique_id=1072879033]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=370085567]
-texture = ExtResource("2_tbm3g")
 
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

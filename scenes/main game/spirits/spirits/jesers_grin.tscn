@@ -106,7 +106,8 @@ size = Vector2(136, 136)
 script = ExtResource("1_nkjp1")
 Name = "Jesters Grin"
 attackType = "Ranged"
-activeAbilityCooldown = 20.0
+size = Vector2(0.2, 0.2)
+activeAbilityCooldown = 1.0
 hasWeapon = true
 weaponScene = ExtResource("2_0o01j")
 

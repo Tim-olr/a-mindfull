@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://scripts/Weapons/spirit_weapons/sts_swift.gd" id="1_mk8rp"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_eojiy"]
+[ext_resource type="Texture2D" uid="uid://dovaah8hg2ib7" path="res://assets/other/projectiles/sts_swift_proj.png" id="3_nfomp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eojiy"]
 size = Vector2(86, 20)
@@ -20,6 +21,7 @@ description = "a"
 Name = "a"
 bulletScene = ExtResource("2_eojiy")
 knockback_force = 300.0
+projectile_sprite = ExtResource("3_nfomp")
 doRandomRotAndPos = true
 pos_scatter_radius = 25.0
 

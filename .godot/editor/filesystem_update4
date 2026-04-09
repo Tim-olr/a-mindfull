@@ -2,8 +2,11 @@ res://scenes/Projectile/projectile.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scripts/Projectiles/projectile.gd
-res://scenes/Weapons/guns/assault_rifle.tscn
 res://scenes/Weapons/spirit_weapons/STS_swift.tscn
-res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn
-res://scripts/Weapons/weapon.gd
+res://scenes/Player/player.tscn
+res://scenes/enemy/enemies/bonkus.tscn
+res://scenes/Weapons/guns/burst_rifle.tscn
+res://scenes/Physics objects/spirits/jesters_grin_bomb.tscn
+res://scenes/main game/spirits/spirits/jesers_grin.tscn
+res://scripts/Physics objects/spirits/jesters_grin_bomb.gd
+res://scripts/Projectiles/projectile.gd

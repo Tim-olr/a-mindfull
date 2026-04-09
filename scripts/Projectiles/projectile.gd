@@ -221,11 +221,12 @@ func do_damage(hitBody):
 	var id = hitBody.get_instance_id()
 	var total_damage = damage
 	if do_more_damage_to_enemies_with_hp_percent:
-		var enemy_stats = hitBody.get("stats")
-		if enemy_stats != null and enemy_stats.max_hp > 0:
-			var hp_percent = (float(enemy_stats.hp) / float(enemy_stats.max_hp)) * 100.0
-			if hp_percent >= enemy_health_percentage_min:
-				total_damage *= damage_mult_for_dmdtewhp
+		if hitBody.is_in_group("enemy"):
+			var enemy_stats = hitBody.get("stats")
+			if enemy_stats != null and enemy_stats.max_hp > 0:
+				var hp_percent = (float(enemy_stats.hp) / float(enemy_stats.max_hp)) * 100.0
+				if hp_percent >= enemy_health_percentage_min:
+					total_damage *= damage_mult_for_dmdtewhp
 	if hitBody.is_in_group("enemy") or hitBody.is_in_group("spirit"):
 		if hitBody.has_method("damage"):
 			hitBody.damage(total_damage, get_parent().get_parent(), shake)
