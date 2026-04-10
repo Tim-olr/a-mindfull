@@ -6,8 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvg1l"]
 size = Vector2(8, 8)
 
-[node name="Projectile" type="CharacterBody2D" unique_id=1162203950 node_paths=PackedStringArray("projectile_sprite")]
+[node name="Projectile" type="CharacterBody2D" unique_id=1162203950 node_paths=PackedStringArray("collision_area", "area_shape", "projectile_sprite")]
 script = ExtResource("1_gmfsf")
+collision_area = NodePath("CollisionArea")
+area_shape = NodePath("CollisionArea/AreaShape")
 projectile_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=370085567]

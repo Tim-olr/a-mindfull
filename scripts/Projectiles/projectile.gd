@@ -8,8 +8,8 @@ var rot: float = 0.0
 @export var lifetime: float
 @export var projectileSpeed: float
 @export var pierce: int
-@onready var collision_area: Area2D = $CollisionArea
-@onready var area_shape: CollisionShape2D = $CollisionArea/AreaShape
+@export var collision_area: Area2D
+@export var area_shape: CollisionShape2D
 var shooter_group: String = ""
 var knockback_force: float = 0.0
 @export var projectile_sprite: Sprite2D

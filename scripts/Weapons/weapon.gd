@@ -8,7 +8,6 @@ class_name Weapon
 @export var bulletAmountMod: int
 @export var rotationAdditionMod: float
 @export var projectileSpeedMod: float
-@export var bulletSizeMod: Vector2
 @export var shootCooldown: float
 @export var gun: bool
 @export var melee: bool
@@ -20,6 +19,7 @@ class_name Weapon
 @export var cameraShakeAmount: float
 @export var knockback_force: float = 250.0
 @export var shoot_in_circle: bool = false
+@export var custom_collision_sizes: Vector2 = Vector2(1.0, 1.0)
 
 @export_category("other")
 @export var do_more_damage_to_enemies_with_hp_percent: bool = false
@@ -267,14 +267,12 @@ func shoot() -> void:
 	var pierce: int
 	var attack_damage: float
 	var bullet_lifetime: float
-	var bullet_size: Vector2
 	total_bullets    = shooter.stats.bulletAmount + bulletAmountMod
 	spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
 	projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
 	pierce           = shooter.stats.pierce + pierceMod
 	attack_damage    = shooter.stats.attackDamage + damageMod + rarity_damage
 	bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
-	bullet_size      = bulletSizeMod
 	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
 	var aim_pos: Vector2
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
@@ -326,7 +324,7 @@ func shoot() -> void:
 		bullet.pierce               = pierce
 		bullet.damage               = attack_damage
 		bullet.lifetime             = bullet_lifetime
-		bullet.set_scale(bullet_size)
+		bullet.collision_area.set_scale(custom_collision_sizes)
 		var final_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else spawn_pos
 		if pos_scatter_radius > 0.0:
 			final_pos += Vector2(randf() * pos_scatter_radius, 0.0).rotated(base_rot)
@@ -348,7 +346,7 @@ func shoot() -> void:
 				if is_instance_valid(get_tree()):
 					await get_tree().process_frame
 		if doConsecShooting:
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.2).timeout
 
 
 func _on_attack_cooldown_timeout() -> void:
