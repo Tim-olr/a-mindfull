@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cboxieqie8byi"
-path="res://.godot/imported/STS_Chunk_proj.png-b5941d1b0a51a0f2b5420579d47edd56.ctex"
+uid="uid://ci8kkw6qubdf6"
+path="res://.godot/imported/SYE_proj-Sheet.png-dbf844a052377e06cbe1b201e7b2f725.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/projectiles/STS_Chunk_proj.png"
-dest_files=["res://.godot/imported/STS_Chunk_proj.png-b5941d1b0a51a0f2b5420579d47edd56.ctex"]
+source_file="res://assets/other/projectiles/SYE_proj-Sheet.png"
+dest_files=["res://.godot/imported/SYE_proj-Sheet.png-dbf844a052377e06cbe1b201e7b2f725.ctex"]
 
 [params]
 

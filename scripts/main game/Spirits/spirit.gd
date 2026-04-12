@@ -8,6 +8,7 @@ class_name Spirit
 @export var out: bool = false
 @export var canGetAttacked: bool = true
 @export var size:= Vector2(1,1)
+@export var sprites: AnimatedSprite2D
 @export_category("ability")
 @export var activeAbilityCooldown: float
 @export var hasAbilityDuration: bool
@@ -49,9 +50,9 @@ func _ready() -> void:
 	z_index = 2
 	canAbility = true
 	enemycollision.disabled = true
+	add_to_group("spirit")
 
 func _process(_delta: float) -> void:
-	look_at(get_global_mouse_position())
 	bullet_start_pos.global_position = global_position
 	bullet_start_pos.look_at(get_global_mouse_position())
 	if out:
@@ -59,6 +60,8 @@ func _process(_delta: float) -> void:
 			attack()
 		if Input.is_action_just_pressed("spirit_ability"):
 			active_ability()
+	if !sprites.is_playing():
+		sprites.play("default")
 
 func _physics_process(delta: float) -> void:
 	if !host:
@@ -73,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	if out:
 		target_pos -= move_dir * follow_distance
 	global_position = global_position.lerp(target_pos, smooth_speed * delta)
-	rotation = lerp_angle(rotation, move_dir.angle(), smooth_speed * delta)
+	#rotation = lerp_angle(rotation, move_dir.angle(), smooth_speed * delta)
 
 func damage(amount, damager, shake):
 	GlobalPlayer.manager.spirit_damage(amount, damager, shake)

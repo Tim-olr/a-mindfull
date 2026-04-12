@@ -12,14 +12,15 @@ var rot: float = 0.0
 @export var area_shape: CollisionShape2D
 var shooter_group: String = ""
 var knockback_force: float = 0.0
-@export var projectile_sprite: Sprite2D
+var projectile_sprite_scene: PackedScene = null
+var has_no_rot: bool = false
 @onready var proj_middle: Marker2D = $ProjMiddle
+
+@export var local_proj: AnimatedSprite2D
 
 @export var txtr: Texture2D
 
 var shake
-var projectile_sprite_size := Vector2(0, 0)
-
 var targets_hit_times: Dictionary = {}
 
 @export_enum("Constant", "Accelerate", "Decelerate") var speed_mode: int = 0
@@ -35,16 +36,7 @@ var damage_mult_for_dmdtewhp: float = 0.0
 
 var _initial_speed: float = 0.0
 var _elapsed: float = 0.0
-
-var is_laser: bool = false
-var laser_max_length: float = 400.0
-var laser_width: float = 4.0
-var canPhaseThroughWall: bool = false
-
-var is_attached_to_shooter: bool = false
-var attached_shooter: Node = null
-
-var _laser_length: float = 0.0
+var _sprite: AnimatedSprite2D = null
 
 func _ready() -> void:
 	if rot == null:
@@ -53,13 +45,16 @@ func _ready() -> void:
 	_elapsed = 0.0
 	if lifetime > 0.0:
 		life_time.start(lifetime)
-	collision_area.monitoring  = true
+	collision_area.monitoring = true
 	collision_area.monitorable = true
-	if is_laser:
-		if shooter_group == "player":
-			projectile_sprite.global_position = proj_middle.global_position
-		elif shooter_group == "spirit":
-			projectile_sprite.global_position = collision_area.global_position
+	if projectile_sprite_scene != null:
+		_sprite = projectile_sprite_scene.instantiate()
+		add_child(_sprite)
+		_sprite.play("default")
+		local_proj.hide()
+	elif projectile_sprite_scene == null: local_proj.show()
+	if has_no_rot:
+		rotation = 0.0
 
 func _physics_process(delta: float):
 	_elapsed += delta
@@ -68,95 +63,11 @@ func _physics_process(delta: float):
 		projectileSpeed = _initial_speed * lerp(1.0, end_speed_multiplier, t)
 	if rot == null:
 		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
-	if is_laser:
-		_handle_laser_behavior()
-		projectile_sprite.size = projectile_sprite_size
-	else:
-		velocity = Vector2(projectileSpeed, 0).rotated(rot)
-		move_and_slide()
-		_check_overlaps()
-
-func _handle_laser_behavior() -> void:
-	if is_attached_to_shooter and attached_shooter and attached_shooter.is_inside_tree():
-		global_position = attached_shooter.global_position
-		if attached_shooter.is_in_group("player") or attached_shooter.is_in_group("spirit"):
-			rot = (get_global_mouse_position() - global_position).angle()
-		elif attached_shooter.is_in_group("enemy") and GlobalPlayer.player:
-			rot = (GlobalPlayer.player.global_position - global_position).angle()
-		rotation = rot
-	var dir = Vector2(1, 0).rotated(rot)
-	var max_len = laser_max_length
-	var space_state = get_world_2d().direct_space_state
-	if not canPhaseThroughWall:
-		var exclude: Array = [self, get_parent()]
-		var origin = global_position
-		var remaining = max_len
-		var iterations = 0
-		while remaining > 0 and iterations < 12:
-			var to_point = origin + dir * remaining
-			var ray_params = PhysicsRayQueryParameters2D.new()
-			ray_params.from = origin
-			ray_params.to = to_point
-			ray_params.exclude = exclude
-			ray_params.collide_with_bodies = true
-			ray_params.collide_with_areas = true
-			var res = space_state.intersect_ray(ray_params)
-			var collider = res.get("collider")
-			if collider and collider.is_in_group("wall"):
-				max_len = global_position.distance_to(res.position)
-				break
-			if collider:
-				exclude.append(collider)
-				origin = res.position + dir * 0.01
-				remaining = max_len - global_position.distance_to(origin)
-			else:
-				break
-			iterations += 1
-	_laser_length = max_len
-	var shape = RectangleShape2D.new()
-	shape.extents = Vector2(_laser_length / 2.0, laser_width / 2.0)
-	var center = global_position + dir * (_laser_length / 2.0)
-	var transform = Transform2D(rot, center)
-	var shape_params = PhysicsShapeQueryParameters2D.new()
-	shape_params.shape = shape
-	shape_params.transform = transform
-	shape_params.exclude = [self, get_parent()]
-	shape_params.collide_with_bodies = true
-	shape_params.collide_with_areas = true
-	var collisions = space_state.intersect_shape(shape_params, 32)
-	var overlapping_ids: Dictionary = {}
-	for col in collisions:
-		var body = col.get("collider")
-		if body == null:
-			continue
-		var should_process = false
-		if shooter_group == "player" or shooter_group == "spirit":
-			if body.is_in_group("enemy"):
-				should_process = true
-		elif shooter_group == "enemy":
-			if body.is_in_group("player") or body.is_in_group("spirit"):
-				should_process = true
-		if not should_process:
-			continue
-		var id = body.get_instance_id()
-		overlapping_ids[id] = true
-		if not canKeepTicking:
-			if not targets_hit_times.has(id):
-				do_damage(body)
-				apply_knockback_to_target(body)
-		else:
-			var last_hit_time: float = -9999.0
-			if targets_hit_times.has(id):
-				last_hit_time = targets_hit_times[id]
-			if _elapsed - last_hit_time >= tick_interval:
-				do_damage(body)
-				apply_knockback_to_target(body)
-	var to_remove: Array = []
-	for key in targets_hit_times.keys():
-		if not overlapping_ids.has(key):
-			to_remove.append(key)
-	for k in to_remove:
-		targets_hit_times.erase(k)
+	velocity = Vector2(projectileSpeed, 0).rotated(rot)
+	move_and_slide()
+	if has_no_rot:
+		rotation = 0.0
+	_check_overlaps()
 
 func _check_overlaps() -> void:
 	var ignore_groups: Array = [shooter_group]

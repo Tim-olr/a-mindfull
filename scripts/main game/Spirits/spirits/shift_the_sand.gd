@@ -9,14 +9,13 @@ var addedHp
 var addedDmg
 var addedSpd
 var addedDsa
-@onready var mesh_instance_2d: MeshInstance2D = $MeshInstance2D
 
 func flash_color(target: Color) -> void:
-	if not mesh_instance_2d:
+	if not sprites:
 		return
 	var tw = create_tween()
-	tw.tween_property(mesh_instance_2d, "modulate", target, 0.08).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tw.tween_property(mesh_instance_2d, "modulate", Color(1, 1, 1, 1), 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tw.tween_property(sprites, "modulate", target, 0.08).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_property(sprites, "modulate", Color(1, 1, 1, 1), 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 func changeWeap():
 	if weapo and is_instance_valid(weapo):
@@ -25,13 +24,13 @@ func changeWeap():
 		weaponScene = chunkGun
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
-		flash_color(Color(1, 0.85, 0, 1))
+		flash_color(Color(1.0, 0.0, 0.0, 1.0))
 		attack_cooldown_timer.start(stats.attackSpeed)
 	elif mode == 1:
 		weaponScene = swiftGun
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
-		flash_color(Color(0.35, 0.6, 1, 1))
+		flash_color(Color(0.0, 0.403, 0.26, 1.0))
 		attack_cooldown_timer.start(stats.attackSpeed)
 
 func apply_passive():
@@ -65,21 +64,25 @@ func remove_passive():
 		GlobalPlayer.stats.dashAmount -= addedDsa
 
 func active_ability():
-	if mode == 0:
-		remove_passive()
-		mode = 1
-		changeWeap()
-		size = Vector2(0.15, 0.15)
-		set_scale(size)
-		stats.attackSpeed = 0.05
-		stats.canAttack = true
-		apply_passive()
-	elif mode == 1:
-		remove_passive()
-		mode = 0
-		changeWeap()
-		stats.attackSpeed = 0.8
-		stats.canAttack = true
-		size = Vector2(0.2, 0.2)
-		set_scale(size)
-		apply_passive()
+	if canAbility:
+		sprites.play("active")
+		active_ability_timer.start(activeAbilityCooldown)
+		canAbility = false
+		if mode == 0:
+			remove_passive()
+			mode = 1
+			changeWeap()
+			size = Vector2(1, 1)
+			set_scale(size)
+			stats.attackSpeed = 0.05
+			stats.canAttack = true
+			apply_passive()
+		elif mode == 1:
+			remove_passive()
+			mode = 0
+			changeWeap()
+			stats.attackSpeed = 0.8
+			stats.canAttack = true
+			size = Vector2(1.3, 1.3)
+			set_scale(size)
+			apply_passive()

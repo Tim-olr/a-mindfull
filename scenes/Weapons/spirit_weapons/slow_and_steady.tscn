@@ -8,10 +8,10 @@ size = Vector2(86, 20)
 
 [node name="SlowAndSteady" type="Node2D" unique_id=229192784]
 script = ExtResource("1_36jtb")
-damageMod = 10.0
+damageMod = 60.0
 bulletLifeTimeMod = 5.0
-projectileSpeedMod = 75.0
-bulletSizeMod = Vector2(0.3, 0.3)
+bulletAmountMod = 1
+projectileSpeedMod = 25.0
 shootCooldown = 1.0
 gun = true
 description = "slow, heavy dmg"

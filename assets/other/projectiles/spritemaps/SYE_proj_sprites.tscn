@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dwv3bukgyy6oh"]
+
+[ext_resource type="Texture2D" uid="uid://ci8kkw6qubdf6" path="res://assets/other/projectiles/SYE_proj-Sheet.png" id="1_74hfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lesdu"]
+atlas = ExtResource("1_74hfw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbpgt"]
+atlas = ExtResource("1_74hfw")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d61r7"]
+atlas = ExtResource("1_74hfw")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qky7m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lesdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbpgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d61r7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="SyeProjSprites" type="AnimatedSprite2D" unique_id=1526306340]
+sprite_frames = SubResource("SpriteFrames_qky7m")
+frame_progress = 0.21763082

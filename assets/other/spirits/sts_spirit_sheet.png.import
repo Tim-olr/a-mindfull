@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8d0ujqh7vwqy"
-path="res://.godot/imported/SYE_proj.png-9e96ee4375ae4d30633da6c361debd28.ctex"
+uid="uid://cdgorluhellmn"
+path="res://.godot/imported/sts_spirit_sheet.png-36c58adfd8ac455402ac2a9b863247a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/other/projectiles/SYE_proj.png"
-dest_files=["res://.godot/imported/SYE_proj.png-9e96ee4375ae4d30633da6c361debd28.ctex"]
+source_file="res://assets/other/spirits/sts_spirit_sheet.png"
+dest_files=["res://.godot/imported/sts_spirit_sheet.png-36c58adfd8ac455402ac2a9b863247a0.ctex"]
 
 [params]
 

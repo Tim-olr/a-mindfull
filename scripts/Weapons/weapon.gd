@@ -10,12 +10,12 @@ class_name Weapon
 @export var projectileSpeedMod: float
 @export var shootCooldown: float
 @export var gun: bool
-@export var melee: bool
 @export var description: String
 @export var Name: String
 @export_enum("common", "uncommon", "rare", "epic", "legendary") var rarity: int = 0
 @export var bulletScene: PackedScene
 @export var doConsecShooting := false
+@export var consec_shooting_time_between: float = 0.1
 @export var cameraShakeAmount: float
 @export var knockback_force: float = 250.0
 @export var shoot_in_circle: bool = false
@@ -25,7 +25,8 @@ class_name Weapon
 @export var do_more_damage_to_enemies_with_hp_percent: bool = false
 @export var enemy_health_percentage_min: int = 100
 @export var damage_mult_for_dmdtewhp: float = 0.0
-@export var projectile_sprite: Texture2D
+@export var projectile_sprite_scene: PackedScene
+@export var has_no_rot: bool = false
 
 @export var hasInfPierce: bool = false
 @export var canKeepTicking: bool = false
@@ -41,33 +42,20 @@ class_name Weapon
 
 @export_category("Laser Settings")
 @export var is_laser: bool = false
+@export var laserScene: PackedScene
 @export var laser_max_length: float = 400.0
 @export var laser_width: float = 4.0
 @export var canPhaseThroughWall: bool = false
 @export var laser_attach_to_shooter: bool = false
 @export var laser_hold_while_held: bool = false
 
-@export_group("Melee Settings")
-@export var is_swing: bool = false
-@export var is_stab: bool = false
-@export var swing_arc: float = 90.0
-@export var stab_distance: float = 20.0
-@export var attack_duration: float = 0.2
-
 var shooter: Node2D
-var targets_hit: Array[Node] = []
-var melee_active: bool = false
-var detection_area: Area2D
 var isSelected: bool = false
 
 var rarity_damage: float
 
 @onready var attack_cooldown: Timer = $attack_cooldown
 @onready var bullet_stars_pos = $BulletStarsPos
-@onready var melee_hitbox: Area2D = $BulletStarsPos/MeleeHitbox
-
-var original_bullet_pos: Vector2
-var original_bullet_rot: float
 
 var attackable: bool = true
 var resource: ItemResource
@@ -75,17 +63,13 @@ var resource: ItemResource
 
 func _ready() -> void:
 	shooter = get_parent()
-	melee_hitbox.body_entered.connect(_on_melee_hitbox_entered)
-	melee_hitbox.area_entered.connect(_on_melee_hitbox_entered)
-	original_bullet_pos = bullet_stars_pos.position
-	original_bullet_rot = bullet_stars_pos.rotation
-	if shooter.is_in_group("enemy") and melee:
-		detection_area = shooter.get_node_or_null("playerMeleeDetectionArea")
+
 
 func initialize(res: ItemResource) -> void:
 	resource = res
 	rarity = res.rarity
 	rarity_damage += rarity_damage_buff()
+
 
 func _process(_delta: float) -> void:
 	if isSelected:
@@ -100,15 +84,12 @@ func _process(_delta: float) -> void:
 			if Input.is_action_pressed("attack") and shooter.stats.canAttack:
 				perform_attack()
 	elif shooter.is_in_group("spirit"):
-		if melee:
-			global_position = shooter.global_position
-			bullet_stars_pos.look_at(get_global_mouse_position())
-		else:
-			bullet_stars_pos = shooter.bullet_start_pos
-			global_position = shooter.global_position
-			bullet_stars_pos.look_at(get_global_mouse_position())
+		bullet_stars_pos = shooter.bullet_start_pos
+		global_position = shooter.global_position
+		bullet_stars_pos.look_at(get_global_mouse_position())
 		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.stats.canAttack and attackable:
 			perform_attack()
+			shooter.sprites.play("attack")
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
 			bullet_stars_pos.look_at(GlobalPlayer.player.global_position)
@@ -116,24 +97,6 @@ func _process(_delta: float) -> void:
 				var dist = global_position.distance_to(GlobalPlayer.player.global_position)
 				if shooter.stats.canAttack and dist < 1000:
 					perform_attack()
-			elif melee and detection_area:
-				if shooter.stats.canAttack:
-					for body in detection_area.get_overlapping_bodies():
-						if body.is_in_group("player"):
-							perform_attack()
-							break
-
-
-func _get_shooter_attack_speed() -> float:
-	var val = shooter.get("attackSpeed")
-	if typeof(val) == TYPE_FLOAT or typeof(val) == TYPE_INT:
-		return float(val)
-	var stats = shooter.get("stats")
-	if stats != null:
-		var s_val = stats.get("attackSpeed")
-		if typeof(s_val) == TYPE_FLOAT or typeof(s_val) == TYPE_INT:
-			return float(s_val)
-	return 0.5
 
 
 func perform_attack() -> void:
@@ -143,105 +106,6 @@ func perform_attack() -> void:
 		attack_cooldown.start()
 	if gun:
 		shoot()
-	elif melee:
-		var total_attacks = shooter.stats.bulletAmount + bulletAmountMod
-		for i in range(total_attacks):
-			await do_melee_animation()
-			if i < total_attacks - 1:
-				var wait_time = 0.1 if doConsecShooting else attack_duration
-				await get_tree().create_timer(wait_time).timeout
-
-
-func do_melee_animation() -> void:
-	targets_hit.clear()
-	melee_active = true
-	if melee_hitbox:
-		for body in melee_hitbox.get_overlapping_bodies():
-			_on_melee_hitbox_entered(body)
-		for area in melee_hitbox.get_overlapping_areas():
-			_on_melee_hitbox_entered(area)
-	var tween = create_tween()
-	var current_rot: float = 0.0
-	var current_pos: Vector2 = Vector2.ZERO
-	if bullet_stars_pos:
-		current_rot = bullet_stars_pos.rotation
-		current_pos = bullet_stars_pos.position
-	if is_swing and bullet_stars_pos:
-		tween.tween_property(bullet_stars_pos, "rotation", current_rot + deg_to_rad(swing_arc / 2.0), attack_duration / 2.0)
-		tween.tween_property(bullet_stars_pos, "rotation", current_rot - deg_to_rad(swing_arc / 2.0), attack_duration / 2.0)
-		tween.tween_property(bullet_stars_pos, "rotation", original_bullet_rot, 0.05)
-	elif is_stab and bullet_stars_pos:
-		tween.tween_property(bullet_stars_pos, "position", current_pos + Vector2(stab_distance, 0.0).rotated(current_rot), attack_duration / 2.0)
-		tween.tween_property(bullet_stars_pos, "position", original_bullet_pos, attack_duration / 2.0)
-	await tween.finished
-	shooter.stats.canAttack = true
-	if bullet_stars_pos:
-		bullet_stars_pos.position = original_bullet_pos
-		bullet_stars_pos.rotation = original_bullet_rot
-	melee_active = false
-
-
-func _on_melee_hitbox_entered(body: Node) -> void:
-	if !melee_active:
-		return
-	var target = _find_entity_root(body)
-	if targets_hit.has(target) or target == shooter:
-		return
-	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
-		if target.is_in_group("enemy"):
-			hit(target)
-	elif shooter.is_in_group("enemy"):
-		if target.is_in_group("player") or target.is_in_group("spirit"):
-			hit(target)
-
-
-func hit(hitBody: Node) -> void:
-	do_damage(hitBody)
-	apply_knockback_to_target(hitBody)
-
-
-func do_damage(hitBody: Node) -> void:
-	var target = _find_entity_root(hitBody)
-	var total_damage = shooter.stats.attackDamage + damageMod + rarity_damage
-	if target.is_in_group("enemy"):
-		if target.has_method("damage"):
-			target.damage(total_damage)
-		elif target.get_parent() and target.get_parent().has_method("damage"):
-			target.get_parent().damage(total_damage)
-		targets_hit.append(target)
-	elif target.is_in_group("player"):
-		var mgr = target.get("manager")
-		if mgr and mgr.has_method("damage"):
-			mgr.damage(total_damage, get_parent(), cameraShakeAmount)
-		elif target.get_parent():
-			var pmgr = target.get_parent().get("manager")
-			if pmgr and pmgr.has_method("damage"):
-				pmgr.damage(total_damage, get_parent(), cameraShakeAmount)
-		targets_hit.append(target)
-	elif target.is_in_group("spirit"):
-		if target.has_method("damage"):
-			target.damage(total_damage, get_parent(), cameraShakeAmount)
-		targets_hit.append(target)
-
-
-func apply_knockback_to_target(hitBody: Node) -> void:
-	var target = _find_entity_root(hitBody)
-	if knockback_force <= 0.0:
-		return
-	var knockback_direction = (target.global_position - shooter.global_position).normalized()
-	if target.is_in_group("enemy"):
-		if target.has_method("apply_knockback"):
-			target.apply_knockback(knockback_direction, knockback_force)
-		elif target.get_parent() and target.get_parent().has_method("apply_knockback"):
-			target.get_parent().apply_knockback(knockback_direction, knockback_force)
-	elif target.is_in_group("player"):
-		var mgr = target.get("manager")
-		if mgr and mgr.has_method("apply_knockback"):
-			mgr.apply_knockback(knockback_direction, knockback_force)
-		elif target.get_parent():
-			var pmgr = target.get_parent().get("manager")
-			if pmgr and pmgr.has_method("apply_knockback"):
-				pmgr.apply_knockback(knockback_direction, knockback_force)
 
 
 func _evenly_spaced_angle(base_rot: float, index: int, count: int, cone: float) -> float:
@@ -261,19 +125,20 @@ func rarity_damage_buff():
 
 
 func shoot() -> void:
-	var total_bullets: int
-	var spread_angle_deg: float
-	var projectile_speed: float
-	var pierce: int
-	var attack_damage: float
-	var bullet_lifetime: float
-	total_bullets    = shooter.stats.bulletAmount + bulletAmountMod
-	spread_angle_deg = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
-	projectile_speed = shooter.stats.projectileSpeed + projectileSpeedMod
-	pierce           = shooter.stats.pierce + pierceMod
-	attack_damage    = shooter.stats.attackDamage + damageMod + rarity_damage
-	bullet_lifetime  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
-	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
+	if is_laser:
+		_shoot_laser()
+	else:
+		_shoot_projectile()
+
+
+func _shoot_projectile() -> void:
+	var total_bullets: int      = shooter.stats.bulletAmount + bulletAmountMod
+	var spread_angle_deg: float = GlobalPlayer.stats.rotationAddition + rotationAdditionMod
+	var projectile_speed: float = shooter.stats.projectileSpeed + projectileSpeedMod
+	var pierce: int             = shooter.stats.pierce + pierceMod
+	var attack_damage: float    = shooter.stats.attackDamage + damageMod + rarity_damage
+	var bullet_lifetime: float  = shooter.stats.bulletLifeTime + bulletLifeTimeMod
+	var spawn_pos: Vector2      = bullet_stars_pos.global_position if bullet_stars_pos else global_position
 	var aim_pos: Vector2
 	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
 		aim_pos = get_global_mouse_position()
@@ -281,12 +146,14 @@ func shoot() -> void:
 		aim_pos = GlobalPlayer.player.global_position
 	else:
 		aim_pos = spawn_pos + Vector2(1.0, 0.0).rotated(bullet_stars_pos.rotation if bullet_stars_pos else rotation)
-	var base_rot: float = (aim_pos - spawn_pos).angle()
+	var base_rot: float     = (aim_pos - spawn_pos).angle()
 	var spread_angle: float = deg_to_rad(spread_angle_deg)
 	if spread_angle < 0.0:
 		spread_angle = abs(spread_angle)
 	if spread_angle > PI:
 		spread_angle = PI
+	if shooter.is_in_group("player"):
+		GlobalPlayer.camera.apply_shake(cameraShakeAmount)
 	for i in range(total_bullets):
 		var bullet = bulletScene.instantiate()
 		if shooter.is_in_group("player"):
@@ -302,10 +169,8 @@ func shoot() -> void:
 		bullet.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
 		bullet.enemy_health_percentage_min               = GlobalPlayer.stats.enemy_health_percentage_min
 		bullet.damage_mult_for_dmdtewhp                  = GlobalPlayer.stats.damage_mult_for_dmdtewhp
-		if projectile_sprite != null:
-			bullet.projectile_sprite.texture = projectile_sprite
-		if shooter.is_in_group("player"):
-			GlobalPlayer.camera.apply_shake(cameraShakeAmount)
+		bullet.projectile_sprite_scene                   = projectile_sprite_scene
+		bullet.has_no_rot                                = has_no_rot
 		var current_rot: float = base_rot
 		if shoot_in_circle:
 			current_rot = i * deg_to_rad(spread_angle_deg) * 2.0
@@ -328,25 +193,63 @@ func shoot() -> void:
 		var final_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else spawn_pos
 		if pos_scatter_radius > 0.0:
 			final_pos += Vector2(randf() * pos_scatter_radius, 0.0).rotated(base_rot)
-		bullet.global_position        = final_pos
-		bullet.shake                  = cameraShakeAmount
-		bullet.is_laser               = is_laser
-		bullet.laser_max_length       = laser_max_length
-		bullet.laser_width            = laser_width
-		bullet.projectile_sprite_size = Vector2(laser_max_length, laser_width)
-		bullet.canPhaseThroughWall    = canPhaseThroughWall
-		bullet.is_attached_to_shooter = laser_attach_to_shooter
-		bullet.attached_shooter       = shooter if laser_attach_to_shooter else null
+		bullet.global_position = final_pos
+		bullet.shake           = cameraShakeAmount
 		if !GameManager.is_in_lobby:
 			GlobalWorld.projectiles.add_child(bullet)
-		elif GameManager.is_in_lobby:
+		else:
 			GlobalPlayer.player.get_parent().add_child(bullet)
-		if bullet.is_laser and bullet.is_attached_to_shooter and shooter.is_in_group("player") and laser_hold_while_held:
-			while Input.is_action_pressed("attack"):
-				if is_instance_valid(get_tree()):
-					await get_tree().process_frame
 		if doConsecShooting:
-			await get_tree().create_timer(0.2).timeout
+			await get_tree().create_timer(consec_shooting_time_between).timeout
+
+
+func _shoot_laser() -> void:
+	var spawn_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else global_position
+	var aim_pos: Vector2
+	if shooter.is_in_group("player") or shooter.is_in_group("spirit"):
+		aim_pos = get_global_mouse_position()
+	elif shooter.is_in_group("enemy") and GlobalPlayer.player:
+		aim_pos = GlobalPlayer.player.global_position
+	else:
+		aim_pos = spawn_pos + Vector2(1.0, 0.0).rotated(bullet_stars_pos.rotation if bullet_stars_pos else rotation)
+	var base_rot: float        = (aim_pos - spawn_pos).angle()
+	var attack_damage: float   = shooter.stats.attackDamage + damageMod + rarity_damage
+	var bullet_lifetime: float = shooter.stats.bulletLifeTime + bulletLifeTimeMod
+	var pierce: int            = shooter.stats.pierce + pierceMod
+	if shooter.is_in_group("player"):
+		GlobalPlayer.camera.apply_shake(cameraShakeAmount)
+	var laser = laserScene.instantiate()
+	if shooter.is_in_group("player"):
+		laser.shooter_group = "player"
+	elif shooter.is_in_group("enemy"):
+		laser.shooter_group = "enemy"
+	elif shooter.is_in_group("spirit"):
+		laser.shooter_group = "spirit"
+	laser.rot                    = base_rot
+	laser.rotation               = base_rot
+	laser.damage                 = attack_damage
+	laser.lifetime               = bullet_lifetime
+	laser.pierce                 = pierce
+	laser.knockback_force        = knockback_force
+	laser.hasInfPierce           = hasInfPierce
+	laser.canKeepTicking         = canKeepTicking
+	laser.tick_interval          = tick_interval
+	laser.laser_max_length       = laser_max_length
+	laser.laser_width            = laser_width
+	laser.canPhaseThroughWall    = canPhaseThroughWall
+	laser.is_attached_to_shooter = laser_attach_to_shooter
+	laser.laser_hold_while_held  = laser_hold_while_held
+	laser.attached_shooter       = shooter if laser_attach_to_shooter else null
+	laser.projectile_sprite_scene = projectile_sprite_scene
+	laser.shake                  = cameraShakeAmount
+	laser.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
+	laser.enemy_health_percentage_min               = GlobalPlayer.stats.enemy_health_percentage_min
+	laser.damage_mult_for_dmdtewhp                  = GlobalPlayer.stats.damage_mult_for_dmdtewhp
+	laser.global_position = spawn_pos
+	if !GameManager.is_in_lobby:
+		GlobalWorld.projectiles.add_child(laser)
+	else:
+		GlobalPlayer.player.get_parent().add_child(laser)
 
 
 func _on_attack_cooldown_timeout() -> void:
@@ -362,6 +265,7 @@ func _find_entity_root(n: Node) -> Node:
 			break
 		cur = cur.get_parent()
 	return n
+
 
 func change_rarity(r: int):
 	rarity = r

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://scripts/Weapons/spirit_weapons/sts_swift.gd" id="1_mk8rp"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_eojiy"]
-[ext_resource type="Texture2D" uid="uid://dovaah8hg2ib7" path="res://assets/other/projectiles/sts_swift_proj.png" id="3_nfomp"]
+[ext_resource type="PackedScene" uid="uid://cugsnng3qlmlx" path="res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn" id="3_nfomp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eojiy"]
 size = Vector2(86, 20)
@@ -10,20 +10,20 @@ size = Vector2(86, 20)
 [node name="StsSwift" type="Node2D" unique_id=582732314]
 script = ExtResource("1_mk8rp")
 damageMod = -7.0
-bulletLifeTimeMod = 1.0
+bulletLifeTimeMod = 0.5
 bulletAmountMod = 8
 rotationAdditionMod = 10.0
 projectileSpeedMod = 200.0
-bulletSizeMod = Vector2(0.8, 0.8)
-shootCooldown = 0.5
+shootCooldown = 0.3
 gun = true
 description = "a"
 Name = "a"
 bulletScene = ExtResource("2_eojiy")
-knockback_force = 300.0
-projectile_sprite = ExtResource("3_nfomp")
+knockback_force = 100.0
+custom_collision_sizes = Vector2(1.2, 1.2)
+projectile_sprite_scene = ExtResource("3_nfomp")
 doRandomRotAndPos = true
-pos_scatter_radius = 25.0
+pos_scatter_radius = 30.0
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=624585340]
 one_shot = true

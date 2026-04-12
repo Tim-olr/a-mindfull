@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cj07e6dbe35xf"]
 
-[ext_resource type="Script" uid="uid://d1nawydecsmi7" path="res://spirit-game-project/scripts/Weapons/spirit_weapons/keep_me_close.gd" id="1_1sh4j"]
-[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://spirit-game-project/scenes/Projectile/projectile.tscn" id="2_t14rp"]
+[ext_resource type="Script" uid="uid://d1nawydecsmi7" path="res://scripts/Weapons/spirit_weapons/keep_me_close.gd" id="1_1sh4j"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_t14rp"]
+[ext_resource type="PackedScene" uid="uid://xtt53okqaoh3" path="res://assets/other/projectiles/spritemaps/KMC_sprites.tscn" id="3_848gy"]
+[ext_resource type="PackedScene" uid="uid://bsmiimrqb81t5" path="res://scenes/Projectile/LaserProjectile.tscn" id="3_u50ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d48wv"]
 size = Vector2(86, 20)
@@ -10,15 +12,17 @@ size = Vector2(86, 20)
 script = ExtResource("1_1sh4j")
 damageMod = 10.0
 bulletLifeTimeMod = 5.0
-bulletSizeMod = Vector2(1, 1)
-shootCooldown = 0.5
+shootCooldown = 2.0
 gun = true
 bulletScene = ExtResource("2_t14rp")
+projectile_sprite_scene = ExtResource("3_848gy")
 hasInfPierce = true
 canKeepTicking = true
 tick_interval = 1.0
 is_laser = true
-laser_width = 40.0
+laserScene = ExtResource("3_u50ao")
+laser_max_length = 160.0
+laser_width = 16.0
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=1285666566]
 one_shot = true

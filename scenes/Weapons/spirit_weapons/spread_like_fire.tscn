@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://xfmjjvo61u83" path="res://scripts/Weapons/spirit_weapons/spread_like_fire.gd" id="1_apfdj"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_x8dtx"]
+[ext_resource type="PackedScene" uid="uid://df2mywph5xba0" path="res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn" id="3_0eobb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8dtx"]
 size = Vector2(86, 20)
@@ -12,13 +13,14 @@ damageMod = 0.1
 bulletLifeTimeMod = 0.7
 bulletAmountMod = 2
 rotationAdditionMod = 30.0
-projectileSpeedMod = 300.0
-bulletSizeMod = Vector2(0.1, 0.1)
+projectileSpeedMod = 200.0
 gun = true
 description = "fire!"
 Name = "spread like fire"
 bulletScene = ExtResource("2_x8dtx")
-knockback_force = 100.0
+knockback_force = 50.0
+projectile_sprite_scene = ExtResource("3_0eobb")
+has_no_rot = true
 hasInfPierce = true
 canKeepTicking = true
 doRandomRotAndPos = true

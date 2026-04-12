@@ -1,11 +1,35 @@
-res://scenes/Player/player.tscn
+res://scenes/Weapons/spirit_weapons/TestLaser.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scenes/main game/spirits/spirits/mending_heart.tscn
-res://scenes/Weapons/spirit_weapons/start_your_engine.tscn
-res://scenes/main game/spirits/spirits/start_your_engine.tscn
-res://scripts/main game/Spirits/spirits/start_your_engine.gd
 res://scripts/Weapons/weapon.gd
 res://scenes/Projectile/projectile.tscn
+res://scenes/Projectile/LaserProjectile.tscn
+res://scripts/Projectiles/laser_projectile.gd
+res://scenes/Weapons/weapon.tscn
 res://scripts/Projectiles/projectile.gd
+res://assets/other/projectiles/spritemaps/KMC_sprites.tscn
+res://assets/other/projectiles/spritemaps/sts_chunk_sprites.tscn
+res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn
+res://scenes/Weapons/spirit_weapons/STS_swift.tscn
+res://scenes/Player/player.tscn
+res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn
+res://scenes/main game/spirits/spirits/silver_bullet.tscn
+res://scripts/main game/Spirits/spirits/silver_bullet.gd
+res://scenes/Weapons/spirit_weapons/silver_bullet.tscn
+res://scripts/main game/Spirits/spirit.gd
+res://assets/other/projectiles/spritemaps/SYE_proj_sprites.tscn
+res://scenes/Weapons/spirit_weapons/start_your_engine.tscn
+res://scenes/main game/spirits/spirits/slow_and_steady.tscn
+res://scenes/Weapons/spirit_weapons/slow_and_steady.tscn
+res://scripts/main game/Spirits/spirits/slow_and_steady.gd
+res://scenes/main game/spirits/spirits/spread_like_fire.tscn
+res://scenes/Weapons/spirit_weapons/slf_fire_ring.tscn
+res://scenes/Weapons/spirit_weapons/spread_like_fire.tscn
+res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
+res://scenes/Weapons/melee/knife.tscn
+res://scenes/enemy/enemies/ardy.tscn
+res://scenes/main game/Spawner/enemy_spawner.tscn
+res://scenes/enemy/enemies/bonkus.tscn
+res://scenes/main game/spirits/spirits/shift_the_sand.tscn
+res://scripts/main game/Spirits/spirits/shift_the_sand.gd

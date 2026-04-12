@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dfbpffafhyu4r"]
+
+[ext_resource type="Texture2D" uid="uid://dl6r0gw0m2vo6" path="res://assets/other/projectiles/STS_Chunk_proj-Sheet.png" id="1_b3odv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juf6l"]
+atlas = ExtResource("1_b3odv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyr6p"]
+atlas = ExtResource("1_b3odv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1osx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juf6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyr6p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StsChunkSprites" type="AnimatedSprite2D" unique_id=756121205]
+sprite_frames = SubResource("SpriteFrames_1osx3")
+frame_progress = 0.17347004

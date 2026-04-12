@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bwr6ybe2ea4mf" path="res://scripts/enemy/enemies/bonkus.gd" id="1_1yn7j"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_wqe0a"]
 [ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_ihpvw"]
-[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://scenes/Weapons/melee/knife.tscn" id="3_tk08l"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_v4h5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihpvw"]
@@ -22,7 +21,6 @@ Name = "Bonkus"
 texture = ExtResource("2_wqe0a")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
-weapon = ExtResource("3_tk08l")
 shard_amount = 50.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=496845371 groups=["enemy"]]

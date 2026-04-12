@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c2o28nt1cyagi" path="res://scripts/Weapons/spirit_weapons/start_your_engine.gd" id="1_r1j4r"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_ildw1"]
-[ext_resource type="Texture2D" uid="uid://b8d0ujqh7vwqy" path="res://assets/other/projectiles/SYE_proj.png" id="3_t80ni"]
+[ext_resource type="PackedScene" uid="uid://dwv3bukgyy6oh" path="res://assets/other/projectiles/spritemaps/SYE_proj_sprites.tscn" id="3_t80ni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ildw1"]
 size = Vector2(86, 20)
@@ -17,8 +17,10 @@ shootCooldown = 1.0
 gun = true
 bulletScene = ExtResource("2_ildw1")
 doConsecShooting = true
-custom_collision_sizes = Vector2(3, 3)
-projectile_sprite = ExtResource("3_t80ni")
+consec_shooting_time_between = 0.3
+knockback_force = 100.0
+custom_collision_sizes = Vector2(2, 2)
+projectile_sprite_scene = ExtResource("3_t80ni")
 hasInfPierce = true
 canKeepTicking = true
 tick_interval = 0.7

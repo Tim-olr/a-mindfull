@@ -105,7 +105,9 @@ size = Vector2(136, 136)
 [node name="SPREAD_LIKE_FIRE" type="CharacterBody2D" unique_id=160551940 groups=["spirit"]]
 script = ExtResource("1_vl8ty")
 Name = "spread like fire"
+size = Vector2(0.2, 0.2)
 activeAbilityCooldown = 5.0
+hasWeapon = true
 weaponScene = ExtResource("2_mqpfr")
 metadata/_custom_type_script = "uid://odgjkiyrneke"
 

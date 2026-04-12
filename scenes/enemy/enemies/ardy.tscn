@@ -2,33 +2,30 @@
 
 [ext_resource type="Script" uid="uid://h37umafjgmrp" path="res://scripts/enemy/enemies/ardy.gd" id="1_pqvuk"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_bjdtj"]
-[ext_resource type="PackedScene" uid="uid://bufkm578dapyu" path="res://scenes/Weapons/melee/knife.tscn" id="3_bjdtj"]
 [ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_eotki"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_eotki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_710da"]
-size = Vector2(87, 84)
+size = Vector2(20, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_leqai"]
-size = Vector2(113, 114)
+size = Vector2(41, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydsit"]
-size = Vector2(91, 86)
+size = Vector2(14, 14)
 
 [node name="Ardy" type="CharacterBody2D" unique_id=1356096532 node_paths=PackedStringArray("area", "base") groups=["enemy"]]
-scale = Vector2(0.2, 0.2)
 script = ExtResource("1_pqvuk")
 Name = "Ardy"
 texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
-weapon = ExtResource("3_bjdtj")
 shard_amount = 10.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=58544561 groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1310979559]
-position = Vector2(-0.5, 0)
+position = Vector2(-1, 0.5)
 shape = SubResource("RectangleShape2D_710da")
 
 [node name="attack_speed" type="Timer" parent="." unique_id=877069780]
@@ -42,7 +39,7 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1818037811]
 position = Vector2(-1, 0.5)
-scale = Vector2(0.703125, 0.664063)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_bjdtj")
 
 [node name="EnemyStats" type="Node2D" parent="." unique_id=1233673918]
@@ -67,11 +64,11 @@ max_speed = 100000.0
 [node name="playerMeleeDetectionArea" type="Area2D" parent="." unique_id=2125068619]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea" unique_id=489679655]
-position = Vector2(0.5, 3)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_leqai")
 
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=384415726]
-position = Vector2(0.5, 1)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ydsit")
 
 [node name="UI enemy" type="Control" parent="." unique_id=1512633262]
@@ -82,10 +79,11 @@ offset_bottom = 40.0
 
 [node name="HealthBar" parent="UI enemy" unique_id=387592992 instance=ExtResource("5_eotki")]
 layout_mode = 0
-offset_left = -122.0
-offset_top = -114.0
-offset_right = 118.0
-offset_bottom = -87.0
+offset_left = -26.0
+offset_top = -22.0
+offset_right = 214.0
+offset_bottom = 5.0
+scale = Vector2(0.2, 0.2)
 
 [connection signal="timeout" from="attack_speed" to="." method="_on_attack_speed_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

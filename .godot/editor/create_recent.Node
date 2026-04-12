@@ -1,6 +1,8 @@
 AnimatedSprite2D
-Sprite2D
+Timer
 Node2D
+CharacterBody2D
+Sprite2D
 CollisionShape2D
 MeshInstance2D
 StaticBody2D
@@ -10,5 +12,3 @@ Control
 Button
 Label
 VBoxContainer
-ItemList
-TabBar

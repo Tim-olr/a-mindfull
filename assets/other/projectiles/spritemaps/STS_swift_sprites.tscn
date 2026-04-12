@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cugsnng3qlmlx"]
+
+[ext_resource type="Texture2D" uid="uid://dykxljltf8a4t" path="res://assets/other/projectiles/sts_swift_proj -Sheet.png" id="1_4io32"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdc4w"]
+atlas = ExtResource("1_4io32")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5fov"]
+atlas = ExtResource("1_4io32")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxm4j"]
+atlas = ExtResource("1_4io32")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukqct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdc4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5fov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxm4j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="StsSwiftSprites" type="AnimatedSprite2D" unique_id=1667579145]
+sprite_frames = SubResource("SpriteFrames_ukqct")
+frame_progress = 0.7762661

@@ -9,13 +9,15 @@ func remove_passive():
 func active_ability():
 	if canAbility:
 		ability_duration_timed_out.start(abilityDuration)
-		weapo.projectileSpeedMod *= 3
+		weapo.projectileSpeedMod *= 5
 		GlobalPlayer.visuals.show_blue()
 		GlobalPlayer.specials.change_game_speed(0.5)
+		GlobalPlayer.stats.dashAmount /= 2
 		active_ability_timer.start(activeAbilityCooldown)
 		canAbility = false
 
 func remove_ability():
 	GlobalPlayer.specials.change_game_speed()
-	weapo.projectileSpeedMod /= 3
+	weapo.projectileSpeedMod /= 5
+	GlobalPlayer.stats.dashAmount *= 2
 	GlobalPlayer.visuals.hide_blue()

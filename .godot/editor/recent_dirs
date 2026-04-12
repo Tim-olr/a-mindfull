@@ -1,4 +1,7 @@
+res://assets/other/spirits/
 res://assets/other/projectiles/
+res://scripts/Projectiles/
+res://scripts/Weapons/spirit_weapons/
 res://assets/player/
 res://assets/fotns/
 res://scripts/main game/spawner/
@@ -17,6 +20,3 @@ res://scripts/main game/Spirits/
 res://scenes/Weapons/guns/
 res://resources/items/weapons/
 res://scripts/main game/
-res://scenes/crafting stations/
-res://resources/crafting/stations/
-res://scripts/global/

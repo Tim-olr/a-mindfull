@@ -106,6 +106,7 @@ size = Vector2(136, 136)
 script = ExtResource("1_j1ges")
 Name = "SLOW AND STEADY"
 attackType = "slow ranged"
+size = Vector2(0.2, 0.2)
 activeAbilityCooldown = 20.0
 hasAbilityDuration = true
 abilityDuration = 5.0

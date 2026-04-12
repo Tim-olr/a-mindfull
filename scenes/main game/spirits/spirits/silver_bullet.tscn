@@ -106,19 +106,12 @@ size = Vector2(136, 136)
 [node name="SilverBullet" type="CharacterBody2D" unique_id=1530907115]
 script = ExtResource("1_kwwd0")
 Name = "SILVER BULLET"
-attackDamage = 2.0
 attackType = "ranged"
-size = Vector2(0.5, 0.5)
+size = Vector2(0.1, 0.1)
 activeAbilityCooldown = 10.0
 hasAbilityDuration = true
 abilityDuration = 5.0
-attackCooldown = 0.15
-lifetime = 2.0
-projectileSpeed = 800.0
-pierce = 1
-bulletAmountMod = 1
-bulletSize = Vector2(0.3, 0.3)
-hasStandaloneShooting = true
+hasWeapon = true
 weaponScene = ExtResource("2_ukrjp")
 projectile = ExtResource("2_bcdgv")
 

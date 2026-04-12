@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://xtt53okqaoh3"]
+
+[ext_resource type="Texture2D" uid="uid://b6eut5ykuvljb" path="res://assets/other/projectiles/KMC_laser.png" id="1_fxb00"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sqe3"]
+atlas = ExtResource("1_fxb00")
+region = Rect2(0, 0, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbntu"]
+atlas = ExtResource("1_fxb00")
+region = Rect2(160, 0, 160, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j0ww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sqe3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbntu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="KmcSprites" type="AnimatedSprite2D" unique_id=1810477138]
+sprite_frames = SubResource("SpriteFrames_6j0ww")

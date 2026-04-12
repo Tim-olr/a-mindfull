@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c02o3gb185hpa" path="res://scripts/Weapons/spirit_weapons/sts_chunk.gd" id="1_yls4x"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_wokg5"]
-[ext_resource type="Texture2D" uid="uid://cboxieqie8byi" path="res://assets/other/projectiles/STS_Chunk_proj.png" id="3_6av3b"]
+[ext_resource type="PackedScene" uid="uid://dfbpffafhyu4r" path="res://assets/other/projectiles/spritemaps/sts_chunk_sprites.tscn" id="3_6av3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yls4x"]
 size = Vector2(86, 20)
@@ -10,17 +10,17 @@ size = Vector2(86, 20)
 [node name="StsChunk" type="Node2D" unique_id=1910925252]
 script = ExtResource("1_yls4x")
 damageMod = 40.0
-bulletLifeTimeMod = 0.9
+bulletLifeTimeMod = 1.5
 bulletAmountMod = 1
 projectileSpeedMod = 100.0
-bulletSizeMod = Vector2(1, 1)
-shootCooldown = 0.8
+shootCooldown = 0.65
 gun = true
 description = "STS Chunk gun"
 Name = "STS Chunk "
 bulletScene = ExtResource("2_wokg5")
 doConsecShooting = true
-projectile_sprite = ExtResource("3_6av3b")
+custom_collision_sizes = Vector2(2.5, 2.5)
+projectile_sprite_scene = ExtResource("3_6av3b")
 bullet_speed_mode = 2
 bullet_end_speed_multiplier = 0.4
 
