@@ -3,6 +3,7 @@ extends Node
 @export var biomes: Array[Biome]
 @export var world_size: Vector2i = Vector2i(100, 100)
 @export var tile_map: TileMapLayer
+@export var world_seed: int = 0  # 0 = random each run
 
 @export_group("Spawn Parents")
 @export var objects_node: Node
@@ -11,14 +12,22 @@ extends Node
 @export var extraction_node: Node
 @export var buildings_node: Node
 
+var _rng := RandomNumberGenerator.new()
+
 func _ready():
 	spawn_world()
 
 func spawn_world():
 	if biomes.is_empty():
 		return
+	var actual_seed: int = world_seed if world_seed != 0 else randi()
+	world_seed = actual_seed
+	_rng.seed = actual_seed
 	for b in biomes:
-		_generate_biome(b)
+		if b.noise != null and b.noise.noise is FastNoiseLite:
+			(b.noise.noise as FastNoiseLite).seed = actual_seed
+	for b in biomes:
+		await _generate_biome(b)
 	_fix_empty_cells()
 	for b in biomes:
 		_spawn_biome_scenes(b)
@@ -86,15 +95,15 @@ func _spawn_biome_scenes(b: Biome):
 func _spawn_batch(scenes: Array[PackedScene], min_count: int, max_count: int, parent: Node, half: Vector2i):
 	if scenes.is_empty() or parent == null:
 		return
-	var count := randi_range(min_count, max_count)
+	var count := _rng.randi_range(min_count, max_count)
 	for i in count:
-		var scene: PackedScene = scenes[randi() % scenes.size()]
+		var scene: PackedScene = scenes[_rng.randi() % scenes.size()]
 		if scene == null:
 			continue
 		var instance = scene.instantiate()
 		parent.add_child(instance)
 		var tile := Vector2i(
-			randi_range(-half.x, half.x - 1),
-			randi_range(-half.y, half.y - 1)
+			_rng.randi_range(-half.x, half.x - 1),
+			_rng.randi_range(-half.y, half.y - 1)
 		)
 		instance.position = tile_map.map_to_local(tile)
