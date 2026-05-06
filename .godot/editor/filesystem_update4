@@ -17,3 +17,12 @@ res://scenes/main game/spirits/spirits/follow_the_wheel.tscn
 res://scripts/main game/Spirits/spirits/follow_the_wheel.gd
 res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn
 res://scenes/main game/game.tscn
+res://scripts/enemy/general_enemy.gd
+res://scripts/main game/day_night_cycle.gd
+res://scripts/main game/game.gd
+res://scripts/main game/spawner/wave_spawner.gd
+res://scripts/main game/the game world/the_world.gd
+res://scripts/Weapons/weapon.gd
+res://scripts/main game/fahrer/fahrer_draw_ui.gd
+res://scripts/main game/fahrer/fahrer_deck.gd
+res://scripts/main game/components/game_starter.gd

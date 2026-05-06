@@ -6,6 +6,8 @@ extends Node
 @export var start_time: float = 0.30       # start a bit after sunrise
 
 var time: float = 0.30
+var lock_time: bool = false      # set by Fahrer cards (The Sun / The Moon)
+var lock_value: float = 0.5
 var _modulate_node: CanvasModulate = null
 
 const C_NIGHT   = Color(0.20, 0.25, 0.45)
@@ -18,6 +20,10 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _process(delta: float) -> void:
+	if lock_time:
+		time = lock_value
+		_apply_tint()
+		return
 	if day_length_sec <= 0.0:
 		return
 	time = fposmod(time + delta / day_length_sec, 1.0)

@@ -30,6 +30,7 @@ GlobalhitMarker="*uid://ivxlhrg3mot2"
 Crafting="*uid://cf7psk33fpt32"
 ShardCounterLobby="*uid://cwk3uktvc4bsf"
 DayNightCycle="*res://scripts/main game/day_night_cycle.gd"
+FahrerDeck="*uid://b83a3xt1xbcfq"
 
 [display]
 

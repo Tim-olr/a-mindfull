@@ -9,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
 [ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
 [ext_resource type="PackedScene" uid="uid://b2todwidget" path="res://scenes/main game/ui/time_of_day_widget.tscn" id="14_todw"]
+[ext_resource type="PackedScene" uid="uid://b2fdrawui" path="res://scenes/main game/fahrer/fahrer_draw_ui.tscn" id="15_fdui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -79,6 +80,15 @@ offset_top = 0.0
 offset_right = 164.0
 offset_bottom = 54.0
 grow_horizontal = 1
+
+[node name="FahrerDrawLayer" type="CanvasLayer" parent="." unique_id=1661451963]
+layer = 60
+
+[node name="FahrerDrawUI" parent="FahrerDrawLayer" unique_id=138524932 instance=ExtResource("15_fdui")]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
 z_index = 0

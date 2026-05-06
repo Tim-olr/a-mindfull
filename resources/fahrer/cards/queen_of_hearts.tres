@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FahrerCard" load_steps=2 format=3 uid="uid://b2fcqoh"]
+
+[ext_resource type="Script" path="res://scripts/main game/fahrer/cards/queen_of_hearts.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "queen_of_hearts"
+card_name = "Queen of Hearts"
+description = "Way fewer enemies spawn."
+suit = 2
+rarity = 0

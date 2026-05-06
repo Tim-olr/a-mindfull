@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FahrerCard" load_steps=2 format=3 uid="uid://b2fckod"]
+
+[ext_resource type="Script" path="res://scripts/main game/fahrer/cards/king_of_diamonds.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "king_of_diamonds"
+card_name = "King of Diamonds"
+description = "Player damage x0.5 at all times."
+suit = 1
+rarity = 0

@@ -22,6 +22,7 @@ func _ready() -> void:
 		var idx: int = entry["slot_index"]
 		if idx >= 0 and idx < GlobalPlayer.inventory.inventory.slots.size():
 			GlobalPlayer.inventory.inventory.slots[idx].set_item(entry["item"], entry["count"])
+	FahrerDeck.draw_cards()
 
 func _on_load_timer_timeout() -> void:
 	black.hide()

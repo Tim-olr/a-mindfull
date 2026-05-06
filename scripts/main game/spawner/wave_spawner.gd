@@ -26,7 +26,12 @@ func _spawn_wave() -> void:
 		return
 	if biome == null or biome.enemy_pool.is_empty():
 		return
-	var count := _rng.randi_range(biome.enemies_per_wave_min, biome.enemies_per_wave_max)
+	var count_mult: float = FahrerDeck.enemy_count_mult()
+	if count_mult <= 0.0:
+		return  # Queen of Spades — no enemies this run
+	var count := int(round(_rng.randi_range(biome.enemies_per_wave_min, biome.enemies_per_wave_max) * count_mult))
+	if count <= 0:
+		return
 	var parent: Node = GlobalWorld.theWorld
 	if parent == null:
 		parent = get_parent()

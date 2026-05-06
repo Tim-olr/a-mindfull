@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FahrerCard" load_steps=2 format=3 uid="uid://b2fcfahrer"]
+
+[ext_resource type="Script" path="res://scripts/main game/fahrer/cards/the_fahrer.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "the_fahrer"
+card_name = "The Fahrer"
+description = "Spirits are 2x less powerful."
+suit = 4
+rarity = 2

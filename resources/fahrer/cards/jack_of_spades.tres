@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FahrerCard" load_steps=2 format=3 uid="uid://b2fcjos"]
+
+[ext_resource type="Script" path="res://scripts/main game/fahrer/cards/jack_of_spades.gd" id="1_card"]
+
+[resource]
+script = ExtResource("1_card")
+card_id = "jack_of_spades"
+card_name = "Jack of Spades"
+description = "All bullets are the same size."
+suit = 3
+rarity = 0

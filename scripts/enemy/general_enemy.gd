@@ -34,6 +34,8 @@ func _ready() -> void:
 		var wep = weapon.instantiate()
 		add_child(wep)
 	add_to_group("enemy")
+	# Fahrer card: The Birds speeds enemies up at spawn time.
+	stats.speed *= FahrerDeck.enemy_speed_mult()
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0 and !died:
