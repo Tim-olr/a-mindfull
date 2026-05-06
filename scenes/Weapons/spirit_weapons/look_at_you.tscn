@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b2wlookatyou"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/spirit_weapons/look_at_you.gd" id="1_layw"]
+[ext_resource type="PackedScene" uid="uid://bsmiimrqb81t5" path="res://scenes/Projectile/LaserProjectile.tscn" id="2_laser"]
+
+[sub_resource type="RectangleShape2D" id="Rect_lay"]
+size = Vector2(86, 20)
+
+[node name="LookAtYouWeapon" type="Node2D"]
+script = ExtResource("1_layw")
+damageMod = 8.0
+bulletLifeTimeMod = 0.4
+bulletAmountMod = 1
+shootCooldown = 0.4
+gun = true
+description = "sun beam"
+Name = "Beam"
+is_laser = true
+laserScene = ExtResource("2_laser")
+laser_max_length = 350.0
+laser_width = 4.0
+knockback_force = 0.0
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+shape = SubResource("Rect_lay")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

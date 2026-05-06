@@ -12,6 +12,8 @@ extends Node
 @export var extraction_node: Node
 @export var buildings_node: Node
 
+const WAVE_SPAWNER = preload("res://scenes/main game/Spawner/wave_spawner.tscn")
+
 var _rng := RandomNumberGenerator.new()
 
 func _ready():
@@ -31,6 +33,17 @@ func spawn_world():
 	_fix_empty_cells()
 	for b in biomes:
 		_spawn_biome_scenes(b)
+	_spawn_wave_spawner()
+
+func _spawn_wave_spawner():
+	if biomes.is_empty():
+		return
+	var b: Biome = biomes[0]
+	if b.enemy_pool.is_empty():
+		return
+	var spawner = WAVE_SPAWNER.instantiate()
+	get_parent().add_child.call_deferred(spawner)
+	spawner.setup(b, world_seed)
 
 func _generate_biome(b: Biome):
 	if b.noise == null or b.tile_set == null:
@@ -88,7 +101,6 @@ func _spawn_biome_scenes(b: Biome):
 	var half := world_size / 2
 	_spawn_batch(b.physics_objects, b.min_objects,   b.max_objects,   objects_node,    half)
 	_spawn_batch(b.biome_shops,     b.min_shops,     b.max_shops,     shops_node,      half)
-	_spawn_batch(b.enemy_spawners,  b.min_spawners,  b.max_spawners,  spawners_node,   half)
 	_spawn_batch(b.extraction_points, b.min_points,  b.max_points,    extraction_node, half)
 	_spawn_batch(b.buildings,       b.min_buildings, b.max_buildings, buildings_node,  half)
 

@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://ughld3oqoeyb"]
+
+[ext_resource type="Script" uid="uid://mqr1apbu844j" path="res://scripts/main game/Spirits/spirits/follow_the_wheel.gd" id="1_ftw"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+[ext_resource type="PackedScene" uid="uid://b2wftwheel" path="res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn" id="2_wftw"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_stats"]
+
+[sub_resource type="Animation" id="Animation_in"]
+resource_name = "BringIn"
+length = 0.27
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(13, 1),
+"update": 0,
+"values": [Vector2(150, 150), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_out"]
+resource_name = "BringOut"
+length = 0.27
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 13),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(150, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimLib_ftw"]
+_data = {
+&"BringIn": SubResource("Animation_in"),
+&"BringOut": SubResource("Animation_out"),
+&"RESET": SubResource("Animation_reset")
+}
+
+[sub_resource type="SphereMesh" id="Mesh_ftw"]
+
+[sub_resource type="CircleShape2D" id="Circle_ftw"]
+radius = 75.0
+
+[sub_resource type="RectangleShape2D" id="Rect_ftw"]
+size = Vector2(150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rub2v"]
+
+[node name="FollowTheWheel" type="CharacterBody2D" unique_id=1314675670 node_paths=PackedStringArray("sprites")]
+script = ExtResource("1_ftw")
+Name = "FOLLOW THE WHEEL"
+attackType = "ranged"
+size = Vector2(0.12, 0.12)
+sprites = NodePath("AnimatedSprite2D")
+activeAbilityCooldown = 18.0
+hasAbilityDuration = true
+abilityDuration = 10.0
+hasWeapon = true
+weaponScene = ExtResource("2_wftw")
+projectile = ExtResource("2_proj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1795925371]
+libraries/ = SubResource("AnimLib_ftw")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=468489928]
+scale = Vector2(1e-05, 1e-05)
+mesh = SubResource("Mesh_ftw")
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=555837269]
+one_shot = true
+
+[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=1813660906]
+one_shot = true
+
+[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=2296917]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=157835072]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=471292150]
+shape = SubResource("Circle_ftw")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=2111604506]
+shape = SubResource("Rect_ftw")
+
+[node name="stats" type="Node2D" parent="." unique_id=537845799]
+script = ExtResource("3_stats")
+attackSpeed = 0.6
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1862933582]
+sprite_frames = SubResource("SpriteFrames_rub2v")
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
+[connection signal="timeout" from="AbilityDurationTimedOut" to="." method="_on_ability_duration_timed_out_timeout"]

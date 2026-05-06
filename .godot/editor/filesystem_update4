@@ -3,3 +3,17 @@ res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
 res://scripts/main game/generation/procedural_generation.gd
+res://scripts/main game/Spirits/spirit.gd
+res://scripts/Player/player_manager.gd
+res://scripts/Player/inventory/safe/safeUi.gd
+res://scripts/world gen/biome_resource.gd
+res://scenes/Player/player.tscn
+res://resources/spirits/spirits/LOOK_AT_YOU.tres
+res://scenes/main game/Spawner/wave_spawner.tscn
+res://scenes/main game/spirits/spirits/look_at_you.tscn
+res://scripts/main game/Spirits/spirits/look_at_you.gd
+res://scripts/main game/Spawner/wave_spawner.gd
+res://scenes/main game/spirits/spirits/follow_the_wheel.tscn
+res://scripts/main game/Spirits/spirits/follow_the_wheel.gd
+res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn
+res://scenes/main game/game.tscn

@@ -118,6 +118,7 @@ func damage(damage_amount, attacker, shake):
 	if god_mode:
 		return
 	if canGetDamaged:
+		damage_amount = _apply_spirit_incoming_modifier(damage_amount, false)
 		var reduction_am = damage_amount * stats.damage_reduction
 		damage_amount -= reduction_am
 		stats.hp -= damage_amount
@@ -132,6 +133,7 @@ func spirit_damage(damage_amount, attacker, shake):
 	if god_mode:
 		return
 	if spiritCanGetDamaged:
+		damage_amount = _apply_spirit_incoming_modifier(damage_amount, true)
 		var reduction_am = damage_amount * stats.damage_reduction
 		damage_amount -= reduction_am
 		stats.hp -= damage_amount
@@ -141,6 +143,12 @@ func spirit_damage(damage_amount, attacker, shake):
 		if attacker != null:
 			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
 			apply_knockback(knockback_direction, 200.0)
+
+func _apply_spirit_incoming_modifier(amount: float, hit_on_spirit: bool) -> float:
+	var s = stats.playerSpiritScene
+	if s != null and is_instance_valid(s) and s.has_method("modify_incoming_damage"):
+		return s.modify_incoming_damage(amount, hit_on_spirit)
+	return amount
 
 func damaged(shake):
 	var tween = create_tween()

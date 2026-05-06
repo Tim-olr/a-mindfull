@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b2wftwheel"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/spirit_weapons/follow_the_wheel.gd" id="1_ftwwep"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+
+[sub_resource type="RectangleShape2D" id="Rect_ftw"]
+size = Vector2(86, 20)
+
+[node name="FollowTheWheelWeapon" type="Node2D"]
+script = ExtResource("1_ftwwep")
+damageMod = 0.0
+bulletLifeTimeMod = 1.5
+bulletAmountMod = 1
+projectileSpeedMod = 300.0
+shootCooldown = 0.5
+gun = true
+description = "wheel of fortune"
+Name = "Wheel"
+bulletScene = ExtResource("2_proj")
+knockback_force = 100.0
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+shape = SubResource("Rect_ftw")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -29,3 +29,11 @@ class_name Biome
 @export var buildings: Array[PackedScene]
 @export var min_buildings: int
 @export var max_buildings: int
+
+@export_category("Wave Spawning")
+@export var enemy_pool: Array[PackedScene]
+@export var wave_interval_min: float = 60.0
+@export var wave_interval_max: float = 120.0
+@export var enemies_per_wave_min: int = 4
+@export var enemies_per_wave_max: int = 8
+@export var spawn_radius: float = 100.0

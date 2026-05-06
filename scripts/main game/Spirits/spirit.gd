@@ -120,6 +120,11 @@ func active_ability():
 func remove_ability():
 	pass
 
+# Override in subclasses to transform incoming damage before reduction is applied.
+# `hit_on_spirit` is true when the hit landed on the spirit body, false when on the player.
+func modify_incoming_damage(amount: float, _hit_on_spirit: bool) -> float:
+	return amount
+
 func _on_attack_cooldown_timer_timeout() -> void:
 	stats.canAttack = true
 
