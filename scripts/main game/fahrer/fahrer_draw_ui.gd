@@ -7,7 +7,7 @@ const C_ACCENT := Color(0.90, 0.65, 0.20)
 const C_TEXT   := Color(0.92, 0.90, 0.85)
 const C_TEXT_DIM := Color(0.55, 0.53, 0.50)
 const RADIUS   := 9
-const SHOW_TIME: float = 4000.0
+const SHOW_TIME: float = 4.0
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE

@@ -26,3 +26,5 @@ res://scripts/Weapons/weapon.gd
 res://scripts/main game/fahrer/fahrer_draw_ui.gd
 res://scripts/main game/fahrer/fahrer_deck.gd
 res://scripts/main game/components/game_starter.gd
+res://scenes/main game/spirits/spirits/shift_the_sand.tscn
+res://scripts/main game/Spirits/spirits/shift_the_sand.gd

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://scripts/Player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://scripts/Player/player_stats.gd" id="2_s4a0o"]
-[ext_resource type="Resource" path="res://resources/spirits/spirits/FOLLOW_THE_WHEEL.tres" id="3_1bwnf"]
+[ext_resource type="Resource" uid="uid://cs2184gpso1g1" path="res://resources/spirits/spirits/SHIFT_THE_SAND.tres" id="3_1bwnf"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="PackedScene" uid="uid://dgmmjdo2t04f0" path="res://scenes/Player/inventory/safe/safe_ui.tscn" id="7_2pfsf"]

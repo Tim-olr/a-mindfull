@@ -24,13 +24,13 @@ func changeWeap():
 		weaponScene = chunkGun
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
-		flash_color(Color(1.0, 0.0, 0.0, 1.0))
+		#flash_color(Color(1.0, 0.0, 0.0, 1.0))
 		attack_cooldown_timer.start(stats.attackSpeed)
 	elif mode == 1:
 		weaponScene = swiftGun
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
-		flash_color(Color(0.0, 0.403, 0.26, 1.0))
+		#flash_color(Color(0.0, 0.403, 0.26, 1.0))
 		attack_cooldown_timer.start(stats.attackSpeed)
 
 func apply_passive():

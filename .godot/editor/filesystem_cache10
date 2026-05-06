@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1778098698
+::res://::1778103998
 icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1772738358::1772739340::1::::<><><>0<>0<>81340f9a0cc78dd1638d6171a1881f90<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 LICENSE.md::TextFile::-1::1774263726::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1772735592::0::1::::<><><>0<>0<><>::
@@ -21,40 +21,40 @@ update_button.gd::GDScript::4750011734510406778::1772739315::0::1::::<>Button<><
 update_button.tscn::PackedScene::1924680899962474071::1772739315::0::1::::<><><>0<>0<><>::res://addons/gaea/editor/update_button.gd<>uid://6pmddcctde0v::::res://addons/gaea/editor/download_update_panel.tscn
 ::res://addons/gaea/generators/::1772739315
 chunk_aware_generator.svg::CompressedTexture2D::4399251370745892222::1772739315::1772739315::1::::<><><>0<>0<>e0c0bb90e13c980e4099952058da9218<>res://.godot/imported/chunk_aware_generator.svg-da567ed454f408ec02ef5cb0a1ec5d6f.ctex::
-generator.gd::GDScript::6960856404865111114::1772739315::0::1::::GaeaGenerator<>Node<>res://addons/gaea/generators/generator.svg<>0<>1<><>::
+generator.gd::GDScript::6960856404865111114::1772739315::0::1::::GaeaGenerator<>Node<><>0<>1<><>::
 generator.svg::CompressedTexture2D::7556607453030425742::1772739315::1772739315::1::::<><><>0<>0<>2e5663febfbf1e4e5048f2d822711217<>res://.godot/imported/generator.svg-b4af138265d248ced422f7dae52f0cf0.ctex::
 generator_settings.svg::CompressedTexture2D::5890473717961004425::1772739315::1772739315::1::::<><><>0<>0<>ade574c6b3828ed0331ddd3c26680581<>res://.godot/imported/generator_settings.svg-37277f7f05d13b2b6d7552c11e110fb1.ctex::
 ::res://addons/gaea/generators/2D/::1772739315
-chunk_aware_generator_2d.gd::GDScript::6820768636629738881::1772739315::0::1::::ChunkAwareGenerator2D<>GaeaGenerator2D<>res://addons/gaea/generators/chunk_aware_generator.svg<>0<>1<><>::
+chunk_aware_generator_2d.gd::GDScript::6820768636629738881::1772739315::0::1::::ChunkAwareGenerator2D<>GaeaGenerator2D<><>0<>1<><>::
 generator_2d.gd::GDScript::9209191597659131130::1772739315::0::1::::GaeaGenerator2D<>GaeaGenerator<><>0<>1<><>::
-generator_settings_2d.gd::GDScript::6632354768768211438::1772739315::0::1::::GeneratorSettings2D<>Resource<>res://addons/gaea/generators/generator_settings.svg<>0<>0<><>::
+generator_settings_2d.gd::GDScript::6632354768768211438::1772739315::0::1::::GeneratorSettings2D<>Resource<><>0<>0<><>::
 grid_2d.gd::GDScript::4542964919852578778::1772739315::0::1::::GaeaGrid2D<>GaeaGrid<><>0<>0<><>::
 ::res://addons/gaea/generators/2D/cellular_generator/::1772739315
-cellular_generator.gd::GDScript::5724367403889688858::1772739315::0::1::::CellularGenerator<>GaeaGenerator2D<>res://addons/gaea/generators/2D/cellular_generator/cellular_generator.svg<>0<>1<><>::
+cellular_generator.gd::GDScript::5724367403889688858::1772739315::0::1::::CellularGenerator<>GaeaGenerator2D<><>0<>1<><>::
 cellular_generator.svg::CompressedTexture2D::2489972738627251148::1772739315::1772739315::1::::<><><>0<>0<>5ce089a6b51276e1df03459abe7badd9<>res://.godot/imported/cellular_generator.svg-937774631588b16a64b79857ffe8af02.ctex::
 cellular_generator_settings.gd::GDScript::5231562390835773053::1772739315::0::1::::CellularGeneratorSettings<>GeneratorSettings2D<><>0<>1<><>::
 ::res://addons/gaea/generators/2D/heightmap_generator/::1772739315
-heightmap_generator_2d.gd::GDScript::5957510777463400977::1772739315::0::1::::HeightmapGenerator2D<>ChunkAwareGenerator2D<>res://addons/gaea/generators/2D/heightmap_generator/heightmap_generator_2d.svg<>0<>1<><>::
+heightmap_generator_2d.gd::GDScript::5957510777463400977::1772739315::0::1::::HeightmapGenerator2D<>ChunkAwareGenerator2D<><>0<>1<><>::
 heightmap_generator_2d.svg::CompressedTexture2D::7804342115597507298::1772739315::1772739315::1::::<><><>0<>0<>5bd01a6cd79a0c113f913c82f8dec9d7<>res://.godot/imported/heightmap_generator_2d.svg-a1d38c3181140e8ee1b4cc1b6b3558ce.ctex::
 heightmap_generator_2d_settings.gd::GDScript::2621592226305200018::1772739315::0::1::::HeightmapGenerator2DSettings<>GeneratorSettings2D<><>0<>0<><>::
 ::res://addons/gaea/generators/2D/noise_generator/::1772739315
-noise_generator.gd::GDScript::509586592770160284::1772739315::0::1::::NoiseGenerator<>ChunkAwareGenerator2D<>res://addons/gaea/generators/2D/noise_generator/noise_generator.svg<>0<>1<><>::
+noise_generator.gd::GDScript::509586592770160284::1772739315::0::1::::NoiseGenerator<>ChunkAwareGenerator2D<><>0<>1<><>::
 noise_generator.svg::CompressedTexture2D::1200808923553916311::1772739315::1772739315::1::::<><><>0<>0<>b2ac3d73381ac3eece80a8e997309fef<>res://.godot/imported/noise_generator.svg-d19bae0f59db5b3bf008ec5cad0b9565.ctex::
 noise_generator_data.gd::GDScript::3610440626020069456::1772739315::0::1::::NoiseGeneratorData<>Resource<><>0<>1<><>::
 noise_generator_settings.gd::GDScript::8811263562020306378::1772739315::0::1::::NoiseGeneratorSettings<>GeneratorSettings2D<><>0<>1<><>::
 ::res://addons/gaea/generators/2D/walker_generator/::1772739315
-walker_generator.gd::GDScript::3739499689934832364::1772739315::0::1::::WalkerGenerator<>GaeaGenerator2D<>res://addons/gaea/generators/2D/walker_generator/walker_generator.svg<>0<>1<><>::
+walker_generator.gd::GDScript::3739499689934832364::1772739315::0::1::::WalkerGenerator<>GaeaGenerator2D<><>0<>1<><>::
 walker_generator.svg::CompressedTexture2D::4794092832639402112::1772739315::1772739315::1::::<><><>0<>0<>471df4d98755334b29320e59df64d503<>res://.godot/imported/walker_generator.svg-e9d19abe1e4789c91843fd1d1a36c142.ctex::
 walker_generator_settings.gd::GDScript::1749770392537716855::1772739315::0::1::::WalkerGeneratorSettings<>GeneratorSettings2D<><>0<>1<><>::
 ::res://addons/gaea/generators/2D/wave_function_generator/::1772739315
 wave_function_2d_entry.gd::GDScript::8004646971299569640::1772739315::0::1::::WaveFunction2DEntry<>Resource<><>0<>0<><>::
 wave_function_generator.svg::CompressedTexture2D::5086903406018483302::1772739315::1772739315::1::::<><><>0<>0<>831266fb97e972001623a4fc8e16a5f9<>res://.godot/imported/wave_function_generator.svg-ff074e99eff2ec22dc615407437de3e4.ctex::
-wave_function_generator_2d.gd::GDScript::5078979468869797031::1772739315::0::1::::WaveFunctionGenerator2D<>GaeaGenerator2D<>res://addons/gaea/generators/2D/wave_function_generator/wave_function_generator.svg<>0<>1<><>::
+wave_function_generator_2d.gd::GDScript::5078979468869797031::1772739315::0::1::::WaveFunctionGenerator2D<>GaeaGenerator2D<><>0<>1<><>::
 wave_function_generator_2d_settings.gd::GDScript::2042737495523193465::1772739315::0::1::::WaveFunctionGenerator2DSettings<>GeneratorSettings2D<><>0<>1<><>::
 ::res://addons/gaea/generators/3D/::1772739315
-chunk_aware_generator_3d.gd::GDScript::1092173356772424830::1772739315::0::1::::ChunkAwareGenerator3D<>GaeaGenerator3D<>res://addons/gaea/generators/chunk_aware_generator.svg<>0<>1<><>::
+chunk_aware_generator_3d.gd::GDScript::1092173356772424830::1772739315::0::1::::ChunkAwareGenerator3D<>GaeaGenerator3D<><>0<>1<><>::
 generator_3d.gd::GDScript::3426642305311598898::1772739315::0::1::::GaeaGenerator3D<>GaeaGenerator<><>0<>1<><>::
-generator_settings_3d.gd::GDScript::3172754367550044252::1772739315::0::1::::GeneratorSettings3D<>Resource<>res://addons/gaea/generators/generator_settings.svg<>0<>0<><>::
+generator_settings_3d.gd::GDScript::3172754367550044252::1772739315::0::1::::GeneratorSettings3D<>Resource<><>0<>0<><>::
 grid_3d.gd::GDScript::120404019107269493::1772739315::0::1::::GaeaGrid3D<>GaeaGrid<><>0<>0<><>::
 ::res://addons/gaea/generators/3D/heightmap_generator_3d/::1772739315
 heightmap_generator_3d.gd::GDScript::7352738096304065764::1772739315::0::1::::HeightmapGenerator3D<>ChunkAwareGenerator3D<><>0<>1<><>::
@@ -62,53 +62,53 @@ heightmap_generator_3d_settings.gd::GDScript::1910787882701264864::1772739315::0
 ::res://addons/gaea/modifiers/::1772739315
 modifier.gd::GDScript::2007058904895935546::1772739315::0::1::::Modifier<>Resource<><>0<>1<><>::
 ::res://addons/gaea/modifiers/2D/::1772739340
-advanced_modifier.gd::GDScript::8868288964188749296::1772739315::0::1::::AdvancedModifier2D<>ChunkAwareModifier2D<>res://addons/gaea/modifiers/2D/advanced_modifier.svg<>0<>1<><>::
+advanced_modifier.gd::GDScript::8868288964188749296::1772739315::0::1::::AdvancedModifier2D<>ChunkAwareModifier2D<><>0<>1<><>::
 advanced_modifier.svg::CompressedTexture2D::1947748413212094542::1772739315::1772739315::1::::<><><>0<>0<>1dd146a9fad13166e8d5b9939eccc2a9<>res://.godot/imported/advanced_modifier.svg-426f8b5b4d4bce57533f8e99a8c0eea5.ctex::
-carver.gd::GDScript::2291870761513366818::1772739315::0::1::::Carver<>ChunkAwareModifier2D<>res://addons/gaea/modifiers/2D/carver.svg<>0<>1<><>::
+carver.gd::GDScript::2291870761513366818::1772739315::0::1::::Carver<>ChunkAwareModifier2D<><>0<>1<><>::
 carver.svg::CompressedTexture2D::4945928142008460813::1772739315::1772739315::1::::<><><>0<>0<>86a07590bfd4dc88f3a742f22bf60169<>res://.godot/imported/carver.svg-b1a52ba1dfdd68b578f3cd4da35a80da.ctex::
 chunk_aware_modifier_2d.gd::GDScript::8527645121146591754::1772739315::0::1::::ChunkAwareModifier2D<>Modifier2D<><>0<>1<><>::
-fill.gd::GDScript::3724943961640666953::1772739315::0::1::::Fill<>Modifier2D<>res://addons/gaea/modifiers/2D/fill.svg<>0<>1<><>::
+fill.gd::GDScript::3724943961640666953::1772739315::0::1::::Fill<>Modifier2D<><>0<>1<><>::
 fill.svg::CompressedTexture2D::7671019854211040928::1772739315::1772739340::1::::<><><>0<>0<>13f219ac22343e65adc95829047dcf3e<>res://.godot/imported/fill.svg-c7eda541b033d76ce38a35d18dc0032c.ctex::
-generate_borders.gd::GDScript::5388915610711176162::1772739315::0::1::::GenerateBorder<>Modifier2D<>res://addons/gaea/modifiers/2D/generate_borders.svg<>0<>1<><>::
+generate_borders.gd::GDScript::5388915610711176162::1772739315::0::1::::GenerateBorder<>Modifier2D<><>0<>1<><>::
 generate_borders.svg::CompressedTexture2D::3001633644813359387::1772739315::1772739315::1::::<><><>0<>0<>40763868f110eebbd8af1cf81d9795da<>res://.godot/imported/generate_borders.svg-90534adeb1bda281f26b4a6fc763db5a.ctex::
-heightmap_painter.gd::GDScript::8370390899917257125::1772739315::0::1::::HeightmapPainter<>ChunkAwareModifier2D<>res://addons/gaea/modifiers/2D/heightmap_painter.svg<>0<>1<><>::
+heightmap_painter.gd::GDScript::8370390899917257125::1772739315::0::1::::HeightmapPainter<>ChunkAwareModifier2D<><>0<>1<><>::
 heightmap_painter.svg::CompressedTexture2D::5862644644777660778::1772739315::1772739315::1::::<><><>0<>0<>e7482caa2290e06ce24fa534bc8f01ec<>res://.godot/imported/heightmap_painter.svg-c49b4eef3addbe0d997c9abedd4adf11.ctex::
 modifier_2d.gd::GDScript::2652744121227793851::1772739315::0::1::::Modifier2D<>Modifier<><>0<>0<><>::
-noise_painter.gd::GDScript::7643547748362475811::1772739315::0::1::::NoisePainter<>ChunkAwareModifier2D<>res://addons/gaea/modifiers/2D/noise_painter.svg<>0<>1<><>::
+noise_painter.gd::GDScript::7643547748362475811::1772739315::0::1::::NoisePainter<>ChunkAwareModifier2D<><>0<>1<><>::
 noise_painter.svg::CompressedTexture2D::4747628266027079917::1772739315::1772739315::1::::<><><>0<>0<>ed24dba37edc274e01ec15dd7d9217fa<>res://.godot/imported/noise_painter.svg-390af61633111580cb1552119bf7320b.ctex::
-remove_disconnected.gd::GDScript::2135598684899543335::1772739315::0::1::::RemoveDisconnected<>Modifier2D<>res://addons/gaea/modifiers/2D/remove_disconnected.svg<>0<>1<><>::
+remove_disconnected.gd::GDScript::2135598684899543335::1772739315::0::1::::RemoveDisconnected<>Modifier2D<><>0<>1<><>::
 remove_disconnected.svg::CompressedTexture2D::5791280309195908563::1772739315::1772739340::1::::<><><>0<>0<>ab10eebde9c2fdf76e3b794379299080<>res://.godot/imported/remove_disconnected.svg-5a4c2074b34d5bce5ab7cbab07f6735f.ctex::
-smooth.gd::GDScript::858259328759259236::1772739315::0::1::::Smooth<>Modifier2D<>res://addons/gaea/modifiers/2D/smooth.svg<>0<>1<><>::
+smooth.gd::GDScript::858259328759259236::1772739315::0::1::::Smooth<>Modifier2D<><>0<>1<><>::
 smooth.svg::CompressedTexture2D::2288248261623337922::1772739315::1772739315::1::::<><><>0<>0<>cb38e6769d8b133276ec8390c7724ffa<>res://.godot/imported/smooth.svg-bc0be19d41774bbbe163759b4cd97f92.ctex::
-walls.gd::GDScript::1392483051955764199::1772739315::0::1::::Walls<>Modifier2D<>res://addons/gaea/modifiers/2D/walls.svg<>0<>1<><>::
+walls.gd::GDScript::1392483051955764199::1772739315::0::1::::Walls<>Modifier2D<><>0<>1<><>::
 walls.svg::CompressedTexture2D::591478033430735677::1772739315::1772739315::1::::<><><>0<>0<>929af0fc2d04c775703fabfbdab83607<>res://.godot/imported/walls.svg-86970fceca85bd10230f503648219e3e.ctex::
 ::res://addons/gaea/modifiers/2D/conditions/::1772739315
 condition_2d.gd::GDScript::7170053678728174501::1772739315::0::1::::AdvancedModifierCondition2D<>AdvancedModifierCondition<><>0<>0<><>::
 offset_condition_2d.gd::GDScript::2718092459336411626::1772739315::0::1::::OffsetCondition2D<>AdvancedModifierCondition2D<><>0<>1<><>::
 ::res://addons/gaea/modifiers/3D/::1772739315
-advanced_modifier.gd::GDScript::9130577353627651216::1772739315::0::1::::AdvancedModifier3D<>ChunkAwareModifier3D<>res://addons/gaea/modifiers/2D/advanced_modifier.svg<>0<>1<><>::
-carver_3d.gd::GDScript::9206301872402526023::1772739315::0::1::::Carver3D<>ChunkAwareModifier3D<>res://addons/gaea/modifiers/2D/carver.svg<>0<>1<><>::
+advanced_modifier.gd::GDScript::9130577353627651216::1772739315::0::1::::AdvancedModifier3D<>ChunkAwareModifier3D<><>0<>1<><>::
+carver_3d.gd::GDScript::9206301872402526023::1772739315::0::1::::Carver3D<>ChunkAwareModifier3D<><>0<>1<><>::
 chunk_aware_modifier_3d.gd::GDScript::8696848153116078152::1772739315::0::1::::ChunkAwareModifier3D<>Modifier3D<><>0<>1<><>::
-heightmap_painter_3d.gd::GDScript::264919862469078795::1772739315::0::1::::HeightmapPainter3D<>ChunkAwareModifier3D<>res://addons/gaea/modifiers/2D/heightmap_painter.svg<>0<>1<><>::
+heightmap_painter_3d.gd::GDScript::264919862469078795::1772739315::0::1::::HeightmapPainter3D<>ChunkAwareModifier3D<><>0<>1<><>::
 modifier_3d.gd::GDScript::9126288185512201041::1772739315::0::1::::Modifier3D<>Modifier<><>0<>0<><>::
-noise_painter_3d.gd::GDScript::8048871249137649379::1772739315::0::1::::NoisePainter3D<>ChunkAwareModifier3D<>res://addons/gaea/modifiers/3D/noise_painter.svg<>0<>1<><>::
+noise_painter_3d.gd::GDScript::8048871249137649379::1772739315::0::1::::NoisePainter3D<>ChunkAwareModifier3D<><>0<>1<><>::
 ::res://addons/gaea/modifiers/3D/conditions/::1772739315
 condition_3d.gd::GDScript::3485992292468549852::1772739315::0::1::::AdvancedModifierCondition3D<>AdvancedModifierCondition<><>0<>0<><>::
 offset_condition_3d.gd::GDScript::756059294081887346::1772739315::0::1::::OffsetCondition3D<>AdvancedModifierCondition3D<><>0<>1<><>::
 ::res://addons/gaea/modifiers/conditions/::1772739315
 chance_condition.gd::GDScript::4114235756349506147::1772739315::0::1::::ChanceCondition<>AdvancedModifierCondition<><>0<>1<><>::
-condition.gd::GDScript::5475749488696379075::1772739315::0::1::::AdvancedModifierCondition<>Resource<>res://addons/gaea/modifiers/conditions/condition.svg<>0<>0<><>::
+condition.gd::GDScript::5475749488696379075::1772739315::0::1::::AdvancedModifierCondition<>Resource<><>0<>0<><>::
 condition.svg::CompressedTexture2D::7592994287858839831::1772739315::1772739315::1::::<><><>0<>0<>2db67cfff490e0b31defc16aeabe8449<>res://.godot/imported/condition.svg-519bbd2bbf993bb8618338b42d37472c.ctex::
 noise_condition.gd::GDScript::8021601630333250200::1772739315::0::1::::NoiseCondition<>AdvancedModifierCondition<><>0<>1<><>::
 ::res://addons/gaea/others/::1772739315
 chunk_loader.svg::CompressedTexture2D::286339547622317856::1772739315::1772739315::1::::<><><>0<>0<>09644120111173d8aff9870552f4240e<>res://.godot/imported/chunk_loader.svg-c05989f93d0a2438882e41dd35d6cd42.ctex::
-chunk_loader_2d.gd::GDScript::5268118858340855374::1772739315::0::1::::ChunkLoader2D<>Node2D<>res://addons/gaea/others/chunk_loader.svg<>0<>1<><>::
-chunk_loader_3d.gd::GDScript::8580597696514929062::1772739315::0::1::::ChunkLoader3D<>Node3D<>res://addons/gaea/others/chunk_loader.svg<>0<>1<><>::
+chunk_loader_2d.gd::GDScript::5268118858340855374::1772739315::0::1::::ChunkLoader2D<>Node2D<><>0<>1<><>::
+chunk_loader_3d.gd::GDScript::8580597696514929062::1772739315::0::1::::ChunkLoader3D<>Node3D<><>0<>1<><>::
 falloff_map.gd::GDScript::7277722873076937920::1772739315::0::1::::FalloffMap<>Resource<><>0<>1<><>::
 threaded_chunk_loader_2d.gd::GDScript::2488495634708350862::1772739315::0::1::::ThreadedChunkLoader2D<>ChunkLoader2D<><>0<>1<><>::
 threaded_chunk_loader_3d.gd::GDScript::4725508445296642767::1772739315::0::1::::ThreadedChunkLoader3D<>ChunkLoader3D<><>0<>1<><>::
 ::res://addons/gaea/renderers/::1772739315
-gaea_renderer.gd::GDScript::2733150486693882830::1772739315::0::1::::GaeaRenderer<>Node<>res://addons/gaea/renderers/gaea_renderer.svg<>0<>1<><>::
+gaea_renderer.gd::GDScript::2733150486693882830::1772739315::0::1::::GaeaRenderer<>Node<><>0<>1<><>::
 gaea_renderer.svg::CompressedTexture2D::7750084002812481298::1772739315::1772739315::1::::<><><>0<>0<>d6b43c98f00d9e16fe22f536a7c2cacf<>res://.godot/imported/gaea_renderer.svg-39d6ba76bbf73301b8b773e0bfb9ea26.ctex::
 ::res://addons/gaea/renderers/2D/::1772739315
 gaea_renderer_2d.gd::GDScript::6714455492762467845::1772739315::0::1::::GaeaRenderer2D<>GaeaRenderer<><>0<>0<><>::
@@ -122,7 +122,7 @@ threaded_gridmap_gaea_renderer.gd::GDScript::2044614796691680093::1772739315::0:
 gridmap_tile_info.gd::GDScript::4975040112026212874::1772739315::0::1::::GridmapTileInfo<>TileInfo<><>0<>0<><>::
 random_tile_info.gd::GDScript::4937946231162549264::1772739315::0::1::::RandomTileInfo<>TileInfo<><>0<>1<><>::
 tilemap_tile_info.gd::GDScript::2063011846807339423::1772739315::0::1::::TilemapTileInfo<>TileInfo<><>0<>1<><>::
-tile_info.gd::GDScript::8513394290526900759::1772739315::0::1::::TileInfo<>Resource<>res://addons/gaea/tile_info/tile_info.svg<>0<>1<><>::
+tile_info.gd::GDScript::8513394290526900759::1772739315::0::1::::TileInfo<>Resource<><>0<>1<><>::
 tile_info.svg::CompressedTexture2D::2363771520064696099::1772739315::1772739315::1::::<><><>0<>0<>c84a6edc71f4620a79e9f08b7dc21d02<>res://.godot/imported/tile_info.svg-48b8681a7ac4971589cc3e7810d4f948.ctex::
 ::res://addons/github_copilot/::1772985308
 copilot_manager.gd::GDScript::744491776710808427::1772985307::0::1::::<>Node<><>0<>1<><>::
@@ -1451,8 +1451,8 @@ SLF_proj_sprites.tscn::PackedScene::7566717110640806741::1775998221::0::1::::<><
 sts_chunk_sprites.tscn::PackedScene::7513190593738795915::1775996068::0::1::::<><><>0<>0<><>::uid://dl6r0gw0m2vo6::::res://assets/other/projectiles/STS_Chunk_proj-Sheet.png
 STS_swift_sprites.tscn::PackedScene::6190121321228166677::1775996205::0::1::::<><><>0<>0<><>::uid://dykxljltf8a4t::::res://assets/other/projectiles/sts_swift_proj -Sheet.png
 SYE_proj_sprites.tscn::PackedScene::8748471471763348063::1775997226::0::1::::<><><>0<>0<><>::uid://ci8kkw6qubdf6::::res://assets/other/projectiles/SYE_proj-Sheet.png
-::res://assets/other/spirits/::1776000013
-sts_spirit_sheet.png::CompressedTexture2D::4996675170196550345::1776000013::1776000013::1::::<><><>0<>0<>4a385d6aa9e480b6f202de489aa0e016<>res://.godot/imported/sts_spirit_sheet.png-36c58adfd8ac455402ac2a9b863247a0.ctex::
+::res://assets/other/spirits/::1778104636
+sts_spirit_sheet.png::CompressedTexture2D::4996675170196550345::1778104636::1778104637::1::::<><><>0<>0<>4a385d6aa9e480b6f202de489aa0e016<>res://.godot/imported/sts_spirit_sheet.png-36c58adfd8ac455402ac2a9b863247a0.ctex::
 ::res://assets/player/::1775052701
 charcater.png::CompressedTexture2D::2338182947021591945::1775052700::1775052701::1::::<><><>0<>0<>982c19b23000b188ea61569127be4b7b<>res://.godot/imported/charcater.png-6674f451e6b63fa87ad121bd76c40a9a.ctex::
 player_map.png::CompressedTexture2D::6884135870670996079::1772739238::1772739341::1::::<><><>0<>0<>dcc246c937692e00f456b70742dae38b<>res://.godot/imported/player_map.png-128a85cd6f60bfc1e327ca8453cc6899.ctex::
@@ -3849,10 +3849,23 @@ nine_path_panel.png::CompressedTexture2D::5746905224501009656::1772984955::17729
 nine_path_panel.png::CompressedTexture2D::3795767556223809551::1772984955::1772984962::1::::<><><>0<>0<>e4c7f4b1e6e27c1b75fba47d5e7b0592<>res://.godot/imported/nine_path_panel.png-06287e0cff3d2a761d3ea6a25360e1c9.ctex::
 ::res://assets/world/extraction/::1772739340
 extracting_stone.png::CompressedTexture2D::1886537396571265958::1772739238::1772739340::1::::<><><>0<>0<>77547b68b344c8fec23879000e7feb82<>res://.godot/imported/extracting_stone.png-0c37d0f2f9b5bc7cd300b6bc420d2abe.ctex::
-::res://resources/::1774900790
+::res://resources/::1778103297
 ::res://resources/crafting/::1773830091
-::res://resources/crafting/stations/::1775995093
-weapon_smith.tres::Resource/CraftingStationResource::8408461460563581535::1775995093::0::1::::<><><>0<>0<><>::uid://gt5w86458vfa::::res://scripts/items/crafting/StationlevelData.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dd0i0abxjm5ie::::res://scripts/items/crafting/CraftingStationResource.gd<>uid://cvebgp6i540ld::::res://scripts/items/crafting/craftingRecipe.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png<>uid://b48ej0hl7jx1h::::res://scripts/items/crafting/ingerdientData.gd<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dfpc56k7tagqa::::res://resources/items/weapons/assault_rifle.tres
+::res://resources/crafting/stations/::1778098794
+weapon_smith.tres::Resource/CraftingStationResource::8408461460563581535::1778098794::0::1::::<><><>0<>0<><>::uid://gt5w86458vfa::::res://scripts/items/crafting/StationlevelData.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dd0i0abxjm5ie::::res://scripts/items/crafting/CraftingStationResource.gd<>uid://cvebgp6i540ld::::res://scripts/items/crafting/craftingRecipe.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png<>uid://b48ej0hl7jx1h::::res://scripts/items/crafting/ingerdientData.gd<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://dfpc56k7tagqa::::res://resources/items/weapons/assault_rifle.tres
+::res://resources/fahrer/::1778103297
+::res://resources/fahrer/cards/::1778103341
+jack_of_spades.tres::Resource/FahrerCard::2778332050::1778103319::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/jack_of_spades.gd
+king_of_diamonds.tres::Resource/FahrerCard::2778333191::1778103301::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/king_of_diamonds.gd
+king_of_hearts.tres::Resource/FahrerCard::2778333195::1778103297::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/king_of_hearts.gd
+queen_of_diamonds.tres::Resource/FahrerCard::2778340127::1778103310::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/queen_of_diamonds.gd
+queen_of_hearts.tres::Resource/FahrerCard::2778340131::1778103305::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/queen_of_hearts.gd
+queen_of_spades.tres::Resource/FahrerCard::2778340142::1778103315::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/queen_of_spades.gd
+the_birds.tres::Resource/FahrerCard::3211740922252::1778103324::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/the_birds.gd
+the_fahrer.tres::Resource/FahrerCard::109199362030261::1778103328::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/the_fahrer.gd
+the_moon.tres::Resource/FahrerCard::94463407489::1778103337::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/the_moon.gd
+the_son.tres::Resource/FahrerCard::2778342449::1778103332::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/the_son.gd
+the_sun.tres::Resource/FahrerCard::2778342653::1778103341::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/cards/the_sun.gd
 ::res://resources/items/::1772739238
 item_resource.tres::Resource::6086874310823407056::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
 ::res://resources/items/blocks/::1772739238
@@ -3875,10 +3888,12 @@ sts_swift.tres::Resource/ItemResource::4958373944927916418::1772739238::0::1::::
 test_laser.tres::Resource/ItemResource::1065285662876794710::1772739238::0::1::::<><><>0<>0<><>::uid://cj07e6dbe35xf::::res://spirit-game-project/scenes/Weapons/spirit_weapons/TestLaser.tscn<>uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
 ::res://resources/spirits/::1772739238
 TestSpirit.tres::Resource/SpiritResource::3347270072862887464::1772739238::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://ubmawdsqley6::::res://spirit-game-project/scenes/main game/spirits/spirit.tscn
-::res://resources/spirits/spirits/::1775820216
+::res://resources/spirits/spirits/::1778101373
 A_PEACEFUL_WORLD.tres::Resource/SpiritResource::452093859692405627::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://di864m3ss3v4a::::res://spirit-game-project/scenes/main game/spirits/spirits/a_peaceful_world.tscn
+FOLLOW_THE_WHEEL.tres::Resource/SpiritResource::-1::1778101288::0::1::::<><><>0<>0<><>::
 JESTERS_GRIN.tres::Resource/SpiritResource::1839598772465758404::1773053622::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd<>uid://p0mh7ox7fi4p::::res://scenes/main game/spirits/spirits/jesers_grin.tscn
 KEEP_ME_CLOSE.tres::Resource/SpiritResource::6266437987637863121::1772739238::0::1::::<><><>0<>0<><>::uid://c7ekf3ejt5u8g::::res://spirit-game-project/scenes/main game/spirits/spirits/keep_me_close.tscn<>uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd
+LOOK_AT_YOU.tres::Resource/SpiritResource::8423662312332360232::1778101373::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://b2spirlookat::::res://scenes/main game/spirits/spirits/look_at_you.tscn
 SHIFT_THE_SAND.tres::Resource/SpiritResource::6093617858393335230::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://c40vnwtu3jrul::::res://spirit-game-project/scenes/main game/spirits/spirits/shift_the_sand.tscn
 SILVER_BULLET.tres::Resource/SpiritResource::6114614296717684388::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dndtlivdt7geg::::res://spirit-game-project/scenes/main game/spirits/spirits/silver_bullet.tscn
 SLOW_AND_STEADY.tres::Resource/SpiritResource::6780338891788353774::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://bmi78m3rsxqwc::::res://spirit-game-project/scenes/main game/spirits/spirits/slow_and_steady.tscn
@@ -3901,8 +3916,8 @@ health_bar.tscn::PackedScene::1752478481456652092::1772739238::0::1::::<><><>0<>
 item_interactable.tscn::PackedScene::5239730394238537641::1774520740::0::1::::<><><>0<>0<><>::uid://bdtr3flr637uv::::res://scripts/items/item_interactable.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
 ::res://scenes/items/consumables/::1774515037
 apple.tscn::PackedScene::6537389374977382521::1774515037::0::1::::<><><>0<>0<><>::uid://bgjc5rasvvhty::::res://scripts/items/consumable/apple.gd
-::res://scenes/main game/::1775034943
-game.tscn::PackedScene::5446677219255966895::1775034943::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://b8hsu3b3gsqo3::::res://scenes/main game/components/game_starter.tscn<>uid://rm7o5ewaew2x::::res://scenes/main game/The game world/safe_interactable.tscn<>uid://dyra80jgha5ev::::res://scenes/main game/shard_counter_lobby.tscn<>uid://dq1uygukg2rfw::::res://scenes/crafting stations/weapon_smith.tscn<>uid://c5jukn0wfauak::::res://scenes/shops/scrap_broker.tscn
+::res://scenes/main game/::1778104095
+game.tscn::PackedScene::5446677219255966895::1778104095::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://b8hsu3b3gsqo3::::res://scenes/main game/components/game_starter.tscn<>uid://rm7o5ewaew2x::::res://scenes/main game/The game world/safe_interactable.tscn<>uid://dyra80jgha5ev::::res://scenes/main game/shard_counter_lobby.tscn<>uid://dq1uygukg2rfw::::res://scenes/crafting stations/weapon_smith.tscn<>uid://b2ignitor::::res://scenes/main game/fahrer/ignitor.tscn<>uid://c5jukn0wfauak::::res://scenes/shops/scrap_broker.tscn
 hub_world.tscn::PackedScene::3567103794714643578::1772739238::0::1::::<><><>0<>0<><>::
 shard_counter_lobby.tscn::PackedScene::8878948978678953221::1774520637::0::1::::<><><>0<>0<><>::uid://cwk3uktvc4bsf::::res://scripts/main game/shard_counter_lobby.gd<>uid://ig5v0cabcc4s::::res://assets/player/currency/shard_counter.png<>uid://ercqgcdqy41n::::res://assets/player/currency/shard.png
 ::res://scenes/main game/Buildings/::1774720967
@@ -3912,32 +3927,40 @@ small_building.tscn::PackedScene::5548719790697353482::1774720967::0::1::::<><><
 GameManager.tscn::PackedScene::6959828211951700669::1772739238::0::1::::<><><>0<>0<><>::uid://du3bcindtvcx0::::res://spirit-game-project/scripts/main game/game_manager.gd
 game_starter.tscn::PackedScene::4718233263254027240::1772739315::0::1::::<><><>0<>0<><>::uid://54yy3rrwjxy::::res://scripts/main game/components/game_starter.gd
 interactable.tscn::PackedScene::5170101297481278799::1772739238::0::1::::<><><>0<>0<><>::uid://bkw1rrnmt1nl2::::res://spirit-game-project/scripts/main game/components/interactable.gd
-::res://scenes/main game/Spawner/::1775999101
+::res://scenes/main game/fahrer/::1778103441
+fahrer_draw_ui.tscn::PackedScene::3211807430968::1778103424::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/fahrer_draw_ui.gd
+ignitor.tscn::PackedScene::3216573115913::1778103441::0::1::::<><><>0<>0<><>::res://scripts/main game/fahrer/ignitor_interactable.gd<>uid://dowoda6idxfva::::res://icon.svg
+::res://scenes/main game/Spawner/::1778102810
 enemy_spawner.tscn::PackedScene::9217583839858452731::1775999101::0::1::::<><><>0<>0<><>::uid://coqmkgx6f1afe::::res://scripts/main game/spawner/enemy_spawner.gd<>uid://vmce3i1bf5v1::::res://scenes/enemy/enemies/ardy.tscn
 spawn_pos.gd::GDScript::7270885900751707916::1774677770::0::1::::SpawnPosHolder<>Node2D<><>0<>0<><>::
+wave_spawner.tscn::PackedScene::7422662678999465553::1778102810::0::1::::<><><>0<>0<><>::uid://bc6fcigoehwaf::::res://scripts/main game/Spawner/wave_spawner.gd
 ::res://scenes/main game/spirits/::1773909609
 spirit.tscn::PackedScene::1406571015415678263::1773909609::0::1::::<><><>0<>0<><>::uid://odgjkiyrneke::::res://scripts/main game/Spirits/spirit.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/spirits/spirits/::1776000955
+::res://scenes/main game/spirits/spirits/::1778102876
 a_peaceful_world.tscn::PackedScene::7790831955244280046::1773909558::0::1::::<><><>0<>0<><>::uid://cx7mnhm1efw77::::res://scripts/main game/Spirits/spirits/a_peaceful_world.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
+follow_the_wheel.tscn::PackedScene::1416608003449932529::1778102876::0::1::::<><><>0<>0<><>::uid://mqr1apbu844j::::res://scripts/main game/Spirits/spirits/follow_the_wheel.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://b2wftwheel::::res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 jesers_grin.tscn::PackedScene::1105184906354962705::1775770669::0::1::::<><><>0<>0<><>::uid://b2a0fykxtq3s1::::res://scripts/main game/Spirits/spirits/jesers_grin.gd<>uid://c88ikobhaor73::::res://scenes/Weapons/spirit_weapons/jesters_grin.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 keep_me_close.tscn::PackedScene::7027759450985200888::1775986868::0::1::::<><><>0<>0<><>::uid://clmioc8lvnee4::::res://scripts/main game/Spirits/spirits/keep_me_close.gd<>uid://cj07e6dbe35xf::::res://scenes/Weapons/spirit_weapons/TestLaser.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
+look_at_you.tscn::PackedScene::127047182743552555::1778102124::0::1::::<><><>0<>0<><>::uid://db5bfqkbwpm8a::::res://scripts/main game/Spirits/spirits/look_at_you.gd<>uid://bsmiimrqb81t5::::res://scenes/Projectile/LaserProjectile.tscn<>uid://b2wlookatyou::::res://scenes/Weapons/spirit_weapons/look_at_you.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 shift_the_sand.tscn::PackedScene::6861226734720982079::1776000955::0::1::::<><><>0<>0<><>::uid://d31ktld32j6nb::::res://scripts/main game/Spirits/spirits/shift_the_sand.gd<>uid://b2rbhbs2uhqb4::::res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd<>uid://cdgorluhellmn::::res://assets/other/spirits/sts_spirit_sheet.png
 silver_bullet.tscn::PackedScene::8079083871022075510::1775996717::0::1::::<><><>0<>0<><>::uid://bkwsciciajwil::::res://scripts/main game/Spirits/spirits/silver_bullet.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cx624efybkweb::::res://scenes/Weapons/spirit_weapons/silver_bullet.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 slow_and_steady.tscn::PackedScene::3247204378681461158::1775997758::0::1::::<><><>0<>0<><>::uid://byxccfeyfqido::::res://scripts/main game/Spirits/spirits/slow_and_steady.gd<>uid://c8ptl0a5yo1sq::::res://scenes/Weapons/spirit_weapons/slow_and_steady.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 spread_like_fire.tscn::PackedScene::5918048217149318596::1775997886::0::1::::<><><>0<>0<><>::uid://dfp3akm017jtm::::res://scripts/main game/Spirits/spirits/spread_like_fire.gd<>uid://7kvpjm62stgy::::res://scenes/Weapons/spirit_weapons/spread_like_fire.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
 start_your_engine.tscn::PackedScene::1814973551915108444::1775820613::0::1::::<><><>0<>0<><>::uid://nin568tacu87::::res://scripts/main game/Spirits/spirits/start_your_engine.gd<>uid://blhyo4ujkh0t4::::res://scenes/Weapons/spirit_weapons/start_your_engine.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/The game world/::1775821702
+::res://scenes/main game/The game world/::1778104149
 extraction_point.tscn::PackedScene::7228370094195798612::1773826907::0::1::::<><><>0<>0<><>::uid://bi72xqebn68j8::::res://scripts/main game/the game world/extraction_point.gd<>uid://14383tcq1fb7::::res://assets/world/extraction/extracting_stone.png
 safe_interactable.tscn::PackedScene::1219952402657948133::1774445971::0::1::::<><><>0<>0<><>::uid://rlxyac54uxl7::::res://scripts/main game/the game world/safe_interactable.gd<>uid://dowoda6idxfva::::res://icon.svg
-the_world.tscn::PackedScene::2887004937877063605::1775821702::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dby2ukjy8dom4::::res://scripts/main game/the game world/the_world.gd<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://dmhxx1k4rqs68::::res://scripts/main game/generation/procedural_generation.gd<>uid://cf11tsw12100c::::res://scripts/world gen/biome_resource.gd<>uid://cbxcu6pr0vivu::::res://scripts/world gen/new_tile_set.tres<>uid://c62pvs4ve04ip::::res://scripts/world gen/terrain_info_res.gd<>uid://d4lci2tduaiwp::::res://scenes/main game/Spawner/enemy_spawner.tscn
+the_world.tscn::PackedScene::2887004937877063605::1778104149::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dby2ukjy8dom4::::res://scripts/main game/the game world/the_world.gd<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://vmce3i1bf5v1::::res://scenes/enemy/enemies/ardy.tscn<>uid://dmhxx1k4rqs68::::res://scripts/main game/generation/procedural_generation.gd<>uid://cf11tsw12100c::::res://scripts/world gen/biome_resource.gd<>uid://cbxcu6pr0vivu::::res://scripts/world gen/new_tile_set.tres<>uid://c62pvs4ve04ip::::res://scripts/world gen/terrain_info_res.gd<>uid://b2todwidget::::res://scenes/main game/ui/time_of_day_widget.tscn<>uid://b2fdrawui::::res://scenes/main game/fahrer/fahrer_draw_ui.tscn
+::res://scenes/main game/ui/::1778102161
+time_of_day_widget.tscn::PackedScene::3738407614657611::1778102161::0::1::::<><><>0<>0<><>::res://scripts/main game/ui/time_of_day_widget.gd
 ::res://scenes/Physics objects/::1773058983
 physics_object.tscn::PackedScene::3975504774845032990::1773058983::0::1::::<><><>0<>0<><>::uid://cf00aahfatipu::::res://scripts/Physics objects/physics_object.gd<>uid://dowoda6idxfva::::res://icon.svg
 ::res://scenes/Physics objects/spirits/::1775771155
 jesters_grin_bomb.tscn::PackedScene::2901184816296939696::1775771155::0::1::::<><><>0<>0<><>::uid://cnbc22a0lhy43::::res://scripts/Physics objects/spirits/jesters_grin_bomb.gd<>uid://cog51xqj66r5::::res://assets/other/projectiles/jesters_grin_bomb.png<>uid://cybyemvq7ucnh::::res://assets/other/projectiles/explosion-Sheet.png
 ::res://scenes/Physics objects/trees/::1773053029
 tree.tscn::PackedScene::3449918177511302908::1773053029::0::1::::<><><>0<>0<><>::uid://b4qfme54ubmef::::res://scripts/Physics objects/trees/tree.gd<>uid://bhc1068767vyv::::res://resources/items/material/wood.tres
-::res://scenes/Player/::1776000525
-player.tscn::PackedScene::538315797829068015::1776000525::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://scripts/Player/player_movement.gd<>uid://b0nykv8sstij6::::res://scripts/Player/player.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd<>uid://cs2184gpso1g1::::res://resources/spirits/spirits/SHIFT_THE_SAND.tres<>uid://84meb3bqjfvg::::res://scripts/Player/player_manager.gd<>uid://6rsohixmelnm::::res://scripts/Player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://scenes/Player/inventory/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://scripts/Player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://scripts/Player/player_specials.gd<>uid://jqii235rbcqp::::res://scenes/Player/inventory/Inventory.tscn<>uid://dj1cj1xd2h1ka::::res://scripts/Player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn<>uid://8kvscpbrp3bp::::res://assets/player/charcater.png<>uid://byxetoyvngan6::::res://scenes/Player/inventory/currency/shard_counter.tscn<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://scripts/shaders/blue_filter.gdshader
+::res://scenes/Player/::1778102678
+player.tscn::PackedScene::538315797829068015::1778102678::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://scripts/Player/player_movement.gd<>uid://b0nykv8sstij6::::res://scripts/Player/player.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd<>res://resources/spirits/spirits/FOLLOW_THE_WHEEL.tres<>uid://84meb3bqjfvg::::res://scripts/Player/player_manager.gd<>uid://6rsohixmelnm::::res://scripts/Player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://scenes/Player/inventory/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://scripts/Player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://scripts/Player/player_specials.gd<>uid://jqii235rbcqp::::res://scenes/Player/inventory/Inventory.tscn<>uid://dj1cj1xd2h1ka::::res://scripts/Player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn<>uid://8kvscpbrp3bp::::res://assets/player/charcater.png<>uid://byxetoyvngan6::::res://scenes/Player/inventory/currency/shard_counter.tscn<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://scripts/shaders/blue_filter.gdshader
 ::res://scenes/Player/inventory/::1773827487
 global_safe.tscn::PackedScene::2288761494559151764::1772739238::0::1::::<><><>0<>0<><>::uid://cn7yvsmy5gls3::::res://spirit-game-project/scripts/Player/inventory/safe/global_safe.gd
 Inventory.tscn::PackedScene::665231121871418895::1772739238::0::1::::<><><>0<>0<><>::uid://td88g75lk23b::::res://spirit-game-project/scripts/Player/inventory/inventory.gd
@@ -3963,8 +3986,10 @@ pistol.tscn::PackedScene::6981005920075728888::1775035958::0::1::::<><><>0<>0<><
 shotgun.tscn::PackedScene::826090062738499332::1775035958::0::1::::<><><>0<>0<><>::uid://cc7n7yq1i6bfp::::res://scripts/Weapons/guns/shotgun.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 smg.tscn::PackedScene::7060538225971706020::1773837221::0::1::::<><><>0<>0<><>::uid://bj8uf8qsrrin1::::res://scripts/Weapons/guns/smg.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://ck7g7loj24uwc::::res://resources/items/weapons/smg.tres
 sniper.tscn::PackedScene::5472832145771834221::1775035957::0::1::::<><><>0<>0<><>::uid://b58jjd7hnx02e::::res://scripts/Weapons/guns/sniper.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-::res://scenes/Weapons/spirit_weapons/::1775998686
+::res://scenes/Weapons/spirit_weapons/::1778102257
+follow_the_wheel.tscn::PackedScene::110097558876251::1778102257::0::1::::<><><>0<>0<><>::res://scripts/Weapons/spirit_weapons/follow_the_wheel.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 jesters_grin.tscn::PackedScene::7157702004396749488::1775035908::0::1::::<><><>0<>0<><>::uid://bg4111ttosr0g::::res://scripts/Weapons/spirit_weapons/jesters_grin.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
+look_at_you.tscn::PackedScene::-1::1778102257::0::1::::<><><>0<>0<><>::
 silver_bullet.tscn::PackedScene::6452871847174364289::1775996975::0::1::::<><><>0<>0<><>::uid://ck2nmc60vxovr::::res://scripts/Weapons/spirit_weapons/silver_bullet.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
 slf_fire_ring.tscn::PackedScene::1281020644612643680::1775998642::0::1::::<><><>0<>0<><>::uid://c07ssb2a20065::::res://scripts/Weapons/spirit_weapons/slf_fire_ring.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://df2mywph5xba0::::res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
 slow_and_steady.tscn::PackedScene::7121213454827153420::1775997710::0::1::::<><><>0<>0<><>::uid://degj5d3x3gf8g::::res://scripts/Weapons/spirit_weapons/slow_and_steady.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
@@ -3974,9 +3999,9 @@ STS_Chunk.tscn::PackedScene::4316687182872698839::1775996074::0::1::::<><><>0<>0
 STS_swift.tscn::PackedScene::135135939470547134::1775996397::0::1::::<><><>0<>0<><>::uid://3qlpy1xpbgo0::::res://scripts/Weapons/spirit_weapons/sts_swift.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cugsnng3qlmlx::::res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn
 TestLaser.tscn::PackedScene::5458102123834318859::1775995806::0::1::::<><><>0<>0<><>::uid://d1nawydecsmi7::::res://scripts/Weapons/spirit_weapons/keep_me_close.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://xtt53okqaoh3::::res://assets/other/projectiles/spritemaps/KMC_sprites.tscn<>uid://bsmiimrqb81t5::::res://scenes/Projectile/LaserProjectile.tscn
 ::res://scripts/::1772739798
-::res://scripts/enemy/::1774678809
+::res://scripts/enemy/::1778103371
 enemy_stats.gd::GDScript::8903866278421097433::1773054840::0::1::::<>Node2D<><>0<>0<><>::
-general_enemy.gd::GDScript::7928338357086885653::1774678809::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
+general_enemy.gd::GDScript::7928338357086885653::1778103371::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
 ::res://scripts/enemy/enemies/::1772739238
 ardy.gd::GDScript::551103772746181345::1772739238::0::1::::<>Enemy<><>0<>0<><>::
 bartholomew.gd::GDScript::8342943914607621997::1772739238::0::1::::<>Enemy<><>0<>0<><>::
@@ -4008,51 +4033,74 @@ burger_stand.gd::GDScript::2832597845841849132::1774433747::0::1::::<>ShopStatio
 ScrapBrokerNode.gd::GDScript::3299561994198782783::1774439691::0::1::::ScrapBrokerNode<>Area2D<><>0<>0<><>::
 ScrapBrokerUi.gd::GDScript::2601789225888582179::1774444779::0::1::::ScrapBrokerUI<>Control<><>0<>0<><>::
 weapon_handler.gd::GDScript::5421234348207235181::1774434665::0::1::::<>ShopStationNode<><>0<>0<><>::
-::res://scripts/main game/::1774679285
-game.gd::GDScript::3552846528166844466::1774678622::0::1::::<>Node2D<><>0<>0<><>::
+::res://scripts/main game/::1778103473
+day_night_cycle.gd::GDScript::7588136972935771727::1778103357::0::1::::<>Node<><>0<>0<><>::
+game.gd::GDScript::3552846528166844466::1778103473::0::1::::<>Node2D<><>0<>0<><>::
 game_manager.gd::GDScript::8620906229965984551::1773834192::0::1::::<>Node2D<><>0<>0<><>::
 shard_counter_lobby.gd::GDScript::6339376052181814741::1774520637::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/main game/Buildings/::1774717936
 roof.gd::GDScript::3552219375477647625::1774717936::0::1::::Roof<>Area2D<><>0<>0<><>::
-::res://scripts/main game/components/::1774442984
-game_starter.gd::GDScript::63736289076661162::1772739315::0::1::::<>Interactable<><>0<>0<><>::
+::res://scripts/main game/components/::1778104095
+game_starter.gd::GDScript::63736289076661162::1778104095::0::1::::<>Interactable<><>0<>0<><>::
 interactable.gd::GDScript::3135335344522113925::1774442984::0::1::::Interactable<>Area2D<><>0<>0<><>::
-::res://scripts/main game/generation/::1775040897
-procedural_generation.gd::GDScript::8017417765503695159::1775040897::0::1::::<>Node<><>0<>0<><>::
+::res://scripts/main game/fahrer/::1778103928
+fahrer_card.gd::GDScript::1778297573772234813::1778103208::0::1::::FahrerCard<>Resource<><>0<>0<><>::
+fahrer_deck.gd::GDScript::4760506341691616314::1778103928::0::1::::<>Node<><>0<>0<><>::
+fahrer_draw_ui.gd::GDScript::2321282879234119991::1778103714::0::1::::<>Control<><>0<>0<><>::
+ignitor_interactable.gd::GDScript::3777560159339422457::1778103432::0::1::::<>Interactable<><>0<>0<><>::
+::res://scripts/main game/fahrer/cards/::1778103495
+jack_of_spades.gd::GDScript::518984607013066369::1778103266::0::1::::<>FahrerCard<><>0<>0<><>::
+king_of_diamonds.gd::GDScript::3002019600062125140::1778103251::0::1::::<>FahrerCard<><>0<>0<><>::
+king_of_hearts.gd::GDScript::3734725476029128159::1778103248::0::1::::<>FahrerCard<><>0<>0<><>::
+queen_of_diamonds.gd::GDScript::1101353224308386531::1778103259::0::1::::<>FahrerCard<><>0<>0<><>::
+queen_of_hearts.gd::GDScript::6604307885742524710::1778103256::0::1::::<>FahrerCard<><>0<>0<><>::
+queen_of_spades.gd::GDScript::1169605552340116766::1778103262::0::1::::<>FahrerCard<><>0<>0<><>::
+the_birds.gd::GDScript::4217450782233704185::1778103271::0::1::::<>FahrerCard<><>0<>0<><>::
+the_fahrer.gd::GDScript::5793563921972594417::1778103275::0::1::::<>FahrerCard<><>0<>0<><>::
+the_moon.gd::GDScript::6021165836609763290::1778103287::0::1::::<>FahrerCard<><>0<>0<><>::
+the_son.gd::GDScript::287706167356098349::1778103283::0::1::::<>FahrerCard<><>0<>0<><>::
+the_sun.gd::GDScript::7948738127151159413::1778103291::0::1::::<>FahrerCard<><>0<>0<><>::
+::res://scripts/main game/generation/::1778102027
+procedural_generation.gd::GDScript::8017417765503695159::1778102027::0::1::::<>Node<><>0<>0<><>::
 ::res://scripts/main game/pools/::1774679212
 building_pools.gd::GDScript::5119710041203974813::1774679212::0::1::::<>Node<><>0<>0<><>::
 pools.gd::GDScript::8487825936942937670::1774679181::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/main game/spawner/::1775039985
+::res://scripts/main game/spawner/::1778103365
 enemy_spawner.gd::GDScript::5789262036322662766::1775039985::0::1::::EnemySpawner<>Node2D<><>0<>0<><>::
 spawners.gd::GDScript::8203460917407428188::1775032307::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/main game/Spirits/::1776000826
-spirit.gd::GDScript::989217857001996128::1776000826::0::1::::Spirit<>CharacterBody2D<><>0<>0<><>::
+wave_spawner.gd::GDScript::2591101667994030485::1778103365::0::1::::WaveSpawner1<>Node2D<><>0<>0<><>::
+::res://scripts/main game/Spirits/::1778100987
+spirit.gd::GDScript::989217857001996128::1778100987::0::1::::Spirit<>CharacterBody2D<><>0<>0<><>::
 SpiritResource.gd::GDScript::3214645966207574939::1772739238::0::1::::SpiritResource<>Resource<><>0<>0<><>::
 stats.gd::GDScript::9004821242240843880::1773913718::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/main game/Spirits/spirits/::1776000736
+::res://scripts/main game/Spirits/spirits/::1778102091
 a_peaceful_world.gd::GDScript::6453997065812814432::1772739238::0::1::::<>Spirit<><>0<>0<><>::
+follow_the_wheel.gd::GDScript::876374810485462143::1778102075::0::1::::<>Spirit<><>0<>0<><>::
 jesers_grin.gd::GDScript::4283047592788176126::1773059959::0::1::::<>Spirit<><>0<>0<><>::
 keep_me_close.gd::GDScript::5570202074063690381::1772739238::0::1::::<>Spirit<><>0<>0<><>::
+look_at_you.gd::GDScript::7291452729198505610::1778102091::0::1::::<>Spirit<><>0<>0<><>::
 shift_the_sand.gd::GDScript::9178865178261549551::1776000736::0::1::::<>Spirit<><>0<>0<><>::
 silver_bullet.gd::GDScript::3134822331760618939::1775996717::0::1::::<>Spirit<><>0<>0<><>::
 slow_and_steady.gd::GDScript::4118558894816334308::1775997758::0::1::::<>Spirit<><>0<>0<><>::
 spread_like_fire.gd::GDScript::7542872556320876278::1773134835::0::1::::<>Spirit<><>0<>0<><>::
 start_your_engine.gd::GDScript::929814564115786242::1775820613::0::1::::<>Spirit<><>0<>0<><>::
-::res://scripts/main game/the game world/::1774521274
+::res://scripts/main game/the game world/::1778104090
 extraction_point.gd::GDScript::3015672799608664767::1773826907::0::1::::<>Interactable<><>0<>0<><>::
 GlobalWorld.gd::GDScript::6212807511060831612::1772739238::0::1::::<>Node<><>0<>0<><>::
 safe_interactable.gd::GDScript::1217357851520792610::1774442991::0::1::::<>Interactable<><>0<>0<><>::
-the_world.gd::GDScript::7280671575768987605::1774521274::0::1::::<>Node2D<><>0<>0<><>::
+the_world.gd::GDScript::7280671575768987605::1778104090::0::1::::<>Node2D<><>0<>0<><>::
+::res://scripts/main game/ui/::1778102257
+time_of_day_widget.gd::GDScript::2102463001243595841::1778102141::0::1::::<>Control<><>0<>0<><>::
 ::res://scripts/Physics objects/::1773059340
 physics_object.gd::GDScript::5176912965288584618::1773059340::0::1::::PhysicsObject<>RigidBody2D<><>0<>0<><>::
 ::res://scripts/Physics objects/spirits/::1775771097
 jesters_grin_bomb.gd::GDScript::5687531782136991070::1775771097::0::1::::<>PhysicsObject<><>0<>0<><>::
 ::res://scripts/Physics objects/trees/::1773052891
 tree.gd::GDScript::4455252465533628069::1773052891::0::1::::TreeObject<>PhysicsObject<><>0<>0<><>::
-::res://scripts/Player/::1775120007
+::res://scripts/Player/::1778100980
 GlobalPlayer.gd::GDScript::3634137497432277414::1772985678::0::1::::<>Node<><>0<>0<><>::
 player.gd::GDScript::4169454906023678633::1774899990::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
-player_manager.gd::GDScript::2376834637856670156::1775120007::0::1::::PlayerManager<>Node2D<><>0<>0<><>::
+player_manager.gd::GDScript::2376834637856670156::1778100980::0::1::::PlayerManager<>Node2D<><>0<>0<><>::
 player_movement.gd::GDScript::8116732337177180290::1775119535::0::1::::PlayerMovement<>Node2D<><>0<>0<><>::
 player_specials.gd::GDScript::2889875903574187753::1772739238::0::1::::PlayerSpecials<>Node2D<><>0<>0<><>::
 player_stats.gd::GDScript::6699601115607886984::1774433368::0::1::::PlayerStats<>Node2D<><>0<>0<><>::
@@ -4067,18 +4115,18 @@ player_inventory.gd::GDScript::5917061835956502976::1772739238::0::1::::PlayerIn
 shard_counter.gd::GDScript::5903449391495122781::1773828188::0::1::::<>Control<><>0<>0<><>::
 ::res://scripts/Player/inventory/items/::1774522544
 item_resource.gd::GDScript::330915824076223624::1774522543::0::1::::ItemResource<>Resource<><>0<>0<><>::
-::res://scripts/Player/inventory/safe/::1774443001
+::res://scripts/Player/inventory/safe/::1778102645
 global_safe.gd::GDScript::5752852097397678908::1773834982::0::1::::<>Node2D<><>0<>0<><>::
-safeUi.gd::GDScript::8021051076690860158::1774443001::0::1::::SafeUI<>Control<><>0<>0<><>::
+safeUi.gd::GDScript::8021051076690860158::1778102645::0::1::::SafeUI<>Control<><>0<>0<><>::
 ::res://scripts/Projectiles/::1775998565
 laser_projectile.gd::GDScript::30139276297596265::1775995710::0::1::::LaserProjectile<>Node2D<><>0<>0<><>::
 projectile.gd::GDScript::126512782107756830::1775998565::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
-::res://scripts/shaders/::1775995093
+::res://scripts/shaders/::1778098794
 blue_filter.gdshader::Shader::5097217208791447235::1772739238::0::1::::<><><>0<>0<><>::
 grayscale.gdshader::Shader::6780060105885750950::1772739238::0::1::::<><><>0<>0<><>::
-outline.gdshader::Shader::4192966522980728464::1775995093::0::1::::<><><>0<>0<><>::
-::res://scripts/Weapons/::1776000524
-weapon.gd::GDScript::1725451143214091368::1776000524::0::1::::Weapon<>Node2D<><>0<>0<><>::
+outline.gdshader::Shader::4192966522980728464::1778098794::0::1::::<><><>0<>0<><>::
+::res://scripts/Weapons/::1778103386
+weapon.gd::GDScript::1725451143214091368::1778103386::0::1::::Weapon<>Node2D<><>0<>0<><>::
 ::res://scripts/Weapons/guns/::1774522365
 assault_rifle.gd::GDScript::5136612913745200371::1774522365::0::1::::<>Weapon<><>0<>0<><>::
 burst_rifle.gd::GDScript::8715892524408226543::1772739238::0::1::::<>Weapon<><>0<>0<><>::
@@ -4091,9 +4139,11 @@ knife.gd::GDScript::8613743745712970601::1772739238::0::1::::<>Weapon<><>0<>0<><
 punch.gd::GDScript::6085930221346460699::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 ::res://scripts/Weapons/resource/::1774522365
 assault_rifle.gd::GDScript::3746118229581100954::1774522365::0::1::::AssaultRifleRes<>ItemResource<><>0<>0<><>::
-::res://scripts/Weapons/spirit_weapons/::1773132683
+::res://scripts/Weapons/spirit_weapons/::1778102257
+follow_the_wheel.gd::GDScript::6150068706492114854::1778102035::0::1::::<>Weapon<><>0<>0<><>::
 jesters_grin.gd::GDScript::2869047168683581612::1773053448::0::1::::<>Weapon<><>0<>0<><>::
 keep_me_close.gd::GDScript::9011049449316782672::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+look_at_you.gd::GDScript::8478899989290224523::1778102055::0::1::::<>Weapon<><>0<>0<><>::
 silver_bullet.gd::GDScript::5531278907659469435::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 slf_fire_ring.gd::GDScript::6594747690897172056::1773132683::0::1::::<>Weapon<><>0<>0<><>::
 slow_and_steady.gd::GDScript::7453003920815085388::1772739238::0::1::::<>Weapon<><>0<>0<><>::
@@ -4101,7 +4151,7 @@ spread_like_fire.gd::GDScript::1625410474332997902::1773060111::0::1::::<>Weapon
 start_your_engine.gd::GDScript::6698540437513242420::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 sts_chunk.gd::GDScript::6584201015736206362::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 sts_swift.gd::GDScript::1999013641549292517::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-::res://scripts/world gen/::1775995093
-biome_resource.gd::GDScript::5179072959702492792::1775032881::0::1::::Biome<>Resource<><>0<>0<><>::
-new_tile_set.tres::TileSet::4890669701433806870::1775995093::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png
+::res://scripts/world gen/::1778103630
+biome_resource.gd::GDScript::5179072959702492792::1778102810::0::1::::Biome<>Resource<><>0<>0<><>::
+new_tile_set.tres::TileSet::4890669701433806870::1778103630::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png
 terrain_info_res.gd::GDScript::7005382967268456059::1775026050::0::1::::TerrainInfo<>Resource<><>0<>0<><>::
