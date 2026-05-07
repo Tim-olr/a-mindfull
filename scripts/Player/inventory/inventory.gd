@@ -38,9 +38,12 @@ var _grid_bg: Control
 var _capacity_label: Label
 
 
+const CURSED_SLOT_COUNT := 3
+
 func _ready() -> void:
 	_build_ui()
 	_populate_slots()
+	_curse_random_slots()
 	_set_grid_visible(false)
 
 
@@ -184,6 +187,14 @@ func _populate_slots() -> void:
 		selected_slot_index = -1
 	update_hotbar_selection()
 
+
+func _curse_random_slots() -> void:
+	var grid_slots: Array = slots.slice(MIN_HOTBAR_SLOTS)
+	grid_slots.shuffle()
+	for i in range(min(CURSED_SLOT_COUNT, grid_slots.size())):
+		var slot = grid_slots[i]
+		slot.is_cursed = true
+		slot._apply_slot_style()
 
 func _clear_children(node: Control) -> void:
 	for child in node.get_children():

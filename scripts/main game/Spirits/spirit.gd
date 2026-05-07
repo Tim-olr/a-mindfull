@@ -60,7 +60,7 @@ func _process(_delta: float) -> void:
 			attack()
 		if Input.is_action_just_pressed("spirit_ability"):
 			active_ability()
-	if !sprites.is_playing():
+	if sprites != null and !sprites.is_playing():
 		sprites.play("default")
 
 func _physics_process(delta: float) -> void:

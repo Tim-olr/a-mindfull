@@ -89,7 +89,8 @@ func _process(_delta: float) -> void:
 		bullet_stars_pos.look_at(get_global_mouse_position())
 		if Input.is_action_pressed("spirit_attack") and shooter.out and shooter.stats.canAttack and attackable:
 			perform_attack()
-			shooter.sprites.play("attack")
+			if shooter.sprites != null:
+				shooter.sprites.play("attack")
 	elif shooter.is_in_group("enemy"):
 		if GlobalPlayer.player:
 			bullet_stars_pos.look_at(GlobalPlayer.player.global_position)

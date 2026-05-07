@@ -23,6 +23,7 @@ const CARD_PATHS: Array[String] = [
 	"res://resources/fahrer/cards/the_son.tres",
 	"res://resources/fahrer/cards/the_moon.tres",
 	"res://resources/fahrer/cards/the_sun.tres",
+	"res://resources/fahrer/cards/the_fool.tres",
 ]
 
 # Cards that exist in the world. Populated at startup.
