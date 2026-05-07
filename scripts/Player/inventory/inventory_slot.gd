@@ -25,6 +25,15 @@ static var held_count:  int          = 0
 static var cursor_icon: TextureRect  = null
 static var _cursor_layer: CanvasLayer = null
 
+static var _tooltip_root:   Control     = null
+static var _tooltip_layer:  CanvasLayer = null
+static var _tooltip_panel:  Panel       = null
+static var _tooltip_stripe: ColorRect   = null
+static var _tooltip_name:   Label       = null
+static var _tooltip_rarity: Label       = null
+static var _tooltip_sep:    ColorRect   = null
+static var _tooltip_desc:   Label       = null
+
 const C_BG            := Color(0.09, 0.10, 0.12)
 const C_SLOT_NORMAL   := Color(0.13, 0.14, 0.17)
 const C_SLOT_HOVER    := Color(0.20, 0.22, 0.27)
@@ -39,6 +48,7 @@ const SLOT_RADIUS     := 7
 
 func _ready() -> void:
 	_init_cursor_icon(self)
+	_init_tooltip(self)
 	_apply_slot_style()
 	txtr        = get_node_or_null("ItemIcon")
 	count_label = get_node_or_null("ItemCount")
@@ -100,6 +110,111 @@ func _apply_slot_style() -> void:
 	add_theme_stylebox_override("disabled", mk.call(C_SLOT_NORMAL))
 
 
+static func _init_tooltip(parent: Node) -> void:
+	if is_instance_valid(_tooltip_root):
+		return
+	_tooltip_layer        = CanvasLayer.new()
+	_tooltip_layer.layer  = 110
+	_tooltip_layer.name   = "ItemTooltipLayer"
+	parent.get_tree().root.add_child.call_deferred(_tooltip_layer)
+
+	const W   := 240
+	const PAD := 10
+
+	_tooltip_root              = Control.new()
+	_tooltip_root.name         = "ItemTooltip"
+	_tooltip_root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tooltip_root.visible      = false
+	_tooltip_layer.add_child.call_deferred(_tooltip_root)
+
+	_tooltip_panel              = Panel.new()
+	_tooltip_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var sb                      := StyleBoxFlat.new()
+	sb.bg_color                  = Color(0.08, 0.09, 0.11, 0.96)
+	sb.border_color              = Color(0.22, 0.24, 0.28)
+	sb.set_border_width_all(1)
+	sb.set_corner_radius_all(7)
+	_tooltip_panel.add_theme_stylebox_override("panel", sb)
+	_tooltip_root.add_child(_tooltip_panel)
+
+	_tooltip_stripe              = ColorRect.new()
+	_tooltip_stripe.size         = Vector2(W, 4)
+	_tooltip_stripe.position     = Vector2.ZERO
+	_tooltip_stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tooltip_root.add_child(_tooltip_stripe)
+
+	_tooltip_name              = Label.new()
+	_tooltip_name.position     = Vector2(PAD, 8)
+	_tooltip_name.size         = Vector2(W - PAD * 2, 22)
+	_tooltip_name.add_theme_font_size_override("font_size", 15)
+	_tooltip_name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tooltip_root.add_child(_tooltip_name)
+
+	_tooltip_rarity              = Label.new()
+	_tooltip_rarity.position     = Vector2(PAD, 31)
+	_tooltip_rarity.size         = Vector2(W - PAD * 2, 17)
+	_tooltip_rarity.add_theme_font_size_override("font_size", 12)
+	_tooltip_rarity.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tooltip_root.add_child(_tooltip_rarity)
+
+	_tooltip_sep              = ColorRect.new()
+	_tooltip_sep.color        = Color(0.22, 0.24, 0.28)
+	_tooltip_sep.size         = Vector2(W - PAD * 2, 1)
+	_tooltip_sep.position     = Vector2(PAD, 52)
+	_tooltip_sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_tooltip_sep.visible      = false
+	_tooltip_root.add_child(_tooltip_sep)
+
+	_tooltip_desc                 = Label.new()
+	_tooltip_desc.position        = Vector2(PAD, 58)
+	_tooltip_desc.size            = Vector2(W - PAD * 2, 72)
+	_tooltip_desc.add_theme_font_size_override("font_size", 12)
+	_tooltip_desc.add_theme_color_override("font_color", Color(0.72, 0.70, 0.66))
+	_tooltip_desc.autowrap_mode   = TextServer.AUTOWRAP_WORD_SMART
+	_tooltip_desc.max_lines_visible = 4
+	_tooltip_desc.mouse_filter    = Control.MOUSE_FILTER_IGNORE
+	_tooltip_desc.visible         = false
+	_tooltip_root.add_child(_tooltip_desc)
+
+
+static func _show_tooltip(item: ItemResource) -> void:
+	if not is_instance_valid(_tooltip_root) or item == null:
+		return
+	const W   := 240
+	const PAD := 10
+	const RARITY_NAMES := ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
+
+	var rarity_col := item.calculate_rarity_outline()
+	_tooltip_stripe.color = rarity_col
+	_tooltip_name.text    = item.Name if item.Name != "" else "Unknown"
+	_tooltip_name.add_theme_color_override("font_color", rarity_col)
+	_tooltip_rarity.text  = RARITY_NAMES[clampi(item.rarity, 0, 4)]
+	_tooltip_rarity.add_theme_color_override("font_color", rarity_col)
+
+	var has_desc := item.description != null and item.description.strip_edges() != ""
+	_tooltip_desc.visible = has_desc
+	_tooltip_sep.visible  = has_desc
+
+	var h: int
+	if has_desc:
+		_tooltip_desc.text = item.description
+		var char_count     := item.description.length()
+		var line_count     := clampi(ceili(float(char_count) / 28.0), 1, 4)
+		h = 60 + line_count * 17 + 8
+		_tooltip_desc.size = Vector2(W - PAD * 2, line_count * 17 + 4)
+	else:
+		h = 54
+
+	_tooltip_panel.size  = Vector2(W, h)
+	_tooltip_root.size   = Vector2(W, h)
+	_tooltip_root.visible = true
+
+
+static func _hide_tooltip() -> void:
+	if is_instance_valid(_tooltip_root):
+		_tooltip_root.visible = false
+
+
 static func _init_cursor_icon(parent: Node) -> void:
 	if is_instance_valid(cursor_icon):
 		return
@@ -129,9 +244,23 @@ func _process(_delta: float) -> void:
 		cursor_icon.position = cursor_icon.get_viewport().get_mouse_position() - (cursor_icon.size * cursor_icon.scale) / 2.0
 	if item != null:
 		_apply_slot_outline()
+	if is_instance_valid(_tooltip_root) and _tooltip_root.visible and _tooltip_root.is_inside_tree():
+		var vp   := _tooltip_root.get_viewport()
+		var mp   := vp.get_mouse_position()
+		var vs   := vp.get_visible_rect().size
+		var tw   := _tooltip_root.size.x
+		var th   := _tooltip_root.size.y
+		var tx   := mp.x + 14.0
+		var ty   := mp.y - th - 8.0
+		if tx + tw > vs.x - 4.0:
+			tx = mp.x - tw - 10.0
+		if ty < 4.0:
+			ty = mp.y + 18.0
+		_tooltip_root.position = Vector2(tx, ty)
 
 
 func _pressed() -> void:
+	_hide_tooltip()
 	_init_cursor_icon(self)
 	if held_item == null:
 		if item == null:
@@ -300,10 +429,13 @@ func _update_selection_visuals() -> void:
 
 func _on_mouse_entered() -> void:
 	_update_selection_visuals()
+	if item != null and held_item == null:
+		_show_tooltip(item)
 
 
 func _on_mouse_exited() -> void:
 	_update_selection_visuals()
+	_hide_tooltip()
 
 
 func update_visuals() -> void:

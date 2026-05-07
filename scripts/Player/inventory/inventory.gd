@@ -39,6 +39,14 @@ var _capacity_label: Label
 
 
 func _ready() -> void:
+	if not get_parent() is CanvasLayer:
+		var cl        := CanvasLayer.new()
+		cl.layer       = 10
+		cl.name        = "InventoryLayer"
+		get_tree().root.call_deferred("add_child", cl)
+		await get_tree().process_frame
+		get_parent().remove_child(self)
+		cl.add_child(self)
 	_build_ui()
 	_populate_slots()
 	_set_grid_visible(false)
