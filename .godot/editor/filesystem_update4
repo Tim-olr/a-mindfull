@@ -1,30 +1,11 @@
+res://scenes/main game/The game world/chest.tscn
+res://scenes/main game/The game world/chest_ui.tscn
 res://scenes/main game/The game world/the_world.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scripts/main game/generation/procedural_generation.gd
-res://scripts/main game/Spirits/spirit.gd
+res://scripts/Player/inventory/inventory.gd
+res://scripts/Player/inventory/inventory_slot.gd
+res://scripts/Player/inventory/player_inventory.gd
 res://scripts/Player/player_manager.gd
-res://scripts/Player/inventory/safe/safeUi.gd
-res://scripts/world gen/biome_resource.gd
-res://scenes/Player/player.tscn
-res://resources/spirits/spirits/LOOK_AT_YOU.tres
-res://scenes/main game/Spawner/wave_spawner.tscn
-res://scenes/main game/spirits/spirits/look_at_you.tscn
-res://scripts/main game/Spirits/spirits/look_at_you.gd
-res://scripts/main game/Spawner/wave_spawner.gd
-res://scenes/main game/spirits/spirits/follow_the_wheel.tscn
-res://scripts/main game/Spirits/spirits/follow_the_wheel.gd
-res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn
-res://scenes/main game/game.tscn
-res://scripts/enemy/general_enemy.gd
-res://scripts/main game/day_night_cycle.gd
-res://scripts/main game/game.gd
-res://scripts/main game/spawner/wave_spawner.gd
-res://scripts/main game/the game world/the_world.gd
-res://scripts/Weapons/weapon.gd
-res://scripts/main game/fahrer/fahrer_draw_ui.gd
-res://scripts/main game/fahrer/fahrer_deck.gd
-res://scripts/main game/components/game_starter.gd
-res://scenes/main game/spirits/spirits/shift_the_sand.tscn
-res://scripts/main game/Spirits/spirits/shift_the_sand.gd
+res://scripts/Player/inventory/items/item_resource.gd

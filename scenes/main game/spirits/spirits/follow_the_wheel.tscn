@@ -108,7 +108,7 @@ shape = SubResource("Rect_ftw")
 
 [node name="stats" type="Node2D" parent="." unique_id=537845799]
 script = ExtResource("3_stats")
-attackSpeed = 0.6
+attackSpeed = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1862933582]
 sprite_frames = SubResource("SpriteFrames_rub2v")

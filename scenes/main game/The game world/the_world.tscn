@@ -5,11 +5,16 @@
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
 [ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://scenes/enemy/enemies/ardy.tscn" id="6_lhdhh"]
 [ext_resource type="Script" uid="uid://dmhxx1k4rqs68" path="res://scripts/main game/generation/procedural_generation.gd" id="11_cvtyc"]
+[ext_resource type="PackedScene" uid="uid://clb3ussoahufy" path="res://scenes/main game/Buildings/small_building.tscn" id="11_o686i"]
 [ext_resource type="Script" uid="uid://cf11tsw12100c" path="res://scripts/world gen/biome_resource.gd" id="12_6th7i"]
+[ext_resource type="Script" uid="uid://dajcxxd7vd00p" path="res://scripts/items/chest/chest_loot_entry.gd" id="12_o6xy1"]
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
+[ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://resources/items/weapons/assault_rifle.tres" id="13_ap3w0"]
 [ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
 [ext_resource type="PackedScene" uid="uid://b2todwidget" path="res://scenes/main game/ui/time_of_day_widget.tscn" id="14_todw"]
+[ext_resource type="Script" uid="uid://cg6twgxd3uqwx" path="res://scripts/items/chest/chest_loot_pool.gd" id="15_6th7i"]
 [ext_resource type="PackedScene" uid="uid://b2fdrawui" path="res://scenes/main game/fahrer/fahrer_draw_ui.tscn" id="15_fdui"]
+[ext_resource type="PackedScene" uid="uid://dfq4aksfohtrf" path="res://scenes/shops/weapon_handler.tscn" id="15_o6xy1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -61,6 +66,16 @@ max_spawners = 6
 enemy_pool = Array[PackedScene]([ExtResource("6_lhdhh")])
 metadata/_custom_type_script = "uid://cf11tsw12100c"
 
+[sub_resource type="Resource" id="Resource_es1ek"]
+script = ExtResource("12_o6xy1")
+item = ExtResource("13_ap3w0")
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_wk3ij"]
+script = ExtResource("15_6th7i")
+entries = Array[ExtResource("12_o6xy1")]([SubResource("Resource_es1ek")])
+metadata/_custom_type_script = "uid://cg6twgxd3uqwx"
+
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 y_sort_enabled = true
 script = ExtResource("1_87ryk")
@@ -98,10 +113,10 @@ position = Vector2(115, 245)
 
 [node name="Gray" type="TextureRect" parent="Effects" unique_id=427023759]
 material = SubResource("ShaderMaterial_s3014")
-offset_left = -2065.0
-offset_top = -1131.0
-offset_right = 1993.0
-offset_bottom = 1351.0
+offset_left = -2078.0
+offset_top = -1203.0
+offset_right = 1980.0
+offset_bottom = 1279.0
 texture = SubResource("GradientTexture1D_lmetf")
 metadata/_edit_use_anchors_ = true
 
@@ -156,5 +171,15 @@ y_sort_enabled = true
 position = Vector2(148, 224)
 tile_map_data = PackedByteArray("AAD+//7/AQAMAAsAAAD+////AQAMAAsAAAD/////AQAMAAsAAAAAAAAAAQAMAAgAAAAAAP7/AQALAAsAAAD7//7/AQAMAAgAAAD7////AQAMAAsAAAD8////AQAMAAgAAAD9////AQALAAsAAAD///7/AQALAAsAAAD9//7/AQAMAAsAAAD7/wAAAQAOAAsAAAD6/wEAAQALAAsAAAAAAP//AQAMAAgAAAD6////AQAMAAsAAAD6/wAAAQAMAAsAAAD9/wAAAQAMAAsAAAD8/wAAAQAOAAsAAAD+/wAAAQAOAAsAAAD//wAAAQAOAAsAAAD//wEAAQAOAAsAAAAAAAEAAQALAAsAAAD8/wEAAQALAAsAAAD9/wEAAQALAAsAAAD7/wEAAQAMAAsAAAD+/wEAAQAOAAsAAAD8//7/AQALAAsAAAD6//7/AQAMAAgAAAD4//3/AQAOAAwAAAD4//7/AQAOAAwAAAD4////AQAPAAwAAAD4/wAAAQALAAwAAAD3/wAAAQAMAAwAAAD3/wEAAQAMAAwAAAD3/wIAAQANAAwAAAD4/wIAAQAMAAwAAAD4/wEAAQANAAwAAAD4/wMAAQAOAAwAAAD5/wMAAQANAAwAAAD6/wMAAQAMAAwAAAD7/wMAAQALAAwAAAD8/wMAAQALAAwAAAD9/wMAAQAMAAwAAAD+/wMAAQAOAAwAAAD//wMAAQANAAwAAAAAAAMAAQAPAAwAAAABAAMAAQAPAAwAAAACAAMAAQAPAAwAAAACAAIAAQALAAwAAAACAAEAAQAPAAwAAAACAAAAAQAPAAwAAAACAP//AQANAAwAAAACAP7/AQANAAwAAAACAP3/AQAMAAwAAAACAPz/AQAOAAwAAAABAPz/AQAMAAwAAAAAAPz/AQAMAAwAAAD///z/AQAMAAwAAAD+//z/AQAOAAwAAAD9//z/AQALAAwAAAD8//z/AQAMAAwAAAD7//z/AQAMAAwAAAD6//z/AQALAAwAAAD5//z/AQALAAwAAAD4//z/AQALAAwAAAD+//b/AQAMAAgAAAD9//b/AQAMAAsAAAD///b/AQALAAsAAAD9//f/AQAOAAsAAAD+//f/AQAMAAgAAAD///f/AQALAAsAAAD8//b/AQALAAsAAAD8//f/AQAMAAsAAAD+//j/AQAMAAgAAAD///j/AQAOAAsAAAAAAPj/AQAOAAsAAAABAPf/AQAMAAgAAAAAAPf/AQAMAAgAAAD9//j/AQAMAAsAAAD8//j/AQAMAAsAAAD6//X/AQAPAAwAAAD6//b/AQALAAwAAAD5//b/AQAMAAwAAAD5//f/AQAMAAwAAAD6//f/AQAPAAwAAAD6//j/AQAOAAwAAAD6//n/AQAPAAwAAAA=")
 tile_set = ExtResource("12_t3lwd")
+
+[node name="SmallBuilding" parent="." unique_id=620982097 instance=ExtResource("11_o686i")]
+position = Vector2(-26.999985, 64.000015)
+scale = Vector2(0.4, 0.4)
+spawn_chance = 1.0
+loot_pool_override = SubResource("Resource_wk3ij")
+
+[node name="WeaponHandler" parent="." unique_id=161303713 instance=ExtResource("15_o6xy1")]
+position = Vector2(165, 275)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

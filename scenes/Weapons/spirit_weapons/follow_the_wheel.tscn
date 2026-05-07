@@ -1,32 +1,31 @@
 [gd_scene format=3 uid="uid://b2wftwheel"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/spirit_weapons/follow_the_wheel.gd" id="1_ftwwep"]
+[ext_resource type="Script" uid="uid://ctvey6of8wbni" path="res://scripts/Weapons/spirit_weapons/follow_the_wheel.gd" id="1_ftwwep"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
 
 [sub_resource type="RectangleShape2D" id="Rect_ftw"]
 size = Vector2(86, 20)
 
-[node name="FollowTheWheelWeapon" type="Node2D"]
+[node name="FollowTheWheelWeapon" type="Node2D" unique_id=1248237450]
 script = ExtResource("1_ftwwep")
-damageMod = 0.0
 bulletLifeTimeMod = 1.5
 bulletAmountMod = 1
 projectileSpeedMod = 300.0
-shootCooldown = 0.5
+shootCooldown = 0.2
 gun = true
 description = "wheel of fortune"
 Name = "Wheel"
 bulletScene = ExtResource("2_proj")
 knockback_force = 100.0
 
-[node name="attack_cooldown" type="Timer" parent="."]
+[node name="attack_cooldown" type="Timer" parent="." unique_id=219878477]
 one_shot = true
 
-[node name="BulletStarsPos" type="Marker2D" parent="."]
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1301685335]
 
-[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=979344028]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1332210605]
 shape = SubResource("Rect_ftw")
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

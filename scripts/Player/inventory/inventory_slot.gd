@@ -180,11 +180,15 @@ static func _init_tooltip(parent: Node) -> void:
 static func _show_tooltip(item: ItemResource) -> void:
 	if not is_instance_valid(_tooltip_root) or item == null:
 		return
+	if not _tooltip_root.is_inside_tree():
+		return
 	const W   := 240
 	const PAD := 10
 	const RARITY_NAMES := ["Common", "Uncommon", "Rare", "Epic", "Legendary"]
 
-	var rarity_col := item.calculate_rarity_outline()
+	var rarity_col = item.calculate_rarity_outline()
+	if rarity_col == null:
+		rarity_col = Color.WHITE
 	_tooltip_stripe.color = rarity_col
 	_tooltip_name.text    = item.Name if item.Name != "" else "Unknown"
 	_tooltip_name.add_theme_color_override("font_color", rarity_col)
@@ -281,6 +285,7 @@ func _input(event: InputEvent) -> void:
 	if held_item != null:
 		if _is_selected:
 			_clear_equip_state()
+			emit_signal("selected", slot_index)
 		var swap       = item
 		var swap_count = item_count
 		set_item(held_item, held_count)
@@ -297,6 +302,7 @@ func _input(event: InputEvent) -> void:
 			return
 		if _is_selected:
 			_clear_equip_state()
+			emit_signal("selected", slot_index)
 		held_item  = item
 		held_count = item_count
 		set_item(null)
@@ -320,7 +326,8 @@ func _apply_slot_outline() -> void:
 	if txtr == null or not txtr.material is ShaderMaterial:
 		return
 	if item != null:
-		txtr.material.set_shader_parameter("outline_color",     item.calculate_rarity_outline())
+		var col = item.calculate_rarity_outline()
+		txtr.material.set_shader_parameter("outline_color",     col if col != null else Color.WHITE)
 		txtr.material.set_shader_parameter("outline_thickness", 2.0)
 	else:
 		txtr.material.set_shader_parameter("outline_color", Color.TRANSPARENT)
@@ -353,14 +360,17 @@ func set_item(new_item, count: int = 1) -> void:
 		item_count = 0
 		done       = false
 	update_visuals()
+	update_visuals.call_deferred()
 	emit_signal("item_changed", slot_index)
 
 
 func set_selected(value: bool) -> void:
 	if value and item == null:
 		return
+	if currently_selected_slot != null and not is_instance_valid(currently_selected_slot):
+		currently_selected_slot = null
 	if value and currently_selected_slot != null and currently_selected_slot != self:
-		currently_selected_slot._deselect_internal()
+		currently_selected_slot.deselect()
 	_is_selected = value
 	if value:
 		currently_selected_slot = self
@@ -450,6 +460,9 @@ func update_visuals() -> void:
 			item_count          = item.amount
 			count_label.text    = str(item_count) if item_count > 0 else ""
 			count_label.visible = item_count > 0
+		elif count_label != null:
+			count_label.text    = ""
+			count_label.visible = false
 		txtr.visible = true
 	else:
 		txtr.texture = null

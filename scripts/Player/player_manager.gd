@@ -90,8 +90,8 @@ func _process(_delta: float) -> void:
 		die()
 	GlobalPlayer.stats.playerSpiritScene.z_index = GlobalPlayer.player.z_index
 
-func _input(_event: InputEvent) -> void:
-	if Input.is_action_pressed("interact"):
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
 		if _active_interactable != null:
 			_active_interactable.close_interaction()
 			_active_interactable = null

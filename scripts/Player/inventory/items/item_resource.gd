@@ -39,3 +39,4 @@ func calculate_rarity_outline():
 		2: return Color.BLUE
 		3: return Color.PURPLE
 		4: return Color.ORANGE
+		_: return Color.WHITE
