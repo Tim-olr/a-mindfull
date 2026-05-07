@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctfspr0000001"]
 
-[ext_resource type="Script" path="res://scripts/main game/Spirits/spirits/chain_the_floor.gd" id="1_ctfspr"]
+[ext_resource type="Script" uid="uid://f0f5xmnr0dfg" path="res://scripts/main game/Spirits/spirits/chain_the_floor.gd" id="1_ctfspr"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_ctfspr"]
 [ext_resource type="PackedScene" uid="uid://ctfwpn0000001" path="res://scenes/Weapons/spirit_weapons/chain_the_floor.tscn" id="3_ctfspr"]
 [ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="4_ctfspr"]
@@ -107,7 +107,7 @@ size = Vector2(120, 120)
 script = ExtResource("1_ctfspr")
 Name = "CHAIN THE FLOOR"
 attackType = "melee"
-size = Vector2(0.5, 0.5)
+size = Vector2(0.2, 0.2)
 activeAbilityCooldown = 15.0
 hasAbilityDuration = true
 abilityDuration = 8.0
@@ -119,7 +119,7 @@ projectile = ExtResource("2_ctfspr")
 libraries/ = SubResource("AnimationLibrary_ctfspr")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1111300003]
-modulate = Color(1, 0.4, 0.1, 0)
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(1e-05, 1e-05)
 mesh = SubResource("SphereMesh_ctfspr")
 

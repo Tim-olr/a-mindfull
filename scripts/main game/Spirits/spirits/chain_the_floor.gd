@@ -20,7 +20,7 @@ func active_ability() -> void:
 		_trap_instance.deactivate()
 	_trap_instance = CHAIN_TRAP.instantiate()
 	_trap_instance.global_position = global_position
-	GlobalWorld.theWorld.add_child(_trap_instance)
+	GlobalPlayer.player.get_parent().add_child(_trap_instance)
 	# Extra movement and damage bonuses while the trap is active
 	GlobalPlayer.stats.speed        *= 1.15
 	GlobalPlayer.stats.attackDamage *= 1.30

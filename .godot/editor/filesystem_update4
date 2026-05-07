@@ -1,11 +1,13 @@
-res://scenes/main game/The game world/chest.tscn
-res://scenes/main game/The game world/chest_ui.tscn
-res://scenes/main game/The game world/the_world.tscn
+res://scenes/Player/player.tscn
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scripts/Player/inventory/inventory.gd
-res://scripts/Player/inventory/inventory_slot.gd
-res://scripts/Player/inventory/player_inventory.gd
-res://scripts/Player/player_manager.gd
-res://scripts/Player/inventory/items/item_resource.gd
+res://scenes/main game/spirits/spirits/wandering_eye.tscn
+res://scripts/Player/player_specials.gd
+res://scripts/main game/Spirits/spirits/wandering_eye.gd
+res://scenes/Weapons/spirit_weapons/wandering_eye.tscn
+res://scenes/Projectile/growing_projectile.tscn
+res://scripts/Projectiles/growing_projectile.gd
+res://scenes/main game/spirits/spirits/chain_the_floor.tscn
+res://scripts/main game/Spirits/spirits/chain_the_floor.gd
+res://scenes/Physics objects/spirits/chain_trap.tscn

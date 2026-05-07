@@ -8,11 +8,11 @@ var _original_player_scale: Vector2 = Vector2.ONE
 func apply_passive() -> void:
 	_original_player_scale = GlobalPlayer.player.scale
 	GlobalPlayer.stats.speed   *= 1.30
-	GlobalPlayer.player.scale  *= 0.65
+	GlobalPlayer.specials.size_player(Vector2(0.65, 0.65))
 
 func remove_passive() -> void:
 	GlobalPlayer.stats.speed  /= 1.30
-	GlobalPlayer.player.scale  = _original_player_scale
+	GlobalPlayer.specials.size_player(_original_player_scale)
 
 func active_ability() -> void:
 	if not canAbility:

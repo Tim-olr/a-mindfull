@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://weywpn0000001"]
+[gd_scene format=3 uid="uid://c2xkrefq60m77"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/spirit_weapons/wandering_eye.gd" id="1_weywep"]
-[ext_resource type="PackedScene" uid="uid://weyprj0000001" path="res://scenes/Projectile/growing_projectile.tscn" id="2_weywep"]
+[ext_resource type="Script" uid="uid://bu8rd7b6sp3hj" path="res://scripts/Weapons/spirit_weapons/wandering_eye.gd" id="1_weywep"]
+[ext_resource type="PackedScene" uid="uid://c2xdtafq60m77" path="res://scenes/Projectile/growing_projectile.tscn" id="2_weywep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weywep"]
 size = Vector2(86, 20)
@@ -10,13 +10,14 @@ size = Vector2(86, 20)
 script = ExtResource("1_weywep")
 damageMod = 18.0
 bulletLifeTimeMod = 3.0
-bulletAmountMod = 0
+bulletAmountMod = 1
 projectileSpeedMod = 80.0
 shootCooldown = 2.2
 gun = true
 description = "A slow orb that expands as it travels."
 Name = "Wandering Eye"
 bulletScene = ExtResource("2_weywep")
+doConsecShooting = true
 knockback_force = 220.0
 canKeepTicking = true
 tick_interval = 0.4

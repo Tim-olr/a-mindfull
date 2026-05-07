@@ -1,6 +1,10 @@
 extends Node2D
 class_name PlayerSpecials
 
+@onready var player_sprites: AnimatedSprite2D = $"../PlayerVisuals/PlayerSprites"
+@onready var player_area: Area2D = $"../PlayerArea"
+@onready var player_collision: CollisionShape2D = $"../PlayerCollision"
+
 var is_paused: bool = false
 
 func pause():
@@ -28,3 +32,8 @@ func set_player_pause_mode(paused: bool):
 
 func change_game_speed(speed: float = 1.0):
 	Engine.time_scale = speed
+
+func size_player(new_scale):
+	player_sprites.scale = new_scale
+	player_area.scale = new_scale
+	player_collision.scale = new_scale
