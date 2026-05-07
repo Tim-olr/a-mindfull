@@ -304,13 +304,10 @@ shards = 10000.0
 position = Vector2(985, 521)
 script = ExtResource("7_3ragq")
 
-[node name="Inventory" parent="PlayerInventory" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
-z_index = 1001
-offset_left = -1265.0
-offset_top = -688.0
-offset_right = -1265.0
-offset_bottom = -688.0
-scale = Vector2(0.3, 0.3)
+[node name="InventoryLayer" type="CanvasLayer" parent="PlayerInventory" unique_id=287364891]
+layer = 10
+
+[node name="Inventory" parent="PlayerInventory/InventoryLayer" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
 
 [node name="SafeUi" parent="PlayerInventory" unique_id=1199611452 instance=ExtResource("7_2pfsf")]
 anchors_preset = 0
@@ -397,7 +394,7 @@ shape = SubResource("CircleShape2D_c4h5g")
 
 [node name="PlayerManager" type="Node2D" parent="." unique_id=888015861 groups=["player"]]
 script = ExtResource("3_ly2qd")
-inventory_node_path = NodePath("../PlayerInventory/Inventory")
+inventory_node_path = NodePath("../PlayerInventory/InventoryLayer/Inventory")
 god_mode = true
 
 [node name="InteractArea" type="Area2D" parent="PlayerManager" unique_id=2008701243]
