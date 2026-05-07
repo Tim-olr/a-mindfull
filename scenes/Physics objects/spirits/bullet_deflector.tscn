@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://weyd00000001"]
+
+[ext_resource type="Script" path="res://scripts/Physics objects/spirits/bullet_deflector.gd" id="1_deflect"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_deflect"]
+radius = 110.0
+
+[node name="BulletDeflector" type="Node2D" unique_id=1222300001]
+script = ExtResource("1_deflect")
+
+[node name="DeflectArea" type="Area2D" parent="." unique_id=1222300002]
+monitoring = true
+monitorable = false
+collision_mask = 4294967295
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeflectArea" unique_id=1222300003]
+shape = SubResource("CircleShape2D_deflect")
+
+[connection signal="area_entered" from="DeflectArea" to="." method="_on_area_entered"]

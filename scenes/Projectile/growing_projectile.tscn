@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://weyprj0000001"]
+
+[ext_resource type="Script" path="res://scripts/Projectiles/growing_projectile.gd" id="1_growprj"]
+[ext_resource type="Texture2D" uid="uid://3s26xrerirrd" path="res://assets/other/projectiles/generic_bullet.png" id="2_growprj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_growprj"]
+atlas = ExtResource("2_growprj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_growprj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_growprj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_growprj"]
+radius = 10.0
+
+[node name="GrowingProjectile" type="CharacterBody2D" unique_id=1222200001 node_paths=PackedStringArray("collision_area", "area_shape", "local_proj")]
+script = ExtResource("1_growprj")
+collision_area = NodePath("CollisionArea")
+area_shape = NodePath("CollisionArea/AreaShape")
+local_proj = NodePath("Sprite2D")
+projectileSpeed = 80.0
+lifetime = 3.0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1222200002]
+sprite_frames = SubResource("SpriteFrames_growprj")
+
+[node name="LifeTime" type="Timer" parent="." unique_id=1222200003]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=1222200004]
+
+[node name="AreaShape" type="CollisionShape2D" parent="CollisionArea" unique_id=1222200005]
+shape = SubResource("CircleShape2D_growprj")
+
+[node name="ProjMiddle" type="Marker2D" parent="." unique_id=1222200006]
+
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

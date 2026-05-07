@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ctftrp0000001"]
+
+[ext_resource type="Script" path="res://scripts/Physics objects/spirits/chain_trap.gd" id="1_ctftrp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctftrp"]
+radius = 160.0
+
+[node name="ChainTrap" type="Node2D" unique_id=1111200001]
+script = ExtResource("1_ctftrp")
+
+[node name="DetectArea" type="Area2D" parent="." unique_id=1111200002]
+collision_mask = 4294967295
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea" unique_id=1111200003]
+shape = SubResource("CircleShape2D_ctftrp")
+
+[connection signal="body_entered" from="DetectArea" to="." method="_on_body_entered"]

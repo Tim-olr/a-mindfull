@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://weywpn0000001"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/spirit_weapons/wandering_eye.gd" id="1_weywep"]
+[ext_resource type="PackedScene" uid="uid://weyprj0000001" path="res://scenes/Projectile/growing_projectile.tscn" id="2_weywep"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weywep"]
+size = Vector2(86, 20)
+
+[node name="WanderingEye" type="Node2D" unique_id=1222400001]
+script = ExtResource("1_weywep")
+damageMod = 18.0
+bulletLifeTimeMod = 3.0
+bulletAmountMod = 0
+projectileSpeedMod = 80.0
+shootCooldown = 2.2
+gun = true
+description = "A slow orb that expands as it travels."
+Name = "Wandering Eye"
+bulletScene = ExtResource("2_weywep")
+knockback_force = 220.0
+canKeepTicking = true
+tick_interval = 0.4
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1222400002]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1222400003]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1222400004]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1222400005]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_weywep")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
