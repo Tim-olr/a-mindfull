@@ -30,6 +30,9 @@ class_name Biome
 @export var min_buildings: int
 @export var max_buildings: int
 
+@export_category("Loot")
+@export var weapon_pool: Array[Resource]
+
 @export_category("Wave Spawning")
 @export var enemy_pool: Array[PackedScene]
 @export var wave_interval_min: float = 60.0

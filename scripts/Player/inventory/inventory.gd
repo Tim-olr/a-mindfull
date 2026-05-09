@@ -191,6 +191,8 @@ func _set_grid_visible(vis: bool) -> void:
 	_grid_visible       = vis
 	_grid_panel.visible = vis
 	if vis:
+		for i in range(MIN_HOTBAR_SLOTS, slots.size()):
+			slots[i].update_visuals()
 		_grid_panel.modulate = Color(1, 1, 1, 0)
 		_grid_panel.scale    = Vector2(0.95, 0.95)
 		_grid_panel.pivot_offset = _grid_bg.size / 2.0

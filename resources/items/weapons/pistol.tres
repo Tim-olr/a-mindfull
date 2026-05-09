@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3]
+
+[ext_resource type="PackedScene" uid="uid://c6pwfat6wbqi7" path="res://scenes/Weapons/guns/pistol.tscn" id="1_pistol"]
+[ext_resource type="Script" path="res://scripts/Player/inventory/items/item_resource.gd" id="2_ir"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_ir")
+isWeapon = true
+itemScene = ExtResource("1_pistol")
+rarity = 0
+Name = "Pistol"
+description = "Medium damage and medium fire rate. Reliable starter."
+scale_mod = Vector2(6, 6)
