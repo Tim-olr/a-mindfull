@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cdamkadr37mce"]
 
-[ext_resource type="Script" uid="uid://cn5m8hl2xgbts" path="res://spirit-game-project/scripts/Player/inventory/inventory_slot.gd" id="1_uvwsa"]
-[ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://spirit-game-project/scripts/shaders/outline.gdshader" id="2_1fgb8"]
-[ext_resource type="Texture2D" uid="uid://ci615ibt1a44" path="res://spirit-game-project/assets/player/inventory/inv_slot.png" id="2_y2mwc"]
+[ext_resource type="Script" uid="uid://cn5m8hl2xgbts" path="res://scripts/Player/inventory/inventory_slot.gd" id="1_uvwsa"]
+[ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://scripts/shaders/outline.gdshader" id="2_1fgb8"]
+[ext_resource type="Texture2D" uid="uid://ci615ibt1a44" path="res://assets/player/inventory/inv_slot.png" id="2_y2mwc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_et6pe"]
 shader = ExtResource("2_1fgb8")

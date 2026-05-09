@@ -17,7 +17,6 @@ var _ready_called: bool         = false
 var _is_selected:  bool         = false
 var scene
 var is_safe_slot:  bool = false
-var is_cursed:     bool = false
 var done := false
 
 static var currently_selected_slot: InventorySlot = null
@@ -108,16 +107,10 @@ func _apply_slot_style() -> void:
 		s.set_border_width_all(1)
 		s.set_corner_radius_all(SLOT_RADIUS)
 		return s
-	if is_cursed:
-		add_theme_stylebox_override("normal",   mk.call(C_CURSED_TINT, C_CURSED_BORDER))
-		add_theme_stylebox_override("hover",    mk.call(C_CURSED_TINT, C_CURSED_BORDER))
-		add_theme_stylebox_override("pressed",  mk.call(C_CURSED_TINT, C_CURSED_BORDER))
-		add_theme_stylebox_override("disabled", mk.call(C_CURSED_TINT, C_CURSED_BORDER))
-	else:
-		add_theme_stylebox_override("normal",   mk.call(C_SLOT_NORMAL))
-		add_theme_stylebox_override("hover",    mk.call(C_SLOT_HOVER))
-		add_theme_stylebox_override("pressed",  mk.call(C_SLOT_SELECTED, C_ACCENT))
-		add_theme_stylebox_override("disabled", mk.call(C_SLOT_NORMAL))
+	add_theme_stylebox_override("normal",   mk.call(C_SLOT_NORMAL))
+	add_theme_stylebox_override("hover",    mk.call(C_SLOT_HOVER))
+	add_theme_stylebox_override("pressed",  mk.call(C_SLOT_SELECTED, C_ACCENT))
+	add_theme_stylebox_override("disabled", mk.call(C_SLOT_NORMAL))
 
 
 static func _init_tooltip(parent: Node) -> void:
@@ -373,7 +366,6 @@ func set_item(new_item, count: int = 1) -> void:
 	update_visuals.call_deferred()
 	emit_signal("item_changed", slot_index)
 
-
 func set_selected(value: bool) -> void:
 	if value and item == null:
 		return
@@ -449,7 +441,7 @@ func _update_selection_visuals() -> void:
 
 func _on_mouse_entered() -> void:
 	_update_selection_visuals()
-	if item != null and held_item == null and not is_cursed:
+	if item != null and held_item == null:
 		_show_tooltip(item)
 
 
@@ -465,15 +457,6 @@ func update_visuals() -> void:
 	if txtr == null:
 		return
 	if item != null:
-		if is_cursed:
-			txtr.texture = null
-			txtr.visible = false
-			if count_label != null:
-				count_label.text    = ""
-				count_label.visible = false
-			_apply_slot_outline()
-			_update_selection_visuals()
-			return
 		txtr.texture = item.txtr if "txtr" in item else null
 		if count_label != null and item.isStackable:
 			item_count          = item.amount
