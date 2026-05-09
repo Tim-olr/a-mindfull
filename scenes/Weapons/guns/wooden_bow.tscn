@@ -1,0 +1,33 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Weapons/guns/wooden_bow.gd" id="1_bow"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bow"]
+size = Vector2(86, 20)
+
+[node name="WoodenBow" type="Node2D"]
+script = ExtResource("1_bow")
+damageMod = 15.0
+bulletLifeTimeMod = 1.5
+projectileSpeedMod = 600.0
+shootCooldown = 0.4
+gun = true
+description = "Hold to charge, release to fire. Longer charge = more damage and range."
+Name = "Wooden Bow"
+bulletScene = ExtResource("2_proj")
+cameraShakeAmount = 8.0
+knockback_force = 350.0
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_bow")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

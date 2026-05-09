@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/Weapons/guns/boomerang.gd" id="1_bm"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bm"]
+size = Vector2(86, 20)
+
+[node name="Boomerang" type="Node2D"]
+script = ExtResource("1_bm")
+damageMod = 8.0
+bulletLifeTimeMod = 1.5
+projectileSpeedMod = 450.0
+shootCooldown = 0.6
+gun = true
+description = "Thrown projectile that returns to you, hitting enemies twice."
+Name = "Boomerang"
+bulletScene = ExtResource("2_proj")
+cameraShakeAmount = 6.0
+knockback_force = 180.0
+bullet_speed_mode = 2
+bullet_end_speed_multiplier = -1.0
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="."]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_bm")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -280,6 +280,8 @@ func _pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_RIGHT):
 		return
+	if not is_visible_in_tree():
+		return
 	if not get_global_rect().has_point(get_global_mouse_position()):
 		return
 	if get_viewport().is_input_handled():
@@ -466,6 +468,7 @@ func update_visuals() -> void:
 			count_label.text    = ""
 			count_label.visible = false
 		txtr.visible = true
+		txtr.modulate = Color.WHITE
 	else:
 		txtr.texture = null
 		txtr.visible = false
@@ -474,6 +477,7 @@ func update_visuals() -> void:
 			count_label.visible = false
 	_apply_slot_outline()
 	_update_selection_visuals()
+	queue_redraw()
 
 
 func _on_pressed() -> void:

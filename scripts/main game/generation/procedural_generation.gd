@@ -33,6 +33,7 @@ func spawn_world():
 	_fix_empty_cells()
 	for b in biomes:
 		_spawn_biome_scenes(b)
+	_register_loot_pools()
 	_spawn_wave_spawner()
 
 func _spawn_wave_spawner():
@@ -103,6 +104,11 @@ func _spawn_biome_scenes(b: Biome):
 	_spawn_batch(b.biome_shops,     b.min_shops,     b.max_shops,     shops_node,      half)
 	_spawn_batch(b.extraction_points, b.min_points,  b.max_points,    extraction_node, half)
 	_spawn_batch(b.buildings,       b.min_buildings, b.max_buildings, buildings_node,  half)
+
+func _register_loot_pools():
+	for b in biomes:
+		if b.weapon_pool.size() > 0:
+			LootPoolManager.register_biome_pool(b.biome_name, b.weapon_pool)
 
 func _spawn_batch(scenes: Array[PackedScene], min_count: int, max_count: int, parent: Node, half: Vector2i):
 	if scenes.is_empty() or parent == null:
