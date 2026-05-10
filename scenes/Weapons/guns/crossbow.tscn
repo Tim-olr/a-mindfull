@@ -1,12 +1,13 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cden3rlixpre4"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/guns/crossbow.gd" id="1_cb"]
+[ext_resource type="Script" uid="uid://dnx417brwq17b" path="res://scripts/Weapons/guns/crossbow.gd" id="1_cb"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+[ext_resource type="PackedScene" uid="uid://xc67mug4arbe" path="res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn" id="3_0yl7f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cb"]
 size = Vector2(86, 20)
 
-[node name="Crossbow" type="Node2D"]
+[node name="Crossbow" type="Node2D" unique_id=2103328044]
 script = ExtResource("1_cb")
 pierceMod = 2
 damageMod = 20.0
@@ -19,15 +20,16 @@ Name = "Crossbow"
 bulletScene = ExtResource("2_proj")
 cameraShakeAmount = 12.0
 knockback_force = 400.0
+projectile_sprite_scene = ExtResource("3_0yl7f")
 
-[node name="attack_cooldown" type="Timer" parent="."]
+[node name="attack_cooldown" type="Timer" parent="." unique_id=2114496654]
 one_shot = true
 
-[node name="BulletStarsPos" type="Marker2D" parent="."]
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=97042595]
 
-[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1663152947]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=576177379]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_cb")
 

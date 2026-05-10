@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c4gnsxf0k776t"]
+
+[ext_resource type="Texture2D" uid="uid://jj65a1202urh" path="res://assets/items/weapons/boomerang.png" id="1_0rjsm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt6xe"]
+atlas = ExtResource("1_0rjsm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mr6h3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gt6xe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BoomerangSpritemap" type="AnimatedSprite2D" unique_id=350547535]
+sprite_frames = SubResource("SpriteFrames_mr6h3")

@@ -1,12 +1,13 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ww801dydkkcg"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/guns/throwing_knives.gd" id="1_tk"]
+[ext_resource type="Script" uid="uid://dy57mess3icf5" path="res://scripts/Weapons/guns/throwing_knives.gd" id="1_tk"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
+[ext_resource type="PackedScene" uid="uid://cogb701r6v63q" path="res://assets/other/projectiles/spritemaps/throwing_knife_sprites.tscn" id="3_nulmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk"]
 size = Vector2(86, 20)
 
-[node name="ThrowingKnives" type="Node2D"]
+[node name="ThrowingKnives" type="Node2D" unique_id=21485719]
 script = ExtResource("1_tk")
 damageMod = -3.0
 bulletLifeTimeMod = 0.3
@@ -22,15 +23,16 @@ doConsecShooting = true
 consec_shooting_time_between = 0.06
 cameraShakeAmount = 3.0
 knockback_force = 80.0
+projectile_sprite_scene = ExtResource("3_nulmo")
 
-[node name="attack_cooldown" type="Timer" parent="."]
+[node name="attack_cooldown" type="Timer" parent="." unique_id=403977544]
 one_shot = true
 
-[node name="BulletStarsPos" type="Marker2D" parent="."]
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=409434583]
 
-[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos"]
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=50484196]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1451051064]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_tk")
 

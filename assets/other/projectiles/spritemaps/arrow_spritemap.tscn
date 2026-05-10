@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://xc67mug4arbe"]
+
+[ext_resource type="Texture2D" uid="uid://b08sto8ticki6" path="res://assets/other/projectiles/Arrow.png" id="1_3x8yy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj75m"]
+atlas = ExtResource("1_3x8yy")
+region = Rect2(0, 0, 13, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wwod7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj75m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ArrowSpritemap" type="AnimatedSprite2D" unique_id=1142731587]
+sprite_frames = SubResource("SpriteFrames_wwod7")

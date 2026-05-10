@@ -42,6 +42,7 @@ func _throw_boomerang() -> void:
 	bullet.collision_area.set_scale(custom_collision_sizes)
 	bullet.global_position = spawn_pos
 	bullet.shake = cameraShakeAmount
+	bullet.projectile_sprite_scene = projectile_sprite_scene
 	if !GameManager.is_in_lobby:
 		GlobalWorld.projectiles.add_child(bullet)
 	else:

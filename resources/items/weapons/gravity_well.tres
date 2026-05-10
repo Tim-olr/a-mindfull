@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" format=3]
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dw64pko5siy5y"]
 
 [ext_resource type="PackedScene" path="res://scenes/Weapons/guns/gravity_well.tscn" id="1_scene"]
-[ext_resource type="Script" path="res://scripts/Player/inventory/items/item_resource.gd" id="2_ir"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://bl5i5ldk0j4b0" path="res://assets/items/weapons/gravity_well.png" id="3_6mnnl"]
 
 [resource]
 resource_local_to_scene = true
@@ -9,6 +10,7 @@ script = ExtResource("2_ir")
 isWeapon = true
 itemScene = ExtResource("1_scene")
 rarity = 2
+txtr = ExtResource("3_6mnnl")
 Name = "Gravity Well"
 description = "Summons orbiting projectiles that shield you from enemies."
 scale_mod = Vector2(6, 6)

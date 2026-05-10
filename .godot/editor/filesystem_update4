@@ -1,0 +1,34 @@
+res://scenes/main game/The game world/the_world.tscn
+res://scripts/shaders/outline.gdshader
+res://resources/crafting/stations/weapon_smith.tres
+res://scripts/world gen/new_tile_set.tres
+res://scripts/main game/ui/fog_of_war_map.gd
+res://scripts/main game/the game world/the_world.gd
+res://resources/items/weapons/burst_rifle.tres
+res://resources/items/weapons/crossbow.tres
+res://resources/items/weapons/wooden_bow.tres
+res://resources/items/weapons/cursed_tome.tres
+res://resources/items/weapons/dice_gun.tres
+res://resources/items/weapons/echo_cannon.tres
+res://resources/items/weapons/gravity_well.tres
+res://resources/items/weapons/throwing_knives.tres
+res://resources/items/weapons/nail_gun.tres
+res://resources/items/weapons/pistol.tres
+res://resources/items/weapons/ring_of_rings.tres
+res://resources/items/weapons/shotgun.tres
+res://resources/items/weapons/sniper.tres
+res://resources/items/weapons/toxic_squirtgun.tres
+res://assets/other/projectiles/spritemaps/throwing_knife_sprites.tscn
+res://scenes/Weapons/guns/throwing_knives.tscn
+res://assets/other/projectiles/Arrow.png
+res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn
+res://scenes/Weapons/guns/wooden_bow.tscn
+res://scripts/Weapons/guns/wooden_bow.gd
+res://scenes/Weapons/guns/dice_gun.tscn
+res://assets/other/projectiles/dice_spritemap.tscn
+res://scripts/Weapons/guns/dice_gun.gd
+res://scenes/Weapons/guns/boomerang.tscn
+res://scripts/Weapons/guns/boomerang.gd
+res://assets/other/projectiles/spritemaps/boomerang_spritemap.tscn
+res://scenes/Weapons/guns/crossbow.tscn
+res://resources/items/weapons/boomerang.tres

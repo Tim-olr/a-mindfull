@@ -120,3 +120,5 @@ func _show_spell_name(spell_name: String) -> void:
 	tw.tween_property(label, "position:y", label.position.y - 20, 0.8)
 	tw.tween_property(label, "modulate:a", 0.0, 0.8).set_delay(0.2)
 	tw.chain().tween_callback(label.queue_free)
+	await get_tree().create_timer(0.5).timeout
+	label.queue_free()

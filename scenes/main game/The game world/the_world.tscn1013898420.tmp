@@ -1,0 +1,194 @@
+[gd_scene format=4 uid="uid://bheqsxiy5xkwj"]
+
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_27o51"]
+[ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://scripts/main game/the game world/the_world.gd" id="1_87ryk"]
+[ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="3_8i5hg"]
+[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://scenes/enemy/enemies/ardy.tscn" id="6_lhdhh"]
+[ext_resource type="Script" uid="uid://dmhxx1k4rqs68" path="res://scripts/main game/generation/procedural_generation.gd" id="11_cvtyc"]
+[ext_resource type="PackedScene" uid="uid://clb3ussoahufy" path="res://scenes/main game/Buildings/small_building.tscn" id="11_o686i"]
+[ext_resource type="Script" uid="uid://cf11tsw12100c" path="res://scripts/world gen/biome_resource.gd" id="12_6th7i"]
+[ext_resource type="Script" uid="uid://dajcxxd7vd00p" path="res://scripts/items/chest/chest_loot_entry.gd" id="12_o6xy1"]
+[ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
+[ext_resource type="Resource" path="res://resources/items/weapons/wooden_bow.tres" id="13_bhd4a"]
+[ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
+[ext_resource type="PackedScene" uid="uid://b2todwidget" path="res://scenes/main game/ui/time_of_day_widget.tscn" id="14_todw"]
+[ext_resource type="Script" uid="uid://cg6twgxd3uqwx" path="res://scripts/items/chest/chest_loot_pool.gd" id="15_6th7i"]
+[ext_resource type="PackedScene" uid="uid://b2fdrawui" path="res://scenes/main game/fahrer/fahrer_draw_ui.tscn" id="15_fdui"]
+[ext_resource type="PackedScene" uid="uid://dfq4aksfohtrf" path="res://scenes/shops/weapon_handler.tscn" id="15_o6xy1"]
+[ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
+shader = ExtResource("3_8i5hg")
+shader_parameter/saturation = 1.0
+
+[sub_resource type="Gradient" id="Gradient_8i5hg"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lmetf"]
+gradient = SubResource("Gradient_8i5hg")
+
+[sub_resource type="Gradient" id="Gradient_13bug"]
+offsets = PackedFloat32Array(0.993506, 0.993976, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_87ryk"]
+gradient = SubResource("Gradient_13bug")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6th7i"]
+noise_type = 0
+frequency = 0.0131
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es1ek"]
+width = 500
+height = 500
+noise = SubResource("FastNoiseLite_6th7i")
+seamless = true
+
+[sub_resource type="Resource" id="Resource_pu32c"]
+script = ExtResource("13_es1ek")
+terrain_name = "Dirt"
+metadata/_custom_type_script = "uid://c62pvs4ve04ip"
+
+[sub_resource type="Resource" id="Resource_hskh1"]
+script = ExtResource("13_es1ek")
+terrain_name = "Grass"
+terrain_id = 1
+metadata/_custom_type_script = "uid://c62pvs4ve04ip"
+
+[sub_resource type="Resource" id="Resource_7urgk"]
+script = ExtResource("12_6th7i")
+biome_name = "Plains"
+tile_set = ExtResource("12_t3lwd")
+terrain_infos = Array[ExtResource("13_es1ek")]([SubResource("Resource_pu32c"), SubResource("Resource_hskh1")])
+noise = SubResource("NoiseTexture2D_es1ek")
+min_spawners = 3
+max_spawners = 6
+enemy_pool = Array[PackedScene]([ExtResource("6_lhdhh")])
+wave_interval_min = 10.0
+wave_interval_max = 40.0
+metadata/_custom_type_script = "uid://cf11tsw12100c"
+
+[sub_resource type="Resource" id="Resource_es1ek"]
+script = ExtResource("12_o6xy1")
+item = ExtResource("13_bhd4a")
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_wk3ij"]
+script = ExtResource("15_6th7i")
+entries = Array[ExtResource("12_o6xy1")]([SubResource("Resource_es1ek")])
+metadata/_custom_type_script = "uid://cg6twgxd3uqwx"
+
+[node name="TheWorld" type="Node2D" unique_id=341922483]
+y_sort_enabled = true
+script = ExtResource("1_87ryk")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=624441541]
+
+[node name="TimeOfDayLayer" type="CanvasLayer" parent="." unique_id=1793298482]
+layer = 50
+
+[node name="TimeOfDayWidget" parent="TimeOfDayLayer" unique_id=2048227845 instance=ExtResource("14_todw")]
+layout_mode = 3
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 164.0
+offset_bottom = 54.0
+grow_horizontal = 1
+
+[node name="FahrerDrawLayer" type="CanvasLayer" parent="." unique_id=1661451963]
+layer = 60
+
+[node name="FahrerDrawUI" parent="FahrerDrawLayer" unique_id=138524932 instance=ExtResource("15_fdui")]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
+[node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
+z_index = 0
+position = Vector2(115, 245)
+
+[node name="Effects" type="CanvasLayer" parent="." unique_id=160640044]
+
+[node name="Gray" type="TextureRect" parent="Effects" unique_id=427023759]
+material = SubResource("ShaderMaterial_s3014")
+offset_left = -2078.0
+offset_top = -1203.0
+offset_right = 1980.0
+offset_bottom = 1279.0
+texture = SubResource("GradientTexture1D_lmetf")
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374598864]
+visible = false
+
+[node name="Black" type="Sprite2D" parent="CanvasLayer" unique_id=2014012042]
+position = Vector2(963, 542)
+scale = Vector2(7.516, 1083)
+texture = SubResource("GradientTexture1D_87ryk")
+
+[node name="LoadTimer" type="Timer" parent="." unique_id=1475466570]
+wait_time = 0.1
+one_shot = true
+
+[node name="projectiles" type="Node2D" parent="." unique_id=1613268541]
+y_sort_enabled = true
+
+[node name="dmgNrs" type="Node2D" parent="." unique_id=1057317401]
+process_mode = 4
+z_index = 10
+
+[node name="ProceduralGeneration" type="Node" parent="." unique_id=972287904 node_paths=PackedStringArray("tile_map", "objects_node", "shops_node", "spawners_node", "extraction_node", "buildings_node")]
+script = ExtResource("11_cvtyc")
+biomes = Array[ExtResource("12_6th7i")]([SubResource("Resource_7urgk")])
+world_size = Vector2i(250, 250)
+tile_map = NodePath("../TileMapLayer")
+world_seed = 1
+objects_node = NodePath("../PhysicsObjects")
+shops_node = NodePath("../Shops")
+spawners_node = NodePath("../EnemySpawners")
+extraction_node = NodePath("../Extractions")
+buildings_node = NodePath("../Buildings")
+
+[node name="Buildings" type="Node2D" parent="." unique_id=2053666728]
+y_sort_enabled = true
+
+[node name="EnemySpawners" type="Node2D" parent="." unique_id=2013779954]
+y_sort_enabled = true
+
+[node name="PhysicsObjects" type="Node2D" parent="." unique_id=2061058935]
+y_sort_enabled = true
+
+[node name="Shops" type="Node2D" parent="." unique_id=473385869]
+y_sort_enabled = true
+
+[node name="Extractions" type="Node2D" parent="." unique_id=1062428593]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=299113875]
+z_index = -2
+y_sort_enabled = true
+position = Vector2(148, 224)
+tile_map_data = PackedByteArray("AAD+//7/AQAMAAsAAAD+////AQAMAAsAAAD/////AQAMAAsAAAAAAAAAAQAMAAgAAAAAAP7/AQALAAsAAAD7//7/AQAMAAgAAAD7////AQAMAAsAAAD8////AQAMAAgAAAD9////AQALAAsAAAD///7/AQALAAsAAAD9//7/AQAMAAsAAAD7/wAAAQAOAAsAAAD6/wEAAQALAAsAAAAAAP//AQAMAAgAAAD6////AQAMAAsAAAD6/wAAAQAMAAsAAAD9/wAAAQAMAAsAAAD8/wAAAQAOAAsAAAD+/wAAAQAOAAsAAAD//wAAAQAOAAsAAAD//wEAAQAOAAsAAAAAAAEAAQALAAsAAAD8/wEAAQALAAsAAAD9/wEAAQALAAsAAAD7/wEAAQAMAAsAAAD+/wEAAQAOAAsAAAD8//7/AQALAAsAAAD6//7/AQAMAAgAAAD4//3/AQAOAAwAAAD4//7/AQAOAAwAAAD4////AQAPAAwAAAD4/wAAAQALAAwAAAD3/wAAAQAMAAwAAAD3/wEAAQAMAAwAAAD3/wIAAQANAAwAAAD4/wIAAQAMAAwAAAD4/wEAAQANAAwAAAD4/wMAAQAOAAwAAAD5/wMAAQANAAwAAAD6/wMAAQAMAAwAAAD7/wMAAQALAAwAAAD8/wMAAQALAAwAAAD9/wMAAQAMAAwAAAD+/wMAAQAOAAwAAAD//wMAAQANAAwAAAAAAAMAAQAPAAwAAAABAAMAAQAPAAwAAAACAAMAAQAPAAwAAAACAAIAAQALAAwAAAACAAEAAQAPAAwAAAACAAAAAQAPAAwAAAACAP//AQANAAwAAAACAP7/AQANAAwAAAACAP3/AQAMAAwAAAACAPz/AQAOAAwAAAABAPz/AQAMAAwAAAAAAPz/AQAMAAwAAAD///z/AQAMAAwAAAD+//z/AQAOAAwAAAD9//z/AQALAAwAAAD8//z/AQAMAAwAAAD7//z/AQAMAAwAAAD6//z/AQALAAwAAAD5//z/AQALAAwAAAD4//z/AQALAAwAAAD+//b/AQAMAAgAAAD9//b/AQAMAAsAAAD///b/AQALAAsAAAD9//f/AQAOAAsAAAD+//f/AQAMAAgAAAD///f/AQALAAsAAAD8//b/AQALAAsAAAD8//f/AQAMAAsAAAD+//j/AQAMAAgAAAD///j/AQAOAAsAAAAAAPj/AQAOAAsAAAABAPf/AQAMAAgAAAAAAPf/AQAMAAgAAAD9//j/AQAMAAsAAAD8//j/AQAMAAsAAAD6//X/AQAPAAwAAAD6//b/AQALAAwAAAD5//b/AQAMAAwAAAD5//f/AQAMAAwAAAD6//f/AQAPAAwAAAD6//j/AQAOAAwAAAD6//n/AQAPAAwAAAA=")
+tile_set = ExtResource("12_t3lwd")
+
+[node name="SmallBuilding" parent="." unique_id=620982097 instance=ExtResource("11_o686i")]
+position = Vector2(-26.999985, 64.000015)
+scale = Vector2(0.4, 0.4)
+spawn_chance = 1.0
+loot_pool_override = SubResource("Resource_wk3ij")
+
+[node name="WeaponHandler" parent="." unique_id=161303713 instance=ExtResource("15_o6xy1")]
+position = Vector2(165, 275)
+scale = Vector2(0.3, 0.3)
+
+[node name="PhysicsObject" parent="." unique_id=985011151 instance=ExtResource("16_bhd4a")]
+position = Vector2(394, 329)
+max_health = 10000
+health = 10000
+
+[connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

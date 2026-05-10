@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dyx8y43jva0h1"]
+
+[ext_resource type="Texture2D" uid="uid://c3o4upgba4w0i" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Items/Object/Dice 20.png" id="1_i103y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dchti"]
+atlas = ExtResource("1_i103y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4kax"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dchti")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DiceSpritemap" type="AnimatedSprite2D" unique_id=1560190839]
+sprite_frames = SubResource("SpriteFrames_c4kax")

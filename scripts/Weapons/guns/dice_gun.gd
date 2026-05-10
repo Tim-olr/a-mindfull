@@ -42,6 +42,7 @@ func _shoot_d20() -> void:
 	bullet.collision_area.set_scale(custom_collision_sizes)
 	bullet.global_position = spawn_pos
 	bullet.shake = cameraShakeAmount
+	bullet.projectile_sprite_scene = projectile_sprite_scene
 	var bullet_scale := 0.8 + float(roll) / 20.0 * 0.8
 	bullet.scale = Vector2(bullet_scale, bullet_scale)
 	if !GameManager.is_in_lobby:
@@ -81,3 +82,5 @@ func _show_roll_popup(roll: int, damage: float) -> void:
 	tw.tween_property(label, "position:y", label.position.y - 30, 1.2)
 	tw.tween_property(label, "modulate:a", 0.0, 1.2).set_delay(0.3)
 	tw.chain().tween_callback(label.queue_free)
+	await get_tree().create_timer(0.5).timeout
+	label.queue_free()

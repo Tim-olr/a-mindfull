@@ -45,7 +45,7 @@ func _schedule_split(bullet: Node, damage: float, speed: float, lifetime: float,
 	await get_tree().create_timer(SPLIT_DELAY).timeout
 	if not is_instance_valid(bullet):
 		return
-	var pos := bullet.global_position
+	var pos = bullet.global_position
 	var base_rot: float = bullet.rot if bullet.rot != null else bullet.rotation
 	bullet.queue_free()
 	for i in range(SPLIT_COUNT):

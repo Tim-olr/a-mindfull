@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cogb701r6v63q"]
+
+[ext_resource type="Texture2D" uid="uid://ddb03agqe7kas" path="res://assets/items/weapons/knife.png" id="1_1ex24"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwu5n"]
+atlas = ExtResource("1_1ex24")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxejr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwu5n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ThrowingKnifeSprites" type="AnimatedSprite2D" unique_id=2072906898]
+sprite_frames = SubResource("SpriteFrames_mxejr")

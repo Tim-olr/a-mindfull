@@ -42,6 +42,7 @@ func _fire_charged_arrow() -> void:
 	bullet.collision_area.set_scale(custom_collision_sizes)
 	bullet.global_position = spawn_pos
 	bullet.shake = cameraShakeAmount * charge_ratio
+	bullet.projectile_sprite_scene = projectile_sprite_scene
 	bullet.scale = Vector2(0.8 + charge_ratio * 0.6, 0.8 + charge_ratio * 0.6)
 	if !GameManager.is_in_lobby:
 		GlobalWorld.projectiles.add_child(bullet)
@@ -50,6 +51,6 @@ func _fire_charged_arrow() -> void:
 	if shooter.is_in_group("player"):
 		GlobalPlayer.camera.apply_shake(cameraShakeAmount * charge_ratio)
 	shooter.stats.canAttack = false
-	var cd := shootCooldown + shooter.stats.attackSpeed
+	var cd = shootCooldown + shooter.stats.attackSpeed
 	attack_cooldown.set_wait_time(cd * (1.0 - charge_ratio * 0.3))
 	attack_cooldown.start()

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ItemResource" format=3]
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://u04c5lcqs7np"]
 
-[ext_resource type="PackedScene" path="res://scenes/Weapons/guns/dice_gun.tscn" id="1_scene"]
-[ext_resource type="Script" path="res://scripts/Player/inventory/items/item_resource.gd" id="2_ir"]
+[ext_resource type="PackedScene" uid="uid://cn8ua7c1mqd" path="res://scenes/Weapons/guns/dice_gun.tscn" id="1_scene"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://ci7ab0u3bn4rf" path="res://assets/items/weapons/dice_gun.png" id="3_78ov6"]
 
 [resource]
 resource_local_to_scene = true
@@ -9,6 +10,7 @@ script = ExtResource("2_ir")
 isWeapon = true
 itemScene = ExtResource("1_scene")
 rarity = 1
+txtr = ExtResource("3_78ov6")
 Name = "Dice Gun"
 description = "Roll the dice! Damage varies wildly based on your luck."
 scale_mod = Vector2(6, 6)
