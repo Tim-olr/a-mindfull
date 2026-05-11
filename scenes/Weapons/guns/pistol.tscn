@@ -9,9 +9,8 @@ size = Vector2(86, 20)
 [node name="Pistol" type="Node2D" unique_id=1714587889]
 script = ExtResource("1_3roqf")
 bulletLifeTimeMod = 0.6
-projectileSpeedMod = 500.0
-bulletSizeMod = Vector2(0.1, 0.1)
-shootCooldown = -0.2
+projectileSpeedMod = 400.0
+shootCooldown = 0.1
 gun = true
 description = "medium damage and medium shooting"
 Name = "Pistol"

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://cf0cv1f4agspd"]
 
-[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd" id="1_hn4ep"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="1_hn4ep"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_hn4ep")
 isMaterial = true
 isStackable = true
 amount = 1
-rarity = 0
 Name = "Scrap"
 description = "Just some metal scrap. Used for crafting."
 metadata/_custom_type_script = "uid://eykeum4a21x1"

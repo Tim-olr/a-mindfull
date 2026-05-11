@@ -1,7 +1,7 @@
 extends Node
 
 const CHANCE_TWO_CARDS: float = 0.04
-const CHANCE_ONE_CARD: float = 0.18
+const CHANCE_ONE_CARD: float = 1#0.18
 
 var force_draw: bool = false
 

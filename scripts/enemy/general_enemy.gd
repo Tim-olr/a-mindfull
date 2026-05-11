@@ -10,20 +10,24 @@ class_name Enemy
 @onready var death_anim_timer: Timer = $death_anim_timer
 @onready var stats: Node2D = $EnemyStats
 @onready var attack_speed: Timer = $attack_speed
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $"UI enemy/HealthBar"
 @export var knockback_resistance: float = 0.0
 @export var can_drop_shards := true
 @export var shard_amount := 0.0
-@export var separation_radius: float = 30.0
-@export var separation_force: float = 10
-var knockbackVelocity = Vector2.ZERO
+@export var separation_radius: float = 38.0
+@export var separation_force: float = 120.0
+
+@export var avoidance_ray_count: int    = 7
+@export var avoidance_ray_length: float = 52.0
+@export var avoidance_force: float      = 180.0
+
+var knockbackVelocity := Vector2.ZERO
 var knockback_decay: float = 10.0
 var canWalk := true
 var isMelee: bool = false
 var died := false
 var attacking := false
-var direction
+var direction: Vector2
 
 func _ready() -> void:
 	base.texture = texture
@@ -34,7 +38,6 @@ func _ready() -> void:
 		var wep = weapon.instantiate()
 		add_child(wep)
 	add_to_group("enemy")
-	# Fahrer card: The Birds speeds enemies up at spawn time.
 	stats.speed *= FahrerDeck.enemy_speed_mult()
 
 func _process(_delta: float) -> void:
@@ -43,43 +46,84 @@ func _process(_delta: float) -> void:
 		area.set_deferred("monitoring", false)
 		die()
 	direction = velocity
-	if direction == Vector2(0, 0):
+	if direction == Vector2.ZERO:
 		return
-
-func get_separation_velocity() -> Vector2:
-	var sep = Vector2.ZERO
-	var enemies = get_tree().get_nodes_in_group("enemy")
-	for enemy in enemies:
-		if enemy == self or not is_instance_valid(enemy):
-			continue
-		var diff = global_position - enemy.global_position
-		var dist = diff.length()
-		if dist < separation_radius and dist > 0.0:
-			sep += diff.normalized() * (separation_radius - dist) / separation_radius
-	return sep.normalized() * separation_force if sep.length() > 0.0 else Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
 	if knockbackVelocity.length() > 0:
 		knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, knockback_decay * delta)
 		if knockbackVelocity.length() < 1.0:
 			knockbackVelocity = Vector2.ZERO
-	var sep_velocity = get_separation_velocity()
-	if !attacking and canWalk and GlobalPlayer.player:
-		nav_agent.target_position = GlobalPlayer.player.global_position
-		if not nav_agent.is_navigation_finished():
-			var next_path_pos = nav_agent.get_next_path_position()
-			var new_velocity = global_position.direction_to(next_path_pos) * stats.speed
-			nav_agent.set_velocity(new_velocity + knockbackVelocity + sep_velocity)
-		elif sep_velocity.length() > 0.0:
-			velocity = sep_velocity + knockbackVelocity
-			move_and_slide()
-	elif knockbackVelocity.length() > 0 or sep_velocity.length() > 0.0:
-		velocity = knockbackVelocity + sep_velocity
-		move_and_slide()
 
-func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	velocity = safe_velocity
+	if !attacking and canWalk and is_instance_valid(GlobalPlayer.player):
+		var desired := _compute_steering()
+		velocity = desired + knockbackVelocity
+	elif knockbackVelocity.length() > 0:
+		velocity = knockbackVelocity
+
 	move_and_slide()
+
+func _compute_steering() -> Vector2:
+	var to_player := GlobalPlayer.player.global_position - global_position
+	var dist      := to_player.length()
+
+	var pursuit := Vector2.ZERO
+	if dist > 1.0:
+		pursuit = to_player.normalized() * stats.speed
+
+	var separation := _get_separation()
+	var avoidance  := _get_avoidance()
+
+	var blended := pursuit + separation + avoidance
+
+	if blended.length() > stats.speed:
+		blended = blended.normalized() * stats.speed
+
+	return blended
+
+func _get_separation() -> Vector2:
+	var sep    := Vector2.ZERO
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for enemy in enemies:
+		if enemy == self or not is_instance_valid(enemy):
+			continue
+		var diff: Vector2 = global_position - enemy.global_position
+		var dist: float   = diff.length()
+		if dist < separation_radius and dist > 0.0:
+			sep += diff.normalized() * (separation_radius - dist) / separation_radius * separation_force
+	return sep
+
+func _get_avoidance() -> Vector2:
+	var space  := get_world_2d().direct_space_state
+	var avoid  := Vector2.ZERO
+	var spread := PI
+
+	for i in avoidance_ray_count:
+		var t       := float(i) / float(avoidance_ray_count - 1)
+		var angle   := (t - 0.5) * spread
+		var to_player_angle := (GlobalPlayer.player.global_position - global_position).angle()
+		var ray_dir := Vector2.RIGHT.rotated(to_player_angle + angle)
+
+		var query := PhysicsRayQueryParameters2D.create(
+			global_position,
+			global_position + ray_dir * avoidance_ray_length
+		)
+		query.exclude    = [self]
+		query.collision_mask = 1
+
+		var result := space.intersect_ray(query)
+		if result:
+			var hit_normal: Vector2 = result.normal
+			var closeness: float   = 1.0 - (result.position.distance_to(global_position) / avoidance_ray_length)
+			avoid += hit_normal * closeness * avoidance_force
+
+	return avoid
+
+func _on_navigation_agent_2d_velocity_computed(_safe_velocity: Vector2) -> void:
+	pass
+
+func _get_separation_velocity() -> Vector2:
+	return _get_separation()
 
 func damage(damageAmount, _dmgr, _camShake):
 	var newDmg = damageAmount
@@ -97,12 +141,7 @@ func die():
 func give_shards(amount := 0.0):
 	if !can_drop_shards:
 		return
-	var real_amount: float
-	if amount == 0.0:
-		real_amount = shard_amount
-	else:
-		real_amount = amount
-	GlobalPlayer.stats.add_shards(real_amount)
+	GlobalPlayer.stats.add_shards(amount if amount != 0.0 else shard_amount)
 
 func attack(_b):
 	pass
@@ -124,6 +163,6 @@ func damaged():
 	tween.tween_property(base, "modulate", Color.RED, 0.1)
 	tween.tween_property(base, "modulate", Color.WHITE, 0.1)
 
-func apply_knockback(direction: Vector2, force: float):
+func apply_knockback(direction_vec: Vector2, force: float):
 	var effective_force = force * (1.0 - clamp(knockback_resistance, 0.0, 1.0))
-	knockbackVelocity = direction.normalized() * effective_force
+	knockbackVelocity = direction_vec.normalized() * effective_force

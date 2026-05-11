@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://h37umafjgmrp" path="res://scripts/enemy/enemies/ardy.gd" id="1_pqvuk"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_bjdtj"]
 [ext_resource type="Script" uid="uid://dy4dm2rf2s1vh" path="res://scripts/enemy/enemy_stats.gd" id="3_eotki"]
+[ext_resource type="PackedScene" uid="uid://c6pwfat6wbqi7" path="res://scenes/Weapons/guns/pistol.tscn" id="3_wmufp"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="5_eotki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_710da"]
@@ -20,6 +21,7 @@ Name = "Ardy"
 texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
+weapon = ExtResource("3_wmufp")
 shard_amount = 10.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=58544561 groups=["enemy"]]
@@ -44,11 +46,11 @@ texture = ExtResource("2_bjdtj")
 
 [node name="EnemyStats" type="Node2D" parent="." unique_id=1233673918]
 script = ExtResource("3_eotki")
-hp = 100.0
-speed = 300.0
+hp = 80.0
+speed = 80.0
 attackDamage = 8.0
 attackCooldown = 1.0
-attackSpeed = 0.7
+attackSpeed = 4.0
 death_anim_time = 1.0
 bulletAmount = 1
 bulletLifeTime = 1.0

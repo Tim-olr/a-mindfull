@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dynnweuyhk66l" path="res://assets/items/weapons/burst_rifle.png" id="2_iy23q"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_rvy4g")
 isWeapon = true
 rarity = null

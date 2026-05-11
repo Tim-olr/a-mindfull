@@ -1,5 +1,4 @@
 extends Control
-# Listens for FahrerDeck.cards_drawn and shows the drawn cards briefly.
 
 const C_BG     := Color(0.09, 0.10, 0.12)
 const C_BORDER := Color(0.22, 0.24, 0.28)
@@ -39,6 +38,7 @@ func _on_cards_drawn(cards: Array) -> void:
 
 func _make_card(card: FahrerCard) -> Control:
 	var root := Control.new()
+	root.clip_contents = true
 	var sb   := StyleBoxFlat.new()
 	sb.bg_color     = C_BG
 	sb.border_color = _suit_color(card.suit)
@@ -62,7 +62,7 @@ func _make_card(card: FahrerCard) -> Control:
 	suit_lbl.size = Vector2(220, 20)
 	suit_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	suit_lbl.add_theme_color_override("font_color", _suit_color(card.suit))
-	suit_lbl.add_theme_font_size_override("font_size", 12)
+	suit_lbl.add_theme_font_size_override("font_size", 15)
 	root.add_child(suit_lbl)
 
 	var name_lbl := Label.new()
@@ -74,16 +74,24 @@ func _make_card(card: FahrerCard) -> Control:
 	name_lbl.add_theme_font_size_override("font_size", 18)
 	root.add_child(name_lbl)
 
+	var desc_container := Control.new()
+	desc_container.layout_mode = 0
+	desc_container.position = Vector2(12, 148)
+	desc_container.size = Vector2(196, 120)
+	desc_container.clip_contents = true
+	root.add_child(desc_container)
+
 	var desc_lbl := Label.new()
-	desc_lbl.text = card.description
-	desc_lbl.position = Vector2(12, 152)
-	desc_lbl.size = Vector2(196, 110)
+	desc_lbl.layout_mode = 0
+	desc_lbl.position = Vector2(0, 0)
+	desc_lbl.size = Vector2(196, 120)
 	desc_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	desc_lbl.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	desc_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	desc_lbl.add_theme_color_override("font_color", C_TEXT)
-	desc_lbl.add_theme_font_size_override("font_size", 13)
-	root.add_child(desc_lbl)
+	desc_lbl.add_theme_font_size_override("font_size", 16)
+	desc_lbl.text = card.description
+	desc_container.add_child(desc_lbl)
 
 	if card.icon != null:
 		var icon := TextureRect.new()
@@ -105,7 +113,6 @@ func _animate(card_root: Control, delay: float) -> void:
 	var tw := create_tween().set_parallel(true)
 	tw.tween_property(card_root, "modulate", Color.WHITE, 0.35).set_delay(delay)
 	tw.tween_property(card_root, "scale", Vector2.ONE, 0.35).set_trans(Tween.TRANS_BACK).set_delay(delay)
-	# fade out after SHOW_TIME
 	var tw2 := create_tween()
 	tw2.tween_interval(SHOW_TIME + delay)
 	tw2.tween_property(card_root, "modulate", Color(1, 1, 1, 0), 0.6)
@@ -114,11 +121,11 @@ func _animate(card_root: Control, delay: float) -> void:
 
 func _suit_name(s: int) -> String:
 	match s:
-		FahrerCard.Suit.CLUBS:   return "♣ CLUBS"
+		FahrerCard.Suit.CLUBS:    return "♣ CLUBS"
 		FahrerCard.Suit.DIAMONDS: return "♦ DIAMONDS"
-		FahrerCard.Suit.HEARTS:  return "♥ HEARTS"
-		FahrerCard.Suit.SPADES:  return "♠ SPADES"
-		FahrerCard.Suit.FAHRER:  return "✦ FAHRER"
+		FahrerCard.Suit.HEARTS:   return "♥ HEARTS"
+		FahrerCard.Suit.SPADES:   return "♠ SPADES"
+		FahrerCard.Suit.FAHRER:   return "✦ FAHRER"
 	return ""
 
 

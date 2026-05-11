@@ -355,15 +355,15 @@ func _clear_equip_state() -> void:
 
 
 func set_item(new_item, count: int = 1) -> void:
-	item = new_item
-	if is_instance_valid(item):
+	if is_instance_valid(new_item):
+		item = new_item.duplicate(true)
 		item.inv_slot = self
-		item_count    = count
-		item.amount   = count
+		item_count = count
+		item.amount = count
 	else:
-		item       = null
+		item = null
 		item_count = 0
-		done       = false
+		done = false
 	update_visuals()
 	update_visuals.call_deferred()
 	emit_signal("item_changed", slot_index)

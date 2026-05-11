@@ -3,11 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://scenes/Player/player.tscn" id="1_6av20"]
 [ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://scripts/main game/game.gd" id="1_yg2su"]
 [ext_resource type="PackedScene" uid="uid://b8hsu3b3gsqo3" path="res://scenes/main game/components/game_starter.tscn" id="2_13bug"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="4_fl3yu"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="5_2ceju"]
 [ext_resource type="PackedScene" uid="uid://rm7o5ewaew2x" path="res://scenes/main game/The game world/safe_interactable.tscn" id="5_cub4b"]
 [ext_resource type="PackedScene" uid="uid://dyra80jgha5ev" path="res://scenes/main game/shard_counter_lobby.tscn" id="6_s3tdl"]
 [ext_resource type="PackedScene" uid="uid://dq1uygukg2rfw" path="res://scenes/crafting stations/weapon_smith.tscn" id="7_3ibp6"]
 [ext_resource type="PackedScene" uid="uid://b2ignitor" path="res://scenes/main game/fahrer/ignitor.tscn" id="8_1a25t"]
 [ext_resource type="PackedScene" uid="uid://c5jukn0wfauak" path="res://scenes/shops/scrap_broker.tscn" id="8_s8872"]
+
+[sub_resource type="Resource" id="Resource_m2a2l"]
+resource_local_to_scene = true
+script = ExtResource("4_fl3yu")
+isMaterial = true
+isStackable = true
+amount = 1
+txtr = ExtResource("5_2ceju")
+Name = "Spirit Core"
+metadata/_custom_type_script = "uid://eykeum4a21x1"
 
 [node name="Game" type="Node2D" unique_id=1324580435]
 script = ExtResource("1_yg2su")
@@ -19,6 +31,7 @@ scale = Vector2(0.2, 0.2)
 [node name="ScrapBroker" parent="." unique_id=517874945 instance=ExtResource("8_s8872")]
 position = Vector2(118.00006, 21.999985)
 scale = Vector2(0.2, 0.2)
+spirit_core_resource = SubResource("Resource_m2a2l")
 
 [node name="Player" parent="." unique_id=1406596225 instance=ExtResource("1_6av20")]
 

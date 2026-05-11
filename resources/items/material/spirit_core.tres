@@ -4,11 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_n3yfl"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_rs1al")
 isMaterial = true
 isStackable = true
 amount = 1
-rarity = 0
+rarity = 4
 txtr = ExtResource("2_n3yfl")
 Name = "Spirit Core"
+description = "Very rare, it has a faint glow"
 metadata/_custom_type_script = "uid://eykeum4a21x1"

@@ -16,6 +16,9 @@ var projectile_sprite_scene: PackedScene = null
 var has_no_rot: bool = false
 @onready var proj_middle: Marker2D = $ProjMiddle
 
+var is_boomerang: bool = false
+var shooter: Node2D = null
+
 @export var local_proj: AnimatedSprite2D
 
 @export var txtr: Texture2D
@@ -58,12 +61,25 @@ func _ready() -> void:
 
 func _physics_process(delta: float):
 	_elapsed += delta
-	if speed_mode != 0 and lifetime > 0.0:
+	if is_boomerang and is_instance_valid(shooter):
 		var t = clamp(_elapsed / lifetime, 0.0, 1.0)
-		projectileSpeed = _initial_speed * lerp(1.0, end_speed_multiplier, t)
-	if rot == null:
-		rot = rotation if typeof(rotation) == TYPE_FLOAT or typeof(rotation) == TYPE_INT else 0.0
-	velocity = Vector2(projectileSpeed, 0).rotated(rot)
+		rotation += delta * 15.0
+		if t < 0.5:
+			projectileSpeed = lerp(_initial_speed, 0.0, t * 2.0)
+			velocity = Vector2(projectileSpeed, 0).rotated(rot)
+		else:
+			var dir = (shooter.global_position - global_position).normalized()
+			var return_speed = _initial_speed * lerp(0.0, 1.5, (t - 0.5) * 2.0)
+			velocity = dir * return_speed
+			rot = dir.angle()
+			if global_position.distance_to(shooter.global_position) < 20.0:
+				go_away()
+				return
+	else:
+		if speed_mode != 0 and lifetime > 0.0:
+			var t = clamp(_elapsed / lifetime, 0.0, 1.0)
+			projectileSpeed = _initial_speed * lerp(1.0, end_speed_multiplier, t)
+		velocity = Vector2(projectileSpeed, 0).rotated(rot)
 	move_and_slide()
 	if has_no_rot:
 		rotation = 0.0

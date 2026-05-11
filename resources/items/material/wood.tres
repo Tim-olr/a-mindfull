@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="1_j0ro0"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_j0ro0")
 isMaterial = true
 isStackable = true
 amount = 1
-rarity = 0
 Name = "Wood"
 description = "Woody!"
 scale_mod = Vector2(1, 1)

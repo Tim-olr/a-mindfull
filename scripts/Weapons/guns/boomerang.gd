@@ -39,6 +39,8 @@ func _throw_boomerang() -> void:
 	bullet.pierce = 999
 	bullet.damage = attack_damage
 	bullet.lifetime = shooter.stats.bulletLifeTime + bulletLifeTimeMod
+	bullet.shooter = shooter
+	bullet.is_boomerang = true
 	bullet.collision_area.set_scale(custom_collision_sizes)
 	bullet.global_position = spawn_pos
 	bullet.shake = cameraShakeAmount
