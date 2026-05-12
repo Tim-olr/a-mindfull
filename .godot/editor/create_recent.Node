@@ -1,8 +1,9 @@
-Sprite2D
-CollisionShape2D
 AnimatedSprite2D
-Timer
+Sprite2D
 Node2D
+CanvasLayer
+CollisionShape2D
+Timer
 CharacterBody2D
 MeshInstance2D
 StaticBody2D
@@ -11,4 +12,3 @@ Node
 Control
 Button
 Label
-VBoxContainer

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dkl4htufgx8r3" path="res://scripts/Weapons/guns/wooden_bow.gd" id="1_bow"]
 [ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://scenes/Projectile/projectile.tscn" id="2_proj"]
 [ext_resource type="PackedScene" uid="uid://xc67mug4arbe" path="res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn" id="3_h64je"]
+[ext_resource type="Script" uid="uid://cdd2km4mxkprl" path="res://scenes/Weapons/guns/BowChargeBar.gd" id="4_wdemy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bow"]
 size = Vector2(86, 20)
@@ -31,5 +32,10 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1644384538]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_bow")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=724256985]
+
+[node name="BowChargeBar" type="Node2D" parent="CanvasLayer" unique_id=1913685147]
+script = ExtResource("4_wdemy")
 
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

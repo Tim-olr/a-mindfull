@@ -8,10 +8,10 @@ size = Vector2(86, 20)
 
 [node name="WanderingEye" type="Node2D" unique_id=1222400001]
 script = ExtResource("1_weywep")
-damageMod = 18.0
-bulletLifeTimeMod = 3.0
+damageMod = 28.0
+bulletLifeTimeMod = 10.0
 bulletAmountMod = 1
-projectileSpeedMod = 80.0
+projectileSpeedMod = 30.0
 shootCooldown = 2.2
 gun = true
 description = "A slow orb that expands as it travels."
@@ -19,6 +19,7 @@ Name = "Wandering Eye"
 bulletScene = ExtResource("2_weywep")
 doConsecShooting = true
 knockback_force = 220.0
+hasInfPierce = true
 canKeepTicking = true
 tick_interval = 0.4
 

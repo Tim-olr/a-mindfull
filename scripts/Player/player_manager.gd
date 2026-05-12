@@ -108,6 +108,9 @@ func _input(event: InputEvent) -> void:
 			stats.playerSpiritScene.host = get_parent()
 		elif stats.playerSpiritScene.out:
 			stats.playerSpiritScene.bring_in()
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://scenes/main game/The game world/the_world.tscn")
+
 
 func _on_interact_area_exited(area: Area2D) -> void:
 	if area == _active_interactable:

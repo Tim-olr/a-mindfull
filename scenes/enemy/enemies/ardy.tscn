@@ -9,9 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_710da"]
 size = Vector2(20, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_leqai"]
-size = Vector2(41, 43)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydsit"]
 size = Vector2(14, 14)
 
@@ -23,6 +20,8 @@ area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_wmufp")
 shard_amount = 10.0
+pushback_distance = 1.0
+avoidance_force = 300.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=58544561 groups=["enemy"]]
 
@@ -62,12 +61,6 @@ target_desired_distance = 100.0
 avoidance_enabled = true
 radius = 40.0
 max_speed = 100000.0
-
-[node name="playerMeleeDetectionArea" type="Area2D" parent="." unique_id=2125068619]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="playerMeleeDetectionArea" unique_id=489679655]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_leqai")
 
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=384415726]
 position = Vector2(-1, 0)

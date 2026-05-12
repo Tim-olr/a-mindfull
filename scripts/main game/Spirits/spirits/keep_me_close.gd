@@ -9,6 +9,7 @@ func remove_passive():
 func active_ability():
 	if !GlobalPlayer.specials.is_paused:
 		if canAbility:
+			sprites.play("active")
 			ability_duration_timed_out.start(abilityDuration)
 			GlobalPlayer.specials.pause_wo_player()
 			GlobalPlayer.visuals.show_gray()

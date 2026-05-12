@@ -3,7 +3,7 @@ extends Node2D
 ## PackedScene pointing to chest.tscn. Set this in the Inspector on SmallBuilding.
 @export var chest_scene: PackedScene
 ## 0.0 = never spawn, 1.0 = always spawn.
-@export var spawn_chance: float = 0.65
+@export var spawn_chance: float =1 #0.65
 ## Optional: override the loot pool on the spawned chest.
 @export var loot_pool_override: ChestLootPool
 
@@ -11,7 +11,7 @@ extends Node2D
 const INTERIOR_X_MIN := 80
 const INTERIOR_X_MAX := 420
 const INTERIOR_Y_MIN := 60
-const INTERIOR_Y_MAX := 320
+const INTERIOR_Y_MAX := 150
 
 var _rng := RandomNumberGenerator.new()
 

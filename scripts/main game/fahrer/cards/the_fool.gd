@@ -21,6 +21,7 @@ func apply() -> void:
 	_orig_attack_speed  = s.attackSpeed
 
 	s.maxHp         = clampf(randf_range(s.maxHp * 0.4, s.maxHp * 2.5), 1.0, 9999.0)
+	GlobalPlayer.visuals.health_bar.init_health(s.maxHp)
 	s.hp            = s.maxHp
 	s.speed         = clampf(randf_range(s.speed * 0.3, s.speed * 3.0), 50.0, 9999.0)
 	s.attackDamage  = clampf(randf_range(s.attackDamage * 0.2, s.attackDamage * 4.0), 0.5, 9999.0)

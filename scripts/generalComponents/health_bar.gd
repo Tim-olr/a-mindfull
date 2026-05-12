@@ -24,7 +24,7 @@ func _ready() -> void:
 	_hp_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_hp_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_hp_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_hp_label.add_theme_font_size_override("font_size", 11)
+	_hp_label.add_theme_font_size_override("font_size", 16)
 	_hp_label.add_theme_color_override("font_color", Color.WHITE)
 	_hp_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
 	_hp_label.add_theme_constant_override("shadow_offset_x", 1)

@@ -3,6 +3,73 @@
 [ext_resource type="Script" uid="uid://clmioc8lvnee4" path="res://scripts/main game/Spirits/spirits/keep_me_close.gd" id="1_iis75"]
 [ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://scenes/Weapons/spirit_weapons/TestLaser.tscn" id="2_n2n30"]
 [ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://scripts/main game/Spirits/stats.gd" id="3_1fh8l"]
+[ext_resource type="Texture2D" uid="uid://d2qu0v6iq7wcq" path="res://assets/other/spirits/keep_me_close.png" id="4_ippdn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2n30"]
+radius = 18.927494
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2n30"]
+size = Vector2(136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4t1a"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2spm"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlkfo"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ipwd"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ippdn"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3lj2"]
+atlas = ExtResource("4_ippdn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2spm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4t1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2spm")
+}],
+"loop": false,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlkfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ipwd")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ippdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3lj2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_ry537"]
 resource_name = "BringIn"
@@ -10,26 +77,26 @@ length = 0.2692
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(12.996, 1),
+"times": PackedFloat32Array(0, 0.2692),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(130, 130), Vector2(1e-05, 1e-05)]
+"values": [Vector2(1.3, 1.3), Vector2(1e-05, 1e-05)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(9.51365, 1),
+"times": PackedFloat32Array(0, 0.2692),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.388235), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vdfrk"]
@@ -38,26 +105,26 @@ length = 0.2692
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(1, 12.996),
+"times": PackedFloat32Array(0, 0.2692),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(130, 130)]
+"values": [Vector2(1e-05, 1e-05), Vector2(1.3, 1.3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(1, 9.51365),
+"times": PackedFloat32Array(0, 0.2692),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.388235)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_gjxxu"]
@@ -65,7 +132,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -77,49 +144,35 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2n30"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlkfo"]
 _data = {
 &"BringIn": SubResource("Animation_ry537"),
 &"BringOut": SubResource("Animation_vdfrk"),
 &"RESET": SubResource("Animation_gjxxu")
 }
 
-[sub_resource type="SphereMesh" id="SphereMesh_1s1gh"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_n2n30"]
-radius = 65.50763
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2n30"]
-size = Vector2(136, 136)
-
-[node name="KeepMeClose" type="CharacterBody2D" unique_id=758947932 groups=["spirit"]]
+[node name="KeepMeClose" type="CharacterBody2D" unique_id=758947932 node_paths=PackedStringArray("sprites") groups=["spirit"]]
 script = ExtResource("1_iis75")
 Name = "KEEP ME CLOSE"
 attackType = "Trapper"
-size = Vector2(0.2, 0.2)
+size = Vector2(1.3, 1.3)
+sprites = NodePath("AnimatedSprite2D")
 activeAbilityCooldown = 30.0
 hasAbilityDuration = true
 abilityDuration = 7.0
 hasWeapon = true
 weaponScene = ExtResource("2_n2n30")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=366139694]
-libraries/ = SubResource("AnimationLibrary_n2n30")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=409393018]
-modulate = Color(1, 1, 1, 0)
-scale = Vector2(1e-05, 1e-05)
-mesh = SubResource("SphereMesh_1s1gh")
+follow_distance = 35.0
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=863375726]
 one_shot = true
@@ -138,10 +191,19 @@ shape = SubResource("CircleShape2D_n2n30")
 
 [node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1723689249]
 position = Vector2(0, 1)
+scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_n2n30")
 
 [node name="stats" type="Node2D" parent="." unique_id=1896885990]
 script = ExtResource("3_1fh8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1078627711]
+scale = Vector2(1e-05, 1e-05)
+sprite_frames = SubResource("SpriteFrames_q2spm")
+animation = &"active"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1887609598]
+libraries/ = SubResource("AnimationLibrary_jlkfo")
 
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 [connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]

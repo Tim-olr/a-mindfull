@@ -14,15 +14,16 @@ class_name Enemy
 @export var knockback_resistance: float = 0.0
 @export var can_drop_shards := true
 @export var shard_amount := 0.0
-@export var separation_radius: float = 38.0
-@export var separation_force: float = 120.0
+@export var pushback_distance: float = 38.0
 
 @export var avoidance_ray_count: int    = 7
 @export var avoidance_ray_length: float = 52.0
 @export var avoidance_force: float      = 180.0
+@export var weight: float = 0.05
 
 var knockbackVelocity := Vector2.ZERO
 var knockback_decay: float = 10.0
+var pushback_vel: Array[Vector2] = []
 var canWalk := true
 var isMelee: bool = false
 var died := false
@@ -50,10 +51,17 @@ func _process(_delta: float) -> void:
 		return
 
 func _physics_process(delta: float) -> void:
-	if knockbackVelocity.length() > 0:
-		knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, knockback_decay * delta)
-		if knockbackVelocity.length() < 1.0:
-			knockbackVelocity = Vector2.ZERO
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy == self or not is_instance_valid(enemy):
+			continue
+		var distance: float = global_position.distance_to(enemy.global_position)
+		if distance <= pushback_distance:
+			var dir: Vector2 = enemy.global_position - global_position
+			dir = dir.normalized()
+			var force: Vector2 = -dir * (2.0 / (distance + 0.1))
+			pushback_vel.append(force)
+
+	knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, weight)
 
 	if !attacking and canWalk and is_instance_valid(GlobalPlayer.player):
 		var desired := _compute_steering()
@@ -61,7 +69,10 @@ func _physics_process(delta: float) -> void:
 	elif knockbackVelocity.length() > 0:
 		velocity = knockbackVelocity
 
+	for pushback in pushback_vel:
+		velocity += pushback
 	move_and_slide()
+	pushback_vel.clear()
 
 func _compute_steering() -> Vector2:
 	var to_player := GlobalPlayer.player.global_position - global_position
@@ -71,27 +82,13 @@ func _compute_steering() -> Vector2:
 	if dist > 1.0:
 		pursuit = to_player.normalized() * stats.speed
 
-	var separation := _get_separation()
-	var avoidance  := _get_avoidance()
-
-	var blended := pursuit + separation + avoidance
+	var avoidance := _get_avoidance()
+	var blended   := pursuit + avoidance
 
 	if blended.length() > stats.speed:
 		blended = blended.normalized() * stats.speed
 
 	return blended
-
-func _get_separation() -> Vector2:
-	var sep    := Vector2.ZERO
-	var enemies = get_tree().get_nodes_in_group("enemy")
-	for enemy in enemies:
-		if enemy == self or not is_instance_valid(enemy):
-			continue
-		var diff: Vector2 = global_position - enemy.global_position
-		var dist: float   = diff.length()
-		if dist < separation_radius and dist > 0.0:
-			sep += diff.normalized() * (separation_radius - dist) / separation_radius * separation_force
-	return sep
 
 func _get_avoidance() -> Vector2:
 	var space  := get_world_2d().direct_space_state
@@ -121,9 +118,6 @@ func _get_avoidance() -> Vector2:
 
 func _on_navigation_agent_2d_velocity_computed(_safe_velocity: Vector2) -> void:
 	pass
-
-func _get_separation_velocity() -> Vector2:
-	return _get_separation()
 
 func damage(damageAmount, _dmgr, _camShake):
 	var newDmg = damageAmount

@@ -5,10 +5,17 @@ var _charge_time := 0.0
 const MAX_CHARGE := 1.5
 const MIN_CHARGE := 0.3
 
+@onready var charge_bar: Node2D = $CanvasLayer/BowChargeBar
+
 func _process(delta: float) -> void:
 	super._process(delta)
 	if not isSelected or not shooter.is_in_group("player"):
+		charge_bar.hide_bar()
 		return
+	if _charging:
+		charge_bar.show_bar(_charge_time / MAX_CHARGE)
+	else:
+		charge_bar.hide_bar()
 	if Input.is_action_pressed("attack") and shooter.stats.canAttack:
 		if not _charging:
 			_charging = true

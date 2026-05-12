@@ -12,8 +12,11 @@
 [ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
 [ext_resource type="PackedScene" uid="uid://b2todwidget" path="res://scenes/main game/ui/time_of_day_widget.tscn" id="14_todw"]
 [ext_resource type="PackedScene" uid="uid://b2fdrawui" path="res://scenes/main game/fahrer/fahrer_draw_ui.tscn" id="15_fdui"]
+[ext_resource type="Script" uid="uid://dajcxxd7vd00p" path="res://scripts/items/chest/chest_loot_entry.gd" id="15_lx8cu"]
 [ext_resource type="PackedScene" uid="uid://dfq4aksfohtrf" path="res://scenes/shops/weapon_handler.tscn" id="15_o6xy1"]
 [ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
+[ext_resource type="Resource" uid="uid://v3s2wgh4vdvp" path="res://resources/items/weapons/wooden_bow.tres" id="17_es1ek"]
+[ext_resource type="Script" uid="uid://cg6twgxd3uqwx" path="res://scripts/items/chest/chest_loot_pool.gd" id="23_3c05b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
 shader = ExtResource("3_8i5hg")
@@ -34,12 +37,12 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_13bug")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6th7i"]
-noise_type = 0
-frequency = 0.0131
+noise_type = 3
+frequency = 0.0905
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_es1ek"]
-width = 500
-height = 500
+width = 250
+height = 250
 noise = SubResource("FastNoiseLite_6th7i")
 seamless = true
 
@@ -60,6 +63,9 @@ biome_name = "Plains"
 tile_set = ExtResource("12_t3lwd")
 terrain_infos = Array[ExtResource("13_es1ek")]([SubResource("Resource_pu32c"), SubResource("Resource_hskh1")])
 noise = SubResource("NoiseTexture2D_es1ek")
+physics_objects = Array[PackedScene]([ExtResource("16_bhd4a")])
+min_objects = 1
+max_objects = 5
 extraction_points = Array[PackedScene]([ExtResource("10_wk3ij")])
 min_points = 4
 max_points = 10
@@ -67,10 +73,22 @@ buildings = Array[PackedScene]([ExtResource("11_o686i")])
 min_buildings = 5
 max_buildings = 10
 enemy_pool = Array[PackedScene]([ExtResource("6_lhdhh")])
+wave_interval_min = 10.0
+wave_interval_max = 40.0
 enemies_per_wave_min = 2
 enemies_per_wave_max = 5
-spawn_radius = 200.0
+spawn_radius = 300.0
 metadata/_custom_type_script = "uid://cf11tsw12100c"
+
+[sub_resource type="Resource" id="Resource_qyfmo"]
+script = ExtResource("15_lx8cu")
+item = ExtResource("17_es1ek")
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_6th7i"]
+script = ExtResource("23_3c05b")
+entries = Array[ExtResource("15_lx8cu")]([SubResource("Resource_qyfmo")])
+metadata/_custom_type_script = "uid://cg6twgxd3uqwx"
 
 [node name="TheWorld" type="Node2D" unique_id=341922483]
 y_sort_enabled = true
@@ -177,5 +195,9 @@ scale = Vector2(0.3, 0.3)
 position = Vector2(394, 329)
 max_health = 10000
 health = 10000
+
+[node name="SmallBuilding" parent="." unique_id=620982097 instance=ExtResource("11_o686i")]
+position = Vector2(-39, 5)
+loot_pool_override = SubResource("Resource_6th7i")
 
 [connection signal="timeout" from="LoadTimer" to="." method="_on_load_timer_timeout"]

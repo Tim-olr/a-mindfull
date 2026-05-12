@@ -11,6 +11,8 @@ size = Vector2(123, 128)
 
 [node name="PhysicsObject" type="RigidBody2D" unique_id=985011151]
 script = ExtResource("1_on3r0")
+max_health = 10
+health = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=377509864]
 texture = ExtResource("1_ps810")

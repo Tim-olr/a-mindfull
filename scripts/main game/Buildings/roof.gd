@@ -1,6 +1,6 @@
 extends Area2D
 class_name Roof
-@onready var roof_mesh: MeshInstance2D = $MeshInstance2D
+@onready var roof_mesh: Sprite2D = $roof_sprite
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):

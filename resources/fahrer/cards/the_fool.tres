@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="FahrerCard" load_steps=2 format=3 uid="uid://thefool00001"]
+[gd_resource type="Resource" format=3 uid="uid://thefool00001"]
 
-[ext_resource type="Script" path="res://scripts/main game/fahrer/cards/the_fool.gd" id="1_fool"]
+[ext_resource type="Script" uid="uid://bm0xhdjvcw51i" path="res://scripts/main game/fahrer/cards/the_fool.gd" id="1_fool"]
 
 [resource]
 script = ExtResource("1_fool")
@@ -8,4 +8,3 @@ card_id = "the_fool"
 card_name = "The Fool"
 description = "All player stats are randomised. Could be great, could be terrible."
 suit = 4
-rarity = 1
