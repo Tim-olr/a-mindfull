@@ -19,6 +19,7 @@ const C_BORDER    := Color(0.22, 0.30, 0.45)
 const C_ACCENT    := Color(0.45, 0.72, 1.00)
 const C_TEXT_DIM  := Color(0.40, 0.48, 0.60)
 const C_PLAYER    := Color(1.00, 0.92, 0.20)
+const C_BEACON    := Color(0.20, 1.00, 0.45)
 const C_UNVISITED := Color(0.06, 0.07, 0.09)
 
 var _zoom: float = 2.0
@@ -112,6 +113,14 @@ func _build_ui() -> void:
 
 	_map_area.gui_input.connect(_on_map_input)
 
+func _process(_delta: float) -> void:
+	if visible:
+		_draw_ctrl.queue_redraw()
+
+func queue_map_redraw() -> void:
+	if visible and _draw_ctrl != null:
+		_draw_ctrl.queue_redraw()
+
 func open_map() -> void:
 	if fog_of_war != null:
 		_center = Vector2(fog_of_war.get_player_tile())
@@ -178,6 +187,20 @@ func _on_draw_map() -> void:
 			continue
 		_draw_ctrl.draw_rect(Rect2(sx, sy, cp - 0.5, cp - 0.5), fog_of_war.visited[cell])
 
+	# Draw beacon (extraction point) if The Beacon station is unlocked
+	if WiseTree.is_unlocked("station_beacon") and fog_of_war.has_extraction_point:
+		var ep := fog_of_war.extraction_point_tile
+		var ex := min_x + ep.x * cp + cp * 0.5
+		var ey := min_y + ep.y * cp + cp * 0.5
+		var er := maxf(cp * 0.9, 5.0)
+		_draw_ctrl.draw_circle(Vector2(ex, ey), er + 2.5, Color(0.05, 0.05, 0.05, 0.8))
+		_draw_ctrl.draw_circle(Vector2(ex, ey), er, C_BEACON)
+		# Inner cross to distinguish from player dot
+		var arm := er * 0.5
+		_draw_ctrl.draw_line(Vector2(ex - arm, ey), Vector2(ex + arm, ey), Color(0.05, 0.2, 0.1), 1.5)
+		_draw_ctrl.draw_line(Vector2(ex, ey - arm), Vector2(ex, ey + arm), Color(0.05, 0.2, 0.1), 1.5)
+
+	# Draw player marker
 	if fog_of_war._tilemap != null and is_instance_valid(fog_of_war._tilemap):
 		var pt = fog_of_war.get_player_tile()
 		var px = min_x + pt.x * cp + cp * 0.5

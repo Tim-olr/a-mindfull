@@ -6,10 +6,27 @@ var _map_ui = null
 var _reveal_radius: int = 8
 var _last_tile: Vector2i = Vector2i(-99999, -99999)
 
+# Beacon / extraction point tracking
+var has_extraction_point: bool = false
+var extraction_point_tile: Vector2i = Vector2i(-99999, -99999)
+var _extraction_world_pos: Vector2 = Vector2.ZERO
+
 func register_tilemap(tm: TileMapLayer) -> void:
 	_tilemap = tm
 	visited.clear()
 	_last_tile = Vector2i(-99999, -99999)
+	if has_extraction_point:
+		extraction_point_tile = _world_to_tile(_extraction_world_pos)
+
+func register_extraction_point(world_pos: Vector2) -> void:
+	_extraction_world_pos = world_pos
+	has_extraction_point = true
+	if _tilemap != null:
+		extraction_point_tile = _world_to_tile(world_pos)
+
+func _world_to_tile(world_pos: Vector2) -> Vector2i:
+	var local = _tilemap.to_local(world_pos)
+	return _tilemap.local_to_map(local)
 
 func get_player_tile() -> Vector2i:
 	if _tilemap == null or not is_instance_valid(_tilemap):
@@ -29,12 +46,16 @@ func _process(_delta: float) -> void:
 		return
 	_last_tile = pt
 	_reveal_around(pt)
+	if _map_ui != null and is_instance_valid(_map_ui) and _map_ui.visible:
+		_map_ui.queue_map_redraw()
 
 func _reveal_around(center: Vector2i) -> void:
-	var r := _reveal_radius
-	for dx in range(-r, r + 1):
-		for dy in range(-r, r + 1):
-			if dx * dx + dy * dy > r * r:
+	reveal_area(center, _reveal_radius)
+
+func reveal_area(center: Vector2i, radius: int) -> void:
+	for dx in range(-radius, radius + 1):
+		for dy in range(-radius, radius + 1):
+			if dx * dx + dy * dy > radius * radius:
 				continue
 			var cell := center + Vector2i(dx, dy)
 			if not visited.has(cell):

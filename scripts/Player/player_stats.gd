@@ -28,7 +28,12 @@ var playerSpiritScene: CharacterBody2D
 @export var damage_mult_for_dmdtewhp: float = 0.0
 @export var damage_reduction: float = 0.0 # 0.0 = no reduction, -.2 = 20% reduction, 1.0 =  full reduction
 @export var shards := 0.0 # sharsd are currency
-
+@export var pickup_radius_mult: float = 0.0  # 0 = no auto-pickup; wise tree adds 0.05 per level
+@export var luck: float = 0.0               # boosts rarity of loot; wise tree adds 0.10 per level
+@export var gathering_speed: float = 1.0    # higher = faster gathering; wise tree adds 0.05 per level
+@export var spirit_damage_reduction: float = 0.0  # extra DR applied only to spirit hits
+@export var spirit_cooldown_reduction: float = 0.0  # reduces spirit active-ability cooldown
+var bonus_inv_slots: int = 0                # extra inventory slots from wise tree
 
 var hps: float
 var canAttack: bool

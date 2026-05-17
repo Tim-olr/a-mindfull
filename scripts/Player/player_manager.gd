@@ -20,6 +20,10 @@ var spiritCanGetDamaged := true
 var _weapon_instance: Node = null
 var _active_interactable: Interactable = null
 
+# Auto-pickup area (radius driven by stats.pickup_radius_mult)
+const PICKUP_AREA_BASE := 600.0
+var _pickup_area: Area2D = null
+
 func _ready() -> void:
 	if inventory_node_path != null and inventory_node_path != NodePath(""):
 		var inv_node = get_node_or_null(inventory_node_path)
@@ -38,6 +42,28 @@ func _ready() -> void:
 		inst.set("shooter", player_node)
 		inst.set("isSelected", true)
 	interact_area.area_exited.connect(_on_interact_area_exited)
+	_setup_pickup_area()
+
+func _setup_pickup_area() -> void:
+	_pickup_area = Area2D.new()
+	_pickup_area.name = "PickupArea"
+	_pickup_area.collision_layer = 0
+	_pickup_area.collision_mask  = interact_area.collision_mask
+	var shape := CircleShape2D.new()
+	shape.radius = PICKUP_AREA_BASE * stats.pickup_radius_mult
+	var col := CollisionShape2D.new()
+	col.shape = shape
+	_pickup_area.add_child(col)
+	get_parent().add_child(_pickup_area)
+	_pickup_area.area_entered.connect(_on_pickup_area_entered)
+
+func _on_pickup_area_entered(area: Area2D) -> void:
+	if stats.pickup_radius_mult <= 0.0:
+		return
+	if area is ItemInteractable and is_instance_valid(area):
+		# Only auto-pickup if inventory has space
+		if GlobalPlayer.inventory.inventory.occupiedSlots < GlobalPlayer.inventory.inventory.slotAmount:
+			area.interacted()
 
 func get_weapon() -> Node:
 	return _weapon_instance
@@ -137,8 +163,9 @@ func spirit_damage(damage_amount, attacker, shake):
 		return
 	if spiritCanGetDamaged:
 		damage_amount = _apply_spirit_incoming_modifier(damage_amount, true)
-		var reduction_am = damage_amount * stats.damage_reduction
-		damage_amount -= reduction_am
+		# Spirit hits use damage_reduction PLUS spirit_damage_reduction
+		var total_dr := clampf(stats.damage_reduction + stats.spirit_damage_reduction, 0.0, 0.95)
+		damage_amount -= damage_amount * total_dr
 		stats.hp -= damage_amount
 		damaged(shake)
 		health_bar.set_health(stats.hp)
