@@ -5,6 +5,15 @@ const CHEST_UI_SCENE = preload("res://scenes/main game/The game world/chest_ui.t
 
 const GATHER_BASE_TIME := 2.0  # seconds to open at gathering_speed 1.0
 
+# Bar dimensions in world-space pixels (relative to chest origin)
+const BAR_W      := 44.0
+const BAR_H      := 6.0
+const BAR_Y      := -28.0  # above chest
+const C_BAR_BG   := Color(0.15, 0.15, 0.15, 0.95)
+const C_BAR_FILL := Color(0.90, 0.65, 0.20)
+const C_BAR_BDR  := Color(0.05, 0.05, 0.05, 0.95)
+const C_HIGHLIGHT := Color(1.35, 1.22, 0.85)
+
 @export var loot_pool: ChestLootPool
 
 var _chest_ui: ChestUI
@@ -13,9 +22,12 @@ var _chest_items: Array = []
 var _rng := RandomNumberGenerator.new()
 
 var _gathering: bool = false
-var _gather_tween: Tween = null
-var _gather_ui: CanvasLayer = null
-var _gather_bar: ProgressBar = null
+var _gather_elapsed: float = 0.0
+var _gather_duration: float = 0.0
+var _gather_progress: float = 0.0
+var _bar_node: Node2D = null
+
+var _player_nearby: bool = false
 
 
 func _ready() -> void:
@@ -24,12 +36,26 @@ func _ready() -> void:
 	description = "A chest containing loot."
 	_chest_ui   = CHEST_UI_SCENE.instantiate()
 	get_tree().root.call_deferred("add_child", _chest_ui)
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 
 
 func _exit_tree() -> void:
 	if is_instance_valid(_chest_ui):
 		_chest_ui.queue_free()
 	_cancel_gather()
+
+
+func _process(delta: float) -> void:
+	if not _gathering:
+		return
+	_gather_elapsed += delta
+	_gather_progress = clampf(_gather_elapsed / _gather_duration, 0.0, 1.0)
+	if is_instance_valid(_bar_node):
+		_bar_node.queue_redraw()
+	if _gather_elapsed >= _gather_duration:
+		_gathering = false
+		_finish_gathering()
 
 
 func interacted() -> void:
@@ -49,54 +75,57 @@ func close_interaction() -> void:
 		_chest_ui.close()
 
 
+# ── Outline highlight ────────────────────────────────────────────────────────
+
+func _on_area_entered(area: Area2D) -> void:
+	if GlobalPlayer.manager != null and area == GlobalPlayer.manager.interact_area:
+		_player_nearby = true
+		_set_highlight(true)
+
+func _on_area_exited(area: Area2D) -> void:
+	if GlobalPlayer.manager != null and area == GlobalPlayer.manager.interact_area:
+		_player_nearby = false
+		_set_highlight(false)
+
+func _set_highlight(on: bool) -> void:
+	var chest_root = get_parent()
+	if chest_root != null:
+		chest_root.modulate = C_HIGHLIGHT if on else Color.WHITE
+
+
+# ── Gathering progress bar (world-space) ─────────────────────────────────────
+
 func _start_gathering() -> void:
 	_gathering = true
+	_gather_elapsed = 0.0
+	_gather_progress = 0.0
 	var gs := 1.0
 	if GlobalPlayer.stats != null:
 		gs = maxf(0.1, GlobalPlayer.stats.gathering_speed)
-	var duration := GATHER_BASE_TIME / gs
+	_gather_duration = GATHER_BASE_TIME / gs
 
-	# Build a small progress bar overlay at the bottom of the screen
-	_gather_ui = CanvasLayer.new()
-	_gather_ui.layer = 8
-	get_tree().root.add_child(_gather_ui)
+	_bar_node = Node2D.new()
+	_bar_node.z_index = 10
+	add_child(_bar_node)
+	_bar_node.draw.connect(_draw_gather_bar)
 
-	var vp := get_viewport().get_visible_rect().size
-	var bar_w := 240.0
-	var bar_h := 22.0
 
-	var bg := ColorRect.new()
-	bg.color    = Color(0.08, 0.09, 0.11, 0.92)
-	bg.size     = Vector2(bar_w + 24, bar_h + 28)
-	bg.position = Vector2((vp.x - bg.size.x) * 0.5, vp.y - bg.size.y - 16)
-	_gather_ui.add_child(bg)
-
-	var lbl := Label.new()
-	lbl.text = "Opening chest..."
-	lbl.add_theme_font_size_override("font_size", 13)
-	lbl.add_theme_color_override("font_color", Color(0.90, 0.85, 0.76))
-	lbl.position = Vector2(12, 4)
-	lbl.size     = Vector2(bar_w, 18)
-	bg.add_child(lbl)
-
-	_gather_bar = ProgressBar.new()
-	_gather_bar.min_value = 0.0
-	_gather_bar.max_value = 1.0
-	_gather_bar.value     = 0.0
-	_gather_bar.show_percentage = false
-	_gather_bar.size     = Vector2(bar_w, bar_h)
-	_gather_bar.position = Vector2(12, 22)
-	bg.add_child(_gather_bar)
-
-	# Animate the progress bar over the gather duration
-	_gather_tween = create_tween()
-	_gather_tween.tween_property(_gather_bar, "value", 1.0, duration)
-	_gather_tween.tween_callback(_finish_gathering)
+func _draw_gather_bar() -> void:
+	if _bar_node == null:
+		return
+	var bx := -BAR_W / 2.0
+	var by := BAR_Y
+	# Border
+	_bar_node.draw_rect(Rect2(bx - 1, by - 1, BAR_W + 2, BAR_H + 2), C_BAR_BDR)
+	# Background
+	_bar_node.draw_rect(Rect2(bx, by, BAR_W, BAR_H), C_BAR_BG)
+	# Fill
+	if _gather_progress > 0.0:
+		_bar_node.draw_rect(Rect2(bx, by, BAR_W * _gather_progress, BAR_H), C_BAR_FILL)
 
 
 func _finish_gathering() -> void:
-	_gathering = false
-	_clear_gather_ui()
+	_clear_bar()
 	if not _opened:
 		_roll_loot()
 		_opened = true
@@ -105,20 +134,19 @@ func _finish_gathering() -> void:
 
 
 func _cancel_gather() -> void:
-	if _gathering:
-		_gathering = false
-	if _gather_tween != null:
-		_gather_tween.kill()
-		_gather_tween = null
-	_clear_gather_ui()
+	_gathering = false
+	_gather_elapsed = 0.0
+	_gather_progress = 0.0
+	_clear_bar()
 
 
-func _clear_gather_ui() -> void:
-	if is_instance_valid(_gather_ui):
-		_gather_ui.queue_free()
-	_gather_ui = null
-	_gather_bar = null
+func _clear_bar() -> void:
+	if is_instance_valid(_bar_node):
+		_bar_node.queue_free()
+	_bar_node = null
 
+
+# ── Loot ──────────────────────────────────────────────────────────────────────
 
 func take_item(index: int) -> void:
 	if index < 0 or index >= _chest_items.size():

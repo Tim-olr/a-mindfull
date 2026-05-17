@@ -8,6 +8,9 @@ const NODE_H := 62.0
 const NODE_GAP := 10.0
 const COL_W := 210.0
 
+# Chain button is taller to fit the level pip row
+const CHAIN_H := 82.0
+
 const C_BG          := Color(0.07, 0.06, 0.05)
 const C_PANEL       := Color(0.12, 0.10, 0.09)
 const C_BORDER      := Color(0.28, 0.22, 0.15)
@@ -86,11 +89,185 @@ func _build() -> void:
 	var content_w := W - PAD * 2
 	var branch_w := content_w / 3.0
 
-	_build_branch(body, WiseTree.get_branch("skills"),    0.0,          branch_w, C_BRANCH_VIT, "SKILLS")
+	_build_skills_branch(body, 0.0, branch_w)
 	_build_branch(body, WiseTree.get_branch("weaponry"),  branch_w,     branch_w, C_BRANCH_WPN, "WEAPONRY")
 	_build_branch(body, WiseTree.get_branch("stations"),  branch_w * 2, branch_w, C_BRANCH_STA, "STATIONS")
 
 	_refresh()
+
+# ── Skills branch: one leveled button per chain ───────────────────────────────
+
+func _build_skills_branch(parent: Control, x: float, bw: float) -> void:
+	var hdr_bar := ColorRect.new()
+	hdr_bar.color = Color(C_BRANCH_VIT.r, C_BRANCH_VIT.g, C_BRANCH_VIT.b, 0.25)
+	hdr_bar.position = Vector2(x + 4, 0)
+	hdr_bar.size = Vector2(bw - 8, 36)
+	hdr_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(hdr_bar)
+
+	var hdr_line := ColorRect.new()
+	hdr_line.color = C_BRANCH_VIT
+	hdr_line.position = Vector2(x + 4, 33)
+	hdr_line.size = Vector2(bw - 8, 3)
+	hdr_line.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(hdr_line)
+
+	var hdr_lbl := _lbl("SKILLS", 15, C_BRANCH_VIT)
+	hdr_lbl.position = Vector2(x + 8, 8)
+	hdr_lbl.size = Vector2(bw - 16, 24)
+	hdr_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	parent.add_child(hdr_lbl)
+
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(x + 4, 42)
+	scroll.size = Vector2(bw - 8, parent.size.y - 42)
+	scroll.mouse_filter = Control.MOUSE_FILTER_PASS
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	parent.add_child(scroll)
+
+	var vbox := VBoxContainer.new()
+	vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	vbox.add_theme_constant_override("separation", NODE_GAP)
+	vbox.mouse_filter = Control.MOUSE_FILTER_PASS
+	scroll.add_child(vbox)
+
+	for chain in WiseTree.SKILL_CHAINS:
+		var btn := _make_chain_button(chain)
+		vbox.add_child(btn)
+
+func _make_chain_button(chain: Dictionary) -> Button:
+	var btn := Button.new()
+	btn.name = "Chain_" + chain["display_name"].replace(" ", "_")
+	btn.custom_minimum_size = Vector2(NODE_W, CHAIN_H)
+	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	btn.text = ""
+	btn.focus_mode = Control.FOCUS_NONE
+	btn.mouse_filter = Control.MOUSE_FILTER_STOP
+	btn.tooltip_text = chain["effect_per_level"]
+
+	# Name row
+	var lbl_name := Label.new()
+	lbl_name.add_theme_font_size_override("font_size", 13)
+	lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	lbl_name.position = Vector2(8, 6)
+	lbl_name.size = Vector2(NODE_W - 16, 20)
+	lbl_name.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lbl_name.name = "LblName"
+	btn.add_child(lbl_name)
+
+	# Level label (right side of name row)
+	var lbl_level := Label.new()
+	lbl_level.add_theme_font_size_override("font_size", 12)
+	lbl_level.add_theme_color_override("font_color", C_TEXT_DIM)
+	lbl_level.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	lbl_level.position = Vector2(8, 6)
+	lbl_level.size = Vector2(NODE_W - 16, 20)
+	lbl_level.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lbl_level.name = "LblLevel"
+	btn.add_child(lbl_level)
+
+	# Pip row (filled/empty dots for each level)
+	var lbl_pips := Label.new()
+	lbl_pips.add_theme_font_size_override("font_size", 14)
+	lbl_pips.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	lbl_pips.position = Vector2(8, 26)
+	lbl_pips.size = Vector2(NODE_W - 16, 20)
+	lbl_pips.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lbl_pips.name = "LblPips"
+	btn.add_child(lbl_pips)
+
+	# Effect description
+	var lbl_desc := Label.new()
+	lbl_desc.text = chain["effect_per_level"]
+	lbl_desc.add_theme_font_size_override("font_size", 11)
+	lbl_desc.add_theme_color_override("font_color", C_TEXT_DIM)
+	lbl_desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	lbl_desc.position = Vector2(8, 46)
+	lbl_desc.size = Vector2(NODE_W - 16, 16)
+	lbl_desc.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	btn.add_child(lbl_desc)
+
+	# Cost label (bottom right)
+	var lbl_cost := Label.new()
+	lbl_cost.add_theme_font_size_override("font_size", 11)
+	lbl_cost.add_theme_color_override("font_color", C_ACCENT)
+	lbl_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	lbl_cost.position = Vector2(8, CHAIN_H - 22)
+	lbl_cost.size = Vector2(NODE_W - 16, 16)
+	lbl_cost.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	lbl_cost.name = "LblCost"
+	btn.add_child(lbl_cost)
+
+	btn.pressed.connect(func(): WiseTree.upgrade_chain(chain))
+	return btn
+
+func _refresh_skills_branch() -> void:
+	for chain in WiseTree.SKILL_CHAINS:
+		var btn_name := "Chain_" + chain["display_name"].replace(" ", "_")
+		var btn := _search_node(self, btn_name) as Button
+		if btn == null:
+			continue
+		var level    := WiseTree.get_chain_level(chain)
+		var max_lv   := WiseTree.get_chain_max(chain)
+		var can_up   := WiseTree.can_upgrade_chain(chain)
+		var next_cost := WiseTree.get_chain_next_cost(chain)
+		var is_max   := (level >= max_lv)
+
+		# Pip string
+		var pips := ""
+		for i in max_lv:
+			pips += ("● " if i < level else "○ ")
+		pips = pips.strip_edges()
+
+		# Update child labels
+		var lbl_name  = btn.find_child("LblName",  true, false) as Label
+		var lbl_level = btn.find_child("LblLevel", true, false) as Label
+		var lbl_pips  = btn.find_child("LblPips",  true, false) as Label
+		var lbl_cost  = btn.find_child("LblCost",  true, false) as Label
+
+		if lbl_name:
+			lbl_name.text = chain["display_name"]
+		if lbl_level:
+			lbl_level.text = "Lv %d/%d" % [level, max_lv]
+		if lbl_pips:
+			lbl_pips.text = pips
+		if lbl_cost:
+			if is_max:
+				lbl_cost.text = "MAX"
+				lbl_cost.add_theme_color_override("font_color", C_UNLOCKED_BRD)
+			else:
+				lbl_cost.text = "%d shards" % next_cost
+				lbl_cost.add_theme_color_override("font_color", C_ACCENT)
+
+		_style_chain_button(btn, is_max, can_up)
+
+func _style_chain_button(btn: Button, is_max: bool, can_up: bool) -> void:
+	var sb := StyleBoxFlat.new()
+	sb.set_corner_radius_all(6)
+	if is_max:
+		sb.bg_color = C_UNLOCKED
+		sb.border_color = C_UNLOCKED_BRD
+		sb.set_border_width_all(2)
+		btn.disabled = true
+		btn.modulate = Color.WHITE
+	elif can_up:
+		sb.bg_color = C_AVAILABLE
+		sb.border_color = C_AVAILABLE_BRD
+		sb.set_border_width_all(2)
+		btn.disabled = false
+		btn.modulate = Color.WHITE
+	else:
+		sb.bg_color = C_LOCKED
+		sb.border_color = C_LOCKED_BRD
+		sb.set_border_width_all(1)
+		btn.disabled = true
+		btn.modulate = Color(0.7, 0.7, 0.7, 0.8)
+	btn.add_theme_stylebox_override("normal",   sb)
+	btn.add_theme_stylebox_override("hover",    sb)
+	btn.add_theme_stylebox_override("pressed",  sb)
+	btn.add_theme_stylebox_override("disabled", sb)
+
+# ── Generic branch (weapons / stations) ──────────────────────────────────────
 
 func _build_branch(parent: Control, nodes: Array, x: float, bw: float, header_color: Color, title: String) -> void:
 	var hdr_bar := ColorRect.new()
@@ -173,9 +350,11 @@ func _make_node_button(nd: Dictionary) -> Button:
 	btn.pressed.connect(func(): _on_node_pressed(nd["id"]))
 	return btn
 
+# ── Refresh ───────────────────────────────────────────────────────────────────
+
 func _refresh() -> void:
 	_shard_label.text = "Safe Shards: %.0f" % GlobalSafe.shards
-	_refresh_branch("skills")
+	_refresh_skills_branch()
 	_refresh_branch("weaponry")
 	_refresh_branch("stations")
 
