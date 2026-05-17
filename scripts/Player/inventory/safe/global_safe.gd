@@ -2,7 +2,7 @@ extends Node2D
 
 var safe: Array[ItemResource] = []
 var saved_inventory: Array[Dictionary] = []
-var shards: float
+var shards: float = 10000
 
 func add_shards(amount: float) -> void:
 	shards = minf(shards + amount, 1000000.0)

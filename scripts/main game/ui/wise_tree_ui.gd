@@ -203,7 +203,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 
 func _refresh_skills_branch() -> void:
 	for chain in WiseTree.SKILL_CHAINS:
-		var btn_name := "Chain_" + chain["display_name"].replace(" ", "_")
+		var btn_name = "Chain_" + chain["display_name"].replace(" ", "_")
 		var btn := _search_node(self, btn_name) as Button
 		if btn == null:
 			continue
@@ -266,8 +266,6 @@ func _style_chain_button(btn: Button, is_max: bool, can_up: bool) -> void:
 	btn.add_theme_stylebox_override("hover",    sb)
 	btn.add_theme_stylebox_override("pressed",  sb)
 	btn.add_theme_stylebox_override("disabled", sb)
-
-# ── Generic branch (weapons / stations) ──────────────────────────────────────
 
 func _build_branch(parent: Control, nodes: Array, x: float, bw: float, header_color: Color, title: String) -> void:
 	var hdr_bar := ColorRect.new()

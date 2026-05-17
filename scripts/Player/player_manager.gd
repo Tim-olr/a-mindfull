@@ -54,7 +54,7 @@ func _setup_pickup_area() -> void:
 	var col := CollisionShape2D.new()
 	col.shape = shape
 	_pickup_area.add_child(col)
-	get_parent().add_child(_pickup_area)
+	get_parent().add_child.call_deferred(_pickup_area)
 	_pickup_area.area_entered.connect(_on_pickup_area_entered)
 
 func _on_pickup_area_entered(area: Area2D) -> void:
