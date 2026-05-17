@@ -4,39 +4,85 @@ signal tree_changed
 
 var _unlocked: Dictionary = {}
 
-# Accumulated stat bonuses applied to the player at run-start
-var _bonus_max_hp: float = 0.0
-var _bonus_speed: float = 0.0
-var _bonus_damage: float = 0.0
-var _bonus_damage_reduction: float = 0.0
+# Accumulated stat bonuses – recomputed from _unlocked on every _ready()
+var _bonus_speed_pct:    float = 0.0   # each speed level: +5%
+var _bonus_damage_pct:   float = 0.0   # each damage level: +5%
+var _bonus_max_hp_pct:   float = 0.0   # each hp level: +10%
+var _bonus_pickup_pct:   float = 0.0   # each pickup level: +0.05 to pickup_radius_mult
+var _bonus_inv_slots:    int   = 0     # each inv level: +1
+var _bonus_spirit_dr:    float = 0.0   # each sdr level: +5%
+var _bonus_gathering:    float = 0.0   # each gather level: +5% to gathering_speed
+var _bonus_luck:         float = 0.0   # each luck level: +10%
+var _bonus_spirit_cdr:   float = 0.0   # each scdr level: +5%
 
 const NODES := [
-	# ── Vitality ────────────────────────────────────────────────────────
-	{ "id": "extra_hp",          "name": "Extra Health",      "branch": "vitality",  "cost": 100,  "prereq": [],              "desc": "+10 Max HP" },
-	{ "id": "vital_core",        "name": "Vital Core",        "branch": "vitality",  "cost": 200,  "prereq": ["extra_hp"],    "desc": "+20 Max HP" },
-	{ "id": "tough_skin",        "name": "Tough Skin",        "branch": "vitality",  "cost": 300,  "prereq": ["vital_core"],  "desc": "-15% damage taken" },
-	{ "id": "fleet_foot",        "name": "Fleet Foot",        "branch": "vitality",  "cost": 150,  "prereq": [],              "desc": "+20 Speed" },
-	{ "id": "swift_stride",      "name": "Swift Stride",      "branch": "vitality",  "cost": 250,  "prereq": ["fleet_foot"],  "desc": "+30 Speed" },
-	{ "id": "strength",          "name": "Strength",          "branch": "vitality",  "cost": 200,  "prereq": [],              "desc": "+2 Attack Damage" },
-	# ── Weaponry ────────────────────────────────────────────────────────
-	{ "id": "unlock_shotgun",         "name": "Shotgun",           "branch": "weaponry",  "cost": 150,  "prereq": [],  "desc": "Unlock: Shotgun" },
-	{ "id": "unlock_smg",             "name": "SMG",               "branch": "weaponry",  "cost": 150,  "prereq": [],  "desc": "Unlock: SMG" },
-	{ "id": "unlock_assault_rifle",   "name": "Assault Rifle",     "branch": "weaponry",  "cost": 200,  "prereq": [],  "desc": "Unlock: Assault Rifle" },
-	{ "id": "unlock_burst_rifle",     "name": "Burst Rifle",       "branch": "weaponry",  "cost": 200,  "prereq": [],  "desc": "Unlock: Burst Rifle" },
-	{ "id": "unlock_crossbow",        "name": "Crossbow",          "branch": "weaponry",  "cost": 250,  "prereq": [],  "desc": "Unlock: Crossbow" },
-	{ "id": "unlock_boomerang",       "name": "Boomerang",         "branch": "weaponry",  "cost": 250,  "prereq": [],  "desc": "Unlock: Boomerang" },
-	{ "id": "unlock_sniper",          "name": "Sniper",            "branch": "weaponry",  "cost": 300,  "prereq": [],  "desc": "Unlock: Sniper" },
-	{ "id": "unlock_nail_gun",        "name": "Nail Gun",          "branch": "weaponry",  "cost": 300,  "prereq": [],  "desc": "Unlock: Nail Gun" },
-	{ "id": "unlock_dice_gun",        "name": "Dice Gun",          "branch": "weaponry",  "cost": 350,  "prereq": [],  "desc": "Unlock: Dice Gun" },
-	{ "id": "unlock_toxic_squirtgun", "name": "Toxic Squirtgun",   "branch": "weaponry",  "cost": 350,  "prereq": [],  "desc": "Unlock: Toxic Squirtgun" },
-	{ "id": "unlock_echo_cannon",     "name": "Echo Cannon",       "branch": "weaponry",  "cost": 400,  "prereq": [],  "desc": "Unlock: Echo Cannon" },
-	{ "id": "unlock_ring_of_rings",   "name": "Ring of Rings",     "branch": "weaponry",  "cost": 400,  "prereq": [],  "desc": "Unlock: Ring of Rings" },
-	{ "id": "unlock_gravity_well",    "name": "Gravity Well",      "branch": "weaponry",  "cost": 500,  "prereq": [],  "desc": "Unlock: Gravity Well" },
-	{ "id": "unlock_cursed_tome",     "name": "Cursed Tome",       "branch": "weaponry",  "cost": 500,  "prereq": [],  "desc": "Unlock: Cursed Tome" },
-	# ── Stations ────────────────────────────────────────────────────────
-	{ "id": "unlock_ignitor",    "name": "The Ignitor",       "branch": "stations",  "cost": 200,  "prereq": [],                   "desc": "Unlock: Ignitor (burn a card)" },
-	{ "id": "station_slot_2",   "name": "Station Slot II",   "branch": "stations",  "cost": 400,  "prereq": ["unlock_ignitor"],    "desc": "Coming soon..." },
-	{ "id": "station_slot_3",   "name": "Station Slot III",  "branch": "stations",  "cost": 600,  "prereq": ["station_slot_2"],   "desc": "Coming soon..." },
+	# ── Skills ──────────────────────────────────────────────────────────────
+	{ "id": "speed_1",  "name": "Swift Step I",    "branch": "skills", "cost": 150, "prereq": [],           "desc": "+5% Movement Speed" },
+	{ "id": "speed_2",  "name": "Swift Step II",   "branch": "skills", "cost": 250, "prereq": ["speed_1"],  "desc": "+5% Movement Speed" },
+	{ "id": "speed_3",  "name": "Swift Step III",  "branch": "skills", "cost": 400, "prereq": ["speed_2"],  "desc": "+5% Movement Speed" },
+
+	{ "id": "damage_1", "name": "Sharp Edge I",    "branch": "skills", "cost": 150, "prereq": [],            "desc": "+5% Damage" },
+	{ "id": "damage_2", "name": "Sharp Edge II",   "branch": "skills", "cost": 250, "prereq": ["damage_1"],  "desc": "+5% Damage" },
+	{ "id": "damage_3", "name": "Sharp Edge III",  "branch": "skills", "cost": 400, "prereq": ["damage_2"],  "desc": "+5% Damage" },
+	{ "id": "damage_4", "name": "Sharp Edge IV",   "branch": "skills", "cost": 600, "prereq": ["damage_3"],  "desc": "+5% Damage" },
+
+	{ "id": "hp_1",     "name": "Vitality I",      "branch": "skills", "cost": 100, "prereq": [],        "desc": "+10% Max HP" },
+	{ "id": "hp_2",     "name": "Vitality II",     "branch": "skills", "cost": 200, "prereq": ["hp_1"],  "desc": "+10% Max HP" },
+	{ "id": "hp_3",     "name": "Vitality III",    "branch": "skills", "cost": 350, "prereq": ["hp_2"],  "desc": "+10% Max HP" },
+	{ "id": "hp_4",     "name": "Vitality IV",     "branch": "skills", "cost": 500, "prereq": ["hp_3"],  "desc": "+10% Max HP" },
+	{ "id": "hp_5",     "name": "Vitality V",      "branch": "skills", "cost": 700, "prereq": ["hp_4"],  "desc": "+10% Max HP" },
+
+	{ "id": "pickup_1", "name": "Reach I",         "branch": "skills", "cost": 150, "prereq": [],             "desc": "+5% Pickup Radius" },
+	{ "id": "pickup_2", "name": "Reach II",        "branch": "skills", "cost": 250, "prereq": ["pickup_1"],   "desc": "+5% Pickup Radius" },
+	{ "id": "pickup_3", "name": "Reach III",       "branch": "skills", "cost": 400, "prereq": ["pickup_2"],   "desc": "+5% Pickup Radius" },
+	{ "id": "pickup_4", "name": "Reach IV",        "branch": "skills", "cost": 600, "prereq": ["pickup_3"],   "desc": "+5% Pickup Radius" },
+
+	{ "id": "inv_1",    "name": "Pack Rat I",      "branch": "skills", "cost": 200,  "prereq": [],          "desc": "+1 Inventory Slot" },
+	{ "id": "inv_2",    "name": "Pack Rat II",     "branch": "skills", "cost": 300,  "prereq": ["inv_1"],   "desc": "+1 Inventory Slot" },
+	{ "id": "inv_3",    "name": "Pack Rat III",    "branch": "skills", "cost": 450,  "prereq": ["inv_2"],   "desc": "+1 Inventory Slot" },
+	{ "id": "inv_4",    "name": "Pack Rat IV",     "branch": "skills", "cost": 650,  "prereq": ["inv_3"],   "desc": "+1 Inventory Slot" },
+	{ "id": "inv_5",    "name": "Pack Rat V",      "branch": "skills", "cost": 900,  "prereq": ["inv_4"],   "desc": "+1 Inventory Slot" },
+	{ "id": "inv_6",    "name": "Pack Rat VI",     "branch": "skills", "cost": 1200, "prereq": ["inv_5"],   "desc": "+1 Inventory Slot" },
+
+	{ "id": "sdr_1",    "name": "Spirit Shield I",  "branch": "skills", "cost": 200, "prereq": [],          "desc": "+5% Spirit Damage Reduction" },
+	{ "id": "sdr_2",    "name": "Spirit Shield II", "branch": "skills", "cost": 350, "prereq": ["sdr_1"],   "desc": "+5% Spirit Damage Reduction" },
+	{ "id": "sdr_3",    "name": "Spirit Shield III","branch": "skills", "cost": 500, "prereq": ["sdr_2"],   "desc": "+5% Spirit Damage Reduction" },
+	{ "id": "sdr_4",    "name": "Spirit Shield IV", "branch": "skills", "cost": 700, "prereq": ["sdr_3"],   "desc": "+5% Spirit Damage Reduction" },
+	{ "id": "sdr_5",    "name": "Spirit Shield V",  "branch": "skills", "cost": 900, "prereq": ["sdr_4"],   "desc": "+5% Spirit Damage Reduction" },
+
+	{ "id": "gather_1", "name": "Nimble Hands I",   "branch": "skills", "cost": 150, "prereq": [],             "desc": "+5% Gathering Speed" },
+	{ "id": "gather_2", "name": "Nimble Hands II",  "branch": "skills", "cost": 250, "prereq": ["gather_1"],   "desc": "+5% Gathering Speed" },
+	{ "id": "gather_3", "name": "Nimble Hands III", "branch": "skills", "cost": 400, "prereq": ["gather_2"],   "desc": "+5% Gathering Speed" },
+	{ "id": "gather_4", "name": "Nimble Hands IV",  "branch": "skills", "cost": 600, "prereq": ["gather_3"],   "desc": "+5% Gathering Speed" },
+
+	{ "id": "luck_1",   "name": "Fortune I",        "branch": "skills", "cost": 200, "prereq": [],           "desc": "+10% Luck" },
+	{ "id": "luck_2",   "name": "Fortune II",       "branch": "skills", "cost": 400, "prereq": ["luck_1"],   "desc": "+10% Luck" },
+	{ "id": "luck_3",   "name": "Fortune III",      "branch": "skills", "cost": 700, "prereq": ["luck_2"],   "desc": "+10% Luck" },
+
+	{ "id": "scdr_1",   "name": "Soul Haste I",     "branch": "skills", "cost": 200, "prereq": [],            "desc": "+5% Spirit Cooldown Reduction" },
+	{ "id": "scdr_2",   "name": "Soul Haste II",    "branch": "skills", "cost": 400, "prereq": ["scdr_1"],    "desc": "+5% Spirit Cooldown Reduction" },
+	{ "id": "scdr_3",   "name": "Soul Haste III",   "branch": "skills", "cost": 700, "prereq": ["scdr_2"],    "desc": "+5% Spirit Cooldown Reduction" },
+
+	# ── Weaponry ────────────────────────────────────────────────────────────
+	{ "id": "unlock_shotgun",         "name": "Shotgun",          "branch": "weaponry", "cost": 150, "prereq": [], "desc": "Unlock: Shotgun" },
+	{ "id": "unlock_smg",             "name": "SMG",              "branch": "weaponry", "cost": 150, "prereq": [], "desc": "Unlock: SMG" },
+	{ "id": "unlock_assault_rifle",   "name": "Assault Rifle",    "branch": "weaponry", "cost": 200, "prereq": [], "desc": "Unlock: Assault Rifle" },
+	{ "id": "unlock_burst_rifle",     "name": "Burst Rifle",      "branch": "weaponry", "cost": 200, "prereq": [], "desc": "Unlock: Burst Rifle" },
+	{ "id": "unlock_crossbow",        "name": "Crossbow",         "branch": "weaponry", "cost": 250, "prereq": [], "desc": "Unlock: Crossbow" },
+	{ "id": "unlock_boomerang",       "name": "Boomerang",        "branch": "weaponry", "cost": 250, "prereq": [], "desc": "Unlock: Boomerang" },
+	{ "id": "unlock_sniper",          "name": "Sniper",           "branch": "weaponry", "cost": 300, "prereq": [], "desc": "Unlock: Sniper" },
+	{ "id": "unlock_nail_gun",        "name": "Nail Gun",         "branch": "weaponry", "cost": 300, "prereq": [], "desc": "Unlock: Nail Gun" },
+	{ "id": "unlock_dice_gun",        "name": "Dice Gun",         "branch": "weaponry", "cost": 350, "prereq": [], "desc": "Unlock: Dice Gun" },
+	{ "id": "unlock_toxic_squirtgun", "name": "Toxic Squirtgun",  "branch": "weaponry", "cost": 350, "prereq": [], "desc": "Unlock: Toxic Squirtgun" },
+	{ "id": "unlock_echo_cannon",     "name": "Echo Cannon",      "branch": "weaponry", "cost": 400, "prereq": [], "desc": "Unlock: Echo Cannon" },
+	{ "id": "unlock_ring_of_rings",   "name": "Ring of Rings",    "branch": "weaponry", "cost": 400, "prereq": [], "desc": "Unlock: Ring of Rings" },
+	{ "id": "unlock_gravity_well",    "name": "Gravity Well",     "branch": "weaponry", "cost": 500, "prereq": [], "desc": "Unlock: Gravity Well" },
+	{ "id": "unlock_cursed_tome",     "name": "Cursed Tome",      "branch": "weaponry", "cost": 500, "prereq": [], "desc": "Unlock: Cursed Tome" },
+
+	# ── Stations ────────────────────────────────────────────────────────────
+	{ "id": "unlock_ignitor",       "name": "The Ignitor",       "branch": "stations", "cost": 200, "prereq": [],                    "desc": "Unlock: Ignitor (burn a card)" },
+	{ "id": "station_cartographer", "name": "The Cartographer",  "branch": "stations", "cost": 300, "prereq": [],                    "desc": "Reveal a portion of the map at run start" },
+	{ "id": "station_beacon",       "name": "The Beacon",        "branch": "stations", "cost": 250, "prereq": [],                    "desc": "Extraction point always visible on your map" },
 ]
 
 var _node_map: Dictionary = {}
@@ -44,7 +90,20 @@ var _node_map: Dictionary = {}
 func _ready() -> void:
 	for n in NODES:
 		_node_map[n["id"]] = n
-	_apply_weapon_unlocks()
+	_recompute_bonuses()
+
+func _recompute_bonuses() -> void:
+	_bonus_speed_pct   = 0.0
+	_bonus_damage_pct  = 0.0
+	_bonus_max_hp_pct  = 0.0
+	_bonus_pickup_pct  = 0.0
+	_bonus_inv_slots   = 0
+	_bonus_spirit_dr   = 0.0
+	_bonus_gathering   = 0.0
+	_bonus_luck        = 0.0
+	_bonus_spirit_cdr  = 0.0
+	for id in _unlocked:
+		_apply_effect(id)
 
 func is_unlocked(node_id: String) -> bool:
 	return _unlocked.get(node_id, false)
@@ -86,25 +145,39 @@ func get_branch(branch: String) -> Array:
 	return result
 
 func apply_stat_bonuses(stats: PlayerStats) -> void:
-	stats.maxHp += _bonus_max_hp
-	stats.hp = minf(stats.hp + _bonus_max_hp, stats.maxHp)
-	stats.speed += _bonus_speed
-	stats.attackDamage += _bonus_damage
-	stats.damage_reduction = clampf(stats.damage_reduction + _bonus_damage_reduction, 0.0, 0.95)
+	stats.speed        *= (1.0 + _bonus_speed_pct)
+	stats.attackDamage *= (1.0 + _bonus_damage_pct)
+	stats.maxHp        *= (1.0 + _bonus_max_hp_pct)
+	stats.hp            = stats.maxHp
+	stats.pickup_radius_mult   += _bonus_pickup_pct
+	stats.bonus_inv_slots       = _bonus_inv_slots
+	stats.spirit_damage_reduction = clampf(_bonus_spirit_dr, 0.0, 0.95)
+	stats.gathering_speed         = 1.0 + _bonus_gathering
+	stats.luck                    = _bonus_luck
+	stats.spirit_cooldown_reduction = clampf(_bonus_spirit_cdr, 0.0, 0.95)
 
 func _apply_effect(node_id: String) -> void:
 	match node_id:
-		"extra_hp":         _bonus_max_hp += 10.0
-		"vital_core":       _bonus_max_hp += 20.0
-		"tough_skin":       _bonus_damage_reduction += 0.15
-		"fleet_foot":       _bonus_speed += 20.0
-		"swift_stride":     _bonus_speed += 30.0
-		"strength":         _bonus_damage += 2.0
-		_:                  _apply_weapon_unlock_by_id(node_id)
-
-func _apply_weapon_unlocks() -> void:
-	for id in _unlocked:
-		_apply_weapon_unlock_by_id(id)
+		"speed_1", "speed_2", "speed_3":
+			_bonus_speed_pct += 0.05
+		"damage_1", "damage_2", "damage_3", "damage_4":
+			_bonus_damage_pct += 0.05
+		"hp_1", "hp_2", "hp_3", "hp_4", "hp_5":
+			_bonus_max_hp_pct += 0.10
+		"pickup_1", "pickup_2", "pickup_3", "pickup_4":
+			_bonus_pickup_pct += 0.05
+		"inv_1", "inv_2", "inv_3", "inv_4", "inv_5", "inv_6":
+			_bonus_inv_slots += 1
+		"sdr_1", "sdr_2", "sdr_3", "sdr_4", "sdr_5":
+			_bonus_spirit_dr += 0.05
+		"gather_1", "gather_2", "gather_3", "gather_4":
+			_bonus_gathering += 0.05
+		"luck_1", "luck_2", "luck_3":
+			_bonus_luck += 0.10
+		"scdr_1", "scdr_2", "scdr_3":
+			_bonus_spirit_cdr += 0.05
+		_:
+			_apply_weapon_unlock_by_id(node_id)
 
 func _apply_weapon_unlock_by_id(node_id: String) -> void:
 	var weapon_name := _weapon_name_for(node_id)

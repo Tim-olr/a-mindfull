@@ -86,7 +86,7 @@ func _build() -> void:
 	var content_w := W - PAD * 2
 	var branch_w := content_w / 3.0
 
-	_build_branch(body, WiseTree.get_branch("vitality"),  0.0,          branch_w, C_BRANCH_VIT, "VITALITY")
+	_build_branch(body, WiseTree.get_branch("skills"),    0.0,          branch_w, C_BRANCH_VIT, "SKILLS")
 	_build_branch(body, WiseTree.get_branch("weaponry"),  branch_w,     branch_w, C_BRANCH_WPN, "WEAPONRY")
 	_build_branch(body, WiseTree.get_branch("stations"),  branch_w * 2, branch_w, C_BRANCH_STA, "STATIONS")
 
@@ -175,7 +175,7 @@ func _make_node_button(nd: Dictionary) -> Button:
 
 func _refresh() -> void:
 	_shard_label.text = "Safe Shards: %.0f" % GlobalSafe.shards
-	_refresh_branch("vitality")
+	_refresh_branch("skills")
 	_refresh_branch("weaponry")
 	_refresh_branch("stations")
 

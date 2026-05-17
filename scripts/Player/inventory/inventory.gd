@@ -290,6 +290,35 @@ func update_hotbar_selection() -> void:
 				s.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
+func extend_capacity(extra_slots: int) -> void:
+	if extra_slots <= 0:
+		return
+	var old_count := slotAmount
+	slotAmount += extra_slots
+	for i in range(old_count, slotAmount):
+		var slot = slot_scene.instantiate()
+		slot.slot_index    = i
+		slot.custom_minimum_size = Vector2(SLOT_SIZE, SLOT_SIZE)
+		slot.size                = Vector2(SLOT_SIZE, SLOT_SIZE)
+		slot.connect("selected",     Callable(self, "_on_slot_selected"))
+		slot.connect("item_changed", Callable(self, "_on_slot_item_changed"))
+		slots.append(slot)
+		var grid_i := i - MIN_HOTBAR_SLOTS
+		var col    := grid_i % GRID_COLS
+		var row    := grid_i / GRID_COLS
+		slot.position = Vector2(col * (SLOT_SIZE + SLOT_GAP), row * (SLOT_SIZE + SLOT_GAP))
+		_grid_container.add_child(slot)
+	# Resize the grid panel to fit new rows
+	var new_rows := ceili(float(slotAmount - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
+	var old_rows := ceili(float(old_count - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
+	if new_rows > old_rows:
+		var extra_h := (new_rows - old_rows) * (SLOT_SIZE + SLOT_GAP)
+		_grid_container.size.y += extra_h
+		_grid_bg.size.y        += extra_h
+		var vp_size := get_viewport().get_visible_rect().size
+		_grid_panel.position.y  = _hotbar_bg.position.y - _grid_bg.size.y - 8
+	_update_capacity_label()
+
 func _update_capacity_label() -> void:
 	if _capacity_label != null:
 		_capacity_label.text = "%d / %d" % [occupiedSlots, slotAmount]
