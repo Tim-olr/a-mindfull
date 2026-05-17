@@ -21,6 +21,7 @@ func _ready() -> void:
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
 	WiseTree.apply_stat_bonuses(GlobalPlayer.stats)
+	GlobalPlayer.visuals.health_bar.init_health(GlobalPlayer.stats.maxHp)
 
 	# Apply spirit cooldown reduction to the active spirit
 	if is_instance_valid(GlobalPlayer.stats.playerSpiritScene):

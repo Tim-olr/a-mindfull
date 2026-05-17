@@ -10,7 +10,7 @@ const GRAY_DURATION: float = 0.2
 
 func _ready() -> void:
 	GlobalPlayer.visuals = self
-	health_bar.set_health(GlobalPlayer.stats.hp)
+	health_bar.init_health(GlobalPlayer.stats.maxHp)
 	if gray.material and gray.material is ShaderMaterial:
 		gray.material.set_shader_parameter("saturation", 1.0)
 
