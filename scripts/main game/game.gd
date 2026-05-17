@@ -15,4 +15,12 @@ func _ready() -> void:
 	GlobalPlayer.player.add_child(playerSpirit)
 	print("safe: ", GlobalSafe.safe)
 	GameManager.is_in_lobby = true
+	_refresh_hub_health_bar()
+	if not WiseTree.tree_changed.is_connected(_refresh_hub_health_bar):
+		WiseTree.tree_changed.connect(_refresh_hub_health_bar)
+
+func _refresh_hub_health_bar() -> void:
+	GlobalPlayer.visuals.init_health_display(
+		WiseTree.preview_max_hp(GlobalPlayer.stats.base_max_hp)
+	)
 	

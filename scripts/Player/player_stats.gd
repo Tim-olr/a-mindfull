@@ -37,6 +37,7 @@ var bonus_inv_slots: int = 0                # extra inventory slots from wise tr
 
 var hps: float
 var canAttack: bool
+var base_max_hp: float = 0.0
 
 func hp_changed():
 	GlobalPlayer.visuals.init_health_display(maxHp)
@@ -54,3 +55,4 @@ func remove_shards(amount):
 
 func _ready() -> void:
 	GlobalPlayer.stats = self
+	base_max_hp = maxHp

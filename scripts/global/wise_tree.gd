@@ -158,6 +158,9 @@ const SKILL_CHAINS := [
 	{ "display_name": "Soul Haste",    "effect_per_level": "+5% Spirit Cooldown Reduction","node_ids": ["scdr_1",   "scdr_2",   "scdr_3"] },
 ]
 
+func preview_max_hp(base_hp: float) -> float:
+	return base_hp * (1.0 + _bonus_max_hp_pct)
+
 func get_chain_level(chain: Dictionary) -> int:
 	var level := 0
 	for id in chain["node_ids"]:
@@ -191,8 +194,9 @@ func upgrade_chain(chain: Dictionary) -> bool:
 func apply_stat_bonuses(stats: PlayerStats) -> void:
 	stats.speed        *= (1.0 + _bonus_speed_pct)
 	stats.attackDamage *= (1.0 + _bonus_damage_pct)
-	stats.maxHp        *= (1.0 + _bonus_max_hp_pct)
+	stats.maxHp         = stats.base_max_hp * (1.0 + _bonus_max_hp_pct)
 	stats.hp            = stats.maxHp
+	stats.hp_changed()
 	stats.pickup_radius_mult   += _bonus_pickup_pct
 	stats.bonus_inv_slots       = _bonus_inv_slots
 	stats.spirit_damage_reduction = clampf(_bonus_spirit_dr, 0.0, 0.95)
