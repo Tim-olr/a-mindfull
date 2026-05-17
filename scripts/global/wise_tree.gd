@@ -144,6 +144,49 @@ func get_branch(branch: String) -> Array:
 			result.append(n)
 	return result
 
+# Each entry: { "display_name", "effect_per_level", "node_ids": [] }
+const SKILL_CHAINS := [
+	{ "display_name": "Swift Step",    "effect_per_level": "+5% Movement Speed",           "node_ids": ["speed_1",  "speed_2",  "speed_3"] },
+	{ "display_name": "Sharp Edge",    "effect_per_level": "+5% Damage",                   "node_ids": ["damage_1", "damage_2", "damage_3", "damage_4"] },
+	{ "display_name": "Vitality",      "effect_per_level": "+10% Max HP",                  "node_ids": ["hp_1",     "hp_2",     "hp_3",     "hp_4",     "hp_5"] },
+	{ "display_name": "Reach",         "effect_per_level": "+5% Pickup Radius",            "node_ids": ["pickup_1", "pickup_2", "pickup_3", "pickup_4"] },
+	{ "display_name": "Pack Rat",      "effect_per_level": "+1 Inventory Slot",            "node_ids": ["inv_1",    "inv_2",    "inv_3",    "inv_4",    "inv_5",  "inv_6"] },
+	{ "display_name": "Spirit Shield", "effect_per_level": "+5% Spirit Damage Reduction",  "node_ids": ["sdr_1",    "sdr_2",    "sdr_3",    "sdr_4",    "sdr_5"] },
+	{ "display_name": "Nimble Hands",  "effect_per_level": "+5% Gathering Speed",          "node_ids": ["gather_1", "gather_2", "gather_3", "gather_4"] },
+	{ "display_name": "Fortune",       "effect_per_level": "+10% Luck",                    "node_ids": ["luck_1",   "luck_2",   "luck_3"] },
+	{ "display_name": "Soul Haste",    "effect_per_level": "+5% Spirit Cooldown Reduction","node_ids": ["scdr_1",   "scdr_2",   "scdr_3"] },
+]
+
+func get_chain_level(chain: Dictionary) -> int:
+	var level := 0
+	for id in chain["node_ids"]:
+		if is_unlocked(id):
+			level += 1
+	return level
+
+func get_chain_max(chain: Dictionary) -> int:
+	return chain["node_ids"].size()
+
+func get_chain_next_id(chain: Dictionary) -> String:
+	for id in chain["node_ids"]:
+		if not is_unlocked(id):
+			return id
+	return ""
+
+func get_chain_next_cost(chain: Dictionary) -> int:
+	var nid := get_chain_next_id(chain)
+	if nid == "":
+		return -1
+	var nd = _node_map.get(nid, null)
+	return nd["cost"] if nd != null else -1
+
+func can_upgrade_chain(chain: Dictionary) -> bool:
+	var nid := get_chain_next_id(chain)
+	return nid != "" and can_unlock(nid)
+
+func upgrade_chain(chain: Dictionary) -> bool:
+	return unlock(get_chain_next_id(chain))
+
 func apply_stat_bonuses(stats: PlayerStats) -> void:
 	stats.speed        *= (1.0 + _bonus_speed_pct)
 	stats.attackDamage *= (1.0 + _bonus_damage_pct)
