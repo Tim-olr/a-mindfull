@@ -14,6 +14,9 @@ func _ready() -> void:
 	if gray.material and gray.material is ShaderMaterial:
 		gray.material.set_shader_parameter("saturation", 1.0)
 
+func init_health_display(max_hp: float) -> void:
+	health_bar.init_health(max_hp)
+
 func showBlack():
 	ap.play("transition")
 

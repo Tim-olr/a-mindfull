@@ -38,6 +38,9 @@ var bonus_inv_slots: int = 0                # extra inventory slots from wise tr
 var hps: float
 var canAttack: bool
 
+func hp_changed():
+	GlobalPlayer.visuals.init_health_display(maxHp)
+
 func add_shards(amount):
 	if shards >= 1000000.0:
 		return
