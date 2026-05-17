@@ -33,6 +33,8 @@ DayNightCycle="*res://scripts/main game/day_night_cycle.gd"
 FahrerDeck="*uid://b83a3xt1xbcfq"
 WeaponRegistry="*res://scripts/global/weapon_registry.gd"
 LootPoolManager="*res://scripts/global/loot_pool_manager.gd"
+FogOfWar="*res://scripts/global/fog_of_war.gd"
+WiseTree="*res://scripts/global/wise_tree.gd"
 
 [display]
 

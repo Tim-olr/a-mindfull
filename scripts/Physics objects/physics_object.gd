@@ -2,6 +2,7 @@ extends RigidBody2D
 class_name PhysicsObject
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
 
 @export_category("General Settings")
 @export var Name: String
@@ -31,15 +32,27 @@ class_name PhysicsObject
 func _ready() -> void:
 	init_health()
 	init_settings()
+	add_to_group("physics_object")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	pass
+
+func damage(amount: float, tool_index: int) -> void:
+	if tool_index != prefered_tool:
+		return
+	health -= amount * (1.0 + damage_amplifier)
 	if health <= 0:
-		if drops_something:
-			var interactable = ItemInteractable.new()
-			drop.amount = drop_amount
-			interactable.item = drop
+		_die()
+
+func _die() -> void:
+	if drops_something:
+		var interactable = ITEM_INTERACTABLE.instantiate()
+		drop.amount = drop_amount
+		interactable.item = drop
+		if is_instance_valid(GlobalWorld.theWorld):
 			GlobalWorld.theWorld.add_child(interactable)
-		queue_free()
+			interactable.global_position = global_position
+	queue_free()
 
 func init_settings():
 	linear_damp = friction

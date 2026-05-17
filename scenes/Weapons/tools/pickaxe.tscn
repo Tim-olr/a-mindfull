@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bpickaxescn12"]
+
+[ext_resource type="Script" path="res://scripts/Weapons/tools/pickaxe.gd" id="1_pick"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pick"]
+size = Vector2(86, 20)
+
+[node name="Pickaxe" type="Node2D" unique_id=711234561]
+script = ExtResource("1_pick")
+tool_damage = 10.0
+swing_range = 80.0
+shootCooldown = 0.8
+Name = "Pickaxe"
+description = "Mine boulders for rock."
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=711234562]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=711234563]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=711234564]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=711234565]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pick")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

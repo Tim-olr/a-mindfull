@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://b48ej0hl7jx1h" path="res://scripts/items/crafting/ingerdientData.gd" id="5_lfcar"]
 [ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="6_3dlrk"]
 [ext_resource type="Resource" uid="uid://dfpc56k7tagqa" path="res://resources/items/weapons/assault_rifle.tres" id="9_5ucwp"]
+[ext_resource type="Resource" uid="uid://bhc1068767vyv" path="res://resources/items/material/wood.tres" id="10_wood"]
+[ext_resource type="Resource" uid="uid://cf0cv1f4agspd" path="res://resources/items/material/scrap.tres" id="11_scrap"]
+[ext_resource type="Resource" uid="uid://baxeitemres12" path="res://resources/items/tools/axe.tres" id="12_axe"]
+[ext_resource type="Resource" uid="uid://bpikaxeitem1" path="res://resources/items/tools/pickaxe.tres" id="13_pick"]
 
 [sub_resource type="Resource" id="Resource_6vqs3"]
 script = ExtResource("5_lfcar")
@@ -25,9 +29,43 @@ icon = ExtResource("4_5s6lw")
 description = "PEW PEW"
 metadata/_custom_type_script = "uid://cvebgp6i540ld"
 
+[sub_resource type="Resource" id="Ingr_wood1"]
+script = ExtResource("5_lfcar")
+item_resource = ExtResource("10_wood")
+amount = 5
+metadata/_custom_type_script = "uid://b48ej0hl7jx1h"
+
+[sub_resource type="Resource" id="Recipe_axe"]
+script = ExtResource("3_yto34")
+recipe_name = "Axe"
+result_item = ExtResource("12_axe")
+ingredients = Array[ExtResource("5_lfcar")]([SubResource("Ingr_wood1")])
+description = "Chop trees for wood."
+metadata/_custom_type_script = "uid://cvebgp6i540ld"
+
+[sub_resource type="Resource" id="Ingr_wood2"]
+script = ExtResource("5_lfcar")
+item_resource = ExtResource("10_wood")
+amount = 5
+metadata/_custom_type_script = "uid://b48ej0hl7jx1h"
+
+[sub_resource type="Resource" id="Ingr_scrap1"]
+script = ExtResource("5_lfcar")
+item_resource = ExtResource("11_scrap")
+amount = 3
+metadata/_custom_type_script = "uid://b48ej0hl7jx1h"
+
+[sub_resource type="Resource" id="Recipe_pickaxe"]
+script = ExtResource("3_yto34")
+recipe_name = "Pickaxe"
+result_item = ExtResource("13_pick")
+ingredients = Array[ExtResource("5_lfcar")]([SubResource("Ingr_wood2"), SubResource("Ingr_scrap1")])
+description = "Mine boulders for rock."
+metadata/_custom_type_script = "uid://cvebgp6i540ld"
+
 [sub_resource type="Resource" id="Resource_qrv7m"]
 script = ExtResource("1_ckl0f")
-recipes = Array[ExtResource("3_yto34")]([SubResource("Resource_p8qff")])
+recipes = Array[ExtResource("3_yto34")]([SubResource("Resource_p8qff"), SubResource("Recipe_axe"), SubResource("Recipe_pickaxe")])
 upgrade_needs_shards = true
 upgrade_shard_cost = 500.0
 level_name = "1"

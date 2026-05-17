@@ -3,6 +3,7 @@ extends Node2D
 @onready var load_timer: Timer = $LoadTimer
 @onready var projectiles: Node2D = $projectiles
 @onready var dmg_nrs: Node2D = $dmgNrs
+@onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
 
@@ -14,10 +15,12 @@ func _ready() -> void:
 	GlobalWorld.theWorld = self
 	GlobalWorld.dmgNrs = dmg_nrs
 	GlobalPlayer.stats.canAttack = true
+	FogOfWar.register_tilemap(tile_map_layer)
 	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
 	playerSpirit.host = GlobalPlayer.player
 	GlobalPlayer.stats.playerSpiritScene = playerSpirit
 	GlobalPlayer.player.add_child(playerSpirit)
+	WiseTree.apply_stat_bonuses(GlobalPlayer.stats)
 	for entry in GlobalSafe.saved_inventory:
 		var idx: int = entry["slot_index"]
 		if idx >= 0 and idx < GlobalPlayer.inventory.inventory.slots.size():

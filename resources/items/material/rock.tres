@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dravsln1ou6pb"]
+
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://scripts/Player/inventory/items/item_resource.gd" id="1_rock"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_qnsyk"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_rock")
+isMaterial = true
+isStackable = true
+amount = 1
+txtr = ExtResource("2_qnsyk")
+Name = "Rock"
+description = "A chunk of stone. Used for crafting."
+scale_mod = Vector2(1, 1)
+metadata/_custom_type_script = "uid://eykeum4a21x1"

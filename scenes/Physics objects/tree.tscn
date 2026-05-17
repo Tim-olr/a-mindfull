@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://btreescene12"]
+
+[ext_resource type="Script" path="res://scripts/Physics objects/trees/tree.gd" id="1_tree"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_icon"]
+[ext_resource type="Resource" uid="uid://bhc1068767vyv" path="res://resources/items/material/wood.tres" id="3_wood"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tree"]
+radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_treearea"]
+size = Vector2(80, 80)
+
+[node name="Tree" type="RigidBody2D" unique_id=801234561]
+script = ExtResource("1_tree")
+Name = "Tree"
+pushable = false
+max_health = 30
+health = 30
+drops_something = true
+drop = ExtResource("3_wood")
+drop_amount = 3
+prefered_tool = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801234562]
+modulate = Color(0.18, 0.68, 0.18, 1)
+texture = ExtResource("2_icon")
+scale = Vector2(0.6, 0.8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=801234563]
+shape = SubResource("CircleShape2D_tree")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=801234564]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=801234565]
+shape = SubResource("RectangleShape2D_treearea")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

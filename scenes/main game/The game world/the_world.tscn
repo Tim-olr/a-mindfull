@@ -7,7 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://scenes/main game/The game world/extraction_point.tscn" id="10_wk3ij"]
 [ext_resource type="Script" uid="uid://dmhxx1k4rqs68" path="res://scripts/main game/generation/procedural_generation.gd" id="11_cvtyc"]
 [ext_resource type="PackedScene" uid="uid://clb3ussoahufy" path="res://scenes/main game/Buildings/small_building.tscn" id="11_o686i"]
+[ext_resource type="PackedScene" path="res://scenes/Physics objects/tree.tscn" id="11_pu32c"]
 [ext_resource type="Script" uid="uid://cf11tsw12100c" path="res://scripts/world gen/biome_resource.gd" id="12_6th7i"]
+[ext_resource type="PackedScene" path="res://scenes/Physics objects/boulder.tscn" id="12_hskh1"]
 [ext_resource type="TileSet" uid="uid://cbxcu6pr0vivu" path="res://scripts/world gen/new_tile_set.tres" id="12_t3lwd"]
 [ext_resource type="Script" uid="uid://c62pvs4ve04ip" path="res://scripts/world gen/terrain_info_res.gd" id="13_es1ek"]
 [ext_resource type="PackedScene" uid="uid://b2todwidget" path="res://scenes/main game/ui/time_of_day_widget.tscn" id="14_todw"]
@@ -15,7 +17,8 @@
 [ext_resource type="Script" uid="uid://dajcxxd7vd00p" path="res://scripts/items/chest/chest_loot_entry.gd" id="15_lx8cu"]
 [ext_resource type="PackedScene" uid="uid://dfq4aksfohtrf" path="res://scenes/shops/weapon_handler.tscn" id="15_o6xy1"]
 [ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://scenes/Physics objects/physics_object.tscn" id="16_bhd4a"]
-[ext_resource type="Resource" uid="uid://v3s2wgh4vdvp" path="res://resources/items/weapons/wooden_bow.tres" id="17_es1ek"]
+[ext_resource type="Resource" uid="uid://baxeitemres12" path="res://resources/items/tools/axe.tres" id="18_7urgk"]
+[ext_resource type="Resource" uid="uid://bpikaxeitem1" path="res://resources/items/tools/pickaxe.tres" id="19_lx8cu"]
 [ext_resource type="Script" uid="uid://cg6twgxd3uqwx" path="res://scripts/items/chest/chest_loot_pool.gd" id="23_3c05b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s3014"]
@@ -63,9 +66,9 @@ biome_name = "Plains"
 tile_set = ExtResource("12_t3lwd")
 terrain_infos = Array[ExtResource("13_es1ek")]([SubResource("Resource_pu32c"), SubResource("Resource_hskh1")])
 noise = SubResource("NoiseTexture2D_es1ek")
-physics_objects = Array[PackedScene]([ExtResource("16_bhd4a")])
-min_objects = 1
-max_objects = 5
+physics_objects = Array[PackedScene]([ExtResource("11_pu32c"), ExtResource("12_hskh1")])
+min_objects = 20
+max_objects = 30
 extraction_points = Array[PackedScene]([ExtResource("10_wk3ij")])
 min_points = 4
 max_points = 10
@@ -82,12 +85,17 @@ metadata/_custom_type_script = "uid://cf11tsw12100c"
 
 [sub_resource type="Resource" id="Resource_qyfmo"]
 script = ExtResource("15_lx8cu")
-item = ExtResource("17_es1ek")
+item = ExtResource("18_7urgk")
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_wk3ij"]
+script = ExtResource("15_lx8cu")
+item = ExtResource("19_lx8cu")
 metadata/_custom_type_script = "uid://dajcxxd7vd00p"
 
 [sub_resource type="Resource" id="Resource_6th7i"]
 script = ExtResource("23_3c05b")
-entries = Array[ExtResource("15_lx8cu")]([SubResource("Resource_qyfmo")])
+entries = Array[ExtResource("15_lx8cu")]([SubResource("Resource_qyfmo"), SubResource("Resource_wk3ij")])
 metadata/_custom_type_script = "uid://cg6twgxd3uqwx"
 
 [node name="TheWorld" type="Node2D" unique_id=341922483]

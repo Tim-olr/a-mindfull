@@ -1,0 +1,2 @@
+extends PhysicsObject
+class_name BoulderObject

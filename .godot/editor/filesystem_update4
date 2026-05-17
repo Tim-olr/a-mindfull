@@ -1,20 +1,13 @@
-res://scripts/generalComponents/health_bar.gd
-res://scenes/generalComponents/health_bar.tscn
-res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
-res://scripts/world gen/new_tile_set.tres
-res://scenes/main game/The game world/the_world.tscn
-res://scenes/Weapons/spirit_weapons/wandering_eye.tscn
-res://scenes/Player/player.tscn
-res://scripts/main game/fahrer/cards/the_fool.gd
-res://scripts/enemy/general_enemy.gd
-res://scenes/enemy/enemies/ardy.tscn
-res://scenes/Weapons/guns/wooden_bow.tscn
-res://scenes/Weapons/guns/BowChargeBar.gd
-res://scripts/Weapons/guns/wooden_bow.gd
-res://scripts/main game/generation/procedural_generation.gd
-res://scenes/main game/Buildings/small_building.tscn
-res://scripts/main game/Buildings/building_chest_spawner.gd
-res://scripts/main game/Buildings/roof.gd
+res://scripts/main game/fahrer/ignitor_interactable.gd
+res://scripts/main game/the game world/the_world.gd
+res://scripts/Physics objects/physics_object.gd
 res://scenes/main game/spirits/spirits/keep_me_close.tscn
-res://scripts/main game/Spirits/spirits/keep_me_close.gd
+res://scripts/shaders/outline.gdshader
+res://scripts/world gen/new_tile_set.tres
+res://scripts/main game/ui/map_ui.gd
+res://scenes/main game/game.tscn
+res://scenes/main game/The game world/the_world.tscn
+res://scripts/items/item_interactable.gd
+res://resources/items/material/rock.tres
+res://scenes/Physics objects/boulder.tscn
