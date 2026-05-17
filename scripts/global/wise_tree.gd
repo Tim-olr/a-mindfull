@@ -43,7 +43,6 @@ const NODES := [
 	{ "id": "inv_4",    "name": "Pack Rat IV",     "branch": "skills", "cost": 650,  "prereq": ["inv_3"],   "desc": "+1 Inventory Slot" },
 	{ "id": "inv_5",    "name": "Pack Rat V",      "branch": "skills", "cost": 900,  "prereq": ["inv_4"],   "desc": "+1 Inventory Slot" },
 	{ "id": "inv_6",    "name": "Pack Rat VI",     "branch": "skills", "cost": 1200, "prereq": ["inv_5"],   "desc": "+1 Inventory Slot" },
-	{ "id": "inv_7",    "name": "Pack Rat VII",    "branch": "skills", "cost": 1600, "prereq": ["inv_6"],   "desc": "+1 Inventory Slot" },
 
 	{ "id": "sdr_1",    "name": "Spirit Shield I",  "branch": "skills", "cost": 200, "prereq": [],          "desc": "+5% Spirit Damage Reduction" },
 	{ "id": "sdr_2",    "name": "Spirit Shield II", "branch": "skills", "cost": 350, "prereq": ["sdr_1"],   "desc": "+5% Spirit Damage Reduction" },
@@ -151,7 +150,7 @@ const SKILL_CHAINS := [
 	{ "display_name": "Sharp Edge",    "effect_per_level": "+5% Damage",                   "node_ids": ["damage_1", "damage_2", "damage_3", "damage_4"] },
 	{ "display_name": "Vitality",      "effect_per_level": "+10% Max HP",                  "node_ids": ["hp_1",     "hp_2",     "hp_3",     "hp_4",     "hp_5"] },
 	{ "display_name": "Reach",         "effect_per_level": "+5% Pickup Radius",            "node_ids": ["pickup_1", "pickup_2", "pickup_3", "pickup_4"] },
-	{ "display_name": "Pack Rat",      "effect_per_level": "+1 Inventory Slot",            "node_ids": ["inv_1",    "inv_2",    "inv_3",    "inv_4",    "inv_5",  "inv_6",  "inv_7"] },
+	{ "display_name": "Pack Rat",      "effect_per_level": "+1 Inventory Slot",            "node_ids": ["inv_1",    "inv_2",    "inv_3",    "inv_4",    "inv_5",  "inv_6"] },
 	{ "display_name": "Spirit Shield", "effect_per_level": "+5% Spirit Damage Reduction",  "node_ids": ["sdr_1",    "sdr_2",    "sdr_3",    "sdr_4",    "sdr_5"] },
 	{ "display_name": "Nimble Hands",  "effect_per_level": "+5% Gathering Speed",          "node_ids": ["gather_1", "gather_2", "gather_3", "gather_4"] },
 	{ "display_name": "Fortune",       "effect_per_level": "+10% Luck",                    "node_ids": ["luck_1",   "luck_2",   "luck_3"] },
@@ -160,6 +159,9 @@ const SKILL_CHAINS := [
 
 func preview_max_hp(base_hp: float) -> float:
 	return base_hp * (1.0 + _bonus_max_hp_pct)
+
+func get_bonus_inv_slots() -> int:
+	return _bonus_inv_slots
 
 func get_chain_level(chain: Dictionary) -> int:
 	var level := 0
@@ -214,7 +216,7 @@ func _apply_effect(node_id: String) -> void:
 			_bonus_max_hp_pct += 0.10
 		"pickup_1", "pickup_2", "pickup_3", "pickup_4":
 			_bonus_pickup_pct += 0.05
-		"inv_1", "inv_2", "inv_3", "inv_4", "inv_5", "inv_6", "inv_7":
+		"inv_1", "inv_2", "inv_3", "inv_4", "inv_5", "inv_6":
 			_bonus_inv_slots += 1
 		"sdr_1", "sdr_2", "sdr_3", "sdr_4", "sdr_5":
 			_bonus_spirit_dr += 0.05

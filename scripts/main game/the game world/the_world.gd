@@ -37,8 +37,8 @@ func _ready() -> void:
 		FogOfWar.reveal_area(FogOfWar.get_player_tile(), 30)
 
 	# Apply bonus inventory slots from Pack Rat upgrades
-	if GlobalPlayer.stats.bonus_inv_slots > 0:
-		GlobalPlayer.inventory.inventory.extend_capacity(GlobalPlayer.stats.bonus_inv_slots)
+	var inv := GlobalPlayer.inventory.inventory
+	inv.set_total_capacity(inv.base_slot_amount + GlobalPlayer.stats.bonus_inv_slots)
 
 	for entry in GlobalSafe.saved_inventory:
 		var idx: int = entry["slot_index"]

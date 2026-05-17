@@ -25,6 +25,7 @@ const GRID_COLS    := 6
 
 var slot_scene = preload("res://scenes/Player/inventory/InventorySlot.tscn")
 
+var base_slot_amount: int    = 0
 var slots: Array             = []
 var selected_slot_index: int = -1
 
@@ -38,6 +39,7 @@ var _grid_bg: Control
 var _capacity_label: Label
 
 func _ready() -> void:
+	base_slot_amount = slotAmount
 	_build_ui()
 	_populate_slots()
 	_set_grid_visible(false)
@@ -318,6 +320,10 @@ func extend_capacity(extra_slots: int) -> void:
 		var vp_size := get_viewport().get_visible_rect().size
 		_grid_panel.position.y  = _hotbar_bg.position.y - _grid_bg.size.y - 8
 	_update_capacity_label()
+
+func set_total_capacity(total: int) -> void:
+	if total > slotAmount:
+		extend_capacity(total - slotAmount)
 
 func _update_capacity_label() -> void:
 	if _capacity_label != null:
