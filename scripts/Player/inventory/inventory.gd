@@ -62,7 +62,7 @@ func _build_ui() -> void:
 
 	var hotbar_title                      := Label.new()
 	hotbar_title.text                      = "HOTBAR"
-	hotbar_title.add_theme_font_size_override("font_size", 12)
+	hotbar_title.add_theme_font_size_override("font_size", 15)
 	hotbar_title.add_theme_color_override("font_color", C_ACCENT)
 	hotbar_title.position                  = Vector2(PAD, 7)
 	hotbar_title.size                      = Vector2(hotbar_total_w - PAD * 2, 20)
@@ -72,7 +72,7 @@ func _build_ui() -> void:
 
 	var key_hint                      := Label.new()
 	key_hint.text                      = "1  2  3  4  5  6"
-	key_hint.add_theme_font_size_override("font_size", 11)
+	key_hint.add_theme_font_size_override("font_size", 13)
 	key_hint.add_theme_color_override("font_color", C_TEXT_DIM)
 	key_hint.position                  = Vector2(PAD, 7)
 	key_hint.size                      = Vector2(hotbar_total_w - PAD * 2, 20)
@@ -113,7 +113,7 @@ func _build_ui() -> void:
 
 	_title_label                      = Label.new()
 	_title_label.text                  = "INVENTORY"
-	_title_label.add_theme_font_size_override("font_size", 16)
+	_title_label.add_theme_font_size_override("font_size", 20)
 	_title_label.add_theme_color_override("font_color", C_ACCENT)
 	_title_label.position              = Vector2(PAD, 8)
 	_title_label.size                  = Vector2(grid_total_w - PAD * 2, 26)
@@ -122,7 +122,7 @@ func _build_ui() -> void:
 	_grid_bg.add_child(_title_label)
 
 	_capacity_label                      = Label.new()
-	_capacity_label.add_theme_font_size_override("font_size", 13)
+	_capacity_label.add_theme_font_size_override("font_size", 16)
 	_capacity_label.add_theme_color_override("font_color", C_TEXT_DIM)
 	_capacity_label.position              = Vector2(PAD, 8)
 	_capacity_label.size                  = Vector2(grid_total_w - PAD * 2, 26)
@@ -336,8 +336,7 @@ func _make_box(sz: Vector2, pos: Vector2, bg_col: Color,
 		sb.set_border_width_all(1)
 	sb.set_corner_radius_all(RADIUS)
 	var panel         := Panel.new()
-	panel.size         = sz
-	panel.position     = Vector2.ZERO
+	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_theme_stylebox_override("panel", sb)
 	c.add_child(panel)

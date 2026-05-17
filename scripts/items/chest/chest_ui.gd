@@ -100,7 +100,7 @@ func _build_ui() -> void:
 	title.horizontal_alignment  = HORIZONTAL_ALIGNMENT_CENTER
 	bg.add_child(title)
 
-	_subtitle_label                     = _lbl("", 13, C_TEXT_DIM)
+	_subtitle_label                     = _lbl("", 15, C_TEXT_DIM)
 	_subtitle_label.position            = Vector2(0, 50)
 	_subtitle_label.size                = Vector2(W, 20)
 	_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -119,7 +119,7 @@ func _build_ui() -> void:
 	_grid_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	bg.add_child(_grid_container)
 
-	_empty_label                     = _lbl("This chest is empty.", 16, C_TEXT_DIM)
+	_empty_label                     = _lbl("This chest is empty.", 18, C_TEXT_DIM)
 	_empty_label.position            = Vector2(0, (_grid_container.size.y / 2.0) - 12)
 	_empty_label.size                = Vector2(W - PAD * 2, 28)
 	_empty_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -141,7 +141,7 @@ func _build_ui() -> void:
 	x_btn.flat     = true
 	x_btn.position = Vector2(W - 42, 10)
 	x_btn.size     = Vector2(32, 32)
-	x_btn.add_theme_font_size_override("font_size", 18)
+	x_btn.add_theme_font_size_override("font_size", 20)
 	x_btn.add_theme_color_override("font_color",       C_TEXT_DIM)
 	x_btn.add_theme_color_override("font_hover_color", C_RED)
 	x_btn.add_theme_stylebox_override("normal",  StyleBoxEmpty.new())
@@ -225,7 +225,7 @@ func _make_item_slot(item: ItemResource, count: int, index: int) -> Button:
 		lbl.offset_bottom     = -3
 		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 		lbl.vertical_alignment   = VERTICAL_ALIGNMENT_BOTTOM
-		lbl.add_theme_font_size_override("font_size", 13)
+		lbl.add_theme_font_size_override("font_size", 15)
 		lbl.add_theme_color_override("font_color", C_TEXT)
 		lbl.mouse_filter      = Control.MOUSE_FILTER_IGNORE
 		btn.add_child(lbl)
@@ -299,7 +299,7 @@ func _action_btn(txt: String, pos: Vector2, sz: Vector2) -> Button:
 	btn.text     = txt
 	btn.position = pos
 	btn.size     = sz
-	btn.add_theme_font_size_override("font_size", 16)
+	btn.add_theme_font_size_override("font_size", 18)
 	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	var mk := func(col: Color) -> StyleBoxFlat:
 		var s               := StyleBoxFlat.new()
@@ -322,7 +322,7 @@ func _flat_btn(txt: String, pos: Vector2, sz: Vector2) -> Button:
 	btn.text     = txt
 	btn.position = pos
 	btn.size     = sz
-	btn.add_theme_font_size_override("font_size", 16)
+	btn.add_theme_font_size_override("font_size", 18)
 	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 	var mk := func(col: Color) -> StyleBoxFlat:
 		var s               := StyleBoxFlat.new()

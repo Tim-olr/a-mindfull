@@ -56,13 +56,13 @@ func _build() -> void:
 	stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(stripe)
 
-	var title := _lbl("THE WISE TREE", 22, C_ACCENT)
+	var title := _lbl("THE WISE TREE", 26, C_ACCENT)
 	title.position = Vector2(W * 0.5 - 160, 10)
 	title.size = Vector2(320, 30)
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	panel.add_child(title)
 
-	_shard_label = _lbl("", 14, C_TEXT_DIM)
+	_shard_label = _lbl("", 16, C_TEXT_DIM)
 	_shard_label.position = Vector2(W - 280, 12)
 	_shard_label.size = Vector2(270, 22)
 	_shard_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
@@ -75,7 +75,7 @@ func _build() -> void:
 	sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.add_child(sep)
 
-	var close_lbl := _lbl("[Esc] Close", 12, C_TEXT_DIM)
+	var close_lbl := _lbl("[Esc] Close", 14, C_TEXT_DIM)
 	close_lbl.position = Vector2(PAD, H - 28)
 	close_lbl.size = Vector2(200, 20)
 	panel.add_child(close_lbl)
@@ -112,7 +112,7 @@ func _build_skills_branch(parent: Control, x: float, bw: float) -> void:
 	hdr_line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(hdr_line)
 
-	var hdr_lbl := _lbl("SKILLS", 15, C_BRANCH_VIT)
+	var hdr_lbl := _lbl("SKILLS", 17, C_BRANCH_VIT)
 	hdr_lbl.position = Vector2(x + 8, 8)
 	hdr_lbl.size = Vector2(bw - 16, 24)
 	hdr_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -147,7 +147,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 
 	# Name row
 	var lbl_name := Label.new()
-	lbl_name.add_theme_font_size_override("font_size", 13)
+	lbl_name.add_theme_font_size_override("font_size", 15)
 	lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	lbl_name.position = Vector2(8, 6)
 	lbl_name.size = Vector2(NODE_W - 16, 20)
@@ -157,7 +157,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 
 	# Level label (right side of name row)
 	var lbl_level := Label.new()
-	lbl_level.add_theme_font_size_override("font_size", 12)
+	lbl_level.add_theme_font_size_override("font_size", 14)
 	lbl_level.add_theme_color_override("font_color", C_TEXT_DIM)
 	lbl_level.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	lbl_level.position = Vector2(8, 6)
@@ -168,7 +168,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 
 	# Pip row (filled/empty dots for each level)
 	var lbl_pips := Label.new()
-	lbl_pips.add_theme_font_size_override("font_size", 14)
+	lbl_pips.add_theme_font_size_override("font_size", 16)
 	lbl_pips.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	lbl_pips.position = Vector2(8, 26)
 	lbl_pips.size = Vector2(NODE_W - 16, 20)
@@ -179,7 +179,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 	# Effect description
 	var lbl_desc := Label.new()
 	lbl_desc.text = chain["effect_per_level"]
-	lbl_desc.add_theme_font_size_override("font_size", 11)
+	lbl_desc.add_theme_font_size_override("font_size", 13)
 	lbl_desc.add_theme_color_override("font_color", C_TEXT_DIM)
 	lbl_desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	lbl_desc.position = Vector2(8, 46)
@@ -189,7 +189,7 @@ func _make_chain_button(chain: Dictionary) -> Button:
 
 	# Cost label (bottom right)
 	var lbl_cost := Label.new()
-	lbl_cost.add_theme_font_size_override("font_size", 11)
+	lbl_cost.add_theme_font_size_override("font_size", 13)
 	lbl_cost.add_theme_color_override("font_color", C_ACCENT)
 	lbl_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	lbl_cost.position = Vector2(8, CHAIN_H - 22)
@@ -284,7 +284,7 @@ func _build_branch(parent: Control, nodes: Array, x: float, bw: float, header_co
 	hdr_line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	parent.add_child(hdr_line)
 
-	var hdr_lbl := _lbl(title, 15, header_color)
+	var hdr_lbl := _lbl(title, 17, header_color)
 	hdr_lbl.position = Vector2(x + 8, 8)
 	hdr_lbl.size = Vector2(bw - 16, 24)
 	hdr_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -319,7 +319,7 @@ func _make_node_button(nd: Dictionary) -> Button:
 
 	var lbl_name := Label.new()
 	lbl_name.text = nd["name"]
-	lbl_name.add_theme_font_size_override("font_size", 13)
+	lbl_name.add_theme_font_size_override("font_size", 15)
 	lbl_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl_name.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	lbl_name.position = Vector2(6, 6)
@@ -329,7 +329,7 @@ func _make_node_button(nd: Dictionary) -> Button:
 
 	var lbl_desc := Label.new()
 	lbl_desc.text = nd["desc"]
-	lbl_desc.add_theme_font_size_override("font_size", 11)
+	lbl_desc.add_theme_font_size_override("font_size", 13)
 	lbl_desc.add_theme_color_override("font_color", C_TEXT_DIM)
 	lbl_desc.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	lbl_desc.position = Vector2(6, 30)
@@ -339,7 +339,7 @@ func _make_node_button(nd: Dictionary) -> Button:
 
 	var lbl_cost := Label.new()
 	lbl_cost.text = "%d shards" % nd["cost"]
-	lbl_cost.add_theme_font_size_override("font_size", 11)
+	lbl_cost.add_theme_font_size_override("font_size", 13)
 	lbl_cost.add_theme_color_override("font_color", C_ACCENT)
 	lbl_cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	lbl_cost.position = Vector2(6, NODE_H - 20)

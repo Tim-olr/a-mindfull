@@ -74,7 +74,7 @@ func _build_ui() -> void:
 
 	var title := Label.new()
 	title.text = "MAP"
-	title.add_theme_font_size_override("font_size", 18)
+	title.add_theme_font_size_override("font_size", 22)
 	title.add_theme_color_override("font_color", C_ACCENT)
 	title.position = Vector2(18, 10)
 	title.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -82,7 +82,7 @@ func _build_ui() -> void:
 
 	var hint := Label.new()
 	hint.text = "Scroll: zoom   Drag: pan   [M] close"
-	hint.add_theme_font_size_override("font_size", 12)
+	hint.add_theme_font_size_override("font_size", 14)
 	hint.add_theme_color_override("font_color", C_TEXT_DIM)
 	hint.position = Vector2(18, PANEL_H - 26)
 	hint.size = Vector2(PANEL_W - 36, 20)
