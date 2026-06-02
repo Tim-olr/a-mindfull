@@ -1,62 +1,47 @@
 extends Control
 class_name CraftingUI
 
-## ─────────────────────────────────────────────
-##  CraftingUI  —  fully self-contained, no scene file needed.
-##  Add a bare Control node anywhere, attach this script.
-##  Reparents itself onto a CanvasLayer automatically.
-## ─────────────────────────────────────────────
+# ── Palette ──────────────────────────────────────
+const C_BG          := Color(0.10, 0.09, 0.08)
+const C_PANEL       := Color(0.15, 0.13, 0.11)
+const C_PANEL_DARK  := Color(0.08, 0.07, 0.06)
+const C_BORDER      := Color(0.28, 0.24, 0.19)
+const C_BORDER_LIT  := Color(0.50, 0.43, 0.32)
+const C_ACCENT      := Color(0.78, 0.62, 0.38)
+const C_ACCENT_DIM  := Color(0.38, 0.29, 0.14)
+const C_TEXT        := Color(0.88, 0.84, 0.76)
+const C_TEXT_DIM    := Color(0.52, 0.48, 0.42)
+const C_TEXT_MICRO  := Color(0.36, 0.33, 0.29)
+const C_GREEN       := Color(0.46, 0.70, 0.42)
+const C_RED         := Color(0.75, 0.35, 0.32)
+const C_SAFE        := Color(0.46, 0.62, 0.76)
+const C_BTN_HOVER   := Color(0.88, 0.72, 0.46)
+const C_BTN_PRESS   := Color(0.48, 0.36, 0.16)
+const C_BADGE_BG    := Color(0.20, 0.18, 0.15)
+const _CORNER       := 9
 
-# ── Palette ───────────────────────────────────
-const C_BG          := Color(0.10, 0.09, 0.08)       # warm dark brown
-const C_PANEL       := Color(0.15, 0.13, 0.11)       # medium brown panel
-const C_PANEL_DARK  := Color(0.08, 0.07, 0.06)       # deep brown
-const C_PANEL_GLASS := Color(1, 1, 1, 0.03)
-const C_BORDER      := Color(0.28, 0.24, 0.19)       # warm tan border
-const C_BORDER_LIT  := Color(0.50, 0.43, 0.32)       # lit tan
-const C_ACCENT      := Color(0.78, 0.62, 0.38)       # muted antique gold
-const C_ACCENT_DIM  := Color(0.38, 0.29, 0.14)       # dark gold
-const C_TEXT        := Color(0.88, 0.84, 0.76)       # warm off-white
-const C_TEXT_DIM    := Color(0.52, 0.48, 0.42)       # warm grey
-const C_TEXT_MICRO  := Color(0.36, 0.33, 0.29)       # very dim warm grey
-const C_GREEN       := Color(0.46, 0.70, 0.42)       # muted sage green
-const C_RED         := Color(0.75, 0.35, 0.32)       # muted brick red
-const C_SAFE        := Color(0.46, 0.62, 0.76)       # muted steel blue
-const C_BTN_HOVER   := Color(0.88, 0.72, 0.46)       # lighter gold hover
-const C_BTN_PRESS   := Color(0.48, 0.36, 0.16)       # pressed dark gold
-const C_BADGE_BG    := Color(0.20, 0.18, 0.15)       # dark badge background
+# ── Scene node refs ───────────────────────────────
+@onready var _station_label:    Label         = $Background/StationLabel
+@onready var _subtitle_label:   Label         = $Background/SubtitleLabel
+@onready var _tab_craft_btn:    Button        = $Background/TabCraftBtn
+@onready var _tab_upgrade_btn:  Button        = $Background/TabUpgradeBtn
+@onready var _craft_tab:        Control       = $Background/CraftTab
+@onready var _recipe_list:      VBoxContainer = $Background/CraftTab/LeftPanel/RecipeScroll/RecipeList
+@onready var _search_bar:       LineEdit      = $Background/CraftTab/LeftPanel/SearchBar
+@onready var _recipe_name:      Label         = $Background/CraftTab/RightPanel/RecipeName
+@onready var _recipe_desc:      Label         = $Background/CraftTab/RightPanel/RecipeDesc
+@onready var _ingredient_list:  VBoxContainer = $Background/CraftTab/RightPanel/IngredientList
+@onready var _shard_cost_label: Label         = $Background/CraftTab/RightPanel/ShardCostLabel
+@onready var _craft_button:     Button        = $Background/CraftTab/RightPanel/CraftButton
+@onready var _material_list:    VBoxContainer = $Background/CraftTab/LeftPanel/MaterialScroll/MaterialList
+@onready var _upgrade_tab:      Control       = $Background/UpgradeTab
+@onready var _upgrade_desc:     Label         = $Background/UpgradeTab/UpgradeDesc
+@onready var _upgrade_cost_list:VBoxContainer = $Background/UpgradeTab/UpgradeCostList
+@onready var _upgrade_shard_lbl:Label         = $Background/UpgradeTab/UpgradeShardLabel
+@onready var _upgrade_button:   Button        = $Background/UpgradeTab/UpgradeButton
+@onready var _level_progress:   ProgressBar   = $Background/UpgradeTab/LevelProgress
 
-# ── Layout ──────────────────────────────────────
-const W         := 1170
-const H         := 780
-const PAD       := 21
-const LIST_W    := 345
-const TAB_H     := 54
-const _CORNER   := 9
-
-# ── Nodes ─────────────────────────────────────
-var _station_label:    Label
-var _subtitle_label:   Label
-var _hub_label:        Label
-var _tab_craft_btn:    Button
-var _tab_upgrade_btn:  Button
-var _craft_tab:        Control
-var _recipe_list:      VBoxContainer
-var _search_bar:       LineEdit
-var _recipe_name:      Label
-var _recipe_desc:      Label
-var _ingredient_list:  VBoxContainer
-var _shard_cost_label: Label
-var _craft_button:     Button
-var _material_list:    VBoxContainer
-var _upgrade_tab:      Control
-var _upgrade_desc:     Label
-var _upgrade_cost_list:VBoxContainer
-var _upgrade_shard_lbl:Label
-var _upgrade_button:   Button
-var _level_progress:   ProgressBar
-
-# ── State ─────────────────────────────────────
+# ── State ─────────────────────────────────────────
 var _station:         CraftingStationNode = null
 var _selected_recipe: CraftingRecipe      = null
 var _recipe_buttons:  Array[Button]       = []
@@ -64,10 +49,6 @@ var _recipe_for_btn:  Array[CraftingRecipe] = []
 var _craft_tween:     Tween               = null
 var _open_tween:      Tween               = null
 
-
-# ════════════════════════════════════════════════
-#  Bootstrap
-# ════════════════════════════════════════════════
 
 func _ready() -> void:
 	if not get_parent() is CanvasLayer:
@@ -79,7 +60,15 @@ func _ready() -> void:
 		get_parent().remove_child(self)
 		cl.add_child(self)
 
-	_build_ui()
+	_tab_craft_btn.pressed.connect(func():   _switch_tab(0))
+	_tab_upgrade_btn.pressed.connect(func(): _switch_tab(1))
+	_craft_button.pressed.connect(_on_craft_pressed)
+	_upgrade_button.pressed.connect(_on_upgrade_pressed)
+	_search_bar.text_changed.connect(_on_search_changed)
+
+	_style_action_btn(_craft_button, true)
+	_style_action_btn(_upgrade_button, false)
+	_switch_tab(0)
 	hide()
 	Crafting.craft_succeeded.connect(func(_r, _s): _on_craft_result(true))
 	Crafting.craft_failed.connect(func(_r, _s):    _on_craft_result(false))
@@ -120,251 +109,6 @@ func close() -> void:
 
 
 # ════════════════════════════════════════════════
-#  Build UI
-# ════════════════════════════════════════════════
-
-func _build_ui() -> void:
-	set_anchors_preset(Control.PRESET_CENTER)
-	custom_minimum_size = Vector2(W, H)
-	size                = Vector2(W, H)
-	pivot_offset        = size / 2.0
-	position            = get_viewport().get_visible_rect().size / 2.0 - size / 2.0
-
-	# Drop shadow
-	var shadow := _make_box(Vector2(W, H), Vector2(12, 12), Color(0, 0, 0, 0.6))
-	add_child(shadow)
-
-	# Main background
-	var bg := _make_box(Vector2(W, H), Vector2.ZERO, C_BG, C_BORDER)
-	add_child(bg)
-
-	# Gold gradient top stripe
-	var grad           := Gradient.new()
-	grad.set_color(0, C_ACCENT)
-	grad.set_color(1, Color(C_ACCENT.r, C_ACCENT.g, C_ACCENT.b, 0.0))
-	var grad_tex       := GradientTexture1D.new()
-	grad_tex.gradient   = grad
-	var stripe          := TextureRect.new()
-	stripe.texture       = grad_tex
-	stripe.stretch_mode  = TextureRect.STRETCH_SCALE
-	stripe.size          = Vector2(W, 5)
-	stripe.position      = Vector2.ZERO
-	bg.add_child(stripe)
-
-	# Station title
-	_station_label                      = _lbl("", 23, C_ACCENT, true)
-	_station_label.position             = Vector2(0, 10)
-	_station_label.size                 = Vector2(W, 30)
-	_station_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_station_label)
-
-	# Station subtitle (Lv. X / Y)
-	_subtitle_label                      = _lbl("", 14, C_TEXT_DIM)
-	_subtitle_label.position             = Vector2(0, 40)
-	_subtitle_label.size                 = Vector2(W, 18)
-	_subtitle_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_subtitle_label)
-
-	# ── Tabs ──────────────────────────────────
-	var tab_y := 65
-	var half  := (W - PAD * 2) / 2.0
-	_tab_craft_btn   = _tab_btn("Craft",   Vector2(PAD,        tab_y), half)
-	_tab_upgrade_btn = _tab_btn("Upgrade", Vector2(PAD + half, tab_y), half)
-	_tab_craft_btn.pressed.connect(func():   _switch_tab(0))
-	_tab_upgrade_btn.pressed.connect(func(): _switch_tab(1))
-	bg.add_child(_tab_craft_btn)
-	bg.add_child(_tab_upgrade_btn)
-
-	var tab_sep      := ColorRect.new()
-	tab_sep.color     = C_BORDER
-	tab_sep.size      = Vector2(W - PAD * 2, 2)
-	tab_sep.position  = Vector2(PAD, tab_y + TAB_H)
-	bg.add_child(tab_sep)
-
-	# ── Body ──────────────────────────────────
-	var body_y := tab_y + TAB_H + 12
-	var body_h := H - body_y - PAD
-
-	_craft_tab           = _build_craft_tab(body_y, body_h)
-	_upgrade_tab         = _build_upgrade_tab(body_y, body_h)
-	_upgrade_tab.visible = false
-	bg.add_child(_craft_tab)
-	bg.add_child(_upgrade_tab)
-
-
-func _build_craft_tab(body_y: int, body_h: int) -> Control:
-	var tab      := Control.new()
-	tab.position  = Vector2(PAD, body_y)
-	tab.size      = Vector2(W - PAD * 2, body_h)
-
-	# ── Left panel ────────────────────────────
-	var lp := _make_box(Vector2(LIST_W, body_h), Vector2.ZERO, C_PANEL_DARK, C_BORDER)
-	tab.add_child(lp)
-
-	var rh      := _lbl("RECIPES", 14, C_TEXT_DIM, true)
-	rh.position  = Vector2(15, 12)
-	lp.add_child(rh)
-
-	# Search bar
-	_search_bar                     = LineEdit.new()
-	_search_bar.position            = Vector2(8, 32)
-	_search_bar.size                = Vector2(LIST_W - 16, 30)
-	_search_bar.placeholder_text    = "Search recipes..."
-	_search_bar.add_theme_font_size_override("font_size", 14)
-	_search_bar.add_theme_color_override("font_color",             C_TEXT)
-	_search_bar.add_theme_color_override("font_placeholder_color", C_TEXT_DIM)
-	var sb_le                       := StyleBoxFlat.new()
-	sb_le.bg_color                   = C_PANEL
-	sb_le.border_color               = C_BORDER
-	sb_le.set_border_width_all(1)
-	sb_le.set_corner_radius_all(_CORNER)
-	sb_le.content_margin_left        = 8
-	sb_le.content_margin_right       = 8
-	_search_bar.add_theme_stylebox_override("normal", sb_le)
-	_search_bar.add_theme_stylebox_override("focus",  sb_le)
-	_search_bar.text_changed.connect(_on_search_changed)
-	lp.add_child(_search_bar)
-
-	var scroll                    := ScrollContainer.new()
-	scroll.position                = Vector2(0, 66)
-	scroll.size                    = Vector2(LIST_W, body_h - 66 - 141)
-	scroll.vertical_scroll_mode   = ScrollContainer.SCROLL_MODE_AUTO
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	lp.add_child(scroll)
-
-	_recipe_list                      = VBoxContainer.new()
-	_recipe_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(_recipe_list)
-
-	# Material divider
-	var md      := ColorRect.new()
-	md.color     = C_BORDER
-	md.size      = Vector2(LIST_W, 2)
-	md.position  = Vector2(0, body_h - 138)
-	lp.add_child(md)
-
-	var mh      := _lbl("MATERIALS", 14, C_TEXT_DIM, true)
-	mh.position  = Vector2(15, body_h - 126)
-	lp.add_child(mh)
-
-	var ms                    := ScrollContainer.new()
-	ms.position                = Vector2(0, body_h - 102)
-	ms.size                    = Vector2(LIST_W, 93)
-	ms.vertical_scroll_mode   = ScrollContainer.SCROLL_MODE_AUTO
-	ms.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	lp.add_child(ms)
-
-	_material_list                      = VBoxContainer.new()
-	_material_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	ms.add_child(_material_list)
-
-	# ── Right panel ───────────────────────────
-	var rw := W - PAD * 2 - LIST_W - 15
-	var rp  := _make_box(Vector2(rw, body_h), Vector2(LIST_W + 15, 0), C_PANEL, C_BORDER)
-	tab.add_child(rp)
-
-	_recipe_name          = _lbl("Select a recipe", 21, C_ACCENT, true)
-	_recipe_name.position = Vector2(PAD, PAD)
-	_recipe_name.size     = Vector2(rw - PAD * 2, 33)
-	rp.add_child(_recipe_name)
-
-	var ns      := ColorRect.new()
-	ns.color     = C_ACCENT_DIM
-	ns.size      = Vector2(rw - PAD * 2, 2)
-	ns.position  = Vector2(PAD, PAD + 39)
-	rp.add_child(ns)
-
-	_recipe_desc               = _lbl("", 17, C_TEXT_DIM)
-	_recipe_desc.position      = Vector2(PAD, PAD + 48)
-	_recipe_desc.size          = Vector2(rw - PAD * 2, 57)
-	_recipe_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	rp.add_child(_recipe_desc)
-
-	var ih      := _lbl("INGREDIENTS", 14, C_TEXT_DIM, true)
-	ih.position  = Vector2(PAD, PAD + 114)
-	rp.add_child(ih)
-
-	_ingredient_list          = VBoxContainer.new()
-	_ingredient_list.position = Vector2(PAD, PAD + 138)
-	_ingredient_list.size     = Vector2(rw - PAD * 2, 255)
-	rp.add_child(_ingredient_list)
-
-	_shard_cost_label          = _lbl("", 18, C_ACCENT)
-	_shard_cost_label.position = Vector2(PAD, PAD + 402)
-	_shard_cost_label.size     = Vector2(rw - PAD * 2, 30)
-	rp.add_child(_shard_cost_label)
-
-	_craft_button = _action_btn("Craft",
-		Vector2(PAD, body_h - 78),
-		Vector2(rw - PAD * 2, 60))
-	_craft_button.pressed.connect(_on_craft_pressed)
-	rp.add_child(_craft_button)
-
-	return tab
-
-
-func _build_upgrade_tab(body_y: int, body_h: int) -> Control:
-	var tab      := Control.new()
-	tab.position  = Vector2(PAD, body_y)
-	tab.size      = Vector2(W - PAD * 2, body_h)
-
-	var up := _make_box(Vector2(W - PAD * 2, body_h), Vector2.ZERO, C_PANEL, C_BORDER)
-	tab.add_child(up)
-
-	# Level progress bar
-	_level_progress                 = ProgressBar.new()
-	_level_progress.position        = Vector2(PAD, PAD)
-	_level_progress.size            = Vector2(W - PAD * 4, 10)
-	_level_progress.min_value       = 0.0
-	_level_progress.max_value       = 1.0
-	_level_progress.value           = 0.0
-	_level_progress.show_percentage = false
-	var pb_bg                       := StyleBoxFlat.new()
-	pb_bg.bg_color                   = C_PANEL_DARK
-	pb_bg.set_corner_radius_all(_CORNER)
-	var pb_fill                     := StyleBoxFlat.new()
-	pb_fill.bg_color                 = C_ACCENT
-	pb_fill.set_corner_radius_all(_CORNER)
-	_level_progress.add_theme_stylebox_override("background", pb_bg)
-	_level_progress.add_theme_stylebox_override("fill",       pb_fill)
-	up.add_child(_level_progress)
-
-	_upgrade_desc               = _lbl("", 20, C_ACCENT, true)
-	_upgrade_desc.position      = Vector2(PAD, PAD + 18)
-	_upgrade_desc.size          = Vector2(W - PAD * 4, 90)
-	_upgrade_desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	up.add_child(_upgrade_desc)
-
-	var us      := ColorRect.new()
-	us.color     = C_ACCENT_DIM
-	us.size      = Vector2(W - PAD * 4, 2)
-	us.position  = Vector2(PAD, PAD + 117)
-	up.add_child(us)
-
-	var uh      := _lbl("UPGRADE COST", 14, C_TEXT_DIM, true)
-	uh.position  = Vector2(PAD, PAD + 129)
-	up.add_child(uh)
-
-	_upgrade_cost_list          = VBoxContainer.new()
-	_upgrade_cost_list.position = Vector2(PAD, PAD + 156)
-	_upgrade_cost_list.size     = Vector2(W - PAD * 4, 300)
-	up.add_child(_upgrade_cost_list)
-
-	_upgrade_shard_lbl          = _lbl("", 18, C_ACCENT)
-	_upgrade_shard_lbl.position = Vector2(PAD, PAD + 468)
-	_upgrade_shard_lbl.size     = Vector2(W - PAD * 4, 30)
-	up.add_child(_upgrade_shard_lbl)
-
-	_upgrade_button = _action_btn("Upgrade Station",
-		Vector2(PAD, body_h - 78),
-		Vector2(W - PAD * 4, 60))
-	_upgrade_button.pressed.connect(_on_upgrade_pressed)
-	up.add_child(_upgrade_button)
-
-	return tab
-
-
-# ════════════════════════════════════════════════
 #  Refresh
 # ════════════════════════════════════════════════
 
@@ -382,7 +126,6 @@ func _refresh() -> void:
 
 	if _selected_recipe != null:
 		_show_recipe(_selected_recipe)
-		# Re-highlight in list if still visible
 		for i in _recipe_for_btn.size():
 			if _recipe_for_btn[i] == _selected_recipe:
 				_highlight_recipe_btn(i)
@@ -431,7 +174,7 @@ func _populate_recipe_list() -> void:
 		btn.text                = recipe.recipe_name
 		btn.flat                = true
 		btn.alignment           = HORIZONTAL_ALIGNMENT_LEFT
-		btn.custom_minimum_size = Vector2(LIST_W, 51)
+		btn.custom_minimum_size = Vector2(345, 51)
 		btn.add_theme_font_size_override("font_size", 18)
 		btn.add_theme_color_override("font_color",         C_TEXT if can else C_TEXT_DIM)
 		btn.add_theme_color_override("font_hover_color",   C_TEXT)
@@ -449,19 +192,21 @@ func _populate_recipe_list() -> void:
 		btn.add_theme_stylebox_override("hover", sb_h)
 
 		if not can:
-			var x                := _lbl("x", 15, C_RED)
-			x.position            = Vector2(LIST_W - 33, 0)
+			var x                := Label.new()
+			x.text                = "x"
+			x.add_theme_font_size_override("font_size", 15)
+			x.add_theme_color_override("font_color", C_RED)
+			x.position            = Vector2(345 - 33, 0)
 			x.size                = Vector2(27, 51)
 			x.vertical_alignment  = VERTICAL_ALIGNMENT_CENTER
 			btn.add_child(x)
 
-		# Ingredient count pill badge
 		var ing_count := 0
 		for ing in recipe.ingredients:
 			if ing != null and ing.item_resource != null:
 				ing_count += 1
 		var badge          := _pill_label("%d ing." % ing_count, C_TEXT_MICRO, C_BADGE_BG)
-		badge.position      = Vector2(LIST_W - 120, 12)
+		badge.position      = Vector2(345 - 120, 12)
 		badge.size          = Vector2(72, 27)
 		badge.mouse_filter  = Control.MOUSE_FILTER_IGNORE
 		btn.add_child(badge)
@@ -524,7 +269,6 @@ func _show_recipe(recipe: CraftingRecipe) -> void:
 	_craft_button.text     = "Craft"
 	_style_action_btn(_craft_button, _craft_button.disabled)
 
-	# Pulsing glow when enabled
 	if _craft_tween:
 		_craft_tween.kill()
 		_craft_tween = null
@@ -541,20 +285,25 @@ func _ing_row(item_name: String, need: int, have: int) -> HBoxContainer:
 	row.custom_minimum_size = Vector2(0, 33)
 	row.add_theme_constant_override("separation", 6)
 
-	var dot := _lbl("-", 18, C_BORDER_LIT)
+	var dot := Label.new()
+	dot.text = "-"
+	dot.add_theme_font_size_override("font_size", 18)
+	dot.add_theme_color_override("font_color", C_BORDER_LIT)
 	dot.custom_minimum_size = Vector2(18, 0)
 	row.add_child(dot)
 
-	var nl := _lbl(item_name, 18, C_TEXT)
+	var nl := Label.new()
+	nl.text = item_name
+	nl.add_theme_font_size_override("font_size", 18)
+	nl.add_theme_color_override("font_color", C_TEXT)
 	nl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.add_child(nl)
 
-	# Rounded chip background behind the count label
 	var in_inv   := _count_inv_only(item_name)
 	var enough   := have >= need
 	var col      := C_GREEN if enough else C_RED
 	if GameManager.is_in_lobby and in_inv < need and enough:
-		col = C_SAFE                                        # safe is covering the gap
+		col = C_SAFE
 
 	var chip_bg_col := Color(col.r, col.g, col.b, 0.18)
 	var chip        := Panel.new()
@@ -566,7 +315,10 @@ func _ing_row(item_name: String, need: int, have: int) -> HBoxContainer:
 	chip_sb.set_corner_radius_all(_CORNER)
 	chip.add_theme_stylebox_override("panel", chip_sb)
 
-	var cl := _lbl("%d / %d" % [have, need], 17, col, true)
+	var cl := Label.new()
+	cl.text = "%d / %d" % [have, need]
+	cl.add_theme_font_size_override("font_size", 17)
+	cl.add_theme_color_override("font_color", col)
 	cl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	cl.vertical_alignment   = VERTICAL_ALIGNMENT_CENTER
 	cl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -576,7 +328,6 @@ func _ing_row(item_name: String, need: int, have: int) -> HBoxContainer:
 	return row
 
 
-## Inventory-only count (no safe) used for hub tinting.
 func _count_inv_only(item_name: String) -> int:
 	var total := 0
 	if GlobalPlayer.inventory == null:
@@ -604,7 +355,11 @@ func _populate_material_panel() -> void:
 
 	var mats := Crafting.get_all_materials()
 	if mats.is_empty():
-		_material_list.add_child(_lbl("  none", 15, C_TEXT_DIM))
+		var lbl := Label.new()
+		lbl.text = "  none"
+		lbl.add_theme_font_size_override("font_size", 15)
+		lbl.add_theme_color_override("font_color", C_TEXT_DIM)
+		_material_list.add_child(lbl)
 		return
 
 	for mat in mats:
@@ -613,13 +368,19 @@ func _populate_material_panel() -> void:
 
 		var in_inv := _count_inv_only(mat.Name) > 0
 		var col    := C_TEXT_DIM if in_inv else C_SAFE
-
-		# Prefix with [safe] tag if sourced from safe in hub mode
 		var prefix := "[safe] " if (not in_inv and GameManager.is_in_lobby) else "  "
-		var nl := _lbl(prefix + mat.Name, 15, col)
+		var nl := Label.new()
+		nl.text = prefix + mat.Name
+		nl.add_theme_font_size_override("font_size", 15)
+		nl.add_theme_color_override("font_color", col)
 		nl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(nl)
-		row.add_child(_lbl("x%d  " % (mat.amount if mat.isStackable else 1), 15, C_TEXT, true))
+
+		var cnt := Label.new()
+		cnt.text = "x%d  " % (mat.amount if mat.isStackable else 1)
+		cnt.add_theme_font_size_override("font_size", 15)
+		cnt.add_theme_color_override("font_color", C_TEXT)
+		row.add_child(cnt)
 		_material_list.add_child(row)
 
 
@@ -634,7 +395,6 @@ func _populate_upgrade_tab() -> void:
 	if data == null:
 		return
 
-	# Level progress bar
 	var max_lv := _station.station_resource.get_max_level() if _station.station_resource else 1
 	_level_progress.max_value = float(max_lv)
 	_level_progress.value     = float(_station.current_level)
@@ -704,36 +464,6 @@ func _on_upgrade_pressed() -> void:
 #  Widget helpers
 # ════════════════════════════════════════════════
 
-func _make_box(sz: Vector2, pos: Vector2, bg_col: Color,
-		border_col: Color = Color.TRANSPARENT) -> Control:
-	var c       := Control.new()
-	c.size       = sz
-	c.position   = pos
-	var sb      := StyleBoxFlat.new()
-	sb.bg_color  = bg_col
-	if border_col != Color.TRANSPARENT:
-		sb.border_color = border_col
-		sb.set_border_width_all(1)
-	sb.set_corner_radius_all(_CORNER)
-	sb.shadow_color = Color(0, 0, 0, 0.35)
-	sb.shadow_size  = 4
-	var panel              := Panel.new()
-	panel.size              = sz
-	panel.position          = Vector2.ZERO
-	panel.mouse_filter      = Control.MOUSE_FILTER_IGNORE
-	panel.add_theme_stylebox_override("panel", sb)
-	c.add_child(panel)
-	return c
-
-
-func _lbl(txt: String, sz: int, col: Color, bold: bool = false) -> Label:
-	var l := Label.new()
-	l.text = txt
-	l.add_theme_font_size_override("font_size", sz)
-	l.add_theme_color_override("font_color", col)
-	return l
-
-
 func _pill_label(txt: String, font_col: Color, bg_col: Color) -> Panel:
 	var panel  := Panel.new()
 	var sb     := StyleBoxFlat.new()
@@ -741,24 +471,15 @@ func _pill_label(txt: String, font_col: Color, bg_col: Color) -> Panel:
 	sb.set_corner_radius_all(_CORNER)
 	panel.add_theme_stylebox_override("panel", sb)
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var lbl                    := _lbl(txt, 13, font_col, true)
+	var lbl                    := Label.new()
+	lbl.text                    = txt
+	lbl.add_theme_font_size_override("font_size", 13)
+	lbl.add_theme_color_override("font_color", font_col)
 	lbl.horizontal_alignment    = HORIZONTAL_ALIGNMENT_CENTER
 	lbl.vertical_alignment      = VERTICAL_ALIGNMENT_CENTER
 	lbl.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	panel.add_child(lbl)
 	return panel
-
-
-func _tab_btn(txt: String, pos: Vector2, w: float) -> Button:
-	var btn     := Button.new()
-	btn.text     = txt
-	btn.position = pos
-	btn.size     = Vector2(w, TAB_H)
-	btn.flat     = true
-	btn.add_theme_font_size_override("font_size", 18)
-	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
-	_style_tab_btn(btn, false)
-	return btn
 
 
 func _style_tab_btn(btn: Button, active: bool) -> void:
@@ -773,17 +494,6 @@ func _style_tab_btn(btn: Button, active: bool) -> void:
 	btn.add_theme_color_override("font_color",         C_ACCENT if active else C_TEXT_DIM)
 	btn.add_theme_color_override("font_hover_color",   C_ACCENT if active else C_TEXT)
 	btn.add_theme_color_override("font_pressed_color", C_ACCENT)
-
-
-func _action_btn(txt: String, pos: Vector2, sz: Vector2) -> Button:
-	var btn     := Button.new()
-	btn.text     = txt
-	btn.position = pos
-	btn.size     = sz
-	btn.add_theme_font_size_override("font_size", 20)
-	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
-	_style_action_btn(btn, false)
-	return btn
 
 
 func _style_action_btn(btn: Button, is_disabled: bool) -> void:

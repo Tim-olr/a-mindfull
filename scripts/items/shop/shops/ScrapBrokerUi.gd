@@ -13,11 +13,7 @@ const C_GREEN      := Color(0.35, 0.80, 0.45)
 const C_RED        := Color(0.90, 0.35, 0.30)
 const C_SPIRIT     := Color(0.55, 0.85, 1.00)
 
-const W       := 820
-const H       := 560
-const PAD     := 21
 const RADIUS  := 9
-
 const SIDE_PAD     := 12
 const SIDE_W       := 240
 const SIDE_SLOT    := 54
@@ -41,20 +37,22 @@ const SPIRIT_CHANCE: Dictionary = {
 	4: 0.22,
 }
 
+@onready var _main_panel:       Control     = $MainPanel
+@onready var _slot_visual:      TextureRect = $MainPanel/Background/SlotPanel/SlotVisual
+@onready var _slot_border:      Panel       = $MainPanel/Background/SlotPanel/SlotBorder
+@onready var _slot_count_label: Label       = $MainPanel/Background/SlotPanel/SlotCountLabel
+@onready var _name_label:       Label       = $MainPanel/Background/NameLabel
+@onready var _rarity_label:     Label       = $MainPanel/Background/RarityLabel
+@onready var _shard_label:      Label       = $MainPanel/Background/ShardLabel
+@onready var _spirit_label:     Label       = $MainPanel/Background/SpiritLabel
+@onready var _convert_btn:      Button      = $MainPanel/Background/ConvertBtn
+@onready var _feedback_label:   Label       = $MainPanel/Background/FeedbackLabel
+@onready var _title_label:      Label       = $MainPanel/Background/TitleLabel
+@onready var _drop_zone:        Control     = $MainPanel/Background/DropZone
+
 var _slot_item: ItemResource = null
 var _slot_count: int = 0
-var _slot_visual: TextureRect
-var _slot_border: Panel
-var _slot_count_label: Label
-var _name_label: Label
-var _rarity_label: Label
-var _shard_label: Label
-var _spirit_label: Label
-var _convert_btn: Button
-var _feedback_label: Label
-var _title_label: Label
 var _spirit_core_resource: ItemResource = null
-var _drop_zone: Control
 
 var _inv_panel: Control
 var _inv_scroll: ScrollContainer
@@ -80,8 +78,127 @@ func _ready() -> void:
 		await get_tree().process_frame
 		get_parent().remove_child(self)
 		cl.add_child(self)
-	_build_ui()
+
+	_center_panel()
+	_build_side_panels()
 	hide()
+
+
+func _center_panel() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
+	_main_panel.position = Vector2(
+		(viewport_size.x - 820.0) / 2.0,
+		(viewport_size.y - 560.0) / 2.0
+	)
+
+
+func _build_side_panels() -> void:
+	var viewport_size := get_viewport().get_visible_rect().size
+	var center_x := (viewport_size.x - 820.0) / 2.0
+	var center_y := (viewport_size.y - 560.0) / 2.0
+
+	_inv_panel = _build_side_panel("INVENTORY", Vector2(center_x - SIDE_W - SIDE_PAD, center_y))
+	add_child(_inv_panel)
+	_inv_cap_label = _inv_panel.get_meta("cap_label")
+	_inv_scroll    = _inv_panel.get_meta("scroll")
+	_inv_grid      = _inv_panel.get_meta("grid")
+
+	_safe_panel = _build_side_panel("SAFE", Vector2(center_x + 820.0 + SIDE_PAD, center_y))
+	add_child(_safe_panel)
+	_safe_cap_label = _safe_panel.get_meta("cap_label")
+	_safe_scroll    = _safe_panel.get_meta("scroll")
+	_safe_grid      = _safe_panel.get_meta("grid")
+
+
+func _build_side_panel(title_text: String, pos: Vector2) -> Control:
+	var panel_w  := SIDE_W
+	var header_h := 38
+	var panel_h  := SIDE_MAX_H
+
+	var root       := Control.new()
+	root.position   = pos
+	root.size       = Vector2(panel_w, panel_h)
+	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var shadow_sb := StyleBoxFlat.new()
+	shadow_sb.bg_color = Color(0, 0, 0, 0.35)
+	shadow_sb.set_corner_radius_all(RADIUS)
+	var shadow_panel := Panel.new()
+	shadow_panel.position = Vector2(-4, -4)
+	shadow_panel.size     = Vector2(panel_w + 8, panel_h + 8)
+	shadow_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	shadow_panel.add_theme_stylebox_override("panel", shadow_sb)
+	root.add_child(shadow_panel)
+
+	var bg_npr := NinePatchRect.new()
+	bg_npr.size = Vector2(panel_w, panel_h)
+	bg_npr.patch_margin_left = RADIUS
+	bg_npr.patch_margin_top = RADIUS
+	bg_npr.patch_margin_right = RADIUS
+	bg_npr.patch_margin_bottom = RADIUS
+	bg_npr.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root.add_child(bg_npr)
+
+	var bg_fill := ColorRect.new()
+	bg_fill.set_anchors_preset(Control.PRESET_FULL_RECT)
+	bg_fill.color = C_BG
+	bg_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg_npr.add_child(bg_fill)
+
+	var stripe := ColorRect.new()
+	stripe.color     = C_ACCENT
+	stripe.size      = Vector2(panel_w, 3)
+	stripe.position  = Vector2.ZERO
+	stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg_npr.add_child(stripe)
+
+	var title_lbl := Label.new()
+	title_lbl.text = title_text
+	title_lbl.add_theme_font_size_override("font_size", 13)
+	title_lbl.add_theme_color_override("font_color", C_ACCENT)
+	title_lbl.position = Vector2(SIDE_PAD, 7)
+	title_lbl.size     = Vector2(panel_w - SIDE_PAD * 2, 22)
+	title_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg_npr.add_child(title_lbl)
+
+	var cap_lbl := Label.new()
+	cap_lbl.add_theme_font_size_override("font_size", 11)
+	cap_lbl.add_theme_color_override("font_color", C_TEXT_DIM)
+	cap_lbl.position = Vector2(SIDE_PAD, 7)
+	cap_lbl.size     = Vector2(panel_w - SIDE_PAD * 2, 22)
+	cap_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	cap_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg_npr.add_child(cap_lbl)
+
+	var sep := ColorRect.new()
+	sep.color    = C_BORDER
+	sep.size     = Vector2(panel_w - SIDE_PAD * 2, 1)
+	sep.position = Vector2(SIDE_PAD, 30)
+	sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	bg_npr.add_child(sep)
+
+	var scroll := ScrollContainer.new()
+	scroll.position = Vector2(SIDE_PAD, header_h)
+	scroll.size     = Vector2(panel_w - SIDE_PAD * 2, panel_h - header_h - SIDE_PAD)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.vertical_scroll_mode  = ScrollContainer.SCROLL_MODE_AUTO
+
+	var scroll_sb := StyleBoxFlat.new()
+	scroll_sb.bg_color = Color.TRANSPARENT
+	scroll.add_theme_stylebox_override("panel", scroll_sb)
+
+	bg_npr.add_child(scroll)
+
+	var grid := Control.new()
+	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	scroll.add_child(grid)
+
+	root.set_meta("cap_label", cap_lbl)
+	root.set_meta("scroll", scroll)
+	root.set_meta("grid", grid)
+
+	return root
 
 
 func open() -> void:
@@ -106,269 +223,6 @@ func close() -> void:
 
 func set_spirit_core_resource(res: ItemResource) -> void:
 	_spirit_core_resource = res
-
-
-func _build_ui() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var viewport_size := get_viewport().get_visible_rect().size
-	var center_x      := (viewport_size.x - W) / 2.0
-	var center_y      := (viewport_size.y - H) / 2.0
-
-	var main_panel       := Control.new()
-	main_panel.position   = Vector2(center_x, center_y)
-	main_panel.size       = Vector2(W, H)
-	main_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(main_panel)
-
-	var shadow := _make_box(Vector2(W + 16, H + 16), Vector2(-8, -8), Color(0, 0, 0, 0.55))
-	main_panel.add_child(shadow)
-
-	var bg := _make_box(Vector2(W, H), Vector2.ZERO, C_BG, C_BORDER)
-	main_panel.add_child(bg)
-
-	var stripe      := ColorRect.new()
-	stripe.color     = C_ACCENT
-	stripe.size      = Vector2(W, 5)
-	stripe.position  = Vector2.ZERO
-	bg.add_child(stripe)
-
-	_title_label                      = _lbl("SCRAP BROKER", 26, C_ACCENT, true)
-	_title_label.position             = Vector2(0, 14)
-	_title_label.size                 = Vector2(W, 38)
-	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_title_label)
-
-	var sub                      := _lbl("Convert materials into Shards — or something rarer.", 15, C_TEXT_DIM)
-	sub.position                  = Vector2(0, 50)
-	sub.size                      = Vector2(W, 24)
-	sub.horizontal_alignment      = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(sub)
-
-	var sep      := ColorRect.new()
-	sep.color     = C_BORDER
-	sep.size      = Vector2(W - PAD * 2, 2)
-	sep.position  = Vector2(PAD, 82)
-	bg.add_child(sep)
-
-	var slot_panel_w := 200
-	var slot_x       := (W / 2) - (slot_panel_w / 2)
-	var slot_panel   := _make_box(Vector2(slot_panel_w, 220), Vector2(slot_x, 100), C_PANEL_DARK, C_BORDER)
-	bg.add_child(slot_panel)
-
-	var slot_hint                      := _lbl("RIGHT-CLICK ITEM HERE", 11, C_TEXT_DIM, true)
-	slot_hint.position                  = Vector2(0, 10)
-	slot_hint.size                      = Vector2(slot_panel_w, 20)
-	slot_hint.horizontal_alignment      = HORIZONTAL_ALIGNMENT_CENTER
-	slot_panel.add_child(slot_hint)
-
-	var slot_bg := _make_box(Vector2(120, 120), Vector2(40, 38), C_PANEL, C_BORDER)
-	slot_panel.add_child(slot_bg)
-
-	_slot_border          = Panel.new()
-	_slot_border.size     = Vector2(120, 120)
-	_slot_border.position = Vector2(40, 38)
-	var sb_border         := StyleBoxFlat.new()
-	sb_border.bg_color     = Color.TRANSPARENT
-	sb_border.border_color = Color.TRANSPARENT
-	sb_border.set_border_width_all(3)
-	sb_border.set_corner_radius_all(RADIUS)
-	_slot_border.add_theme_stylebox_override("panel", sb_border)
-	_slot_border.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	slot_panel.add_child(_slot_border)
-
-	_slot_visual              = TextureRect.new()
-	_slot_visual.size         = Vector2(108, 108)
-	_slot_visual.position     = Vector2(46, 44)
-	_slot_visual.expand_mode  = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
-	_slot_visual.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_slot_visual.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	slot_panel.add_child(_slot_visual)
-
-	_slot_count_label                      = _lbl("", 14, C_ACCENT, true)
-	_slot_count_label.position             = Vector2(0, 164)
-	_slot_count_label.size                 = Vector2(slot_panel_w, 24)
-	_slot_count_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	slot_panel.add_child(_slot_count_label)
-
-	var clear_btn := Button.new()
-	clear_btn.text  = "✕  Clear"
-	clear_btn.flat  = true
-	clear_btn.position = Vector2(0, 190)
-	clear_btn.size     = Vector2(slot_panel_w, 28)
-	clear_btn.add_theme_font_size_override("font_size", 13)
-	clear_btn.add_theme_color_override("font_color",       C_TEXT_DIM)
-	clear_btn.add_theme_color_override("font_hover_color", C_RED)
-	clear_btn.add_theme_stylebox_override("normal",  StyleBoxEmpty.new())
-	clear_btn.add_theme_stylebox_override("hover",   StyleBoxEmpty.new())
-	clear_btn.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
-	clear_btn.add_theme_stylebox_override("focus",   StyleBoxEmpty.new())
-	clear_btn.pressed.connect(_on_clear_pressed)
-	slot_panel.add_child(clear_btn)
-
-	_drop_zone            = Control.new()
-	_drop_zone.position   = Vector2(slot_x, 100)
-	_drop_zone.size       = Vector2(slot_panel_w, 220)
-	_drop_zone.mouse_filter = Control.MOUSE_FILTER_STOP
-	bg.add_child(_drop_zone)
-
-	var preview_x := PAD
-	var preview_w := W - PAD * 2
-
-	_name_label                      = _lbl("— select a material —", 20, C_ACCENT, true)
-	_name_label.position             = Vector2(preview_x, 340)
-	_name_label.size                 = Vector2(preview_w, 32)
-	_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_name_label)
-
-	_rarity_label                      = _lbl("", 14, C_TEXT_DIM, true)
-	_rarity_label.position             = Vector2(preview_x, 374)
-	_rarity_label.size                 = Vector2(preview_w, 22)
-	_rarity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_rarity_label)
-
-	var info_sep      := ColorRect.new()
-	info_sep.color     = C_BORDER
-	info_sep.size      = Vector2(preview_w, 2)
-	info_sep.position  = Vector2(preview_x, 402)
-	bg.add_child(info_sep)
-
-	_shard_label                      = _lbl("", 19, C_ACCENT)
-	_shard_label.position             = Vector2(preview_x, 412)
-	_shard_label.size                 = Vector2(preview_w, 30)
-	_shard_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_shard_label)
-
-	_spirit_label                      = _lbl("", 17, C_SPIRIT)
-	_spirit_label.position             = Vector2(preview_x, 444)
-	_spirit_label.size                 = Vector2(preview_w, 26)
-	_spirit_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	bg.add_child(_spirit_label)
-
-	_feedback_label                      = _lbl("", 17, C_GREEN, true)
-	_feedback_label.position             = Vector2(preview_x, 444)
-	_feedback_label.size                 = Vector2(preview_w, 26)
-	_feedback_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_feedback_label.modulate             = Color(C_GREEN.r, C_GREEN.g, C_GREEN.b, 0.0)
-	bg.add_child(_feedback_label)
-
-	_convert_btn = _action_btn("◈  Convert", Vector2(PAD, H - 78), Vector2(W - PAD * 2, 60))
-	_convert_btn.pressed.connect(_on_convert_pressed)
-	bg.add_child(_convert_btn)
-
-	var close_btn := Button.new()
-	close_btn.text  = "✕"
-	close_btn.flat  = true
-	close_btn.position = Vector2(W - 42, 10)
-	close_btn.size     = Vector2(32, 32)
-	close_btn.add_theme_font_size_override("font_size", 18)
-	close_btn.add_theme_color_override("font_color",       C_TEXT_DIM)
-	close_btn.add_theme_color_override("font_hover_color", C_RED)
-	close_btn.add_theme_stylebox_override("normal",  StyleBoxEmpty.new())
-	close_btn.add_theme_stylebox_override("hover",   StyleBoxEmpty.new())
-	close_btn.add_theme_stylebox_override("pressed", StyleBoxEmpty.new())
-	close_btn.add_theme_stylebox_override("focus",   StyleBoxEmpty.new())
-	close_btn.pressed.connect(close)
-	bg.add_child(close_btn)
-
-	_inv_panel = _build_side_panel("INVENTORY", Vector2(center_x - SIDE_W - SIDE_PAD, center_y))
-	add_child(_inv_panel)
-
-	_inv_cap_label = _inv_panel.get_meta("cap_label")
-	_inv_scroll    = _inv_panel.get_meta("scroll")
-	_inv_grid      = _inv_panel.get_meta("grid")
-
-	_safe_panel = _build_side_panel("SAFE", Vector2(center_x + W + SIDE_PAD, center_y))
-	add_child(_safe_panel)
-
-	_safe_cap_label = _safe_panel.get_meta("cap_label")
-	_safe_scroll    = _safe_panel.get_meta("scroll")
-	_safe_grid      = _safe_panel.get_meta("grid")
-
-
-func _build_side_panel(title_text: String, pos: Vector2) -> Control:
-	var panel_w  := SIDE_W
-	var header_h := 38
-	var panel_h  := SIDE_MAX_H
-
-	var root       := Control.new()
-	root.position   = pos
-	root.size       = Vector2(panel_w, panel_h)
-	root.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
-	var shadow := _make_box(Vector2(panel_w + 8, panel_h + 8), Vector2(-4, -4), Color(0, 0, 0, 0.35))
-	root.add_child(shadow)
-
-	var bg := _make_box(Vector2(panel_w, panel_h), Vector2.ZERO, C_BG, C_BORDER)
-	bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	root.add_child(bg)
-
-	var stripe      := ColorRect.new()
-	stripe.color     = C_ACCENT
-	stripe.size      = Vector2(panel_w, 3)
-	stripe.position  = Vector2.ZERO
-	stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	bg.add_child(stripe)
-
-	var title_lbl                      := _lbl(title_text, 13, C_ACCENT, true)
-	title_lbl.position                  = Vector2(SIDE_PAD, 7)
-	title_lbl.size                      = Vector2(panel_w - SIDE_PAD * 2, 22)
-	title_lbl.horizontal_alignment      = HORIZONTAL_ALIGNMENT_LEFT
-	title_lbl.mouse_filter              = Control.MOUSE_FILTER_IGNORE
-	bg.add_child(title_lbl)
-
-	var cap_lbl                      := _lbl("", 11, C_TEXT_DIM)
-	cap_lbl.position                  = Vector2(SIDE_PAD, 7)
-	cap_lbl.size                      = Vector2(panel_w - SIDE_PAD * 2, 22)
-	cap_lbl.horizontal_alignment      = HORIZONTAL_ALIGNMENT_RIGHT
-	cap_lbl.mouse_filter              = Control.MOUSE_FILTER_IGNORE
-	bg.add_child(cap_lbl)
-
-	var sep      := ColorRect.new()
-	sep.color     = C_BORDER
-	sep.size      = Vector2(panel_w - SIDE_PAD * 2, 1)
-	sep.position  = Vector2(SIDE_PAD, 30)
-	sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	bg.add_child(sep)
-
-	var scroll                  := ScrollContainer.new()
-	scroll.position              = Vector2(SIDE_PAD, header_h)
-	scroll.size                  = Vector2(panel_w - SIDE_PAD * 2, panel_h - header_h - SIDE_PAD)
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.vertical_scroll_mode  = ScrollContainer.SCROLL_MODE_AUTO
-
-	var scroll_sb := StyleBoxFlat.new()
-	scroll_sb.bg_color = Color.TRANSPARENT
-	scroll.add_theme_stylebox_override("panel", scroll_sb)
-
-	var grabber_sb := StyleBoxFlat.new()
-	grabber_sb.bg_color = C_BORDER
-	grabber_sb.set_corner_radius_all(3)
-	grabber_sb.content_margin_left  = 4
-	grabber_sb.content_margin_right = 4
-
-	var track_sb := StyleBoxFlat.new()
-	track_sb.bg_color = Color(C_BG.r, C_BG.g, C_BG.b, 0.5)
-	track_sb.content_margin_left  = 4
-	track_sb.content_margin_right = 4
-
-	scroll.add_theme_stylebox_override("grabber",         grabber_sb)
-	scroll.add_theme_stylebox_override("grabber_highlight", grabber_sb)
-	scroll.add_theme_stylebox_override("grabber_pressed", grabber_sb)
-	scroll.add_theme_stylebox_override("scroll",          track_sb)
-	bg.add_child(scroll)
-
-	var grid       := Control.new()
-	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	grid.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	scroll.add_child(grid)
-
-	root.set_meta("cap_label", cap_lbl)
-	root.set_meta("scroll", scroll)
-	root.set_meta("grid", grid)
-
-	return root
 
 
 func _rebuild_inv_slots() -> void:
@@ -397,8 +251,7 @@ func _rebuild_inv_slots() -> void:
 		_inv_grid.add_child(slot)
 
 		if src_slot.item != null:
-			var item_dup = src_slot.item
-			slot.set_item(item_dup, src_slot.item_count)
+			slot.set_item(src_slot.item, src_slot.item_count)
 		_inv_slots.append(slot)
 		idx += 1
 
@@ -407,7 +260,6 @@ func _rebuild_inv_slots() -> void:
 		SIDE_COLS * SIDE_SLOT + (SIDE_COLS - 1) * SIDE_GAP,
 		rows * SIDE_SLOT + maxi(rows - 1, 0) * SIDE_GAP
 	)
-
 	_inv_cap_label.text = "%d / %d" % [inv.occupiedSlots, inv.slotAmount]
 
 
@@ -602,10 +454,12 @@ func _refresh_slot() -> void:
 	if _slot_item == null:
 		_slot_visual.texture   = null
 		_slot_count_label.text = ""
-		var sb := _slot_border.get_theme_stylebox("panel") as StyleBoxFlat
-		if sb:
-			sb.border_color = Color.TRANSPARENT
-			_slot_border.add_theme_stylebox_override("panel", sb)
+		var sb := StyleBoxFlat.new()
+		sb.bg_color     = Color.TRANSPARENT
+		sb.border_color = Color.TRANSPARENT
+		sb.set_border_width_all(3)
+		sb.set_corner_radius_all(RADIUS)
+		_slot_border.add_theme_stylebox_override("panel", sb)
 	else:
 		_slot_visual.texture = _slot_item.txtr
 		if _slot_item.isStackable and _slot_count > 1:
@@ -674,45 +528,6 @@ func _rarity_color(rarity_idx: int) -> Color:
 		3: return Color(0.70, 0.30, 1.00)
 		4: return Color(1.00, 0.60, 0.10)
 	return Color.WHITE
-
-
-func _make_box(sz: Vector2, pos: Vector2, bg_col: Color,
-			   border_col: Color = Color.TRANSPARENT) -> Control:
-	var c     := Control.new()
-	c.size     = sz
-	c.position = pos
-	var sb     := StyleBoxFlat.new()
-	sb.bg_color = bg_col
-	if border_col != Color.TRANSPARENT:
-		sb.border_color = border_col
-		sb.set_border_width_all(1)
-	sb.set_corner_radius_all(RADIUS)
-	var panel         := Panel.new()
-	panel.size         = sz
-	panel.position     = Vector2.ZERO
-	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	panel.add_theme_stylebox_override("panel", sb)
-	c.add_child(panel)
-	return c
-
-
-func _lbl(txt: String, sz: int, col: Color, bold: bool = false) -> Label:
-	var l := Label.new()
-	l.text = txt
-	l.add_theme_font_size_override("font_size", sz)
-	l.add_theme_color_override("font_color", col)
-	return l
-
-
-func _action_btn(txt: String, pos: Vector2, sz: Vector2) -> Button:
-	var btn     := Button.new()
-	btn.text     = txt
-	btn.position = pos
-	btn.size     = sz
-	btn.add_theme_font_size_override("font_size", 20)
-	btn.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
-	_style_action_btn(btn, true)
-	return btn
 
 
 func _style_action_btn(btn: Button, is_disabled: bool) -> void:

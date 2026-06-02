@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://c5jukn0wfauak"]
+[gd_scene load_steps=5 format=3 uid="uid://c5jukn0wfauak"]
 
 [ext_resource type="Script" uid="uid://bnalklnljqwup" path="res://scripts/items/shop/shops/ScrapBrokerNode.gd" id="1_5ixvn"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_oqh2f"]
 [ext_resource type="Resource" uid="uid://bqu2g6wu4ec2p" path="res://resources/items/material/spirit_core.tres" id="2_r703d"]
-[ext_resource type="Script" uid="uid://bdcldahoqai88" path="res://scripts/items/shop/shops/ScrapBrokerUi.gd" id="3_r703d"]
+[ext_resource type="PackedScene" path="res://scenes/items/shop/shops/scrap_broker_ui.tscn" id="3_sbui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4042m"]
 
@@ -12,13 +12,7 @@ script = ExtResource("1_5ixvn")
 scrap_broker_ui = NodePath("Control")
 spirit_core_resource = ExtResource("2_r703d")
 
-[node name="Control" type="Control" parent="." unique_id=1965718836]
-z_index = -1
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_r703d")
+[node name="Control" parent="." instance=ExtResource("3_sbui")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=540591531]
 scale = Vector2(10, 10)

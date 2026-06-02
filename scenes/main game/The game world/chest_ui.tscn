@@ -2,6 +2,60 @@
 
 [ext_resource type="Script" path="res://scripts/items/chest/chest_ui.gd" id="1_cuiscript"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shadow"]
+bg_color = Color(0, 0, 0, 0.55)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_take_n"]
+bg_color = Color(0.9, 0.65, 0.2, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_take_h"]
+bg_color = Color(1.0, 0.75, 0.25, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_take_p"]
+bg_color = Color(0.65, 0.45, 0.1, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_n"]
+bg_color = Color(0.13, 0.14, 0.17, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_h"]
+bg_color = Color(0.20, 0.22, 0.27, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+content_margin_top = 6.0
+content_margin_bottom = 6.0
+
 [node name="ChestUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -9,4 +63,146 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_cuiscript")
+
+[node name="Overlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="MainPanel" type="Control" parent="."]
+offset_left = 710.0
+offset_top = 340.0
+offset_right = 1210.0
+offset_bottom = 740.0
+mouse_filter = 2
+
+[node name="Shadow" type="Panel" parent="MainPanel"]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 508.0
+offset_bottom = 408.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_shadow")
+
+[node name="Background" type="NinePatchRect" parent="MainPanel"]
+offset_right = 500.0
+offset_bottom = 400.0
+mouse_filter = 2
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="BgFill" type="ColorRect" parent="MainPanel/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09, 0.10, 0.12, 1)
+
+[node name="Stripe" type="ColorRect" parent="MainPanel/Background"]
+offset_right = 500.0
+offset_bottom = 5.0
+mouse_filter = 2
+color = Color(0.9, 0.65, 0.2, 1)
+
+[node name="Title" type="Label" parent="MainPanel/Background"]
+offset_top = 14.0
+offset_right = 500.0
+offset_bottom = 52.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.9, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 26
+text = "CHEST"
+
+[node name="SubtitleLabel" type="Label" parent="MainPanel/Background"]
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 70.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.53, 0.5, 1)
+theme_override_font_sizes/font_size = 15
+
+[node name="Separator" type="ColorRect" parent="MainPanel/Background"]
+offset_left = 18.0
+offset_top = 78.0
+offset_right = 482.0
+offset_bottom = 80.0
+mouse_filter = 2
+color = Color(0.22, 0.24, 0.28, 1)
+
+[node name="GridContainer" type="Control" parent="MainPanel/Background"]
+offset_left = 18.0
+offset_top = 90.0
+offset_right = 482.0
+offset_bottom = 294.0
+mouse_filter = 2
+
+[node name="EmptyLabel" type="Label" parent="MainPanel/Background/GridContainer"]
+offset_right = 464.0
+offset_bottom = 204.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.55, 0.53, 0.5, 1)
+theme_override_font_sizes/font_size = 18
+text = "This chest is empty."
+visible = false
+
+[node name="TakeAllBtn" type="Button" parent="MainPanel/Background"]
+offset_left = 18.0
+offset_top = 346.0
+offset_right = 239.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0.09, 0.10, 0.12, 1)
+theme_override_colors/font_hover_color = Color(0.09, 0.10, 0.12, 1)
+theme_override_colors/font_pressed_color = Color(0.09, 0.10, 0.12, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_take_n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_take_h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_take_p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x")
+text = "Take All"
+
+[node name="CloseBtn" type="Button" parent="MainPanel/Background"]
+offset_left = 247.0
+offset_top = 346.0
+offset_right = 482.0
+offset_bottom = 382.0
+theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
+theme_override_colors/font_hover_color = Color(0.92, 0.9, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_close_n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_close_h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x")
+text = "Close"
+
+[node name="XBtn" type="Button" parent="MainPanel/Background"]
+offset_left = 458.0
+offset_top = 10.0
+offset_right = 490.0
+offset_bottom = 42.0
+flat = true
+theme_override_colors/font_color = Color(0.55, 0.53, 0.5, 1)
+theme_override_colors/font_hover_color = Color(0.9, 0.35, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_x")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_x")
+text = "✕"
+
+[connection signal="pressed" from="MainPanel/Background/TakeAllBtn" to="." method="_on_take_all"]
+[connection signal="pressed" from="MainPanel/Background/CloseBtn" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="MainPanel/Background/XBtn" to="." method="_on_close_pressed"]

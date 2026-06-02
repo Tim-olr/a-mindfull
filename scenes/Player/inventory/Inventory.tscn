@@ -1,23 +1,164 @@
 [gd_scene format=3 uid="uid://jqii235rbcqp"]
 
-[ext_resource type="Script" uid="uid://td88g75lk23b" path="res://spirit-game-project/scripts/Player/inventory/inventory.gd" id="1_wocph"]
+[ext_resource type="Script" uid="uid://td88g75lk23b" path="res://scripts/Player/inventory/inventory.gd" id="1_inv"]
 
-[node name="Inventory" type="Control" unique_id=1859743326]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbbg"]
+bg_color = Color(0.50019974, 0.2379289, 0.065485604, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.24, 0.28, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grbg"]
+bg_color = Color(0.5019608, 0.23921569, 0.06666667, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22, 0.24, 0.28, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[node name="Inventory" type="Control" unique_id=27083833]
 layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_wocph")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_inv")
 
-[node name="InventoryContainer" type="VBoxContainer" parent="." unique_id=1644716269]
-clip_contents = true
+[node name="HotbarBg" type="NinePatchRect" parent="." unique_id=402649511]
 layout_mode = 0
-offset_bottom = 4.0
-mouse_filter = 0
+offset_right = 484.0
+offset_bottom = 112.0
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
 
-[node name="Hotbar" type="HBoxContainer" parent="InventoryContainer" unique_id=655596111]
-layout_mode = 2
-mouse_filter = 0
+[node name="HotbarFill" type="Panel" parent="HotbarBg" unique_id=1554589802]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hbbg")
 
-[node name="InventoryGrid" type="GridContainer" parent="InventoryContainer" unique_id=699346355]
-layout_mode = 2
-mouse_filter = 0
-columns = 6
+[node name="HotbarStripe" type="ColorRect" parent="HotbarBg" unique_id=255753726]
+layout_mode = 0
+offset_right = 484.0
+offset_bottom = 3.0
+mouse_filter = 2
+color = Color(0.75499314, 0.5356974, 0.124172665, 1)
+
+[node name="HotbarTitle" type="Label" parent="HotbarBg" unique_id=309894514]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 468.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "HOTBAR"
+
+[node name="KeyHint" type="Label" parent="HotbarBg" unique_id=1280663820]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 468.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "1  2  3  4  5  6"
+horizontal_alignment = 2
+
+[node name="HotbarContainer" type="Control" parent="HotbarBg" unique_id=300351845]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 28.0
+offset_right = 468.0
+offset_bottom = 96.0
+mouse_filter = 2
+
+[node name="GridPanel" type="Control" parent="." unique_id=1389334541]
+anchors_preset = 0
+offset_right = 484.0
+offset_bottom = 568.0
+mouse_filter = 2
+
+[node name="GridBg" type="NinePatchRect" parent="GridPanel" unique_id=371007992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="GridFill" type="Panel" parent="GridPanel/GridBg" unique_id=1955852716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_grbg")
+
+[node name="GridStripe" type="ColorRect" parent="GridPanel/GridBg" unique_id=626079382]
+layout_mode = 0
+offset_right = 484.0
+offset_bottom = 3.0
+mouse_filter = 2
+color = Color(0.75686276, 0.5372549, 0.1254902, 1)
+
+[node name="TitleLabel" type="Label" parent="GridPanel/GridBg" unique_id=641240808]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 468.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "INVENTORY"
+
+[node name="CapacityLabel" type="Label" parent="GridPanel/GridBg" unique_id=1208128812]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 468.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 2
+
+[node name="GridSep" type="ColorRect" parent="GridPanel/GridBg" unique_id=850802245]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 34.0
+offset_right = 468.0
+offset_bottom = 35.0
+mouse_filter = 2
+color = Color(0.22, 0.24, 0.28, 1)
+
+[node name="GridContainer" type="Control" parent="GridPanel/GridBg" unique_id=74251988]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 42.0
+offset_right = 468.0
+offset_bottom = 500.0
+mouse_filter = 2

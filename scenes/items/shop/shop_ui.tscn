@@ -1,0 +1,346 @@
+[gd_scene format=3 uid="uid://shopui000001"]
+
+[ext_resource type="Script" path="res://scripts/items/shop/ShopUI.gd" id="1_shopui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leftpanel"]
+bg_color = Color(0.08, 0.07, 0.06, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.24, 0.19, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rightpanel"]
+bg_color = Color(0.15, 0.13, 0.11, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.28, 0.24, 0.19, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="ShopUI" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -585.0
+offset_top = -390.0
+offset_right = 585.0
+offset_bottom = 390.0
+pivot_offset = Vector2(585, 390)
+script = ExtResource("1_shopui")
+
+[node name="Shadow" type="ColorRect" parent="."]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 1182.0
+offset_bottom = 792.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Background" type="NinePatchRect" parent="."]
+offset_right = 1170.0
+offset_bottom = 780.0
+mouse_filter = 2
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="BgFill" type="ColorRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.10, 0.09, 0.08, 1)
+
+[node name="AccentStripe" type="ColorRect" parent="Background"]
+offset_right = 1170.0
+offset_bottom = 5.0
+mouse_filter = 2
+color = Color(0.78, 0.62, 0.38, 1)
+
+[node name="StationLabel" type="Label" parent="Background"]
+offset_top = 10.0
+offset_right = 1170.0
+offset_bottom = 40.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.78, 0.62, 0.38, 1)
+theme_override_font_sizes/font_size = 23
+
+[node name="SubtitleLabel" type="Label" parent="Background"]
+offset_top = 40.0
+offset_right = 1170.0
+offset_bottom = 58.0
+mouse_filter = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 14
+
+[node name="CloseButton" type="Button" parent="Background"]
+offset_left = 1101.0
+offset_top = 8.0
+offset_right = 1149.0
+offset_bottom = 48.0
+flat = true
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_colors/font_hover_color = Color(0.75, 0.35, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "X"
+
+[node name="LeftPanel" type="Panel" parent="Background"]
+offset_left = 21.0
+offset_top = 65.0
+offset_right = 366.0
+offset_bottom = 759.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_leftpanel")
+
+[node name="ItemsHeader" type="Label" parent="Background/LeftPanel"]
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 330.0
+offset_bottom = 30.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 14
+text = "ITEMS"
+
+[node name="ItemScroll" type="ScrollContainer" parent="Background/LeftPanel"]
+offset_top = 36.0
+offset_right = 345.0
+offset_bottom = 694.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="ItemList" type="VBoxContainer" parent="Background/LeftPanel/ItemScroll"]
+size_flags_horizontal = 3
+
+[node name="RightPanel" type="NinePatchRect" parent="Background"]
+offset_left = 396.0
+offset_top = 65.0
+offset_right = 1149.0
+offset_bottom = 759.0
+mouse_filter = 2
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="RightFill" type="Panel" parent="Background/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rightpanel")
+
+[node name="ItemNameLabel" type="Label" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 732.0
+offset_bottom = 57.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.78, 0.62, 0.38, 1)
+theme_override_font_sizes/font_size = 22
+text = "Select an item"
+
+[node name="ItemAmountLabel" type="Label" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 61.0
+offset_right = 732.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 16
+
+[node name="ItemIcon" type="TextureRect" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 93.0
+offset_right = 85.0
+offset_bottom = 157.0
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ItemDescLabel" type="Label" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 169.0
+offset_right = 732.0
+offset_bottom = 259.0
+mouse_filter = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 17
+
+[node name="PriceDivider" type="ColorRect" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 267.0
+offset_right = 732.0
+offset_bottom = 269.0
+mouse_filter = 2
+color = Color(0.38, 0.29, 0.14, 1)
+
+[node name="PriceHeader" type="Label" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 279.0
+offset_right = 732.0
+offset_bottom = 297.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 14
+text = "PRICE"
+
+[node name="PriceContainer" type="VBoxContainer" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 303.0
+offset_right = 732.0
+offset_bottom = 483.0
+mouse_filter = 2
+
+[node name="QtyBox" type="SpinBox" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 556.0
+offset_right = 181.0
+offset_bottom = 596.0
+min_value = 1.0
+max_value = 999.0
+step = 1.0
+value = 1.0
+theme_override_font_sizes/font_size = 18
+visible = false
+
+[node name="BuyButton" type="Button" parent="Background/RightPanel"]
+offset_left = 21.0
+offset_top = 616.0
+offset_right = 732.0
+offset_bottom = 676.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Buy"
+
+[node name="UpgradePanel" type="Control" parent="Background"]
+offset_left = 396.0
+offset_top = 65.0
+offset_right = 1149.0
+offset_bottom = 759.0
+mouse_filter = 2
+visible = false
+
+[node name="UpgradePanelBg" type="NinePatchRect" parent="Background/UpgradePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="UpgradePanelFill" type="Panel" parent="Background/UpgradePanel/UpgradePanelBg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rightpanel")
+
+[node name="UpgradeTitle" type="Label" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 21.0
+offset_right = 732.0
+offset_bottom = 51.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.78, 0.62, 0.38, 1)
+theme_override_font_sizes/font_size = 20
+text = "WEAPON RARITY UPGRADE"
+
+[node name="UpgradeDivider" type="ColorRect" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 61.0
+offset_right = 732.0
+offset_bottom = 63.0
+mouse_filter = 2
+color = Color(0.38, 0.29, 0.14, 1)
+
+[node name="UpgradeWeaponLabel" type="Label" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 75.0
+offset_right = 732.0
+offset_bottom = 105.0
+mouse_filter = 2
+autowrap_mode = 3
+theme_override_colors/font_color = Color(0.88, 0.84, 0.76, 1)
+theme_override_font_sizes/font_size = 19
+text = "No weapon equipped"
+
+[node name="RarityRow" type="HBoxContainer" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 115.0
+offset_right = 732.0
+offset_bottom = 151.0
+theme_override_constants/separation = 12
+
+[node name="UpgradeRarityLabel" type="Label" parent="Background/UpgradePanel/RarityRow"]
+theme_override_font_sizes/font_size = 22
+
+[node name="UpgradeArrowLabel" type="Label" parent="Background/UpgradePanel/RarityRow"]
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 22
+text = "->"
+
+[node name="UpgradeNextLabel" type="Label" parent="Background/UpgradePanel/RarityRow"]
+theme_override_font_sizes/font_size = 22
+
+[node name="CostHeader" type="Label" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 167.0
+offset_right = 732.0
+offset_bottom = 185.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.52, 0.48, 0.42, 1)
+theme_override_font_sizes/font_size = 14
+text = "UPGRADE COST"
+
+[node name="UpgradeCostContainer" type="VBoxContainer" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 191.0
+offset_right = 732.0
+offset_bottom = 491.0
+mouse_filter = 2
+
+[node name="UpgradeButton" type="Button" parent="Background/UpgradePanel"]
+offset_left = 21.0
+offset_top = 616.0
+offset_right = 732.0
+offset_bottom = 676.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "Upgrade"
+
+[connection signal="pressed" from="Background/CloseButton" to="." method="close"]

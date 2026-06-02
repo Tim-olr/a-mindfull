@@ -1,22 +1,21 @@
-res://scripts/global/fog_of_war.gd
-res://scripts/global/wise_tree.gd
-res://scripts/items/chest/chest_loot_pool.gd
-res://scripts/main game/the game world/chest_interactable.gd
-res://scripts/main game/the game world/extraction_point.gd
-res://scripts/main game/the game world/the_world.gd
+res://scenes/generalComponents/health_bar.tscn
+res://scenes/main game/The game world/chest_ui.tscn
+res://scenes/Player/inventory/Inventory.tscn
+res://scenes/Player/inventory/safe/safe_ui.tscn
+res://scripts/generalComponents/health_bar.gd
+res://scripts/items/chest/chest_ui.gd
+res://scripts/items/crafting/craftingGUI.gd
+res://scripts/items/shop/ShopUI.gd
+res://scripts/items/shop/shops/ScrapBrokerUi.gd
+res://scripts/main game/fahrer/fahrer_draw_ui.gd
 res://scripts/main game/ui/map_ui.gd
-res://scripts/main game/ui/wise_tree_ui.gd
-res://scripts/Player/player_manager.gd
-res://scripts/Player/player_stats.gd
 res://scripts/Player/inventory/inventory.gd
-res://scripts/Player/inventory/safe/global_safe.gd
-res://scenes/Physics objects/boulder.tscn
+res://scripts/Player/inventory/safe/safeUi.gd
 res://scripts/shaders/outline.gdshader
 res://resources/crafting/stations/weapon_smith.tres
 res://scripts/world gen/new_tile_set.tres
-res://scenes/generalComponents/health_bar.tscn
-res://scripts/items/chest/chest_ui.gd
-res://scripts/Player/player_visuals.gd
-res://scripts/generalComponents/health_bar.gd
-res://scenes/Player/player.tscn
-res://scripts/main game/game.gd
+res://scenes/shops/weapon_handler.tscn
+res://scenes/Player/inventory/InventorySlot.tscn
+res://scripts/Player/inventory/inventory_slot.gd
+res://scenes/Player/inventory/item_tooltip.tscn
+res://scenes/Player/inventory/cursor_held_item.tscn

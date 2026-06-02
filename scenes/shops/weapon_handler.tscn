@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cjic6465pmhd2" path="res://scripts/items/shop/shops/weapon_handler.gd" id="1_ykw0x"]
 [ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_ddbwn"]
 [ext_resource type="Script" uid="uid://cn4hfq8f44qg7" path="res://scripts/items/shop/ShopItem.gd" id="3_3g2hf"]
-[ext_resource type="Script" uid="uid://do7cse8us07hg" path="res://scripts/items/shop/ShopUI.gd" id="3_ddbwn"]
 [ext_resource type="Script" uid="uid://0ube3bs4gpfq" path="res://scripts/items/shop/ShopResource.gd" id="4_3yq3n"]
+[ext_resource type="PackedScene" uid="uid://shopui000001" path="res://scenes/items/shop/shop_ui.tscn" id="5_shopui"]
 
 [sub_resource type="Resource" id="Resource_caql0"]
 script = ExtResource("4_3yq3n")
@@ -28,10 +28,7 @@ shape = SubResource("RectangleShape2D_25awx")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=459597947]
 texture = ExtResource("2_ddbwn")
 
-[node name="ShopUI" type="Control" parent="." unique_id=528856690]
+[node name="ShopUI" parent="." unique_id=509131553 instance=ExtResource("5_shopui")]
+visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_ddbwn")
-metadata/_custom_type_script = "uid://do7cse8us07hg"
+anchors_preset = 8

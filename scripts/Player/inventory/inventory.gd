@@ -8,15 +8,6 @@ var occupiedSlots: int = 0
 var slots_with_items := []
 const MIN_HOTBAR_SLOTS = 6
 
-const C_BG         := Color(0.09, 0.10, 0.12)
-const C_PANEL      := Color(0.13, 0.14, 0.17)
-const C_PANEL_DARK := Color(0.08, 0.09, 0.11)
-const C_BORDER     := Color(0.22, 0.24, 0.28)
-const C_ACCENT     := Color(0.90, 0.65, 0.20)
-const C_ACCENT_DIM := Color(0.60, 0.42, 0.10)
-const C_TEXT       := Color(0.92, 0.90, 0.85)
-const C_TEXT_DIM   := Color(0.55, 0.53, 0.50)
-const RADIUS       := 9
 const PAD          := 16
 const SLOT_SIZE    := 68
 const SLOT_GAP     := 6
@@ -28,65 +19,38 @@ var slot_scene = preload("res://scenes/Player/inventory/InventorySlot.tscn")
 var base_slot_amount: int    = 0
 var slots: Array             = []
 var selected_slot_index: int = -1
+var _grid_visible: bool      = false
 
-var _hotbar_container: Control
-var _grid_container: Control
-var _grid_panel: Control
-var _grid_visible: bool = false
-var _title_label: Label
-var _hotbar_bg: Control
-var _grid_bg: Control
-var _capacity_label: Label
+@onready var _hotbar_bg:        NinePatchRect = $HotbarBg
+@onready var _hotbar_container: Control       = $HotbarBg/HotbarContainer
+@onready var _grid_panel:       Control       = $GridPanel
+@onready var _grid_bg:          NinePatchRect = $GridPanel/GridBg
+@onready var _grid_container:   Control       = $GridPanel/GridBg/GridContainer
+@onready var _title_label:      Label         = $GridPanel/GridBg/TitleLabel
+@onready var _capacity_label:   Label         = $GridPanel/GridBg/CapacityLabel
+
 
 func _ready() -> void:
 	base_slot_amount = slotAmount
-	_build_ui()
+	_setup_layout()
 	_populate_slots()
 	_set_grid_visible(false)
 
-func _build_ui() -> void:
+
+func _setup_layout() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var hotbar_total_w := HOTBAR_COLS * SLOT_SIZE + (HOTBAR_COLS - 1) * SLOT_GAP + PAD * 2
 	var hotbar_h       := SLOT_SIZE + PAD * 2 + 28
 
-	_hotbar_bg            = _make_box(Vector2(hotbar_total_w, hotbar_h), Vector2.ZERO, C_BG, C_BORDER)
-	_hotbar_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_hotbar_bg)
+	_hotbar_bg.size = Vector2(hotbar_total_w, hotbar_h)
 
-	var stripe      := ColorRect.new()
-	stripe.color     = C_ACCENT
-	stripe.size      = Vector2(hotbar_total_w, 3)
-	stripe.position  = Vector2.ZERO
-	stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_hotbar_bg.add_child(stripe)
+	var stripe: ColorRect = _hotbar_bg.get_node("HotbarStripe")
+	stripe.size = Vector2(hotbar_total_w, 3)
 
-	var hotbar_title                      := Label.new()
-	hotbar_title.text                      = "HOTBAR"
-	hotbar_title.add_theme_font_size_override("font_size", 15)
-	hotbar_title.add_theme_color_override("font_color", C_ACCENT)
-	hotbar_title.position                  = Vector2(PAD, 7)
-	hotbar_title.size                      = Vector2(hotbar_total_w - PAD * 2, 20)
-	hotbar_title.horizontal_alignment      = HORIZONTAL_ALIGNMENT_LEFT
-	hotbar_title.mouse_filter              = Control.MOUSE_FILTER_IGNORE
-	_hotbar_bg.add_child(hotbar_title)
-
-	var key_hint                      := Label.new()
-	key_hint.text                      = "1  2  3  4  5  6"
-	key_hint.add_theme_font_size_override("font_size", 13)
-	key_hint.add_theme_color_override("font_color", C_TEXT_DIM)
-	key_hint.position                  = Vector2(PAD, 7)
-	key_hint.size                      = Vector2(hotbar_total_w - PAD * 2, 20)
-	key_hint.horizontal_alignment      = HORIZONTAL_ALIGNMENT_RIGHT
-	key_hint.mouse_filter              = Control.MOUSE_FILTER_IGNORE
-	_hotbar_bg.add_child(key_hint)
-
-	_hotbar_container                = Control.new()
-	_hotbar_container.position       = Vector2(PAD, 28)
-	_hotbar_container.size           = Vector2(hotbar_total_w - PAD * 2, SLOT_SIZE)
-	_hotbar_container.mouse_filter   = Control.MOUSE_FILTER_IGNORE
-	_hotbar_bg.add_child(_hotbar_container)
+	_hotbar_container.position = Vector2(PAD, 28)
+	_hotbar_container.size     = Vector2(hotbar_total_w - PAD * 2, SLOT_SIZE)
 
 	var viewport_size := get_viewport().get_visible_rect().size
 	_hotbar_bg.position = Vector2(
@@ -94,56 +58,25 @@ func _build_ui() -> void:
 		viewport_size.y - hotbar_h - 12
 	)
 
-	var grid_rows   := ceili(float(slotAmount - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
+	var grid_rows    := ceili(float(slotAmount - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
 	var grid_total_w := GRID_COLS * SLOT_SIZE + (GRID_COLS - 1) * SLOT_GAP + PAD * 2
 	var grid_total_h := grid_rows * SLOT_SIZE + (grid_rows - 1) * SLOT_GAP + PAD * 2 + 36 + 28
 
-	_grid_panel              = Control.new()
-	_grid_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	add_child(_grid_panel)
+	_grid_panel.size = Vector2(grid_total_w, grid_total_h)
+	_grid_bg.size    = Vector2(grid_total_w, grid_total_h)
 
-	_grid_bg            = _make_box(Vector2(grid_total_w, grid_total_h), Vector2.ZERO, C_BG, C_BORDER)
-	_grid_bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_grid_panel.add_child(_grid_bg)
+	var grid_stripe: ColorRect = _grid_bg.get_node("GridStripe")
+	grid_stripe.size = Vector2(grid_total_w, 3)
 
-	var grid_stripe      := ColorRect.new()
-	grid_stripe.color     = C_ACCENT
-	grid_stripe.size      = Vector2(grid_total_w, 3)
-	grid_stripe.position  = Vector2.ZERO
-	grid_stripe.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_grid_bg.add_child(grid_stripe)
+	_title_label.size     = Vector2(grid_total_w - PAD * 2, 26)
+	_capacity_label.size  = Vector2(grid_total_w - PAD * 2, 26)
 
-	_title_label                      = Label.new()
-	_title_label.text                  = "INVENTORY"
-	_title_label.add_theme_font_size_override("font_size", 20)
-	_title_label.add_theme_color_override("font_color", C_ACCENT)
-	_title_label.position              = Vector2(PAD, 8)
-	_title_label.size                  = Vector2(grid_total_w - PAD * 2, 26)
-	_title_label.horizontal_alignment  = HORIZONTAL_ALIGNMENT_LEFT
-	_title_label.mouse_filter          = Control.MOUSE_FILTER_IGNORE
-	_grid_bg.add_child(_title_label)
+	var grid_sep: ColorRect = _grid_bg.get_node("GridSep")
+	grid_sep.size     = Vector2(grid_total_w - PAD * 2, 1)
+	grid_sep.position = Vector2(PAD, 34)
 
-	_capacity_label                      = Label.new()
-	_capacity_label.add_theme_font_size_override("font_size", 16)
-	_capacity_label.add_theme_color_override("font_color", C_TEXT_DIM)
-	_capacity_label.position              = Vector2(PAD, 8)
-	_capacity_label.size                  = Vector2(grid_total_w - PAD * 2, 26)
-	_capacity_label.horizontal_alignment  = HORIZONTAL_ALIGNMENT_RIGHT
-	_capacity_label.mouse_filter          = Control.MOUSE_FILTER_IGNORE
-	_grid_bg.add_child(_capacity_label)
-
-	var grid_sep      := ColorRect.new()
-	grid_sep.color     = C_BORDER
-	grid_sep.size      = Vector2(grid_total_w - PAD * 2, 1)
-	grid_sep.position  = Vector2(PAD, 34)
-	grid_sep.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_grid_bg.add_child(grid_sep)
-
-	_grid_container              = Control.new()
-	_grid_container.position     = Vector2(PAD, 42)
-	_grid_container.size         = Vector2(grid_total_w - PAD * 2, grid_total_h - 42 - PAD)
-	_grid_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_grid_bg.add_child(_grid_container)
+	_grid_container.position = Vector2(PAD, 42)
+	_grid_container.size     = Vector2(grid_total_w - PAD * 2, grid_total_h - 42 - PAD)
 
 	_grid_panel.position = Vector2(
 		(viewport_size.x - grid_total_w) / 2.0,
@@ -183,6 +116,7 @@ func _populate_slots() -> void:
 	if selected_slot_index >= MIN_HOTBAR_SLOTS or selected_slot_index >= slots.size():
 		selected_slot_index = -1
 	update_hotbar_selection()
+
 
 func _clear_children(node: Control) -> void:
 	for child in node.get_children():
@@ -310,7 +244,6 @@ func extend_capacity(extra_slots: int) -> void:
 		var row    := grid_i / GRID_COLS
 		slot.position = Vector2(col * (SLOT_SIZE + SLOT_GAP), row * (SLOT_SIZE + SLOT_GAP))
 		_grid_container.add_child(slot)
-	# Resize the grid panel to fit new rows
 	var new_rows := ceili(float(slotAmount - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
 	var old_rows := ceili(float(old_count - MIN_HOTBAR_SLOTS) / float(GRID_COLS))
 	if new_rows > old_rows:
@@ -321,29 +254,12 @@ func extend_capacity(extra_slots: int) -> void:
 		_grid_panel.position.y  = _hotbar_bg.position.y - _grid_bg.size.y - 8
 	_update_capacity_label()
 
+
 func set_total_capacity(total: int) -> void:
 	if total > slotAmount:
 		extend_capacity(total - slotAmount)
 
+
 func _update_capacity_label() -> void:
 	if _capacity_label != null:
 		_capacity_label.text = "%d / %d" % [occupiedSlots, slotAmount]
-
-
-func _make_box(sz: Vector2, pos: Vector2, bg_col: Color,
-			   border_col: Color = Color.TRANSPARENT) -> Control:
-	var c     := Control.new()
-	c.size     = sz
-	c.position = pos
-	var sb     := StyleBoxFlat.new()
-	sb.bg_color = bg_col
-	if border_col != Color.TRANSPARENT:
-		sb.border_color = border_col
-		sb.set_border_width_all(1)
-	sb.set_corner_radius_all(RADIUS)
-	var panel         := Panel.new()
-	panel.set_anchors_preset(Control.PRESET_FULL_RECT)
-	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	panel.add_theme_stylebox_override("panel", sb)
-	c.add_child(panel)
-	return c
