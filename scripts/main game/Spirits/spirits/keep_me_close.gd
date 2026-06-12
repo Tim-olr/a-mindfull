@@ -13,7 +13,7 @@ func active_ability():
 			ability_duration_timed_out.start(abilityDuration)
 			GlobalPlayer.specials.pause_wo_player()
 			GlobalPlayer.visuals.show_gray()
-			active_ability_timer.start(activeAbilityCooldown)
+			active_ability_timer.start(get_effective_cooldown())
 			canAbility = false
 
 func remove_ability():

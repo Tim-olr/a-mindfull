@@ -1,10 +1,14 @@
+res://scripts/Weapons/spirit_weapons/
+res://scripts/Player/
+res://scenes/main game/spirits/spirits/
+res://resources/spirits/spirits/
+res://scripts/main game/Spirits/spirits/
 res://assets/other/spirits/
 res://assets/items/weapons/
 res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Items/Object/
 res://assets/other/projectiles/
 res://scripts/main game/fahrer/
 res://scripts/Projectiles/
-res://scripts/Weapons/spirit_weapons/
 res://assets/player/
 res://assets/fotns/
 res://scripts/main game/spawner/
@@ -16,7 +20,3 @@ res://scenes/enemy/enemies/
 res://scenes/main game/Spawner/
 res://scenes/items/consumables/
 res://resources/items/consumables/
-res://scenes/shops/
-res://resources/items/material/
-res://scripts/items/shop/
-res://scripts/main game/Spirits/

@@ -39,7 +39,7 @@ func _physics_process(delta):
 		last_movement_direction = direction
 	if Input.is_action_just_pressed("dodge") and canDodge and direction:
 		dodge()
-	var target = direction * Stats.speed
+	var target = direction * Stats.speed * ArtifactManager.adrenal_speed_mult()
 	walkingVelocity = lerp(Player.velocity, target, Stats.slideAmount * delta)
 	Player.velocity = walkingVelocity + dodgeVelocity + extraVelocity + knockbackVelocity
 	knockbackVelocity = lerp(knockbackVelocity, Vector2.ZERO, 10 * delta)

@@ -25,7 +25,7 @@ func active_ability() -> void:
 	GlobalPlayer.stats.speed        *= 1.15
 	GlobalPlayer.stats.attackDamage *= 1.30
 	ability_duration_timed_out.start(abilityDuration)
-	active_ability_timer.start(activeAbilityCooldown)
+	active_ability_timer.start(get_effective_cooldown())
 	canAbility = false
 
 func remove_ability() -> void:

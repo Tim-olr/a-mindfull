@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtifactResource" load_steps=2 format=3 uid="uid://art_fmind01"]
+
+[ext_resource type="Script" path="res://scripts/artifacts/focused_mind.gd" id="1_art"]
+
+[resource]
+script = ExtResource("1_art")
+artifact_id = "focused_mind"
+artifact_name = "Focused Mind"
+description = "-10% cooldown on spirit actives. (-10% per stack)"
+rarity = 1

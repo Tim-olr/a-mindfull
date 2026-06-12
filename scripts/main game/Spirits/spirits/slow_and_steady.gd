@@ -13,7 +13,7 @@ func active_ability():
 		GlobalPlayer.visuals.show_blue()
 		GlobalPlayer.specials.change_game_speed(0.5)
 		GlobalPlayer.stats.dashAmount /= 2
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false
 
 func remove_ability():

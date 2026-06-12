@@ -9,5 +9,5 @@ func remove_passive():
 func active_ability():
 	if canAbility:
 		GlobalPlayer.movement.dodgeVelocity += Vector2(GlobalPlayer.movement.direction.x, GlobalPlayer.movement.direction.y) * 7000
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false

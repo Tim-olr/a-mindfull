@@ -21,7 +21,7 @@ func active_ability() -> void:
 	if canAbility:
 		_active_fixed_damage = ACTIVE_DAMAGE_OPTIONS[_rng.randi() % ACTIVE_DAMAGE_OPTIONS.size()]
 		ability_duration_timed_out.start(abilityDuration)
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false
 
 func remove_ability() -> void:

@@ -18,5 +18,5 @@ func active_ability():
 		bomb.global_position = self.global_position
 		GlobalWorld.theWorld.add_child(bomb)
 		ability_duration_timed_out.start(abilityDuration)
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false

@@ -63,7 +63,7 @@ func active_ability() -> void:
 	if enemy.has_method("get") and enemy.get("attacking") != null:
 		enemy.attacking = true
 	ability_duration_timed_out.start(STUN_DURATION)
-	active_ability_timer.start(activeAbilityCooldown)
+	active_ability_timer.start(get_effective_cooldown())
 	canAbility = false
 
 func remove_ability() -> void:

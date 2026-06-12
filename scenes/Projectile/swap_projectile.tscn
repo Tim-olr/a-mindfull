@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bvbkqjb8v7rc7"]
+
+[ext_resource type="Script" path="res://scripts/Projectiles/swap_projectile.gd" id="1_swapprj"]
+[ext_resource type="Texture2D" uid="uid://3s26xrerirrd" path="res://assets/other/projectiles/generic_bullet.png" id="2_swapprj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swapprj"]
+atlas = ExtResource("2_swapprj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_swapprj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swapprj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swapprj"]
+radius = 5.0
+
+[node name="SwapProjectile" type="CharacterBody2D" unique_id=987650001 node_paths=PackedStringArray("collision_area", "area_shape", "local_proj")]
+script = ExtResource("1_swapprj")
+lifetime = 2.5
+projectileSpeed = 300.0
+collision_area = NodePath("CollisionArea")
+area_shape = NodePath("CollisionArea/AreaShape")
+local_proj = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=987650002]
+sprite_frames = SubResource("SpriteFrames_swapprj")
+
+[node name="LifeTime" type="Timer" parent="." unique_id=987650003]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=987650004]
+collision_mask = 7
+
+[node name="AreaShape" type="CollisionShape2D" parent="CollisionArea" unique_id=987650005]
+shape = SubResource("CircleShape2D_swapprj")
+
+[node name="ProjMiddle" type="Marker2D" parent="." unique_id=987650006]
+
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

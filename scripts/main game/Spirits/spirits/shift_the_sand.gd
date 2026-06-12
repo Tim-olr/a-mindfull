@@ -66,7 +66,7 @@ func remove_passive():
 func active_ability():
 	if canAbility:
 		sprites.play("active")
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false
 		if mode == 0:
 			remove_passive()

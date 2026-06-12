@@ -20,5 +20,5 @@ func active_ability():
 	if canAbility:
 		ability_duration_timed_out.start(abilityDuration)
 		ring_scene.shoot()
-		active_ability_timer.start(activeAbilityCooldown)
+		active_ability_timer.start(get_effective_cooldown())
 		canAbility = false

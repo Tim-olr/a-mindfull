@@ -92,6 +92,7 @@ offset_bottom = 96.0
 mouse_filter = 2
 
 [node name="GridPanel" type="Control" parent="." unique_id=1389334541]
+visible = false
 anchors_preset = 0
 offset_right = 484.0
 offset_bottom = 568.0

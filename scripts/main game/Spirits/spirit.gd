@@ -11,15 +11,18 @@ class_name Spirit
 @export var sprites: AnimatedSprite2D
 @export_category("ability")
 @export var activeAbilityCooldown: float
+@export var min_active_time: float = 0.0
 @export var hasAbilityDuration: bool
 @export var abilityDuration: float
 @export_category("other_attack_settings")
-@export var hasWeapon: bool
+@export var hasWeapon := true
 @export var hasStandaloneShooting: bool
 @export var weaponScene: PackedScene
 
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var bullet_start_pos: Marker2D = GlobalPlayer.spiritMarker
+
+@onready var mesh_instance_2d: MeshInstance2D = $MeshInstance2D
 
 var canAbility: bool = true
 
@@ -40,6 +43,8 @@ var host: CharacterBody2D
 @onready var stats: Node2D = $stats
 
 func _ready() -> void:
+	if mesh_instance_2d != null:
+		mesh_instance_2d.hide()
 	if hasWeapon:
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
@@ -83,6 +88,8 @@ func damage(amount, damager, shake):
 
 func bring_out():
 	if !out:
+		if mesh_instance_2d != null:
+			mesh_instance_2d.show()
 		out = true
 		canGetAttacked = true
 		apply_passive()
@@ -113,6 +120,9 @@ func apply_passive():
 
 func remove_passive():
 	pass
+
+func get_effective_cooldown() -> float:
+	return maxf(min_active_time, activeAbilityCooldown * (1.0 - ArtifactManager.spirit_cdr()))
 
 func active_ability():
 	pass

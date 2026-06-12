@@ -1,2 +1,2 @@
-res://scripts/Player/inventory/items/item_resource.gd
+res://scripts/main game/Spirits/SpiritResource.gd
 Resource

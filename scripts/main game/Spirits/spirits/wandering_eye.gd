@@ -23,7 +23,7 @@ func active_ability() -> void:
 	# Attach to player so the deflection field follows the player
 	GlobalPlayer.player.add_child(_deflector_instance)
 	ability_duration_timed_out.start(abilityDuration)
-	active_ability_timer.start(activeAbilityCooldown)
+	active_ability_timer.start(get_effective_cooldown())
 	canAbility = false
 
 func remove_ability() -> void:

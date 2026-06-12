@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://scripts/Player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://scripts/Player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://scripts/Player/player_stats.gd" id="2_s4a0o"]
-[ext_resource type="Resource" uid="uid://cvjrk20laai14" path="res://resources/spirits/spirits/KEEP_ME_CLOSE.tres" id="3_1bwnf"]
+[ext_resource type="Resource" uid="uid://edrw6nhv1nlj" path="res://resources/spirits/spirits/FURNITURE_CITY.tres" id="3_1bwnf"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://scripts/Player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://scripts/Player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="PackedScene" uid="uid://dgmmjdo2t04f0" path="res://scenes/Player/inventory/safe/safe_ui.tscn" id="7_2pfsf"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://byxetoyvngan6" path="res://scenes/Player/inventory/currency/shard_counter.tscn" id="12_1bwnf"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
+[ext_resource type="Script" uid="uid://dbvwhgdhuymig" path="res://scripts/Player/player_components.gd" id="17_tayva"]
 
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -440,6 +441,9 @@ shakeFade = 7.0
 [node name="SpiritBulletMarker" type="Marker2D" parent="." unique_id=1035794559]
 
 [node name="WeaponMarker" type="Marker2D" parent="." unique_id=1736648342]
+
+[node name="PlayerComponents" type="Node2D" parent="." unique_id=644290229]
+script = ExtResource("17_tayva")
 
 [connection signal="timeout" from="PlayerManager/HPSTimer" to="PlayerManager" method="hps_tick"]
 [connection signal="timeout" from="PlayerMovement/DashCooldown" to="PlayerMovement" method="_on_dash_cooldown_timeout"]

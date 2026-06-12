@@ -8,6 +8,8 @@ class_name  Player
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var spirit_bullet_marker: Marker2D = $SpiritBulletMarker
 @onready var player_specials: Node2D = $PlayerSpecials
+@onready var player_components: Node2D = $PlayerComponents
+
 
 func _ready() -> void:
 	GlobalPlayer.player = self
@@ -17,3 +19,4 @@ func _ready() -> void:
 	GlobalPlayer.movement = player_movement
 	GlobalPlayer.spiritMarker = spirit_bullet_marker
 	GlobalPlayer.specials = player_specials
+	GlobalPlayer.components = player_components
