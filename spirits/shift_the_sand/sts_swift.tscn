@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b6pw0tovbsmg"]
+
+[ext_resource type="Script" uid="uid://3qlpy1xpbgo0" path="res://spirits/shift_the_sand/sts_swift.gd" id="1_mk8rp"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_eojiy"]
+[ext_resource type="PackedScene" uid="uid://cugsnng3qlmlx" path="res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn" id="3_nfomp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eojiy"]
+size = Vector2(86, 20)
+
+[node name="StsSwift" type="Node2D" unique_id=582732314]
+script = ExtResource("1_mk8rp")
+damageMod = -7.0
+bulletLifeTimeMod = 0.5
+bulletAmountMod = 8
+rotationAdditionMod = 10.0
+projectileSpeedMod = 200.0
+shootCooldown = 0.3
+gun = true
+description = "a"
+Name = "a"
+bulletScene = ExtResource("2_eojiy")
+knockback_force = 100.0
+custom_collision_sizes = Vector2(1.2, 1.2)
+projectile_sprite_scene = ExtResource("3_nfomp")
+doRandomRotAndPos = true
+pos_scatter_radius = 30.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=624585340]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1871950465]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=323617591]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1322581993]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_eojiy")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

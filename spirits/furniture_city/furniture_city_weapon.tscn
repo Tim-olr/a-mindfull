@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://de6ar1scjio2u"]
+
+[ext_resource type="Script" uid="uid://b54rb0d3r8ru0" path="res://spirits/furniture_city/furniture_city_weapon.gd" id="1_alh0q"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_ttdao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttdao"]
+size = Vector2(86, 20)
+
+[node name="FurnitureCity" type="Node2D" unique_id=1192170209]
+script = ExtResource("1_alh0q")
+damageMod = 15.0
+bulletLifeTimeMod = 0.4
+bulletAmountMod = 1
+projectileSpeedMod = 200.0
+shootCooldown = 0.1
+gun = true
+description = "Very high fire rate, low damage"
+Name = "FC"
+bulletScene = ExtResource("2_ttdao")
+doConsecShooting = true
+knockback_force = 100.0
+hasInfPierce = true
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1837093659]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1422475067]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1317279697]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1453022591]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ttdao")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://clb3ussoahufy"]
+
+[ext_resource type="Script" uid="uid://bquysfpm8ahmf" path="res://world/buildings/roof.gd" id="1_h6i2n"]
+[ext_resource type="Script" uid="uid://ftxqk5vgknmj" path="res://world/buildings/building_chest_spawner.gd" id="2_spawner"]
+[ext_resource type="PackedScene" uid="uid://chestscene001" path="res://items/chest/chest.tscn" id="3_chest"]
+[ext_resource type="Script" uid="uid://dajcxxd7vd00p" path="res://items/chest/chest_loot_entry.gd" id="3_mgbgt"]
+[ext_resource type="Resource" uid="uid://dfekj8b60xk25" path="res://items/consumables/apple.tres" id="4_10mq6"]
+[ext_resource type="Resource" uid="uid://3wdhdoqoeqml" path="res://resources/items/material/duct_tape.tres" id="5_bweec"]
+[ext_resource type="Resource" uid="uid://cf0cv1f4agspd" path="res://resources/items/material/scrap.tres" id="6_m1jbw"]
+[ext_resource type="Resource" uid="uid://bqu2g6wu4ec2p" path="res://resources/items/material/spirit_core.tres" id="7_mnboy"]
+[ext_resource type="Resource" uid="uid://cn6ol23tnacen" path="res://resources/items/material/wires.tres" id="8_bbxu3"]
+[ext_resource type="Resource" uid="uid://dfxpmuw3163o5" path="res://weapons/guns/boomerang.tres" id="9_yc7tp"]
+[ext_resource type="Resource" uid="uid://dfmxwb1ensjw6" path="res://weapons/guns/cursed_tome.tres" id="10_kcckh"]
+[ext_resource type="Script" uid="uid://cg6twgxd3uqwx" path="res://items/chest/chest_loot_pool.gd" id="11_nghaf"]
+[ext_resource type="Texture2D" uid="uid://cg1w82geqs1ig" path="res://assets/world/objects/buildings/roof.png" id="13_10mq6"]
+[ext_resource type="Texture2D" uid="uid://8aj68v6iwjst" path="res://assets/world/objects/buildings/wall.png" id="14_bweec"]
+[ext_resource type="Texture2D" uid="uid://b7mj3g7xq8sfy" path="res://assets/world/objects/buildings/door.png" id="15_m1jbw"]
+
+[sub_resource type="Resource" id="Resource_fgiuf"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("4_10mq6")
+max_count = 4
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_og484"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("5_bweec")
+max_count = 10
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_anycm"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("6_m1jbw")
+max_count = 6
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_v2xpo"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("7_mnboy")
+weight = 0.05
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_83otv"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("8_bbxu3")
+max_count = 5
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_fhaaf"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("9_yc7tp")
+weight = 0.4
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_efnof"]
+script = ExtResource("3_mgbgt")
+item = ExtResource("10_kcckh")
+weight = 0.3
+metadata/_custom_type_script = "uid://dajcxxd7vd00p"
+
+[sub_resource type="Resource" id="Resource_lyluo"]
+script = ExtResource("11_nghaf")
+entries = Array[ExtResource("3_mgbgt")]([SubResource("Resource_fgiuf"), SubResource("Resource_og484"), SubResource("Resource_anycm"), SubResource("Resource_v2xpo"), SubResource("Resource_83otv"), SubResource("Resource_fhaaf"), SubResource("Resource_efnof")])
+metadata/_custom_type_script = "uid://cg6twgxd3uqwx"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mptrr"]
+size = Vector2(481, 204)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6krw6"]
+size = Vector2(25, 373)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmf53"]
+size = Vector2(25.000004, 510)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6i2n"]
+size = Vector2(290, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fda11"]
+size = Vector2(87, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p1bl"]
+size = Vector2(19.765701, 98.125534)
+
+[node name="SmallBuilding" type="Node2D" unique_id=620982097]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_spawner")
+chest_scene = ExtResource("3_chest")
+loot_pool_override = SubResource("Resource_lyluo")
+
+[node name="Roof" type="Area2D" parent="." unique_id=977095539]
+z_index = 2
+script = ExtResource("1_h6i2n")
+metadata/_custom_type_script = "uid://bquysfpm8ahmf"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Roof" unique_id=1716939276]
+visible = false
+position = Vector2(254.5, 126)
+shape = SubResource("RectangleShape2D_mptrr")
+
+[node name="roof_sprite" type="Sprite2D" parent="Roof" unique_id=1696525888]
+position = Vector2(257, 126)
+scale = Vector2(4.74, 4.9)
+texture = ExtResource("13_10mq6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1313417951 groups=["wall"]]
+scale = Vector2(1, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1634190010]
+position = Vector2(7.102398, 186.95398)
+rotation = -3.1415925
+scale = Vector2(0.9446287, 3.1485379)
+texture = ExtResource("14_bweec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1075627988]
+visible = false
+position = Vector2(5.5, 189.5)
+shape = SubResource("RectangleShape2D_6krw6")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1591451762 groups=["wall"]]
+position = Vector2(500, 0)
+scale = Vector2(1, 0.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2064017420]
+position = Vector2(5.5, 189.5)
+shape = SubResource("RectangleShape2D_6krw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=287681006]
+position = Vector2(7.011159, 194.5214)
+scale = Vector2(0.9820591, 3.1864674)
+texture = ExtResource("14_bweec")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=941146653 groups=["wall"]]
+position = Vector2(379, 6.5)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=292432924]
+position = Vector2(8.000004, 129)
+shape = SubResource("RectangleShape2D_gmf53")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" unique_id=1020842039]
+position = Vector2(7.011159, 121.532364)
+scale = Vector2(0.9820591, 4.4029512)
+texture = ExtResource("14_bweec")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1492442667 groups=["wall"]]
+position = Vector2(-4, 248)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4" unique_id=1012534626]
+position = Vector2(145.54971, -10.530917)
+rotation = 1.5707964
+scale = Vector2(0.9076836, 2.4761019)
+texture = ExtResource("14_bweec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=761965744]
+position = Vector2(145, -12)
+shape = SubResource("RectangleShape2D_h6i2n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1185537907]
+position = Vector2(482, -10)
+shape = SubResource("RectangleShape2D_fda11")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D4" unique_id=1674353468]
+position = Vector2(480.44006, -11.098173)
+rotation = 1.5707964
+scale = Vector2(0.86079127, 0.7552432)
+texture = ExtResource("14_bweec")
+
+[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D4" unique_id=245121080]
+position = Vector2(279, 50)
+rotation = 3.1415927
+texture = ExtResource("15_m1jbw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1885208656]
+position = Vector2(282.89865, 49.92218)
+scale = Vector2(1, 0.9999999)
+shape = SubResource("RectangleShape2D_5p1bl")
+
+[connection signal="area_entered" from="Roof" to="Roof" method="_on_area_entered"]
+[connection signal="area_exited" from="Roof" to="Roof" method="_on_area_exited"]

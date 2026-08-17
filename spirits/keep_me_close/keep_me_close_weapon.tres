@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://pgbdmybe5blm"]
+
+[ext_resource type="PackedScene" uid="uid://cj07e6dbe35xf" path="res://spirits/keep_me_close/keep_me_close_weapon.tscn" id="1_tx2ty"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://items/item_resource.gd" id="2_jsk7p"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6am4l"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[resource]
+script = ExtResource("2_jsk7p")
+isWeapon = true
+itemScene = ExtResource("1_tx2ty")
+rarity = 0
+txtr = SubResource("CompressedTexture2D_6am4l")
+Name = "t"
+description = "est"

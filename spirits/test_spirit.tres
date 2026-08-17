@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" load_steps=4 format=3 uid="uid://bnxpbwyfw0rxo"]
+
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="1_ij0t4"]
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirits/spirit_resource.gd" id="1_o6hqp"]
+[ext_resource type="PackedScene" uid="uid://ubmawdsqley6" path="res://spirits/spirit.tscn" id="2_nnvml"]
+
+[resource]
+script = ExtResource("1_o6hqp")
+quality = 0
+Name = "aa"
+description = "aa"
+icon = ExtResource("1_ij0t4")
+scene = ExtResource("2_nnvml")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

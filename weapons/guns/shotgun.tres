@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://cwrj5qy0inlri"]
+
+[ext_resource type="PackedScene" uid="uid://l1ft2sc4ae4k" path="res://weapons/guns/shotgun.tscn" id="1_scene"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://items/item_resource.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://bicxei245hvmf" path="res://assets/items/weapons/shotgun.png" id="3_bqmts"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_ir")
+isWeapon = true
+itemScene = ExtResource("1_scene")
+rarity = 1
+txtr = ExtResource("3_bqmts")
+Name = "Shotgun"
+description = "Fires a wide spread of pellets. Devastating at close range."
+scale_mod = Vector2(6, 6)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cqdou0k7hc1l7"]
+
+[ext_resource type="Script" uid="uid://dio8v0upa5kmd" path="res://weapons/guns/cursed_tome.gd" id="1_ct"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_proj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ct"]
+size = Vector2(86, 20)
+
+[node name="CursedTome" type="Node2D" unique_id=1999970019]
+script = ExtResource("1_ct")
+damageMod = 6.0
+bulletLifeTimeMod = 0.8
+projectileSpeedMod = 450.0
+shootCooldown = 0.5
+gun = true
+description = "Casts a random spell each attack: Fireball, Ice Spike, or Chain Lightning."
+Name = "Cursed Tome"
+bulletScene = ExtResource("2_proj")
+cameraShakeAmount = 8.0
+knockback_force = 200.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=156417062]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=2071013021]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1754736642]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=161161291]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ct")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtifactResource" load_steps=2 format=3 uid="uid://art_mxvit01"]
+
+[ext_resource type="Script" path="res://artifacts/max_vitality.gd" id="1_art"]
+
+[resource]
+script = ExtResource("1_art")
+artifact_id = "max_vitality"
+artifact_name = "Max Vitality"
+description = "+15% max HP. (+15% per stack)"
+rarity = 0

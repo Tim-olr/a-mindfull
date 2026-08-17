@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dfmxwb1ensjw6"]
+
+[ext_resource type="PackedScene" uid="uid://cqdou0k7hc1l7" path="res://weapons/guns/cursed_tome.tscn" id="1_scene"]
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://items/item_resource.gd" id="2_ir"]
+[ext_resource type="Texture2D" uid="uid://ekj77djq65ai" path="res://assets/items/weapons/cursed_tome.png" id="3_qblwm"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_ir")
+isWeapon = true
+itemScene = ExtResource("1_scene")
+rarity = 3
+txtr = ExtResource("3_qblwm")
+Name = "Cursed Tome"
+description = "Casts a random spell each attack: Fireball, Ice Spike, or Chain Lightning."
+scale_mod = Vector2(6, 6)

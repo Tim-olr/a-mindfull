@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b2rbhbs2uhqb4"]
+
+[ext_resource type="Script" uid="uid://c02o3gb185hpa" path="res://spirits/shift_the_sand/sts_chunk.gd" id="1_yls4x"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_wokg5"]
+[ext_resource type="PackedScene" uid="uid://dfbpffafhyu4r" path="res://assets/other/projectiles/spritemaps/sts_chunk_sprites.tscn" id="3_6av3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yls4x"]
+size = Vector2(86, 20)
+
+[node name="StsChunk" type="Node2D" unique_id=1910925252]
+script = ExtResource("1_yls4x")
+damageMod = 40.0
+bulletLifeTimeMod = 1.5
+bulletAmountMod = 1
+projectileSpeedMod = 100.0
+shootCooldown = 0.65
+gun = true
+description = "STS Chunk gun"
+Name = "STS Chunk "
+bulletScene = ExtResource("2_wokg5")
+doConsecShooting = true
+custom_collision_sizes = Vector2(2.5, 2.5)
+projectile_sprite_scene = ExtResource("3_6av3b")
+bullet_speed_mode = 2
+bullet_end_speed_multiplier = 0.4
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=634957948]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1829053601]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=2081460205]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1040682773]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_yls4x")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

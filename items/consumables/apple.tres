@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://dfekj8b60xk25"]
+
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://items/item_resource.gd" id="1_3spm7"]
+[ext_resource type="PackedScene" uid="uid://c0e033fema0if" path="res://items/consumables/apple.tscn" id="1_vq3h3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3spm7")
+isUsableItem = true
+itemScene = ExtResource("1_vq3h3")
+isStackable = true
+rarity = null
+metadata/_custom_type_script = "uid://eykeum4a21x1"

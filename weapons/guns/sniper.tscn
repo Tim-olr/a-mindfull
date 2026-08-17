@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cj8c0mg5ktkcj"]
+
+[ext_resource type="Script" uid="uid://b58jjd7hnx02e" path="res://weapons/guns/sniper.gd" id="1_tdiu5"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_7jh0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jh0j"]
+size = Vector2(86, 20)
+
+[node name="Sniper" type="Node2D" unique_id=1522400940]
+script = ExtResource("1_tdiu5")
+pierceMod = 3
+damageMod = 5.0
+bulletLifeTimeMod = 2.0
+projectileSpeedMod = 1250.0
+bulletSizeMod = Vector2(0.2, 0.2)
+shootCooldown = 1.0
+gun = true
+description = "High damage, but slow speed"
+Name = "Sniper Rifle"
+bulletScene = ExtResource("2_7jh0j")
+doConsecShooting = true
+cameraShakeAmount = 30.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=177422143]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=2103992637]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=219026010]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1287516905]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_7jh0j")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

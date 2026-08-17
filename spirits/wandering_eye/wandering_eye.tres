@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SpiritResource" format=3 uid="uid://weyres0000001"]
+
+[ext_resource type="Script" uid="uid://bl2g0qklid7xv" path="res://spirits/spirit_resource.gd" id="1_weyres"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_weyres"]
+[ext_resource type="PackedScene" uid="uid://weyspr0000001" path="res://spirits/wandering_eye/wandering_eye.tscn" id="3_weyres"]
+
+[resource]
+script = ExtResource("1_weyres")
+quality = 2
+Name = "Wandering Eye"
+description = "35% smaller, speed +30%. Active: deflect 2 incoming bullets back at enemies."
+icon = ExtResource("2_weyres")
+scene = ExtResource("3_weyres")
+metadata/_custom_type_script = "uid://bl2g0qklid7xv"

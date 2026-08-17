@@ -1,5 +1,8 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1786981652
+::res://::1786983615
+.godot_import_pass1.log::TextFile::-1::1786983386::0::1::::<><><>0<>0<><>::
+.godot_import_pass2.log::TextFile::-1::1786983584::0::1::::<><><>0<>0<><>::
+.godot_import_pass3.log::TextFile::-1::1786983619::0::1::::<><><>0<>0<><>::
 icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1772738358::1772739340::1::::<><><>0<>0<>81340f9a0cc78dd1638d6171a1881f90<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 LICENSE.md::TextFile::-1::1774263726::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1772735592::0::1::::<><><>0<>0<><>::
@@ -182,6 +185,19 @@ fireworks.wav::AudioStreamWAV::8862151449780033529::1774263726::1774263728::1:::
 ::res://addons/ridiculous_coding/sounds/typing/::1774263728
 blip.wav::AudioStreamWAV::4311277633861190701::1774263726::1774263728::1::::<><><>0<>0<>a8c01a222dbacaa09b2293881ae5c55a<>res://.godot/imported/blip.wav-18f3a9059163e88f63e6915e8496ce60.sample::
 typewriter.wav::AudioStreamWAV::1929326941576686422::1774263726::1774263728::1::::<><><>0<>0<>980ac43b117ec3dafb16c086bf9a1237<>res://.godot/imported/typewriter.wav-bbc316c6bf7b5199ec8fff5ba60ba0a4.sample::
+::res://artifacts/::1786983205
+adrenal_syringe.gd::GDScript::8718113628852175533::1781274664::0::1::::<>ArtifactResource<><>0<>0<><>::
+adrenal_syringe.tres::Resource/ArtifactResource::-1::1786983286::0::1::::<><><>0<>0<><>::res://artifacts/adrenal_syringe.gd
+artifact_manager.gd::GDScript::8425421967077622549::1786983286::0::1::::<>Node<><>0<>0<><>::
+artifact_resource.gd::GDScript::7217007219140995087::1781274632::0::1::::ArtifactResource<>Resource<><>0<>0<><>::
+focused_mind.gd::GDScript::5413359901903089044::1781274677::0::1::::<>ArtifactResource<><>0<>0<><>::
+focused_mind.tres::Resource/ArtifactResource::-1::1786983286::0::1::::<><><>0<>0<><>::res://artifacts/focused_mind.gd
+insurance_charm.gd::GDScript::9119042148001491134::1781274668::0::1::::<>ArtifactResource<><>0<>0<><>::
+insurance_charm.tres::Resource/ArtifactResource::-1::1786983286::0::1::::<><><>0<>0<><>::res://artifacts/insurance_charm.gd
+max_vitality.gd::GDScript::575148131172760374::1781274674::0::1::::<>ArtifactResource<><>0<>0<><>::
+max_vitality.tres::Resource/ArtifactResource::-1::1786983286::0::1::::<><><>0<>0<><>::res://artifacts/max_vitality.gd
+weighted_boots.gd::GDScript::8856801788764616622::1781274660::0::1::::<>ArtifactResource<><>0<>0<><>::
+weighted_boots.tres::Resource/ArtifactResource::-1::1786983286::0::1::::<><><>0<>0<><>::res://artifacts/weighted_boots.gd
 ::res://assets/::1775631864
 ::res://assets/fotns/::1775036362
 BoldPixels.ttf::FontFile::8290871462895582857::1775036362::1775036362::1::::<><><>0<>0<>cd650ba95d3c512956570fd18e63718f<>res://.godot/imported/BoldPixels.ttf-f7b94a77639898f40488edb34f4bb2e6.fontdata::
@@ -3874,322 +3890,280 @@ extracting_stone.png::CompressedTexture2D::1886537396571265958::1772739238::1772
 door.png::CompressedTexture2D::4657833033964646258::1778604711::1778604712::1::::<><><>0<>0<>86ade34605d2ff58b8b54c52b84fe393<>res://.godot/imported/door.png-ffb6ce0f6bf4b5398411260a0220d5da.ctex::
 roof.png::CompressedTexture2D::5249044383462815630::1778603971::1778603972::1::::<><><>0<>0<>e69a5d9f298d6ab76b95982d4149d630<>res://.godot/imported/roof.png-6e8caba5219d15486b1595dd8c64241a.ctex::
 wall.png::CompressedTexture2D::2316835419732530667::1778604500::1778604501::1::::<><><>0<>0<>f46657d43b7be75b0a1a1245ba777521<>res://.godot/imported/wall.png-88f969fb6b2341e838cb1dfc9607a3af.ctex::
-::res://resources/::1786953998
-::res://resources/artifacts/::1781274714
-adrenal_syringe.tres::Resource/ArtifactResource::-1::1781274700::0::1::::<><><>0<>0<><>::res://scripts/artifacts/adrenal_syringe.gd
-focused_mind.tres::Resource/ArtifactResource::-1::1781274714::0::1::::<><><>0<>0<><>::res://scripts/artifacts/focused_mind.gd
-insurance_charm.tres::Resource/ArtifactResource::-1::1781274704::0::1::::<><><>0<>0<><>::res://scripts/artifacts/insurance_charm.gd
-max_vitality.tres::Resource/ArtifactResource::-1::1781274708::0::1::::<><><>0<>0<><>::res://scripts/artifacts/max_vitality.gd
-weighted_boots.tres::Resource/ArtifactResource::-1::1781274696::0::1::::<><><>0<>0<><>::res://scripts/artifacts/weighted_boots.gd
-::res://resources/items/::1786954002
-item_resource.tres::Resource::6086874310823407056::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
-::res://resources/items/consumables/::1778531465
-apple.tres::Resource/ItemResource::7519088758616695108::1778531465::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://c0e033fema0if::::res://scenes/items/consumables/apple.tscn
-::res://resources/items/weapons/::1778532092
-assault_rifle.tres::Resource/AssaultRifleRes::7541348588534271592::1774522255::0::1::::<><><>0<>0<><>::uid://bgmhxyrly6au7::::res://scenes/Weapons/guns/assault_rifle.tscn<>uid://btmwaxbgp72yo::::res://scripts/Weapons/resource/assault_rifle.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png
-boomerang.tres::Resource/ItemResource::7558620227792083586::1778531465::0::1::::<><><>0<>0<><>::uid://bgidxivskrc3j::::res://scenes/Weapons/guns/boomerang.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://jj65a1202urh::::res://assets/items/weapons/boomerang.png
-burst_rifle.tres::Resource/ItemResource::5922771840877986696::1778531465::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://dynnweuyhk66l::::res://assets/items/weapons/burst_rifle.png
-crossbow.tres::Resource/ItemResource::4459434452130327021::1778531465::0::1::::<><><>0<>0<><>::uid://cden3rlixpre4::::res://scenes/Weapons/guns/crossbow.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://c6lx4606hxsc4::::res://assets/items/weapons/crossbow.png
-cursed_tome.tres::Resource/ItemResource::7536414673505816463::1778402794::0::1::::<><><>0<>0<><>::uid://cqdou0k7hc1l7::::res://scenes/Weapons/guns/cursed_tome.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://ekj77djq65ai::::res://assets/items/weapons/cursed_tome.png
-dice_gun.tres::Resource/ItemResource::1457152273796529369::1778531465::0::1::::<><><>0<>0<><>::uid://cn8ua7c1mqd::::res://scenes/Weapons/guns/dice_gun.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://ci7ab0u3bn4rf::::res://assets/items/weapons/dice_gun.png
-echo_cannon.tres::Resource/ItemResource::3625809764950280883::1778402795::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/echo_cannon.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://s0vadn2l5qlu::::res://assets/items/weapons/echo_canon.png
-gravity_well.tres::Resource/ItemResource::8769200449438892820::1778402795::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/gravity_well.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://bl5i5ldk0j4b0::::res://assets/items/weapons/gravity_well.png
-nail_gun.tres::Resource/ItemResource::4346585645195007570::1778402795::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/nail_gun.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://eymetv8cg6d6::::res://assets/items/weapons/nailgun.png
-pistol.tres::Resource/ItemResource::6994221830950269835::1778402795::0::1::::<><><>0<>0<><>::uid://c6pwfat6wbqi7::::res://scenes/Weapons/guns/pistol.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://dshj87h0op4bx::::res://assets/items/weapons/pistol.png
-ring_of_rings.tres::Resource/ItemResource::7573443404120214644::1778402795::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/ring_of_rings.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://6aeg1tgts1tv::::res://assets/items/weapons/ring_o_r.png
-shotgun.tres::Resource/ItemResource::6352691254589984638::1778402795::0::1::::<><><>0<>0<><>::uid://l1ft2sc4ae4k::::res://scenes/Weapons/guns/shotgun.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://bicxei245hvmf::::res://assets/items/weapons/shotgun.png
-smg.tres::Resource/ItemResource::5541211939088271222::1772739238::0::1::::<><><>0<>0<><>::uid://c7ugbef8o7i7e::::res://spirit-game-project/scenes/Weapons/guns/smg.tscn<>uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
-sniper.tres::Resource/ItemResource::5879827328243092748::1778402795::0::1::::<><><>0<>0<><>::uid://cj8c0mg5ktkcj::::res://scenes/Weapons/guns/sniper.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://csxt43uil07ay::::res://assets/items/weapons/sniper.png
-sts_chunk.tres::Resource/ItemResource::8846710566689719006::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://b2rbhbs2uhqb4::::res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://dowoda6idxfva::::res://icon.svg
-sts_swift.tres::Resource/ItemResource::4958373944927916418::1772739238::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd<>uid://b6pw0tovbsmg::::res://spirit-game-project/scenes/Weapons/spirit_weapons/STS_swift.tscn<>uid://dowoda6idxfva::::res://icon.svg
-test_laser.tres::Resource/ItemResource::1065285662876794710::1772739238::0::1::::<><><>0<>0<><>::uid://cj07e6dbe35xf::::res://spirit-game-project/scenes/Weapons/spirit_weapons/TestLaser.tscn<>uid://eykeum4a21x1::::res://spirit-game-project/scripts/Player/inventory/items/item_resource.gd
-throwing_knives.tres::Resource/ItemResource::6706489757409000800::1778532092::0::1::::<><><>0<>0<><>::uid://ww801dydkkcg::::res://scenes/Weapons/guns/throwing_knives.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://ddb03agqe7kas::::res://assets/items/weapons/knife.png
-toxic_squirtgun.tres::Resource/ItemResource::3138127528997697363::1778402795::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/toxic_squirtgun.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://c82r47w6t5d78::::res://assets/items/weapons/toxic_sg.png
-wooden_bow.tres::Resource/ItemResource::1532910580957743293::1778402794::0::1::::<><><>0<>0<><>::res://scenes/Weapons/guns/wooden_bow.tscn<>uid://eykeum4a21x1::::res://scripts/Player/inventory/items/item_resource.gd<>uid://bairy0ftf3d31::::res://assets/items/weapons/wooden_bow.png
-::res://resources/spirits/::1772739238
-TestSpirit.tres::Resource/SpiritResource::3347270072862887464::1772739238::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://ubmawdsqley6::::res://spirit-game-project/scenes/main game/spirits/spirit.tscn
-::res://resources/spirits/spirits/::1781269125
-A_PEACEFUL_WORLD.tres::Resource/SpiritResource::452093859692405627::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://di864m3ss3v4a::::res://spirit-game-project/scenes/main game/spirits/spirits/a_peaceful_world.tscn
-CHAIN_THE_FLOOR.tres::Resource/SpiritResource::6117791602542485128::1778165720::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://ctfspr0000001::::res://scenes/main game/spirits/spirits/chain_the_floor.tscn
-FOLLOW_THE_WHEEL.tres::Resource/SpiritResource::-1::1778101288::0::1::::<><><>0<>0<><>::
-FURNITURE_CITY.tres::Resource/SpiritResource::288021632810706675::1781269125::0::1::::<><><>0<>0<><>::uid://cvk3i2x1wp4wa::::res://scenes/main game/spirits/spirits/furniture_city.tscn<>uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd
-JESTERS_GRIN.tres::Resource/SpiritResource::1839598772465758404::1773053622::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd<>uid://p0mh7ox7fi4p::::res://scenes/main game/spirits/spirits/jesers_grin.tscn
-KEEP_ME_CLOSE.tres::Resource/SpiritResource::6266437987637863121::1778534186::0::1::::<><><>0<>0<><>::uid://c7ekf3ejt5u8g::::res://scenes/main game/spirits/spirits/keep_me_close.tscn<>uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd
-LOOK_AT_YOU.tres::Resource/SpiritResource::8423662312332360232::1778101373::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://b2spirlookat::::res://scenes/main game/spirits/spirits/look_at_you.tscn
-SHIFT_THE_SAND.tres::Resource/SpiritResource::6093617858393335230::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://c40vnwtu3jrul::::res://spirit-game-project/scenes/main game/spirits/spirits/shift_the_sand.tscn
-SILVER_BULLET.tres::Resource/SpiritResource::6114614296717684388::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dndtlivdt7geg::::res://spirit-game-project/scenes/main game/spirits/spirits/silver_bullet.tscn
-SLOW_AND_STEADY.tres::Resource/SpiritResource::6780338891788353774::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://bmi78m3rsxqwc::::res://spirit-game-project/scenes/main game/spirits/spirits/slow_and_steady.tscn
-SPREAD_LIKE_FIRE.tres::Resource/SpiritResource::1046671508766707263::1773060371::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cqk0nii4initw::::res://scenes/main game/spirits/spirits/spread_like_fire.tscn
-START_YOUR_ENGINE.tres::Resource/SpiritResource::6226981826557393317::1772739238::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://04gl4ydnwh77::::res://spirit-game-project/scenes/main game/spirits/spirits/start_your_engine.tscn
-WANDERING_EYE.tres::Resource/SpiritResource::6715735614887277192::1778165720::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirit-game-project/scripts/main game/Spirits/SpiritResource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://c2xgrifq60m77::::res://scenes/main game/spirits/spirits/wandering_eye.tscn
-::res://resources/world_gen/::1774903917
-::res://resources/world_gen/biomes/::1774903917
-::res://scenes/::1786953998
-::res://scenes/enemy/::1775034571
-general_enemy.tscn::PackedScene::1856884521571950898::1775034571::0::1::::<><><>0<>0<><>::uid://dk7stsacyc270::::res://scripts/enemy/general_enemy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
-::res://scenes/enemy/enemies/::1786954200
-ardy.tscn::PackedScene::1498868310803678548::1786954197::0::1::::<><><>0<>0<><>::uid://h37umafjgmrp::::res://scripts/enemy/enemies/ardy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://c6pwfat6wbqi7::::res://scenes/Weapons/guns/pistol.tscn<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
-bartholomew.tscn::PackedScene::7634011958775465751::1786954200::0::1::::<><><>0<>0<><>::uid://dq4ncj4j44bnx::::res://scripts/enemy/enemies/bartholomew.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cwbppuqdsjqxj::::res://scenes/Weapons/guns/burst_rifle.tscn<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
-bonkus.tscn::PackedScene::5363401281700494814::1786954198::0::1::::<><><>0<>0<><>::uid://bwr6ybe2ea4mf::::res://scripts/enemy/enemies/bonkus.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://scripts/enemy/enemy_stats.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn
-::res://scenes/generalComponents/::1780425662
-health_bar.tscn::PackedScene::1752478481456652092::1780425662::0::1::::<><><>0<>0<><>::uid://duowp1jcbm06j::::res://scripts/generalComponents/health_bar.gd
-::res://scenes/items/::1786953998
-artifact_interactable.tscn::PackedScene::5890470773861928::1781274691::0::1::::<><><>0<>0<><>::res://scripts/items/artifact_interactable.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
-item_interactable.tscn::PackedScene::5239730394238537641::1774520740::0::1::::<><><>0<>0<><>::uid://bdtr3flr637uv::::res://scripts/items/item_interactable.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
-::res://scenes/items/consumables/::1774515037
-apple.tscn::PackedScene::6537389374977382521::1774515037::0::1::::<><><>0<>0<><>::uid://bgjc5rasvvhty::::res://scripts/items/consumable/apple.gd
-::res://scenes/main game/::1786954030
-game.tscn::PackedScene::5446677219255966895::1786954030::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://bqva4l530dwja::::res://scripts/main game/game.gd<>uid://b8hsu3b3gsqo3::::res://scenes/main game/components/game_starter.tscn<>uid://rm7o5ewaew2x::::res://scenes/main game/The game world/safe_interactable.tscn
-::res://scenes/main game/Buildings/::1778604908
-roof.tscn::PackedScene::5636833107354587868::1774717799::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://scripts/main game/Buildings/roof.gd
-small_building.tscn::PackedScene::5548719790697353482::1778604908::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://scripts/main game/Buildings/roof.gd<>uid://ftxqk5vgknmj::::res://scripts/main game/Buildings/building_chest_spawner.gd<>uid://chestscene001::::res://scenes/main game/The game world/chest.tscn<>uid://dajcxxd7vd00p::::res://scripts/items/chest/chest_loot_entry.gd<>uid://dfekj8b60xk25::::res://resources/items/consumables/apple.tres<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://cf0cv1f4agspd::::res://resources/items/material/scrap.tres<>uid://bqu2g6wu4ec2p::::res://resources/items/material/spirit_core.tres<>uid://cn6ol23tnacen::::res://resources/items/material/wires.tres<>uid://dfxpmuw3163o5::::res://resources/items/weapons/boomerang.tres<>uid://dfmxwb1ensjw6::::res://resources/items/weapons/cursed_tome.tres<>uid://cg6twgxd3uqwx::::res://scripts/items/chest/chest_loot_pool.gd<>uid://cg1w82geqs1ig::::res://assets/world/objects/buildings/roof.png<>uid://8aj68v6iwjst::::res://assets/world/objects/buildings/wall.png<>uid://b7mj3g7xq8sfy::::res://assets/world/objects/buildings/door.png
-::res://scenes/main game/components/::1786953994
-GameManager.tscn::PackedScene::6959828211951700669::1772739238::0::1::::<><><>0<>0<><>::uid://du3bcindtvcx0::::res://spirit-game-project/scripts/main game/game_manager.gd
-game_starter.tscn::PackedScene::4718233263254027240::1772739315::0::1::::<><><>0<>0<><>::uid://54yy3rrwjxy::::res://scripts/main game/components/game_starter.gd
-interactable.tscn::PackedScene::5170101297481278799::1772739238::0::1::::<><><>0<>0<><>::uid://bkw1rrnmt1nl2::::res://spirit-game-project/scripts/main game/components/interactable.gd
-::res://scenes/main game/components/PlayerComponents/::1781270460
-component.gd::GDScript::3875574797344963513::1781270460::0::1::::Component<>Node<><>0<>0<><>::
-::res://scenes/main game/components/PlayerComponents/spirits/::1781271516
-furniture_city_boost.gd::GDScript::1409038767494242597::1781271463::0::1::::FcBoost<>Component<><>0<>0<><>::
-furniture_city_boost.tscn::PackedScene::441689510201565187::1781271516::0::1::::<><><>0<>0<><>::uid://ucswsaklks2h::::res://scenes/main game/components/PlayerComponents/spirits/furniture_city_boost.gd
-::res://scenes/main game/Spawner/::1786954002
-enemy_spawner.tscn::PackedScene::9217583839858452731::1775999101::0::1::::<><><>0<>0<><>::uid://coqmkgx6f1afe::::res://scripts/main game/spawner/enemy_spawner.gd<>uid://vmce3i1bf5v1::::res://scenes/enemy/enemies/ardy.tscn
-spawn_pos.gd::GDScript::7270885900751707916::1774677770::0::1::::SpawnPosHolder<>Node2D<><>0<>0<><>::
-::res://scenes/main game/spirits/::1786953989
-spirit.tscn::PackedScene::1406571015415678263::1773909609::0::1::::<><><>0<>0<><>::uid://odgjkiyrneke::::res://scripts/main game/Spirits/spirit.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/spirits/spirits/::1786953989
-a_peaceful_world.tscn::PackedScene::7790831955244280046::1773909558::0::1::::<><><>0<>0<><>::uid://cx7mnhm1efw77::::res://scripts/main game/Spirits/spirits/a_peaceful_world.gd<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-chain_the_floor.tscn::PackedScene::6117871910744855304::1778166637::0::1::::<><><>0<>0<><>::uid://f0f5xmnr0dfg::::res://scripts/main game/Spirits/spirits/chain_the_floor.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://ctfwpn0000001::::res://scenes/Weapons/spirit_weapons/chain_the_floor.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-follow_the_wheel.tscn::PackedScene::1416608003449932529::1778136188::0::1::::<><><>0<>0<><>::uid://mqr1apbu844j::::res://scripts/main game/Spirits/spirits/follow_the_wheel.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://b2wftwheel::::res://scenes/Weapons/spirit_weapons/follow_the_wheel.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-furniture_city.tscn::PackedScene::6269166678346479800::1781272786::0::1::::<><><>0<>0<><>::uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd<>uid://cv6oxwtg0f52w::::res://scripts/main game/Spirits/spirits/furniture_city.gd<>uid://de6ar1scjio2u::::res://scenes/Weapons/spirit_weapons/furniture_city.tscn
-jesers_grin.tscn::PackedScene::1105184906354962705::1775770669::0::1::::<><><>0<>0<><>::uid://b2a0fykxtq3s1::::res://scripts/main game/Spirits/spirits/jesers_grin.gd<>uid://c88ikobhaor73::::res://scenes/Weapons/spirit_weapons/jesters_grin.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-keep_me_close.tscn::PackedScene::7027759450985200888::1778975925::0::1::::<><><>0<>0<><>::uid://clmioc8lvnee4::::res://scripts/main game/Spirits/spirits/keep_me_close.gd<>uid://cj07e6dbe35xf::::res://scenes/Weapons/spirit_weapons/TestLaser.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd<>uid://d2qu0v6iq7wcq::::res://assets/other/spirits/keep_me_close.png
-look_at_you.tscn::PackedScene::127047182743552555::1778102124::0::1::::<><><>0<>0<><>::uid://db5bfqkbwpm8a::::res://scripts/main game/Spirits/spirits/look_at_you.gd<>uid://bsmiimrqb81t5::::res://scenes/Projectile/LaserProjectile.tscn<>uid://b2wlookatyou::::res://scenes/Weapons/spirit_weapons/look_at_you.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-shift_the_sand.tscn::PackedScene::6861226734720982079::1778105010::0::1::::<><><>0<>0<><>::uid://d31ktld32j6nb::::res://scripts/main game/Spirits/spirits/shift_the_sand.gd<>uid://b2rbhbs2uhqb4::::res://scenes/Weapons/spirit_weapons/STS_Chunk.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd<>uid://cdgorluhellmn::::res://assets/other/spirits/sts_spirit_sheet.png
-silver_bullet.tscn::PackedScene::8079083871022075510::1775996717::0::1::::<><><>0<>0<><>::uid://bkwsciciajwil::::res://scripts/main game/Spirits/spirits/silver_bullet.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cx624efybkweb::::res://scenes/Weapons/spirit_weapons/silver_bullet.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-slow_and_steady.tscn::PackedScene::3247204378681461158::1775997758::0::1::::<><><>0<>0<><>::uid://byxccfeyfqido::::res://scripts/main game/Spirits/spirits/slow_and_steady.gd<>uid://c8ptl0a5yo1sq::::res://scenes/Weapons/spirit_weapons/slow_and_steady.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-spread_like_fire.tscn::PackedScene::5918048217149318596::1775997886::0::1::::<><><>0<>0<><>::uid://dfp3akm017jtm::::res://scripts/main game/Spirits/spirits/spread_like_fire.gd<>uid://7kvpjm62stgy::::res://scenes/Weapons/spirit_weapons/spread_like_fire.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-start_your_engine.tscn::PackedScene::1814973551915108444::1775820613::0::1::::<><><>0<>0<><>::uid://nin568tacu87::::res://scripts/main game/Spirits/spirits/start_your_engine.gd<>uid://blhyo4ujkh0t4::::res://scenes/Weapons/spirit_weapons/start_your_engine.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-wandering_eye.tscn::PackedScene::6715815923089647368::1778166403::0::1::::<><><>0<>0<><>::uid://bs84o0cegqaem::::res://scripts/main game/Spirits/spirits/wandering_eye.gd<>uid://c2xdtafq60m77::::res://scenes/Projectile/growing_projectile.tscn<>uid://c2xkrefq60m77::::res://scenes/Weapons/spirit_weapons/wandering_eye.tscn<>uid://d1kadck0o1wfw::::res://scripts/main game/Spirits/stats.gd
-::res://scenes/main game/The game world/::1786954373
-chest.tscn::PackedScene::5273548568531869760::1778143653::0::1::::<><><>0<>0<><>::res://scripts/main game/the game world/chest_interactable.gd
-chest_ui.tscn::PackedScene::155104373053482408::1780425836::0::1::::<><><>0<>0<><>::res://scripts/items/chest/chest_ui.gd
-extraction_point.tscn::PackedScene::7228370094195798612::1778535688::0::1::::<><><>0<>0<><>::uid://bi72xqebn68j8::::res://scripts/main game/the game world/extraction_point.gd<>uid://14383tcq1fb7::::res://assets/world/extraction/extracting_stone.png
-safe_interactable.tscn::PackedScene::1219952402657948133::1774445971::0::1::::<><><>0<>0<><>::uid://rlxyac54uxl7::::res://scripts/main game/the game world/safe_interactable.gd<>uid://dowoda6idxfva::::res://icon.svg
-the_world.tscn::PackedScene::2887004937877063605::1786954373::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://scenes/Player/player.tscn<>uid://dby2ukjy8dom4::::res://scripts/main game/the game world/the_world.gd<>uid://da8qg1qf0g4wu::::res://scenes/main game/The game world/extraction_point.tscn
-::res://scenes/main game/ui/::1780426453
-map_ui.tscn::PackedScene::24800383953035336::1780426453::0::1::::<><><>0<>0<><>::res://scripts/main game/ui/map_ui.gd
-time_of_day_widget.tscn::PackedScene::3738407614657611::1778102161::0::1::::<><><>0<>0<><>::res://scripts/main game/ui/time_of_day_widget.gd
-::res://scenes/Physics objects/::1786955619
-physics_object.tscn::PackedScene::3975504774845032990::1786955619::0::1::::<><><>0<>0<><>::uid://cf00aahfatipu::::res://scripts/Physics objects/physics_object.gd<>uid://dowoda6idxfva::::res://icon.svg
-::res://scenes/Physics objects/spirits/::1778166687
-bullet_deflector.tscn::PackedScene::1553875989135231752::1778165720::0::1::::<><><>0<>0<><>::res://scripts/Physics objects/spirits/bullet_deflector.gd
-chain_trap.tscn::PackedScene::6117936094278731272::1778166687::0::1::::<><><>0<>0<><>::uid://bg5f34ckjk0fe::::res://scripts/Physics objects/spirits/chain_trap.gd<>uid://dowoda6idxfva::::res://icon.svg
-jesters_grin_bomb.tscn::PackedScene::2901184816296939696::1775771155::0::1::::<><><>0<>0<><>::uid://cnbc22a0lhy43::::res://scripts/Physics objects/spirits/jesters_grin_bomb.gd<>uid://cog51xqj66r5::::res://assets/other/projectiles/jesters_grin_bomb.png<>uid://cybyemvq7ucnh::::res://assets/other/projectiles/explosion-Sheet.png
-::res://scenes/Player/::1786954076
-player.tscn::PackedScene::538315797829068015::1786954076::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://scripts/Player/player_movement.gd<>uid://b0nykv8sstij6::::res://scripts/Player/player.gd<>uid://c2plpl8yv0n81::::res://scripts/Player/player_stats.gd<>uid://edrw6nhv1nlj::::res://resources/spirits/spirits/FURNITURE_CITY.tres<>uid://84meb3bqjfvg::::res://scripts/Player/player_manager.gd<>uid://6rsohixmelnm::::res://scripts/Player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://scenes/Player/inventory/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://scripts/Player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://scripts/Player/player_specials.gd<>uid://jqii235rbcqp::::res://scenes/Player/inventory/Inventory.tscn<>uid://dj1cj1xd2h1ka::::res://scripts/Player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://scenes/generalComponents/health_bar.tscn<>uid://8kvscpbrp3bp::::res://assets/player/charcater.png<>uid://c3ukum4ox8wcs::::res://scripts/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://scripts/shaders/blue_filter.gdshader<>uid://dbvwhgdhuymig::::res://scripts/Player/player_components.gd
-::res://scenes/Player/inventory/::1786954269
-cursor_held_item.tscn::PackedScene::182730337436985392::1780430421::0::1::::<><><>0<>0<><>::uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader
-global_safe.tscn::PackedScene::2288761494559151764::1772739238::0::1::::<><><>0<>0<><>::uid://cn7yvsmy5gls3::::res://spirit-game-project/scripts/Player/inventory/safe/global_safe.gd
-Inventory.tscn::PackedScene::665231121871418895::1786954269::0::1::::<><><>0<>0<><>::uid://td88g75lk23b::::res://scripts/Player/inventory/inventory.gd
-InventorySlot.tscn::PackedScene::4984154365598050328::1780430770::0::1::::<><><>0<>0<><>::uid://cn5m8hl2xgbts::::res://scripts/Player/inventory/inventory_slot.gd<>uid://b00dsthkd2ybg::::res://scripts/shaders/outline.gdshader<>uid://cch44qg2ac5du::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png
-item_tooltip.tscn::PackedScene::1987230227451178360::1780430349::0::1::::<><><>0<>0<><>::
-::res://scenes/Player/inventory/safe/::1786954126
-background.gd::GDScript::8708892759909534738::1780471293::0::1::::TileScaleContainer<>NinePatchRect<><>0<>1<><>::
-safe_ui.tscn::PackedScene::7605912502465031823::1786954126::0::1::::<><><>0<>0<><>::uid://dmjpslqlj8ida::::res://scripts/Player/inventory/safe/safeUi.gd<>uid://cch44qg2ac5du::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png
-::res://scenes/Projectile/::1786953989
-growing_projectile.tscn::PackedScene::6715636923512356616::1778166517::0::1::::<><><>0<>0<><>::uid://bikccqs3avus::::res://scripts/Projectiles/growing_projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
-LaserProjectile.tscn::PackedScene::3675093081791279844::1775995710::0::1::::<><><>0<>0<><>::uid://ouniiaosl7n::::res://scripts/Projectiles/laser_projectile.gd
-projectile.tscn::PackedScene::735860708976404182::1778534462::0::1::::<><><>0<>0<><>::uid://b2jv88fufhq1::::res://scripts/Projectiles/projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
-swap_projectile.tscn::PackedScene::3863086996259649112::1781272488::0::1::::<><><>0<>0<><>::res://scripts/Projectiles/swap_projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
-::res://scenes/Weapons/::1786954002
-weapon.tscn::PackedScene::5404005754440387073::1776000524::0::1::::<><><>0<>0<><>::uid://yt26tbo0l8dw::::res://scripts/Weapons/weapon.gd
-::res://scenes/Weapons/guns/::1786953989
-assault_rifle.tscn::PackedScene::2832793658134349920::1775632032::0::1::::<><><>0<>0<><>::uid://cfghi8o63dudf::::res://scripts/Weapons/guns/assault_rifle.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-boomerang.tscn::PackedScene::2824292445251451889::1778534427::0::1::::<><><>0<>0<><>::uid://nosri6crlt4e::::res://scripts/Weapons/guns/boomerang.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://c4gnsxf0k776t::::res://assets/other/projectiles/spritemaps/boomerang_spritemap.tscn
-BowChargeBar.gd::GDScript::4991258923962123657::1778603365::0::1::::<>Node2D<><>0<>0<><>::
-burst_rifle.tscn::PackedScene::6319998922321651615::1775768304::0::1::::<><><>0<>0<><>::uid://dwgbqg2e5ykv4::::res://scripts/Weapons/guns/burst_rifle.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-crossbow.tscn::PackedScene::4992505642736469009::1778404406::0::1::::<><><>0<>0<><>::uid://dnx417brwq17b::::res://scripts/Weapons/guns/crossbow.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://xc67mug4arbe::::res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn
-cursed_tome.tscn::PackedScene::5902943082628922750::1778360826::0::1::::<><><>0<>0<><>::uid://dio8v0upa5kmd::::res://scripts/Weapons/guns/cursed_tome.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-dice_gun.tscn::PackedScene::4978059537590595::1778404062::0::1::::<><><>0<>0<><>::uid://cv8a6fuw4tnt3::::res://scripts/Weapons/guns/dice_gun.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://dyx8y43jva0h1::::res://assets/other/projectiles/spritemaps/dice_spritemap.tscn
-echo_cannon.tscn::PackedScene::-1::1778360530::0::1::::<><><>0<>0<><>::res://scripts/Weapons/guns/echo_cannon.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-gravity_well.tscn::PackedScene::-1::1778360530::0::1::::<><><>0<>0<><>::res://scripts/Weapons/guns/gravity_well.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-nail_gun.tscn::PackedScene::-1::1778360530::0::1::::<><><>0<>0<><>::res://scripts/Weapons/guns/nail_gun.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-pistol.tscn::PackedScene::6981005920075728888::1778534972::0::1::::<><><>0<>0<><>::uid://cwnmwn3j0i1hx::::res://scripts/Weapons/guns/pistol.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-ring_of_rings.tscn::PackedScene::-1::1778360530::0::1::::<><><>0<>0<><>::res://scripts/Weapons/guns/ring_of_rings.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-shotgun.tscn::PackedScene::826090062738499332::1775035958::0::1::::<><><>0<>0<><>::uid://cc7n7yq1i6bfp::::res://scripts/Weapons/guns/shotgun.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-smg.tscn::PackedScene::7060538225971706020::1773837221::0::1::::<><><>0<>0<><>::uid://bj8uf8qsrrin1::::res://scripts/Weapons/guns/smg.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://ck7g7loj24uwc::::res://resources/items/weapons/smg.tres
-sniper.tscn::PackedScene::5472832145771834221::1775035957::0::1::::<><><>0<>0<><>::uid://b58jjd7hnx02e::::res://scripts/Weapons/guns/sniper.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-throwing_knives.tscn::PackedScene::1591620547571324082::1778403657::0::1::::<><><>0<>0<><>::uid://dy57mess3icf5::::res://scripts/Weapons/guns/throwing_knives.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cogb701r6v63q::::res://assets/other/projectiles/spritemaps/throwing_knife_sprites.tscn
-toxic_squirtgun.tscn::PackedScene::-1::1778360530::0::1::::<><><>0<>0<><>::res://scripts/Weapons/guns/toxic_squirtgun.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-wooden_bow.tscn::PackedScene::5091064827343721363::1778603365::0::1::::<><><>0<>0<><>::uid://dkl4htufgx8r3::::res://scripts/Weapons/guns/wooden_bow.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://xc67mug4arbe::::res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn<>uid://cdd2km4mxkprl::::res://scenes/Weapons/guns/BowChargeBar.gd
-::res://scenes/Weapons/spirit_weapons/::1781272806
-chain_the_floor.tscn::PackedScene::6118114568622520584::1778165720::0::1::::<><><>0<>0<><>::res://scripts/Weapons/spirit_weapons/chain_the_floor.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-fc_active.tscn::PackedScene::6437697571685019683::1781272806::0::1::::<><><>0<>0<><>::uid://c5v1jn0fowj7p::::res://scripts/Weapons/spirit_weapons/fc_active.gd<>uid://bvbkqjb8v7rc7::::res://scenes/Projectile/swap_projectile.tscn
-follow_the_wheel.tscn::PackedScene::110097558876251::1778136176::0::1::::<><><>0<>0<><>::uid://ctvey6of8wbni::::res://scripts/Weapons/spirit_weapons/follow_the_wheel.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-furniture_city.tscn::PackedScene::7504044888020481650::1781269749::0::1::::<><><>0<>0<><>::uid://b54rb0d3r8ru0::::res://scripts/Weapons/spirit_weapons/furniture_city.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-jesters_grin.tscn::PackedScene::7157702004396749488::1775035908::0::1::::<><><>0<>0<><>::uid://bg4111ttosr0g::::res://scripts/Weapons/spirit_weapons/jesters_grin.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-look_at_you.tscn::PackedScene::-1::1778102257::0::1::::<><><>0<>0<><>::
-silver_bullet.tscn::PackedScene::6452871847174364289::1775996975::0::1::::<><><>0<>0<><>::uid://ck2nmc60vxovr::::res://scripts/Weapons/spirit_weapons/silver_bullet.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-slf_fire_ring.tscn::PackedScene::1281020644612643680::1775998642::0::1::::<><><>0<>0<><>::uid://c07ssb2a20065::::res://scripts/Weapons/spirit_weapons/slf_fire_ring.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://df2mywph5xba0::::res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
-slow_and_steady.tscn::PackedScene::7121213454827153420::1775997710::0::1::::<><><>0<>0<><>::uid://degj5d3x3gf8g::::res://scripts/Weapons/spirit_weapons/slow_and_steady.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn
-spread_like_fire.tscn::PackedScene::2267989110407416400::1775998686::0::1::::<><><>0<>0<><>::uid://xfmjjvo61u83::::res://scripts/Weapons/spirit_weapons/spread_like_fire.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://df2mywph5xba0::::res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
-start_your_engine.tscn::PackedScene::3174432371426768767::1775997491::0::1::::<><><>0<>0<><>::uid://c2o28nt1cyagi::::res://scripts/Weapons/spirit_weapons/start_your_engine.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://dwv3bukgyy6oh::::res://assets/other/projectiles/spritemaps/SYE_proj_sprites.tscn
-STS_Chunk.tscn::PackedScene::4316687182872698839::1775996074::0::1::::<><><>0<>0<><>::uid://c02o3gb185hpa::::res://scripts/Weapons/spirit_weapons/sts_chunk.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://dfbpffafhyu4r::::res://assets/other/projectiles/spritemaps/sts_chunk_sprites.tscn
-STS_swift.tscn::PackedScene::135135939470547134::1775996397::0::1::::<><><>0<>0<><>::uid://3qlpy1xpbgo0::::res://scripts/Weapons/spirit_weapons/sts_swift.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://cugsnng3qlmlx::::res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn
-TestLaser.tscn::PackedScene::5458102123834318859::1775995806::0::1::::<><><>0<>0<><>::uid://d1nawydecsmi7::::res://scripts/Weapons/spirit_weapons/keep_me_close.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://xtt53okqaoh3::::res://assets/other/projectiles/spritemaps/KMC_sprites.tscn<>uid://bsmiimrqb81t5::::res://scenes/Projectile/LaserProjectile.tscn
-wandering_eye.tscn::PackedScene::6716058580967312648::1778597552::0::1::::<><><>0<>0<><>::uid://bu8rd7b6sp3hj::::res://scripts/Weapons/spirit_weapons/wandering_eye.gd<>uid://c2xdtafq60m77::::res://scenes/Projectile/growing_projectile.tscn
-::res://scripts/::1781274632
-::res://scripts/artifacts/::1786955633
-adrenal_syringe.gd::GDScript::8718113628852175533::1781274664::0::1::::<>ArtifactResource<><>0<>0<><>::
-artifact_manager.gd::GDScript::8425421967077622549::1786955633::0::1::::<>Node<><>0<>0<><>::
-artifact_resource.gd::GDScript::7217007219140995087::1781274632::0::1::::ArtifactResource<>Resource<><>0<>0<><>::
-focused_mind.gd::GDScript::5413359901903089044::1781274677::0::1::::<>ArtifactResource<><>0<>0<><>::
-insurance_charm.gd::GDScript::9119042148001491134::1781274668::0::1::::<>ArtifactResource<><>0<>0<><>::
-max_vitality.gd::GDScript::575148131172760374::1781274674::0::1::::<>ArtifactResource<><>0<>0<><>::
-weighted_boots.gd::GDScript::8856801788764616622::1781274660::0::1::::<>ArtifactResource<><>0<>0<><>::
-::res://scripts/enemy/::1786954179
+::res://enemies/::1786983199
+ardy.gd::GDScript::551103772746181345::1772739238::0::1::::<>Enemy<><>0<>0<><>::
+ardy.tscn::PackedScene::1498868310803678548::1786983286::0::1::::<><><>0<>0<><>::uid://h37umafjgmrp::::res://enemies/ardy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://enemies/enemy_stats.gd<>uid://c6pwfat6wbqi7::::res://weapons/guns/pistol.tscn<>uid://y76cgvbr6xds::::res://ui/health_bar.tscn
+bartholomew.gd::GDScript::8342943914607621997::1772739238::0::1::::<>Enemy<><>0<>0<><>::
+bartholomew.tscn::PackedScene::7634011958775465751::1786983286::0::1::::<><><>0<>0<><>::uid://dq4ncj4j44bnx::::res://enemies/bartholomew.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cwbppuqdsjqxj::::res://weapons/guns/burst_rifle.tscn<>uid://dy4dm2rf2s1vh::::res://enemies/enemy_stats.gd<>uid://y76cgvbr6xds::::res://ui/health_bar.tscn
+bonkus.gd::GDScript::3967594811313011121::1772739238::0::1::::<>Enemy<><>0<>0<><>::
+bonkus.tscn::PackedScene::5363401281700494814::1786983286::0::1::::<><><>0<>0<><>::uid://bwr6ybe2ea4mf::::res://enemies/bonkus.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://enemies/enemy_stats.gd<>uid://y76cgvbr6xds::::res://ui/health_bar.tscn
 enemy_stats.gd::GDScript::8903866278421097433::1773054840::0::1::::<>Node2D<><>0<>0<><>::
 general_enemy.gd::GDScript::7928338357086885653::1786954179::0::1::::Enemy<>CharacterBody2D<><>0<>0<><>::
-::res://scripts/enemy/enemies/::1772739238
-ardy.gd::GDScript::551103772746181345::1772739238::0::1::::<>Enemy<><>0<>0<><>::
-bartholomew.gd::GDScript::8342943914607621997::1772739238::0::1::::<>Enemy<><>0<>0<><>::
-bonkus.gd::GDScript::3967594811313011121::1772739238::0::1::::<>Enemy<><>0<>0<><>::
-::res://scripts/generalComponents/::1780425672
-health_bar.gd::GDScript::8593304152749275643::1780425672::0::1::::<>ProgressBar<><>0<>0<><>::
-::res://scripts/global/::1786953998
-fog_of_war.gd::GDScript::4820142107763382649::1779016340::0::1::::<>Node<><>0<>0<><>::
-GlobalhitMarker.gd::GDScript::606279210741741433::1775121336::0::1::::<>Node<><>0<>0<><>::
-loot_pool_manager.gd::GDScript::5920603640142419907::1778360530::0::1::::<>Node<><>0<>0<><>::
-weapon_registry.gd::GDScript::2548537616136259430::1778360530::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/items/::1786955097
+general_enemy.tscn::PackedScene::1856884521571950898::1786983286::0::1::::<><><>0<>0<><>::uid://dk7stsacyc270::::res://enemies/general_enemy.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dy4dm2rf2s1vh::::res://enemies/enemy_stats.gd<>uid://y76cgvbr6xds::::res://ui/health_bar.tscn
+::res://game/::1786983210
+game.gd::GDScript::3552846528166844466::1786954045::0::1::::<>Node2D<><>0<>0<><>::
+game.tscn::PackedScene::5446677219255966895::1786983286::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://player/player.tscn<>uid://bqva4l530dwja::::res://game/game.gd<>uid://b8hsu3b3gsqo3::::res://game/game_starter.tscn<>uid://rm7o5ewaew2x::::res://world/safe_interactable.tscn
+game_manager.gd::GDScript::8620906229965984551::1773834192::0::1::::<>Node2D<><>0<>0<><>::
+game_manager.tscn::PackedScene::6959828211951700669::1786983286::0::1::::<><><>0<>0<><>::uid://du3bcindtvcx0::::res://game/game_manager.gd
+game_starter.gd::GDScript::63736289076661162::1786983286::0::1::::<>Interactable<><>0<>0<><>::
+game_starter.tscn::PackedScene::4718233263254027240::1786983286::0::1::::<><><>0<>0<><>::uid://54yy3rrwjxy::::res://game/game_starter.gd
+::res://items/::1786983201
 artifact_interactable.gd::GDScript::3480501756108223056::1781274683::0::1::::ArtifactInteractable<>Interactable<><>0<>0<><>::
+artifact_interactable.tscn::PackedScene::5890470773861928::1786983286::0::1::::<><><>0<>0<><>::res://items/artifact_interactable.gd<>uid://b00dsthkd2ybg::::res://shared/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
 item.gd::GDScript::3995992329048961044::1774442196::0::1::::Item<>Node<><>0<>0<><>::
 item_interactable.gd::GDScript::2637292863465267053::1778976261::0::1::::ItemInteractable<>Interactable<><>0<>0<><>::
-::res://scripts/items/chest/::1780425900
+item_interactable.tscn::PackedScene::5239730394238537641::1786983286::0::1::::<><><>0<>0<><>::uid://bdtr3flr637uv::::res://items/item_interactable.gd<>uid://b00dsthkd2ybg::::res://shared/shaders/outline.gdshader<>uid://dxljrs61nfhmg::::res://assets/items/consumables/apple.png
+item_resource.gd::GDScript::330915824076223624::1778147591::0::1::::ItemResource<>Resource<><>0<>0<><>::
+item_resource.tres::Resource::6086874310823407056::1786983286::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://items/item_resource.gd
+loot_pool_manager.gd::GDScript::5920603640142419907::1778360530::0::1::::<>Node<><>0<>0<><>::
+::res://items/chest/::1786983202
+chest.tscn::PackedScene::5273548568531869760::1786983286::0::1::::<><><>0<>0<><>::res://items/chest/chest_interactable.gd
+chest_interactable.gd::GDScript::1454054729456404203::1786983286::0::1::::ChestInteractable<>Interactable<><>0<>0<><>::
 chest_loot_entry.gd::GDScript::7178005172264797549::1778143399::0::1::::ChestLootEntry<>Resource<><>0<>0<><>::
 chest_loot_pool.gd::GDScript::5259163400763851459::1779016340::0::1::::ChestLootPool<>Resource<><>0<>0<><>::
 chest_ui.gd::GDScript::423933414716373871::1780425900::0::1::::ChestUI<>Control<><>0<>0<><>::
-::res://scripts/items/consumable/::1772739238
+chest_ui.tscn::PackedScene::155104373053482408::1786983286::0::1::::<><><>0<>0<><>::res://items/chest/chest_ui.gd
+::res://items/consumables/::1786983201
 apple.gd::GDScript::2826309046854200434::1772739238::0::1::::<>Item<><>0<>0<><>::
-::res://scripts/main game/::1786955097
-day_night_cycle.gd::GDScript::4412758453891646743::1786954360::0::1::::<>Node<><>0<>0<><>::
-game.gd::GDScript::3552846528166844466::1786954045::0::1::::<>Node2D<><>0<>0<><>::
-game_manager.gd::GDScript::8620906229965984551::1773834192::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/main game/Buildings/::1778603758
-building_chest_spawner.gd::GDScript::391593031593608997::1778603318::0::1::::<>Node2D<><>0<>0<><>::
-roof.gd::GDScript::3552219375477647625::1778603758::0::1::::Roof<>Area2D<><>0<>0<><>::
-::res://scripts/main game/components/::1786953994
-game_starter.gd::GDScript::63736289076661162::1778104095::0::1::::<>Interactable<><>0<>0<><>::
-interactable.gd::GDScript::3135335344522113925::1774442984::0::1::::Interactable<>Area2D<><>0<>0<><>::
-::res://scripts/main game/pools/::1774679212
-building_pools.gd::GDScript::5119710041203974813::1774679212::0::1::::<>Node<><>0<>0<><>::
-pools.gd::GDScript::8487825936942937670::1774679181::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/main game/spawner/::1786954002
-enemy_spawner.gd::GDScript::5789262036322662766::1775039985::0::1::::EnemySpawner<>Node2D<><>0<>0<><>::
-spawners.gd::GDScript::8203460917407428188::1775032307::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/main game/Spirits/::1781274744
-spirit.gd::GDScript::989217857001996128::1781274744::0::1::::Spirit<>CharacterBody2D<><>0<>0<><>::
-SpiritResource.gd::GDScript::3214645966207574939::1772739238::0::1::::SpiritResource<>Resource<><>0<>0<><>::
-stats.gd::GDScript::9004821242240843880::1773913718::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/main game/Spirits/spirits/::1781274095
-a_peaceful_world.gd::GDScript::6453997065812814432::1772739238::0::1::::<>Spirit<><>0<>0<><>::
-chain_the_floor.gd::GDScript::402912048011706292::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-follow_the_wheel.gd::GDScript::876374810485462143::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-furniture_city.gd::GDScript::6311695090490518492::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-jesers_grin.gd::GDScript::4283047592788176126::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-keep_me_close.gd::GDScript::5570202074063690381::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-look_at_you.gd::GDScript::7291452729198505610::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-shift_the_sand.gd::GDScript::9178865178261549551::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-silver_bullet.gd::GDScript::3134822331760618939::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-slow_and_steady.gd::GDScript::4118558894816334308::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-spread_like_fire.gd::GDScript::7542872556320876278::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-start_your_engine.gd::GDScript::929814564115786242::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-wandering_eye.gd::GDScript::3719731445330303732::1781274095::0::1::::<>Spirit<><>0<>0<><>::
-::res://scripts/main game/the game world/::1786954294
-chest_interactable.gd::GDScript::1454054729456404203::1779017279::0::1::::ChestInteractable<>Interactable<><>0<>0<><>::
-extraction_point.gd::GDScript::3015672799608664767::1786954219::0::1::::<>Interactable<><>0<>0<><>::
-GlobalWorld.gd::GDScript::6212807511060831612::1772739238::0::1::::<>Node<><>0<>0<><>::
-safe_interactable.gd::GDScript::1217357851520792610::1774442991::0::1::::<>Interactable<><>0<>0<><>::
-the_world.gd::GDScript::7280671575768987605::1786954294::0::1::::<>Node2D<><>0<>0<><>::
-::res://scripts/main game/ui/::1786954221
-map_ui.gd::GDScript::7653603907368678715::1786954221::0::1::::<>Control<><>0<>0<><>::
-time_of_day_widget.gd::GDScript::2102463001243595841::1778102141::0::1::::<>Control<><>0<>0<><>::
-::res://scripts/Physics objects/::1786955619
-physics_object.gd::GDScript::2127549558564066716::1786955364::0::1::::PhysicsObject<>StaticBody2D<><>0<>0<><>::
-::res://scripts/Physics objects/spirits/::1778165846
-bullet_deflector.gd::GDScript::6502907716416090219::1778165720::0::1::::<>Node2D<><>0<>0<><>::
-chain_trap.gd::GDScript::2869840192069824434::1778165720::0::1::::<>Node2D<><>0<>0<><>::
-jesters_grin_bomb.gd::GDScript::5687531782136991070::1775771097::0::1::::<>PhysicsObject<><>0<>0<><>::
-::res://scripts/Player/::1786955625
-GlobalPlayer.gd::GDScript::3634137497432277414::1781269914::0::1::::<>Node<><>0<>0<><>::
+apple.tres::Resource/ItemResource::7519088758616695108::1786983286::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://c0e033fema0if::::res://items/consumables/apple.tscn
+apple.tscn::PackedScene::6537389374977382521::1786983286::0::1::::<><><>0<>0<><>::uid://bgjc5rasvvhty::::res://items/consumables/apple.gd
+::res://player/::1786983186
+global_player.gd::GDScript::3634137497432277414::1781269914::0::1::::<>Node<><>0<>0<><>::
 player.gd::GDScript::4169454906023678633::1781269954::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::538315797829068015::1786983286::0::1::::<><><>0<>0<><>::uid://dnv2nppsb62ti::::res://player/player_movement.gd<>uid://b0nykv8sstij6::::res://player/player.gd<>uid://c2plpl8yv0n81::::res://player/player_stats.gd<>uid://edrw6nhv1nlj::::res://spirits/furniture_city/furniture_city.tres<>uid://84meb3bqjfvg::::res://player/player_manager.gd<>uid://6rsohixmelnm::::res://player/player_visuals.gd<>uid://dgmmjdo2t04f0::::res://player/safe/safe_ui.tscn<>uid://cqkje5nuohlnc::::res://player/inventory/player_inventory.gd<>uid://bhf43mahuarph::::res://player/player_specials.gd<>uid://jqii235rbcqp::::res://player/inventory/inventory.tscn<>uid://dj1cj1xd2h1ka::::res://player/camera/camera_2d.gd<>uid://y76cgvbr6xds::::res://ui/health_bar.tscn<>uid://8kvscpbrp3bp::::res://assets/player/charcater.png<>uid://c3ukum4ox8wcs::::res://shared/shaders/grayscale.gdshader<>uid://ceveomwowsu7d::::res://shared/shaders/blue_filter.gdshader<>uid://dbvwhgdhuymig::::res://player/player_components.gd
 player_components.gd::GDScript::7274151422071033574::1781270246::0::1::::PlayerComponents<>Node2D<><>0<>0<><>::
-player_manager.gd::GDScript::2376834637856670156::1786954208::0::1::::PlayerManager<>Node2D<><>0<>0<><>::
+player_manager.gd::GDScript::2376834637856670156::1786983286::0::1::::PlayerManager<>Node2D<><>0<>0<><>::
 player_movement.gd::GDScript::8116732337177180290::1786955625::0::1::::PlayerMovement<>Node2D<><>0<>0<><>::
 player_specials.gd::GDScript::2889875903574187753::1778166243::0::1::::PlayerSpecials<>Node2D<><>0<>0<><>::
 player_stats.gd::GDScript::6699601115607886984::1786954058::0::1::::PlayerStats<>Node2D<><>0<>0<><>::
 player_visuals.gd::GDScript::2212066862665592498::1779019947::0::1::::PlayerVisuals<>Node2D<><>0<>0<><>::
-::res://scripts/Player/camera/::1772739238
+::res://player/camera/::1786983182
 camera_2d.gd::GDScript::7844774372868123972::1772739238::0::1::::<>Camera2D<><>0<>0<><>::
-::res://scripts/Player/inventory/::1786954284
-inventory.gd::GDScript::1341844120296979301::1786954246::0::1::::ActualInv<>Control<><>0<>0<><>::
-inventory_slot.gd::GDScript::5748015588328504924::1780430605::0::1::::InventorySlot<>Button<><>0<>0<><>::
+::res://player/components/::1786983186
+component.gd::GDScript::3875574797344963513::1781270460::0::1::::Component<>Node<><>0<>0<><>::
+::res://player/inventory/::1786983185
+cursor_held_item.tscn::PackedScene::182730337436985392::1786983286::0::1::::<><><>0<>0<><>::uid://b00dsthkd2ybg::::res://shared/shaders/outline.gdshader
+inventory.gd::GDScript::1341844120296979301::1786983286::0::1::::ActualInv<>Control<><>0<>0<><>::
+inventory.tscn::PackedScene::665231121871418895::1786983286::0::1::::<><><>0<>0<><>::uid://td88g75lk23b::::res://player/inventory/inventory.gd
+inventory_slot.gd::GDScript::5748015588328504924::1786983286::0::1::::InventorySlot<>Button<><>0<>0<><>::
+inventory_slot.tscn::PackedScene::4984154365598050328::1786983286::0::1::::<><><>0<>0<><>::uid://cn5m8hl2xgbts::::res://player/inventory/inventory_slot.gd<>uid://b00dsthkd2ybg::::res://shared/shaders/outline.gdshader<>uid://cch44qg2ac5du::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png
+item_tooltip.tscn::PackedScene::1987230227451178360::1780430349::0::1::::<><><>0<>0<><>::
 player_inventory.gd::GDScript::5917061835956502976::1786954284::0::1::::PlayerInv<>Node2D<><>0<>0<><>::
-::res://scripts/Player/inventory/items/::1778147591
-item_resource.gd::GDScript::330915824076223624::1778147591::0::1::::ItemResource<>Resource<><>0<>0<><>::
-::res://scripts/Player/inventory/safe/::1786954447
+::res://player/safe/::1786983185
+background.gd::GDScript::8708892759909534738::1780471293::0::1::::TileScaleContainer<>NinePatchRect<><>0<>1<><>::
 global_safe.gd::GDScript::5752852097397678908::1786954082::0::1::::<>Node2D<><>0<>0<><>::
-safeUi.gd::GDScript::8021051076690860158::1786954447::0::1::::SafeUI<>Control<><>0<>0<><>::
-::res://scripts/Projectiles/::1786955377
-growing_projectile.gd::GDScript::87314737804835982::1778166517::0::1::::<>Projectile<><>0<>0<><>::
-laser_projectile.gd::GDScript::30139276297596265::1775995710::0::1::::LaserProjectile<>Node2D<><>0<>0<><>::
-projectile.gd::GDScript::126512782107756830::1786955377::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
-swap_projectile.gd::GDScript::7612828366697139707::1781272347::0::1::::SwapProjectile<>Projectile<><>0<>0<><>::
-::res://scripts/shaders/::1781268524
+global_safe.tscn::PackedScene::2288761494559151764::1786983286::0::1::::<><><>0<>0<><>::uid://cn7yvsmy5gls3::::res://player/safe/global_safe.gd
+safe_ui.gd::GDScript::8021051076690860158::1786983286::0::1::::SafeUI<>Control<><>0<>0<><>::
+safe_ui.tscn::PackedScene::7605912502465031823::1786983286::0::1::::<><><>0<>0<><>::uid://dmjpslqlj8ida::::res://player/safe/safe_ui.gd<>uid://cch44qg2ac5du::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png
+::res://shared/::1786983181
+global_hit_marker.gd::GDScript::606279210741741433::1775121336::0::1::::<>Node<><>0<>0<><>::
+interactable.gd::GDScript::3135335344522113925::1774442984::0::1::::Interactable<>Area2D<><>0<>0<><>::
+interactable.tscn::PackedScene::5170101297481278799::1786983286::0::1::::<><><>0<>0<><>::uid://bkw1rrnmt1nl2::::res://shared/interactable.gd
+physics_object.gd::GDScript::2127549558564066716::1786955364::0::1::::PhysicsObject<>StaticBody2D<><>0<>0<><>::
+physics_object.tscn::PackedScene::3975504774845032990::1786983286::0::1::::<><><>0<>0<><>::uid://cf00aahfatipu::::res://shared/physics_object.gd<>uid://dowoda6idxfva::::res://icon.svg
+::res://shared/shaders/::1786983181
 blue_filter.gdshader::Shader::5097217208791447235::1772739238::0::1::::<><><>0<>0<><>::
 grayscale.gdshader::Shader::6780060105885750950::1772739238::0::1::::<><><>0<>0<><>::
-outline.gdshader::Shader::4192966522980728464::1781268524::0::1::::<><><>0<>0<><>::
-::res://scripts/Weapons/::1786954159
+outline.gdshader::Shader::4192966522980728464::1786981950::0::1::::<><><>0<>0<><>::
+::res://spirits/::1786983226
+spirit.gd::GDScript::989217857001996128::1781274744::0::1::::Spirit<>CharacterBody2D<><>0<>0<><>::
+spirit.tscn::PackedScene::1406571015415678263::1786983287::0::1::::<><><>0<>0<><>::uid://odgjkiyrneke::::res://spirits/spirit.gd<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+spirit_resource.gd::GDScript::3214645966207574939::1772739238::0::1::::SpiritResource<>Resource<><>0<>0<><>::
+stats.gd::GDScript::9004821242240843880::1773913718::0::1::::<>Node2D<><>0<>0<><>::
+test_spirit.tres::Resource/SpiritResource::3347270072862887464::1786983287::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://ubmawdsqley6::::res://spirits/spirit.tscn
+::res://spirits/a_peaceful_world/::1786983213
+a_peaceful_world.gd::GDScript::6453997065812814432::1772739238::0::1::::<>Spirit<><>0<>0<><>::
+a_peaceful_world.tres::Resource/SpiritResource::452093859692405627::1786983286::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://di864m3ss3v4a::::res://spirits/a_peaceful_world/a_peaceful_world.tscn
+a_peaceful_world.tscn::PackedScene::7790831955244280046::1786983286::0::1::::<><><>0<>0<><>::uid://cx7mnhm1efw77::::res://spirits/a_peaceful_world/a_peaceful_world.gd<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+::res://spirits/chain_the_floor/::1786983214
+chain_the_floor.gd::GDScript::402912048011706292::1786983286::0::1::::<>Spirit<><>0<>0<><>::
+chain_the_floor.tres::Resource/SpiritResource::6117791602542485128::1786983286::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://ctfspr0000001::::res://spirits/chain_the_floor/chain_the_floor.tscn
+chain_the_floor.tscn::PackedScene::6117871910744855304::1786983286::0::1::::<><><>0<>0<><>::uid://f0f5xmnr0dfg::::res://spirits/chain_the_floor/chain_the_floor.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://ctfwpn0000001::::res://spirits/chain_the_floor/chain_the_floor_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+chain_the_floor_weapon.gd::GDScript::685948526297897553::1786954170::0::1::::<>Weapon<><>0<>0<><>::
+chain_the_floor_weapon.tscn::PackedScene::6118114568622520584::1786983286::0::1::::<><><>0<>0<><>::res://spirits/chain_the_floor/chain_the_floor_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+chain_trap.gd::GDScript::2869840192069824434::1778165720::0::1::::<>Node2D<><>0<>0<><>::
+chain_trap.tscn::PackedScene::6117936094278731272::1786983286::0::1::::<><><>0<>0<><>::uid://bg5f34ckjk0fe::::res://spirits/chain_the_floor/chain_trap.gd<>uid://dowoda6idxfva::::res://icon.svg
+::res://spirits/follow_the_wheel/::1786983215
+follow_the_wheel.gd::GDScript::876374810485462143::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+follow_the_wheel.tres::Resource/SpiritResource::126967329087572827::1786983286::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://brsxa5ccd2vfv::::res://spirits/follow_the_wheel/follow_the_wheel.tscn
+follow_the_wheel.tscn::PackedScene::1416608003449932529::1786983286::0::1::::<><><>0<>0<><>::uid://mqr1apbu844j::::res://spirits/follow_the_wheel/follow_the_wheel.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://b2wftwheel::::res://spirits/follow_the_wheel/follow_the_wheel_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+follow_the_wheel_weapon.gd::GDScript::6150068706492114854::1778102035::0::1::::<>Weapon<><>0<>0<><>::
+follow_the_wheel_weapon.tscn::PackedScene::110097558876251::1786983286::0::1::::<><><>0<>0<><>::uid://ctvey6of8wbni::::res://spirits/follow_the_wheel/follow_the_wheel_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+::res://spirits/furniture_city/::1786983218
+fc_active.gd::GDScript::6923454044989925347::1781271617::0::1::::<>Weapon<><>0<>0<><>::
+fc_active.tscn::PackedScene::6437697571685019683::1786983286::0::1::::<><><>0<>0<><>::uid://c5v1jn0fowj7p::::res://spirits/furniture_city/fc_active.gd<>uid://bvbkqjb8v7rc7::::res://weapons/projectiles/swap_projectile.tscn
+furniture_city.gd::GDScript::6311695090490518492::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+furniture_city.tres::Resource/SpiritResource::288021632810706675::1786983286::0::1::::<><><>0<>0<><>::uid://cvk3i2x1wp4wa::::res://spirits/furniture_city/furniture_city.tscn<>uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd
+furniture_city.tscn::PackedScene::6269166678346479800::1786983286::0::1::::<><><>0<>0<><>::uid://d1kadck0o1wfw::::res://spirits/stats.gd<>uid://cv6oxwtg0f52w::::res://spirits/furniture_city/furniture_city.gd<>uid://de6ar1scjio2u::::res://spirits/furniture_city/furniture_city_weapon.tscn
+furniture_city_boost.gd::GDScript::1409038767494242597::1781271463::0::1::::FcBoost<>Component<><>0<>0<><>::
+furniture_city_boost.tscn::PackedScene::441689510201565187::1786983286::0::1::::<><><>0<>0<><>::uid://ucswsaklks2h::::res://spirits/furniture_city/furniture_city_boost.gd
+furniture_city_weapon.gd::GDScript::4552988241387134685::1781268810::0::1::::<>Weapon<><>0<>0<><>::
+furniture_city_weapon.tscn::PackedScene::7504044888020481650::1786983286::0::1::::<><><>0<>0<><>::uid://b54rb0d3r8ru0::::res://spirits/furniture_city/furniture_city_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+::res://spirits/jesters_grin/::1786983219
+jesters_grin.gd::GDScript::4283047592788176126::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+jesters_grin.tres::Resource/SpiritResource::1839598772465758404::1786983286::0::1::::<><><>0<>0<><>::uid://dowoda6idxfva::::res://icon.svg<>uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://p0mh7ox7fi4p::::res://spirits/jesters_grin/jesters_grin.tscn
+jesters_grin.tscn::PackedScene::1105184906354962705::1786983286::0::1::::<><><>0<>0<><>::uid://b2a0fykxtq3s1::::res://spirits/jesters_grin/jesters_grin.gd<>uid://c88ikobhaor73::::res://spirits/jesters_grin/jesters_grin_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+jesters_grin_bomb.gd::GDScript::5687531782136991070::1775771097::0::1::::<>PhysicsObject<><>0<>0<><>::
+jesters_grin_bomb.tscn::PackedScene::2901184816296939696::1786983286::0::1::::<><><>0<>0<><>::uid://cnbc22a0lhy43::::res://spirits/jesters_grin/jesters_grin_bomb.gd<>uid://cog51xqj66r5::::res://assets/other/projectiles/jesters_grin_bomb.png<>uid://cybyemvq7ucnh::::res://assets/other/projectiles/explosion-Sheet.png
+jesters_grin_weapon.gd::GDScript::2869047168683581612::1773053448::0::1::::<>Weapon<><>0<>0<><>::
+jesters_grin_weapon.tscn::PackedScene::7157702004396749488::1786983286::0::1::::<><><>0<>0<><>::uid://bg4111ttosr0g::::res://spirits/jesters_grin/jesters_grin_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+::res://spirits/keep_me_close/::1786983220
+keep_me_close.gd::GDScript::5570202074063690381::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+keep_me_close.tres::Resource/SpiritResource::6266437987637863121::1786983286::0::1::::<><><>0<>0<><>::uid://c7ekf3ejt5u8g::::res://spirits/keep_me_close/keep_me_close.tscn<>uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd
+keep_me_close.tscn::PackedScene::7027759450985200888::1786983286::0::1::::<><><>0<>0<><>::uid://clmioc8lvnee4::::res://spirits/keep_me_close/keep_me_close.gd<>uid://cj07e6dbe35xf::::res://spirits/keep_me_close/keep_me_close_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd<>uid://d2qu0v6iq7wcq::::res://assets/other/spirits/keep_me_close.png
+keep_me_close_weapon.gd::GDScript::9011049449316782672::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+keep_me_close_weapon.tres::Resource/ItemResource::1065285662876794710::1786983286::0::1::::<><><>0<>0<><>::uid://cj07e6dbe35xf::::res://spirits/keep_me_close/keep_me_close_weapon.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd
+keep_me_close_weapon.tscn::PackedScene::5458102123834318859::1786983286::0::1::::<><><>0<>0<><>::uid://d1nawydecsmi7::::res://spirits/keep_me_close/keep_me_close_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://xtt53okqaoh3::::res://assets/other/projectiles/spritemaps/KMC_sprites.tscn<>uid://bsmiimrqb81t5::::res://weapons/projectiles/laser_projectile.tscn
+::res://spirits/look_at_you/::1786983221
+look_at_you.gd::GDScript::7291452729198505610::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+look_at_you.tres::Resource/SpiritResource::8423662312332360232::1786983286::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://b2spirlookat::::res://spirits/look_at_you/look_at_you.tscn
+look_at_you.tscn::PackedScene::127047182743552555::1786983286::0::1::::<><><>0<>0<><>::uid://db5bfqkbwpm8a::::res://spirits/look_at_you/look_at_you.gd<>uid://bsmiimrqb81t5::::res://weapons/projectiles/laser_projectile.tscn<>uid://b2wlookatyou::::res://spirits/look_at_you/look_at_you_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+look_at_you_weapon.gd::GDScript::8478899989290224523::1778102055::0::1::::<>Weapon<><>0<>0<><>::
+look_at_you_weapon.tscn::PackedScene::127283217980755496::1786983286::0::1::::<><><>0<>0<><>::res://spirits/look_at_you/look_at_you_weapon.gd<>uid://bsmiimrqb81t5::::res://weapons/projectiles/laser_projectile.tscn
+::res://spirits/shift_the_sand/::1786983222
+shift_the_sand.gd::GDScript::9178865178261549551::1786983286::0::1::::<>Spirit<><>0<>0<><>::
+shift_the_sand.tres::Resource/SpiritResource::6093617858393335230::1786983286::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://c40vnwtu3jrul::::res://spirits/shift_the_sand/shift_the_sand.tscn
+shift_the_sand.tscn::PackedScene::6861226734720982079::1786983286::0::1::::<><><>0<>0<><>::uid://d31ktld32j6nb::::res://spirits/shift_the_sand/shift_the_sand.gd<>uid://b2rbhbs2uhqb4::::res://spirits/shift_the_sand/sts_chunk.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd<>uid://cdgorluhellmn::::res://assets/other/spirits/sts_spirit_sheet.png
+sts_chunk.gd::GDScript::6584201015736206362::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+sts_chunk.tres::Resource/ItemResource::8846710566689719006::1786983286::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://b2rbhbs2uhqb4::::res://spirits/shift_the_sand/sts_chunk.tscn<>uid://dowoda6idxfva::::res://icon.svg
+sts_chunk.tscn::PackedScene::4316687182872698839::1786983287::0::1::::<><><>0<>0<><>::uid://c02o3gb185hpa::::res://spirits/shift_the_sand/sts_chunk.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://dfbpffafhyu4r::::res://assets/other/projectiles/spritemaps/sts_chunk_sprites.tscn
+sts_swift.gd::GDScript::1999013641549292517::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+sts_swift.tres::Resource/ItemResource::4958373944927916418::1786983287::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://b6pw0tovbsmg::::res://spirits/shift_the_sand/sts_swift.tscn<>uid://dowoda6idxfva::::res://icon.svg
+sts_swift.tscn::PackedScene::135135939470547134::1786983287::0::1::::<><><>0<>0<><>::uid://3qlpy1xpbgo0::::res://spirits/shift_the_sand/sts_swift.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://cugsnng3qlmlx::::res://assets/other/projectiles/spritemaps/STS_swift_sprites.tscn
+::res://spirits/silver_bullet/::1786983223
+silver_bullet.gd::GDScript::3134822331760618939::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+silver_bullet.tres::Resource/SpiritResource::6114614296717684388::1786983287::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://dndtlivdt7geg::::res://spirits/silver_bullet/silver_bullet.tscn
+silver_bullet.tscn::PackedScene::8079083871022075510::1786983287::0::1::::<><><>0<>0<><>::uid://bkwsciciajwil::::res://spirits/silver_bullet/silver_bullet.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://cx624efybkweb::::res://spirits/silver_bullet/silver_bullet_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+silver_bullet_weapon.gd::GDScript::5531278907659469435::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+silver_bullet_weapon.tscn::PackedScene::6452871847174364289::1786983287::0::1::::<><><>0<>0<><>::uid://ck2nmc60vxovr::::res://spirits/silver_bullet/silver_bullet_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+::res://spirits/slow_and_steady/::1786983224
+slow_and_steady.gd::GDScript::4118558894816334308::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+slow_and_steady.tres::Resource/SpiritResource::6780338891788353774::1786983287::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://bmi78m3rsxqwc::::res://spirits/slow_and_steady/slow_and_steady.tscn
+slow_and_steady.tscn::PackedScene::3247204378681461158::1786983287::0::1::::<><><>0<>0<><>::uid://byxccfeyfqido::::res://spirits/slow_and_steady/slow_and_steady.gd<>uid://c8ptl0a5yo1sq::::res://spirits/slow_and_steady/slow_and_steady_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+slow_and_steady_weapon.gd::GDScript::7453003920815085388::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+slow_and_steady_weapon.tscn::PackedScene::7121213454827153420::1786983287::0::1::::<><><>0<>0<><>::uid://degj5d3x3gf8g::::res://spirits/slow_and_steady/slow_and_steady_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+::res://spirits/spread_like_fire/::1786983225
+slf_fire_ring.gd::GDScript::6594747690897172056::1773132683::0::1::::<>Weapon<><>0<>0<><>::
+slf_fire_ring.tscn::PackedScene::1281020644612643680::1786983287::0::1::::<><><>0<>0<><>::uid://c07ssb2a20065::::res://spirits/spread_like_fire/slf_fire_ring.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://df2mywph5xba0::::res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
+spread_like_fire.gd::GDScript::7542872556320876278::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+spread_like_fire.tres::Resource/SpiritResource::1046671508766707263::1786983287::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://cqk0nii4initw::::res://spirits/spread_like_fire/spread_like_fire.tscn
+spread_like_fire.tscn::PackedScene::5918048217149318596::1786983287::0::1::::<><><>0<>0<><>::uid://dfp3akm017jtm::::res://spirits/spread_like_fire/spread_like_fire.gd<>uid://7kvpjm62stgy::::res://spirits/spread_like_fire/spread_like_fire_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+spread_like_fire_weapon.gd::GDScript::1625410474332997902::1773060111::0::1::::<>Weapon<><>0<>0<><>::
+spread_like_fire_weapon.tscn::PackedScene::2267989110407416400::1786983287::0::1::::<><><>0<>0<><>::uid://xfmjjvo61u83::::res://spirits/spread_like_fire/spread_like_fire_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://df2mywph5xba0::::res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn
+::res://spirits/start_your_engine/::1786983226
+start_your_engine.gd::GDScript::929814564115786242::1781274095::0::1::::<>Spirit<><>0<>0<><>::
+start_your_engine.tres::Resource/SpiritResource::6226981826557393317::1786983287::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://04gl4ydnwh77::::res://spirits/start_your_engine/start_your_engine.tscn
+start_your_engine.tscn::PackedScene::1814973551915108444::1786983287::0::1::::<><><>0<>0<><>::uid://nin568tacu87::::res://spirits/start_your_engine/start_your_engine.gd<>uid://blhyo4ujkh0t4::::res://spirits/start_your_engine/start_your_engine_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+start_your_engine_weapon.gd::GDScript::6698540437513242420::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+start_your_engine_weapon.tscn::PackedScene::3174432371426768767::1786983287::0::1::::<><><>0<>0<><>::uid://c2o28nt1cyagi::::res://spirits/start_your_engine/start_your_engine_weapon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://dwv3bukgyy6oh::::res://assets/other/projectiles/spritemaps/SYE_proj_sprites.tscn
+::res://spirits/wandering_eye/::1786983227
+bullet_deflector.gd::GDScript::6502907716416090219::1786983287::0::1::::<>Node2D<><>0<>0<><>::
+bullet_deflector.tscn::PackedScene::1553875989135231752::1786983287::0::1::::<><><>0<>0<><>::res://spirits/wandering_eye/bullet_deflector.gd
+wandering_eye.gd::GDScript::3719731445330303732::1786983287::0::1::::<>Spirit<><>0<>0<><>::
+wandering_eye.tres::Resource/SpiritResource::6715735614887277192::1786983287::0::1::::<><><>0<>0<><>::uid://bl2g0qklid7xv::::res://spirits/spirit_resource.gd<>uid://dowoda6idxfva::::res://icon.svg<>uid://c2xgrifq60m77::::res://spirits/wandering_eye/wandering_eye.tscn
+wandering_eye.tscn::PackedScene::6715815923089647368::1786983287::0::1::::<><><>0<>0<><>::uid://bs84o0cegqaem::::res://spirits/wandering_eye/wandering_eye.gd<>uid://c2xdtafq60m77::::res://weapons/projectiles/growing_projectile.tscn<>uid://c2xkrefq60m77::::res://spirits/wandering_eye/wandering_eye_weapon.tscn<>uid://d1kadck0o1wfw::::res://spirits/stats.gd
+wandering_eye_weapon.gd::GDScript::3859361252321649311::1778165720::0::1::::<>Weapon<><>0<>0<><>::
+wandering_eye_weapon.tscn::PackedScene::6716058580967312648::1786983287::0::1::::<><><>0<>0<><>::uid://bu8rd7b6sp3hj::::res://spirits/wandering_eye/wandering_eye_weapon.gd<>uid://c2xdtafq60m77::::res://weapons/projectiles/growing_projectile.tscn
+::res://ui/::1786983211
+health_bar.gd::GDScript::8593304152749275643::1780425672::0::1::::<>ProgressBar<><>0<>0<><>::
+health_bar.tscn::PackedScene::1752478481456652092::1786983287::0::1::::<><><>0<>0<><>::uid://duowp1jcbm06j::::res://ui/health_bar.gd
+map_ui.gd::GDScript::7653603907368678715::1786954221::0::1::::<>Control<><>0<>0<><>::
+map_ui.tscn::PackedScene::24800383953035336::1786983287::0::1::::<><><>0<>0<><>::res://ui/map_ui.gd
+time_of_day_widget.gd::GDScript::2102463001243595841::1778102141::0::1::::<>Control<><>0<>0<><>::
+time_of_day_widget.tscn::PackedScene::3738407614657611::1786983287::0::1::::<><><>0<>0<><>::res://ui/time_of_day_widget.gd
+::res://weapons/::1786983196
 weapon.gd::GDScript::1725451143214091368::1786954159::0::1::::Weapon<>Node2D<><>0<>0<><>::
-::res://scripts/Weapons/guns/::1778601651
+weapon.tscn::PackedScene::5404005754440387073::1786983287::0::1::::<><><>0<>0<><>::uid://yt26tbo0l8dw::::res://weapons/weapon.gd
+weapon_registry.gd::GDScript::2548537616136259430::1778360530::0::1::::<>Node<><>0<>0<><>::
+::res://weapons/guns/::1786983196
 assault_rifle.gd::GDScript::5136612913745200371::1774522365::0::1::::<>Weapon<><>0<>0<><>::
+assault_rifle.tres::Resource/AssaultRifleRes::7541348588534271592::1786983287::0::1::::<><><>0<>0<><>::uid://bgmhxyrly6au7::::res://weapons/guns/assault_rifle.tscn<>uid://btmwaxbgp72yo::::res://weapons/guns/assault_rifle_resource.gd<>uid://b7m8teqbhlqsk::::res://assets/items/weapons/assault_rifle.png
+assault_rifle.tscn::PackedScene::2832793658134349920::1786983287::0::1::::<><><>0<>0<><>::uid://cfghi8o63dudf::::res://weapons/guns/assault_rifle.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
+assault_rifle_resource.gd::GDScript::3746118229581100954::1774522365::0::1::::AssaultRifleRes<>ItemResource<><>0<>0<><>::
 boomerang.gd::GDScript::942479988407219346::1778534427::0::1::::<>Weapon<><>0<>0<><>::
+boomerang.tres::Resource/ItemResource::7558620227792083586::1786983287::0::1::::<><><>0<>0<><>::uid://bgidxivskrc3j::::res://weapons/guns/boomerang.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://jj65a1202urh::::res://assets/items/weapons/boomerang.png
+boomerang.tscn::PackedScene::2824292445251451889::1786983287::0::1::::<><><>0<>0<><>::uid://nosri6crlt4e::::res://weapons/guns/boomerang.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://c4gnsxf0k776t::::res://assets/other/projectiles/spritemaps/boomerang_spritemap.tscn
+bow_charge_bar.gd::GDScript::4991258923962123657::1778603365::0::1::::<>Node2D<><>0<>0<><>::
 burst_rifle.gd::GDScript::8715892524408226543::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+burst_rifle.tres::Resource/ItemResource::5922771840877986696::1786983287::0::1::::<><><>0<>0<><>::uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://dynnweuyhk66l::::res://assets/items/weapons/burst_rifle.png
+burst_rifle.tscn::PackedScene::6319998922321651615::1786983287::0::1::::<><><>0<>0<><>::uid://dwgbqg2e5ykv4::::res://weapons/guns/burst_rifle.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 crossbow.gd::GDScript::8121006613243324393::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+crossbow.tres::Resource/ItemResource::4459434452130327021::1786983287::0::1::::<><><>0<>0<><>::uid://cden3rlixpre4::::res://weapons/guns/crossbow.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://c6lx4606hxsc4::::res://assets/items/weapons/crossbow.png
+crossbow.tscn::PackedScene::4992505642736469009::1786983287::0::1::::<><><>0<>0<><>::uid://dnx417brwq17b::::res://weapons/guns/crossbow.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://xc67mug4arbe::::res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn
 cursed_tome.gd::GDScript::7751716595836259603::1778360826::0::1::::<>Weapon<><>0<>0<><>::
+cursed_tome.tres::Resource/ItemResource::7536414673505816463::1786983287::0::1::::<><><>0<>0<><>::uid://cqdou0k7hc1l7::::res://weapons/guns/cursed_tome.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://ekj77djq65ai::::res://assets/items/weapons/cursed_tome.png
+cursed_tome.tscn::PackedScene::5902943082628922750::1786983287::0::1::::<><><>0<>0<><>::uid://dio8v0upa5kmd::::res://weapons/guns/cursed_tome.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 dice_gun.gd::GDScript::6314987203831841150::1778403955::0::1::::<>Weapon<><>0<>0<><>::
+dice_gun.tres::Resource/ItemResource::1457152273796529369::1786983287::0::1::::<><><>0<>0<><>::uid://cn8ua7c1mqd::::res://weapons/guns/dice_gun.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://ci7ab0u3bn4rf::::res://assets/items/weapons/dice_gun.png
+dice_gun.tscn::PackedScene::4978059537590595::1786983287::0::1::::<><><>0<>0<><>::uid://cv8a6fuw4tnt3::::res://weapons/guns/dice_gun.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://dyx8y43jva0h1::::res://assets/other/projectiles/spritemaps/dice_spritemap.tscn
 echo_cannon.gd::GDScript::4750776337251988049::1778361009::0::1::::<>Weapon<><>0<>0<><>::
+echo_cannon.tres::Resource/ItemResource::3625809764950280883::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/echo_cannon.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://s0vadn2l5qlu::::res://assets/items/weapons/echo_canon.png
+echo_cannon.tscn::PackedScene::-1::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/echo_cannon.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 gravity_well.gd::GDScript::4219454868867438232::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+gravity_well.tres::Resource/ItemResource::8769200449438892820::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/gravity_well.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://bl5i5ldk0j4b0::::res://assets/items/weapons/gravity_well.png
+gravity_well.tscn::PackedScene::-1::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/gravity_well.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 nail_gun.gd::GDScript::3465437008666705760::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+nail_gun.tres::Resource/ItemResource::4346585645195007570::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/nail_gun.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://eymetv8cg6d6::::res://assets/items/weapons/nailgun.png
+nail_gun.tscn::PackedScene::-1::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/nail_gun.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 pistol.gd::GDScript::6344601456105544413::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+pistol.tres::Resource/ItemResource::6994221830950269835::1786983287::0::1::::<><><>0<>0<><>::uid://c6pwfat6wbqi7::::res://weapons/guns/pistol.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://dshj87h0op4bx::::res://assets/items/weapons/pistol.png
+pistol.tscn::PackedScene::6981005920075728888::1786983287::0::1::::<><><>0<>0<><>::uid://cwnmwn3j0i1hx::::res://weapons/guns/pistol.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 ring_of_rings.gd::GDScript::6941809982793277059::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+ring_of_rings.tres::Resource/ItemResource::7573443404120214644::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/ring_of_rings.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://6aeg1tgts1tv::::res://assets/items/weapons/ring_o_r.png
+ring_of_rings.tscn::PackedScene::-1::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/ring_of_rings.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 shotgun.gd::GDScript::4980126895573606005::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+shotgun.tres::Resource/ItemResource::6352691254589984638::1786983287::0::1::::<><><>0<>0<><>::uid://l1ft2sc4ae4k::::res://weapons/guns/shotgun.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://bicxei245hvmf::::res://assets/items/weapons/shotgun.png
+shotgun.tscn::PackedScene::826090062738499332::1786983287::0::1::::<><><>0<>0<><>::uid://cc7n7yq1i6bfp::::res://weapons/guns/shotgun.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 smg.gd::GDScript::3087469769972877516::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+smg.tres::Resource/ItemResource::5541211939088271222::1786983287::0::1::::<><><>0<>0<><>::uid://c7ugbef8o7i7e::::res://weapons/guns/smg.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://dowoda6idxfva::::res://icon.svg
+smg.tscn::PackedScene::7060538225971706020::1786983287::0::1::::<><><>0<>0<><>::uid://bj8uf8qsrrin1::::res://weapons/guns/smg.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://ck7g7loj24uwc::::res://weapons/guns/smg.tres
 sniper.gd::GDScript::4560773191138233318::1772739238::0::1::::<>Weapon<><>0<>0<><>::
+sniper.tres::Resource/ItemResource::5879827328243092748::1786983287::0::1::::<><><>0<>0<><>::uid://cj8c0mg5ktkcj::::res://weapons/guns/sniper.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://csxt43uil07ay::::res://assets/items/weapons/sniper.png
+sniper.tscn::PackedScene::5472832145771834221::1786983287::0::1::::<><><>0<>0<><>::uid://b58jjd7hnx02e::::res://weapons/guns/sniper.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 throwing_knives.gd::GDScript::8907690243064711312::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+throwing_knives.tres::Resource/ItemResource::6706489757409000800::1786983287::0::1::::<><><>0<>0<><>::uid://ww801dydkkcg::::res://weapons/guns/throwing_knives.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://ddb03agqe7kas::::res://assets/items/weapons/knife.png
+throwing_knives.tscn::PackedScene::1591620547571324082::1786983287::0::1::::<><><>0<>0<><>::uid://dy57mess3icf5::::res://weapons/guns/throwing_knives.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://cogb701r6v63q::::res://assets/other/projectiles/spritemaps/throwing_knife_sprites.tscn
 toxic_squirtgun.gd::GDScript::7164911890111049249::1778360530::0::1::::<>Weapon<><>0<>0<><>::
+toxic_squirtgun.tres::Resource/ItemResource::3138127528997697363::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/toxic_squirtgun.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://c82r47w6t5d78::::res://assets/items/weapons/toxic_sg.png
+toxic_squirtgun.tscn::PackedScene::-1::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/toxic_squirtgun.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn
 wooden_bow.gd::GDScript::7885632965177725210::1778601650::0::1::::<>Weapon<><>0<>0<><>::
-::res://scripts/Weapons/melee/::1772739238
+wooden_bow.tres::Resource/ItemResource::1532910580957743293::1786983287::0::1::::<><><>0<>0<><>::res://weapons/guns/wooden_bow.tscn<>uid://eykeum4a21x1::::res://items/item_resource.gd<>uid://bairy0ftf3d31::::res://assets/items/weapons/wooden_bow.png
+wooden_bow.tscn::PackedScene::5091064827343721363::1786983287::0::1::::<><><>0<>0<><>::uid://dkl4htufgx8r3::::res://weapons/guns/wooden_bow.gd<>uid://kqprvh4qgnic::::res://weapons/projectiles/projectile.tscn<>uid://xc67mug4arbe::::res://assets/other/projectiles/spritemaps/arrow_spritemap.tscn<>uid://cdd2km4mxkprl::::res://weapons/guns/bow_charge_bar.gd
+::res://weapons/melee/::1786983187
 knife.gd::GDScript::8613743745712970601::1772739238::0::1::::<>Weapon<><>0<>0<><>::
 punch.gd::GDScript::6085930221346460699::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-::res://scripts/Weapons/resource/::1774522365
-assault_rifle.gd::GDScript::3746118229581100954::1774522365::0::1::::AssaultRifleRes<>ItemResource<><>0<>0<><>::
-::res://scripts/Weapons/spirit_weapons/::1786954170
-chain_the_floor.gd::GDScript::685948526297897553::1786954170::0::1::::<>Weapon<><>0<>0<><>::
-fc_active.gd::GDScript::6923454044989925347::1781271617::0::1::::<>Weapon<><>0<>0<><>::
-follow_the_wheel.gd::GDScript::6150068706492114854::1778102035::0::1::::<>Weapon<><>0<>0<><>::
-furniture_city.gd::GDScript::4552988241387134685::1781268810::0::1::::<>Weapon<><>0<>0<><>::
-jesters_grin.gd::GDScript::2869047168683581612::1773053448::0::1::::<>Weapon<><>0<>0<><>::
-keep_me_close.gd::GDScript::9011049449316782672::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-look_at_you.gd::GDScript::8478899989290224523::1778102055::0::1::::<>Weapon<><>0<>0<><>::
-silver_bullet.gd::GDScript::5531278907659469435::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-slf_fire_ring.gd::GDScript::6594747690897172056::1773132683::0::1::::<>Weapon<><>0<>0<><>::
-slow_and_steady.gd::GDScript::7453003920815085388::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-spread_like_fire.gd::GDScript::1625410474332997902::1773060111::0::1::::<>Weapon<><>0<>0<><>::
-start_your_engine.gd::GDScript::6698540437513242420::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-sts_chunk.gd::GDScript::6584201015736206362::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-sts_swift.gd::GDScript::1999013641549292517::1772739238::0::1::::<>Weapon<><>0<>0<><>::
-wandering_eye.gd::GDScript::3859361252321649311::1778165720::0::1::::<>Weapon<><>0<>0<><>::
-::res://scripts/world gen/::1786954002
+::res://weapons/projectiles/::1786983197
+growing_projectile.gd::GDScript::87314737804835982::1778166517::0::1::::<>Projectile<><>0<>0<><>::
+growing_projectile.tscn::PackedScene::6715636923512356616::1786983287::0::1::::<><><>0<>0<><>::uid://bikccqs3avus::::res://weapons/projectiles/growing_projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
+laser_projectile.gd::GDScript::30139276297596265::1775995710::0::1::::LaserProjectile<>Node2D<><>0<>0<><>::
+laser_projectile.tscn::PackedScene::3675093081791279844::1786983287::0::1::::<><><>0<>0<><>::uid://ouniiaosl7n::::res://weapons/projectiles/laser_projectile.gd
+projectile.gd::GDScript::126512782107756830::1786955377::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
+projectile.tscn::PackedScene::735860708976404182::1786983287::0::1::::<><><>0<>0<><>::uid://b2jv88fufhq1::::res://weapons/projectiles/projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
+swap_projectile.gd::GDScript::7612828366697139707::1781272347::0::1::::SwapProjectile<>Projectile<><>0<>0<><>::
+swap_projectile.tscn::PackedScene::3863086996259649112::1786983287::0::1::::<><><>0<>0<><>::res://weapons/projectiles/swap_projectile.gd<>uid://3s26xrerirrd::::res://assets/other/projectiles/generic_bullet.png
+::res://world/::1786983209
+day_night_cycle.gd::GDScript::4412758453891646743::1786954360::0::1::::<>Node<><>0<>0<><>::
+extraction_point.gd::GDScript::3015672799608664767::1786983287::0::1::::<>Interactable<><>0<>0<><>::
+extraction_point.tscn::PackedScene::7228370094195798612::1786983287::0::1::::<><><>0<>0<><>::uid://bi72xqebn68j8::::res://world/extraction_point.gd<>uid://14383tcq1fb7::::res://assets/world/extraction/extracting_stone.png
+fog_of_war.gd::GDScript::4820142107763382649::1786983287::0::1::::<>Node<><>0<>0<><>::
+global_world.gd::GDScript::6212807511060831612::1772739238::0::1::::<>Node<><>0<>0<><>::
+safe_interactable.gd::GDScript::1217357851520792610::1774442991::0::1::::<>Interactable<><>0<>0<><>::
+safe_interactable.tscn::PackedScene::1219952402657948133::1786983287::0::1::::<><><>0<>0<><>::uid://rlxyac54uxl7::::res://world/safe_interactable.gd<>uid://dowoda6idxfva::::res://icon.svg
+the_world.gd::GDScript::7280671575768987605::1786954294::0::1::::<>Node2D<><>0<>0<><>::
+the_world.tscn::PackedScene::2887004937877063605::1786983287::0::1::::<><><>0<>0<><>::uid://hw08n22lt0e2::::res://player/player.tscn<>uid://dby2ukjy8dom4::::res://world/the_world.gd<>uid://da8qg1qf0g4wu::::res://world/extraction_point.tscn
+::res://world/buildings/::1786983208
+building_chest_spawner.gd::GDScript::391593031593608997::1778603318::0::1::::<>Node2D<><>0<>0<><>::
+roof.gd::GDScript::3552219375477647625::1778603758::0::1::::Roof<>Area2D<><>0<>0<><>::
+roof.tscn::PackedScene::5636833107354587868::1786983287::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://world/buildings/roof.gd
+small_building.tscn::PackedScene::5548719790697353482::1786983287::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://world/buildings/roof.gd<>uid://ftxqk5vgknmj::::res://world/buildings/building_chest_spawner.gd<>uid://chestscene001::::res://items/chest/chest.tscn<>uid://dajcxxd7vd00p::::res://items/chest/chest_loot_entry.gd<>uid://dfekj8b60xk25::::res://items/consumables/apple.tres<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://cf0cv1f4agspd::::res://resources/items/material/scrap.tres<>uid://bqu2g6wu4ec2p::::res://resources/items/material/spirit_core.tres<>uid://cn6ol23tnacen::::res://resources/items/material/wires.tres<>uid://dfxpmuw3163o5::::res://weapons/guns/boomerang.tres<>uid://dfmxwb1ensjw6::::res://weapons/guns/cursed_tome.tres<>uid://cg6twgxd3uqwx::::res://items/chest/chest_loot_pool.gd<>uid://cg1w82geqs1ig::::res://assets/world/objects/buildings/roof.png<>uid://8aj68v6iwjst::::res://assets/world/objects/buildings/wall.png<>uid://b7mj3g7xq8sfy::::res://assets/world/objects/buildings/door.png
+::res://world/generation/::1786983208
 new_tile_set.tres::TileSet::4890669701433806870::1781268524::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png
+room.tscn::PackedScene::2086625491320010253::1786981950::0::1::::<><><>0<>0<><>::
+::res://world/pools/::1786983209
+building_pools.gd::GDScript::5119710041203974813::1774679212::0::1::::<>Node<><>0<>0<><>::
+pools.gd::GDScript::8487825936942937670::1774679181::0::1::::<>Node<><>0<>0<><>::
+::res://world/spawner/::1786983209
+enemy_spawner.gd::GDScript::5789262036322662766::1775039985::0::1::::EnemySpawner<>Node2D<><>0<>0<><>::
+enemy_spawner.tscn::PackedScene::9217583839858452731::1786983287::0::1::::<><><>0<>0<><>::uid://coqmkgx6f1afe::::res://world/spawner/enemy_spawner.gd<>uid://vmce3i1bf5v1::::res://enemies/ardy.tscn
+spawners.gd::GDScript::8203460917407428188::1775032307::0::1::::<>Node<><>0<>0<><>::
+spawn_pos.gd::GDScript::7270885900751707916::1774677770::0::1::::SpawnPosHolder<>Node2D<><>0<>0<><>::

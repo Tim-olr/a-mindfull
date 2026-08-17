@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://l1ft2sc4ae4k"]
+
+[ext_resource type="Script" uid="uid://cc7n7yq1i6bfp" path="res://weapons/guns/shotgun.gd" id="1_6ia3g"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_csdkt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csdkt"]
+size = Vector2(86, 20)
+
+[node name="Shotgun" type="Node2D" unique_id=339235503]
+script = ExtResource("1_6ia3g")
+damageMod = 10.0
+bulletLifeTimeMod = -0.3
+bulletAmountMod = 2
+rotationAdditionMod = 0.3
+projectileSpeedMod = 300.0
+bulletSizeMod = Vector2(0.3, 0.3)
+shootCooldown = 0.2
+gun = true
+description = "shoots 3 bullets"
+Name = "Shotgun"
+bulletScene = ExtResource("2_csdkt")
+cameraShakeAmount = 30.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=257015857]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=87544294]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=32390710]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1305622736]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_csdkt")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

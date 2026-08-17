@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://di864m3ss3v4a"]
+
+[ext_resource type="Script" uid="uid://cx7mnhm1efw77" path="res://spirits/a_peaceful_world/a_peaceful_world.gd" id="1_8qysl"]
+[ext_resource type="Script" uid="uid://d1kadck0o1wfw" path="res://spirits/stats.gd" id="2_4ofv2"]
+
+[sub_resource type="Animation" id="Animation_ry537"]
+resource_name = "BringIn"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(12.996, 1),
+"update": 0,
+"values": [Vector2(130, 130), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(9.51365, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.388235), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vdfrk"]
+resource_name = "BringOut"
+length = 0.2692
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 12.996),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(130, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 9.51365),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.388235)]
+}
+
+[sub_resource type="Animation" id="Animation_gjxxu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hfle"]
+_data = {
+&"BringIn": SubResource("Animation_ry537"),
+&"BringOut": SubResource("Animation_vdfrk"),
+&"RESET": SubResource("Animation_gjxxu")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_8qysl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aufaj"]
+radius = 65.50763
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ace0"]
+size = Vector2(136, 136)
+
+[node name="a_peaceful_world" type="CharacterBody2D" unique_id=848591213 groups=["spirit"]]
+script = ExtResource("1_8qysl")
+Name = "a peaceful world"
+attackType = "none"
+activeAbilityCooldown = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1796609760]
+libraries/ = SubResource("AnimationLibrary_8hfle")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=309010188]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(1e-05, 1e-05)
+mesh = SubResource("SphereMesh_8qysl")
+
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=294346025]
+one_shot = true
+
+[node name="ActiveAbilityTimer" type="Timer" parent="." unique_id=853009533]
+one_shot = true
+
+[node name="AbilityDurationTimedOut" type="Timer" parent="." unique_id=526597581]
+one_shot = true
+
+[node name="CollisionArea" type="Area2D" parent="." unique_id=488283324]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea" unique_id=1668975820]
+position = Vector2(0.5, -1)
+shape = SubResource("CircleShape2D_aufaj")
+
+[node name="enemycollision" type="CollisionShape2D" parent="." unique_id=1048066864]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2ace0")
+
+[node name="stats" type="Node2D" parent="." unique_id=196345418]
+script = ExtResource("2_4ofv2")
+
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveAbilityTimer" to="." method="_on_active_ability_timer_timeout"]
+[connection signal="timeout" from="AbilityDurationTimedOut" to="." method="_on_ability_duration_timed_out_timeout"]

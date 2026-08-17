@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://sishtvgipl3e"]
+
+[ext_resource type="Script" uid="uid://c07ssb2a20065" path="res://spirits/spread_like_fire/slf_fire_ring.gd" id="1_lp0hm"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_ahjsc"]
+[ext_resource type="PackedScene" uid="uid://df2mywph5xba0" path="res://assets/other/projectiles/spritemaps/SLF_proj_sprites.tscn" id="3_niipc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahjsc"]
+size = Vector2(86, 20)
+
+[node name="SLFFireRing" type="Node2D" unique_id=120389817]
+script = ExtResource("1_lp0hm")
+damageMod = 20.0
+bulletLifeTimeMod = 1.5
+bulletAmountMod = 20
+rotationAdditionMod = 10.0
+projectileSpeedMod = 100.0
+shootCooldown = 1.0
+gun = true
+bulletScene = ExtResource("2_ahjsc")
+knockback_force = 200.0
+shoot_in_circle = true
+projectile_sprite_scene = ExtResource("3_niipc")
+has_no_rot = true
+hasInfPierce = true
+canKeepTicking = true
+bullet_speed_mode = 2
+bullet_end_speed_multiplier = 0.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=326378598]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1019935624]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=2022861284]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=413365506]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ahjsc")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

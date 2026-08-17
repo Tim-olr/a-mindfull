@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AssaultRifleRes" format=3 uid="uid://dfpc56k7tagqa"]
+
+[ext_resource type="PackedScene" uid="uid://bgmhxyrly6au7" path="res://weapons/guns/assault_rifle.tscn" id="1_q8xmj"]
+[ext_resource type="Script" uid="uid://btmwaxbgp72yo" path="res://weapons/guns/assault_rifle_resource.gd" id="2_vdhrc"]
+[ext_resource type="Texture2D" uid="uid://b7m8teqbhlqsk" path="res://assets/items/weapons/assault_rifle.png" id="3_jsec3"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_vdhrc")
+isWeapon = true
+itemScene = ExtResource("1_q8xmj")
+rarity = null
+txtr = ExtResource("3_jsec3")
+Name = "AR"
+description = "AR"
+scale_mod = Vector2(6, 6)

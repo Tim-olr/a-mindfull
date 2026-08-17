@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bsmiimrqb81t5"]
+
+[ext_resource type="Script" uid="uid://ouniiaosl7n" path="res://weapons/projectiles/laser_projectile.gd" id="1_k41qu"]
+
+[node name="LaserProjectile" type="Node2D" unique_id=1704398087]
+script = ExtResource("1_k41qu")
+
+[node name="LifeTime" type="Timer" parent="." unique_id=1888766912]
+one_shot = true
+
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

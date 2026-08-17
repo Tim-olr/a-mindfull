@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cj07e6dbe35xf"]
+
+[ext_resource type="Script" uid="uid://d1nawydecsmi7" path="res://spirits/keep_me_close/keep_me_close_weapon.gd" id="1_1sh4j"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_t14rp"]
+[ext_resource type="PackedScene" uid="uid://xtt53okqaoh3" path="res://assets/other/projectiles/spritemaps/KMC_sprites.tscn" id="3_848gy"]
+[ext_resource type="PackedScene" uid="uid://bsmiimrqb81t5" path="res://weapons/projectiles/laser_projectile.tscn" id="3_u50ao"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d48wv"]
+size = Vector2(86, 20)
+
+[node name="TestLaser" type="Node2D" unique_id=1250667279]
+script = ExtResource("1_1sh4j")
+damageMod = 10.0
+bulletLifeTimeMod = 5.0
+shootCooldown = 2.0
+gun = true
+bulletScene = ExtResource("2_t14rp")
+projectile_sprite_scene = ExtResource("3_848gy")
+hasInfPierce = true
+canKeepTicking = true
+tick_interval = 1.0
+is_laser = true
+laserScene = ExtResource("3_u50ao")
+laser_max_length = 160.0
+laser_width = 16.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1285666566]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=48322680]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1262517204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1233122992]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_d48wv")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

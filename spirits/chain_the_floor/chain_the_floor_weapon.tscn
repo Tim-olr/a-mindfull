@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ctfwpn0000001"]
+
+[ext_resource type="Script" path="res://spirits/chain_the_floor/chain_the_floor_weapon.gd" id="1_ctfwep"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_ctfwep"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctfwep"]
+size = Vector2(86, 20)
+
+[node name="ChainTheFloor" type="Node2D" unique_id=1111100001]
+script = ExtResource("1_ctfwep")
+damageMod = 12.0
+bulletLifeTimeMod = 0.0
+bulletAmountMod = 0
+projectileSpeedMod = 0.0
+shootCooldown = 0.55
+gun = true
+description = "A whip-like chain. The tip strikes hardest."
+Name = "Chain the Floor"
+bulletScene = ExtResource("2_ctfwep")
+knockback_force = 180.0
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1111100002]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=1111100003]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=1111100004]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1111100005]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ctfwep")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

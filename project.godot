@@ -27,11 +27,11 @@ GlobalPlayer="*uid://br1nyi7ps7d55"
 GlobalWorld="*uid://cursbc857e54k"
 GlobalSafe="*uid://cn7yvsmy5gls3"
 GlobalhitMarker="*uid://ivxlhrg3mot2"
-DayNightCycle="*res://scripts/main game/day_night_cycle.gd"
-ArtifactManager="*res://scripts/artifacts/artifact_manager.gd"
-WeaponRegistry="*res://scripts/global/weapon_registry.gd"
-LootPoolManager="*res://scripts/global/loot_pool_manager.gd"
-FogOfWar="*res://scripts/global/fog_of_war.gd"
+DayNightCycle="*res://world/day_night_cycle.gd"
+ArtifactManager="*res://artifacts/artifact_manager.gd"
+WeaponRegistry="*res://weapons/weapon_registry.gd"
+LootPoolManager="*res://items/loot_pool_manager.gd"
+FogOfWar="*res://world/fog_of_war.gd"
 
 [display]
 
@@ -53,13 +53,16 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/ridiculo
 
 folder_colors={
 "res://assets/": "red",
-"res://resources/": "teal",
-"res://scenes/": "purple",
-"res://scripts/": "green",
-"res://spirit-game-project/assets/": "red",
-"res://spirit-game-project/resources/": "teal",
-"res://spirit-game-project/scenes/": "purple",
-"res://spirit-game-project/scripts/": "green"
+"res://spirits/": "purple",
+"res://player/": "blue",
+"res://weapons/": "orange",
+"res://enemies/": "pink",
+"res://items/": "yellow",
+"res://artifacts/": "teal",
+"res://world/": "green",
+"res://game/": "purple",
+"res://ui/": "blue",
+"res://shared/": "gray"
 }
 
 [global_group]

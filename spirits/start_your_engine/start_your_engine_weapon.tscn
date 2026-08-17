@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://blhyo4ujkh0t4"]
+
+[ext_resource type="Script" uid="uid://c2o28nt1cyagi" path="res://spirits/start_your_engine/start_your_engine_weapon.gd" id="1_r1j4r"]
+[ext_resource type="PackedScene" uid="uid://kqprvh4qgnic" path="res://weapons/projectiles/projectile.tscn" id="2_ildw1"]
+[ext_resource type="PackedScene" uid="uid://dwv3bukgyy6oh" path="res://assets/other/projectiles/spritemaps/SYE_proj_sprites.tscn" id="3_t80ni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ildw1"]
+size = Vector2(86, 20)
+
+[node name="StartYourEngine" type="Node2D" unique_id=1772353808]
+script = ExtResource("1_r1j4r")
+damageMod = 30.0
+bulletLifeTimeMod = 2.0
+bulletAmountMod = 2
+projectileSpeedMod = 100.0
+shootCooldown = 1.0
+gun = true
+bulletScene = ExtResource("2_ildw1")
+doConsecShooting = true
+consec_shooting_time_between = 0.3
+knockback_force = 100.0
+custom_collision_sizes = Vector2(2, 2)
+projectile_sprite_scene = ExtResource("3_t80ni")
+hasInfPierce = true
+canKeepTicking = true
+tick_interval = 0.7
+bullet_speed_mode = 2
+bullet_end_speed_multiplier = 0.01
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1529127645]
+one_shot = true
+
+[node name="BulletStarsPos" type="Marker2D" parent="." unique_id=551854766]
+
+[node name="MeleeHitbox" type="Area2D" parent="BulletStarsPos" unique_id=692164998]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletStarsPos/MeleeHitbox" unique_id=1371894683]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ildw1")
+
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]

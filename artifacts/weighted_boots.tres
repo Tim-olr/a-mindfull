@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtifactResource" load_steps=2 format=3 uid="uid://art_wboots1"]
+
+[ext_resource type="Script" path="res://artifacts/weighted_boots.gd" id="1_art"]
+
+[resource]
+script = ExtResource("1_art")
+artifact_id = "weighted_boots"
+artifact_name = "Weighted Boots"
+description = "+30% knockback resistance, -10% move speed. (+10% KB res / -5% speed per stack)"
+rarity = 0

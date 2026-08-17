@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://gj7tdld1efap"]
+
+[ext_resource type="Script" uid="uid://ucswsaklks2h" path="res://spirits/furniture_city/furniture_city_boost.gd" id="1_vi5pm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vi5pm"]
+radius = 47.042534
+
+[node name="FurnitureCityBoost" type="Node2D" unique_id=1173419892]
+script = ExtResource("1_vi5pm")
+
+[node name="BoostArea" type="Area2D" parent="." unique_id=631862911]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoostArea" unique_id=1644663500]
+shape = SubResource("CircleShape2D_vi5pm")
+debug_color = Color(0.98719627, 0, 0.32055512, 0.41960785)
+
+[connection signal="area_entered" from="BoostArea" to="." method="_on_boost_area_area_entered"]
+[connection signal="area_exited" from="BoostArea" to="." method="_on_boost_area_area_exited"]
+[connection signal="body_entered" from="BoostArea" to="." method="_on_boost_area_body_entered"]
+[connection signal="body_exited" from="BoostArea" to="." method="_on_boost_area_body_exited"]

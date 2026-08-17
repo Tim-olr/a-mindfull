@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://d4lci2tduaiwp"]
-
-[ext_resource type="Script" uid="uid://coqmkgx6f1afe" path="res://scripts/main game/spawner/enemy_spawner.gd" id="1_jma7h"]
-[ext_resource type="PackedScene" uid="uid://vmce3i1bf5v1" path="res://scenes/enemy/enemies/ardy.tscn" id="2_gb680"]
-
-[node name="EnemySpawner" type="Node2D" unique_id=1535437936]
-script = ExtResource("1_jma7h")
-enemy_pool = Array[PackedScene]([ExtResource("2_gb680")])

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemResource" format=3 uid="uid://ccv4xu1qqciny"]
+
+[ext_resource type="Script" uid="uid://eykeum4a21x1" path="res://items/item_resource.gd" id="1_2sndk"]
+[ext_resource type="PackedScene" uid="uid://b6pw0tovbsmg" path="res://spirits/shift_the_sand/sts_swift.tscn" id="1_7kebh"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="3_lojjg"]
+
+[resource]
+script = ExtResource("1_2sndk")
+isWeapon = true
+itemScene = ExtResource("1_7kebh")
+rarity = 0
+txtr = ExtResource("3_lojjg")
+metadata/_custom_type_script = "uid://eykeum4a21x1"

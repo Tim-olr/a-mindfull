@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArtifactResource" load_steps=2 format=3 uid="uid://art_insure1"]
+
+[ext_resource type="Script" path="res://artifacts/insurance_charm.gd" id="1_art"]
+
+[resource]
+script = ExtResource("1_art")
+artifact_id = "insurance_charm"
+artifact_name = "Insurance Charm"
+description = "On death keep 25% of carried Shards instead of 10%. (+10% per stack)"
+rarity = 1
