@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cxts1y8rylff4"]
+
+[ext_resource type="Script" uid="uid://dyr0clqssl6cl" path="res://world/generation/dungeon_generator.gd" id="1_gen"]
+[ext_resource type="Resource" path="res://world/generation/floors/depths.tres" id="2_floor"]
+
+[node name="DungeonTest" type="Node2D" unique_id=801200344]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2110236771]
+position = Vector2(1500, 825)
+zoom = Vector2(0.15, 0.15)
+
+[node name="DungeonGenerator" type="Node2D" parent="." unique_id=1258112381]
+script = ExtResource("1_gen")
+floor_config = ExtResource("2_floor")
+auto_generate = true

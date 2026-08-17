@@ -3,12 +3,16 @@ extends Node2D
 @onready var load_timer: Timer = $LoadTimer
 @onready var projectiles: Node2D = $projectiles
 @onready var dmgNrs: Node2D = $dmgNrs
+@onready var dungeon_generator: DungeonGenerator = $DungeonGenerator
 
-## Entry point for a dungeon run. Dungeon generation itself is built
-## elsewhere; this just wires up the player, globals, and the weapons
-## carried in from the hub.
+## Entry point for a dungeon run: generates the floor layout, then wires up
+## the player, globals, and the weapons carried in from the hub.
 
 func _ready() -> void:
+	GlobalWorld.dungeon_generator = dungeon_generator
+	var start_room: DungeonRoom = dungeon_generator.rooms.get(Vector2i.ZERO)
+	if start_room and is_instance_valid(GlobalPlayer.camera):
+		GlobalPlayer.camera.snap_to_room(start_room)
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
 	GameManager.is_in_lobby = false

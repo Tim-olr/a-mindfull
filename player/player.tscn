@@ -16,6 +16,9 @@
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://shared/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://shared/shaders/blue_filter.gdshader" id="13_7hhef"]
 [ext_resource type="Script" uid="uid://dbvwhgdhuymig" path="res://player/player_components.gd" id="17_tayva"]
+[ext_resource type="Shader" uid="uid://d4jgyfymssuv7" path="res://shared/shaders/room_vignette.gdshader" id="18_vignette"]
+[ext_resource type="Script" uid="uid://cjfn86qlry2jf" path="res://ui/currency_label.gd" id="19_currency"]
+[ext_resource type="Script" uid="uid://cqoyhr6t4v1e5" path="res://ui/minimap.gd" id="20_minimap"]
 
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -214,6 +217,12 @@ colors = PackedColorArray(0.30692267, 0.3069227, 0.3069227, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7hhef"]
 gradient = SubResource("Gradient_t0bry")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = ExtResource("18_vignette")
+shader_parameter/edge_start = 0.50000002375
+shader_parameter/edge_end = 0.88
+shader_parameter/darkness = 1.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_1kbk7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gqjuk"]
@@ -327,22 +336,45 @@ grow_vertical = 1
 [node name="PlayerVisuals" type="Node2D" parent="." unique_id=889631960]
 script = ExtResource("5_ly2qd")
 
-[node name="UI" type="Control" parent="PlayerVisuals" unique_id=727823785]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 83.0
-offset_top = -49.0
-offset_right = 123.0
-offset_bottom = -9.0
+[node name="UI" type="CanvasLayer" parent="PlayerVisuals" unique_id=727823785]
+layer = 5
 
 [node name="HealthBar" parent="PlayerVisuals/UI" unique_id=387592992 instance=ExtResource("9_lf5c0")]
 z_index = 18
-layout_mode = 0
-offset_left = 36.0
-offset_top = -97.0
-offset_right = 276.0
-offset_bottom = -70.0
-scale = Vector2(0.6, 0.6)
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 264.0
+offset_bottom = 51.0
+
+[node name="CurrencyLabel" type="Label" parent="PlayerVisuals/UI" unique_id=1991833356]
+z_index = 18
+offset_left = 24.0
+offset_top = 57.0
+offset_right = 264.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "Shards: 0"
+script = ExtResource("19_currency")
+
+[node name="MinimapLayer" type="CanvasLayer" parent="PlayerVisuals" unique_id=1043487800]
+layer = 5
+
+[node name="Minimap" type="Control" parent="PlayerVisuals/MinimapLayer" unique_id=1664826677]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_top = 56.0
+offset_right = -56.0
+offset_bottom = 216.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("20_minimap")
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="PlayerVisuals" unique_id=98449750]
 sprite_frames = SubResource("SpriteFrames_x5xxc")
@@ -378,6 +410,19 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_7hhef")
+
+[node name="Effects3" type="CanvasLayer" parent="PlayerVisuals" unique_id=-1512526176]
+layer = 2
+
+[node name="RoomShadow" type="ColorRect" parent="PlayerVisuals/Effects3" unique_id=-1126914849]
+material = SubResource("ShaderMaterial_vignette")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1921866576]
 visible = false

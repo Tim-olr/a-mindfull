@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://items/weapon_interactable.gd" id="1_wpn"]
+[ext_resource type="Shader" uid="uid://b00dsthkd2ybg" path="res://shared/shaders/outline.gdshader" id="2_wpn"]
+[ext_resource type="Texture2D" uid="uid://dxljrs61nfhmg" path="res://assets/items/consumables/apple.png" id="3_wpn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wpn"]
+shader = ExtResource("2_wpn")
+shader_parameter/allow_out_of_bounds = true
+shader_parameter/outline_thickness = 2.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpn"]
+radius = 17.560923
+
+[node name="WeaponInteractable" type="Area2D" groups=["interactables"]]
+position = Vector2(10, 0)
+scale = Vector2(10, 10)
+script = ExtResource("1_wpn")
+
+[node name="icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wpn")
+texture = ExtResource("3_wpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.1070626, 1.1424145)
+shape = SubResource("CircleShape2D_wpn")

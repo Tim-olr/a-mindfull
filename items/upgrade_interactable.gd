@@ -1,0 +1,2 @@
+extends ArtifactInteractable
+class_name UpgradeInteractable

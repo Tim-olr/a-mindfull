@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" uid="uid://4y1ogbcm6ibt" path="res://world/generation/room.tscn" id="1_base"]
+
+[node name="Room" instance=ExtResource("1_base")]
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 0.3, 0.3, 1)
+offset_left = 350.0
+offset_top = 245.0
+offset_right = 650.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 48
+text = "BOSS"
+horizontal_alignment = 1
+vertical_alignment = 1

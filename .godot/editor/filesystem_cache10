@@ -1,8 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1786983615
-.godot_import_pass1.log::TextFile::-1::1786983386::0::1::::<><><>0<>0<><>::
-.godot_import_pass2.log::TextFile::-1::1786983584::0::1::::<><><>0<>0<><>::
-.godot_import_pass3.log::TextFile::-1::1786983619::0::1::::<><><>0<>0<><>::
+::res://::1786986708
 icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1772738358::1772739340::1::::<><><>0<>0<>81340f9a0cc78dd1638d6171a1881f90<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 LICENSE.md::TextFile::-1::1774263726::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1772735592::0::1::::<><><>0<>0<><>::
@@ -4156,9 +4153,21 @@ building_chest_spawner.gd::GDScript::391593031593608997::1778603318::0::1::::<>N
 roof.gd::GDScript::3552219375477647625::1778603758::0::1::::Roof<>Area2D<><>0<>0<><>::
 roof.tscn::PackedScene::5636833107354587868::1786983287::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://world/buildings/roof.gd
 small_building.tscn::PackedScene::5548719790697353482::1786983287::0::1::::<><><>0<>0<><>::uid://bquysfpm8ahmf::::res://world/buildings/roof.gd<>uid://ftxqk5vgknmj::::res://world/buildings/building_chest_spawner.gd<>uid://chestscene001::::res://items/chest/chest.tscn<>uid://dajcxxd7vd00p::::res://items/chest/chest_loot_entry.gd<>uid://dfekj8b60xk25::::res://items/consumables/apple.tres<>uid://3wdhdoqoeqml::::res://resources/items/material/duct_tape.tres<>uid://cf0cv1f4agspd::::res://resources/items/material/scrap.tres<>uid://bqu2g6wu4ec2p::::res://resources/items/material/spirit_core.tres<>uid://cn6ol23tnacen::::res://resources/items/material/wires.tres<>uid://dfxpmuw3163o5::::res://weapons/guns/boomerang.tres<>uid://dfmxwb1ensjw6::::res://weapons/guns/cursed_tome.tres<>uid://cg6twgxd3uqwx::::res://items/chest/chest_loot_pool.gd<>uid://cg1w82geqs1ig::::res://assets/world/objects/buildings/roof.png<>uid://8aj68v6iwjst::::res://assets/world/objects/buildings/wall.png<>uid://b7mj3g7xq8sfy::::res://assets/world/objects/buildings/door.png
-::res://world/generation/::1786983208
+::res://world/generation/::1786986524
+dungeon_generator.gd::GDScript::8880410819934150147::1786986486::0::1::::DungeonGenerator<>Node2D<><>0<>0<><>::
+dungeon_test.tscn::PackedScene::-1::1786986524::0::1::::<><><>0<>0<><>::res://world/generation/dungeon_generator.gd<>res://world/generation/floors/depths.tres
+floor_config.gd::GDScript::5133632263647649104::1786986466::0::1::::FloorConfig<>Resource<><>0<>0<><>::
 new_tile_set.tres::TileSet::4890669701433806870::1781268524::0::1::::<><><>0<>0<><>::uid://c67joppmxj5dq::::res://assets/world/blocks/ground_no_border.png<>uid://cpv8jdelh5ruf::::res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png
-room.tscn::PackedScene::2086625491320010253::1786981950::0::1::::<><><>0<>0<><>::
+room.gd::GDScript::4837899380235378196::1786986469::0::1::::DungeonRoom<>StaticBody2D<><>0<>0<><>::
+room.tscn::PackedScene::2086625491320010253::1786986498::0::1::::<><><>0<>0<><>::res://world/generation/room.gd
+special_room_data.gd::GDScript::3072156359214528113::1786986462::0::1::::SpecialRoomData<>Resource<><>0<>0<><>::
+::res://world/generation/floors/::1786986520
+depths.tres::Resource/FloorConfig::-1::1786986515::0::1::::<><><>0<>0<><>::res://world/generation/floor_config.gd<>res://world/generation/special_room_data.gd<>res://world/generation/special_rooms/boss_room.tscn<>res://world/generation/special_rooms/item_room.tscn<>res://world/generation/special_rooms/shop_room.tscn
+forest_ii.tres::Resource/FloorConfig::-1::1786986520::0::1::::<><><>0<>0<><>::res://world/generation/floor_config.gd<>res://world/generation/special_room_data.gd<>res://world/generation/special_rooms/boss_room.tscn<>res://world/generation/special_rooms/item_room.tscn<>res://world/generation/special_rooms/shop_room.tscn
+::res://world/generation/special_rooms/::1786986508
+boss_room.tscn::PackedScene::-1::1786986502::0::1::::<><><>0<>0<><>::uid://4y1ogbcm6ibt::::res://world/generation/room.tscn
+item_room.tscn::PackedScene::-1::1786986505::0::1::::<><><>0<>0<><>::uid://4y1ogbcm6ibt::::res://world/generation/room.tscn
+shop_room.tscn::PackedScene::-1::1786986508::0::1::::<><><>0<>0<><>::uid://4y1ogbcm6ibt::::res://world/generation/room.tscn
 ::res://world/pools/::1786983209
 building_pools.gd::GDScript::5119710041203974813::1774679212::0::1::::<>Node<><>0<>0<><>::
 pools.gd::GDScript::8487825936942937670::1774679181::0::1::::<>Node<><>0<>0<><>::

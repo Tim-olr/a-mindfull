@@ -114,7 +114,7 @@ func unequip_weapon() -> void:
 func _process(_delta: float) -> void:
 	if stats.hp <= 0:
 		die()
-	GlobalPlayer.stats.playerSpiritScene.z_index = GlobalPlayer.player.z_index
+	#GlobalPlayer.stats.playerSpiritScene.z_index = GlobalPlayer.player.z_index
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):

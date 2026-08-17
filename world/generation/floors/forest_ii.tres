@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="FloorConfig" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://world/generation/floor_config.gd" id="1_cfg"]
+[ext_resource type="Script" path="res://world/generation/special_room_data.gd" id="2_special"]
+[ext_resource type="PackedScene" path="res://world/generation/special_rooms/boss_room.tscn" id="3_boss"]
+[ext_resource type="PackedScene" path="res://world/generation/special_rooms/item_room.tscn" id="4_item"]
+[ext_resource type="PackedScene" path="res://world/generation/special_rooms/shop_room.tscn" id="5_shop"]
+
+[sub_resource type="Resource" id="SpecialRoomData_boss"]
+script = ExtResource("2_special")
+id = &"boss"
+scene = ExtResource("3_boss")
+count = 1
+min_distance = 4
+placement = 1
+
+[sub_resource type="Resource" id="SpecialRoomData_item"]
+script = ExtResource("2_special")
+id = &"item"
+scene = ExtResource("4_item")
+count = 2
+min_distance = 1
+placement = 0
+
+[sub_resource type="Resource" id="SpecialRoomData_shop"]
+script = ExtResource("2_special")
+id = &"shop"
+scene = ExtResource("5_shop")
+count = 1
+min_distance = 2
+placement = 2
+
+[resource]
+script = ExtResource("1_cfg")
+floor_name = "Forest II"
+min_rooms = 12
+max_rooms = 18
+room_size = Vector2(1000, 550)
+branch_chance = 0.65
+dead_end_chance = 0.25
+loop_chance = 0.1
+special_rooms = Array[Resource]([SubResource("SpecialRoomData_boss"), SubResource("SpecialRoomData_item"), SubResource("SpecialRoomData_shop")])

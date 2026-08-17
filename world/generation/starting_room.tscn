@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cbqir7nysq82a"]
+
+[ext_resource type="PackedScene" uid="uid://4y1ogbcm6ibt" path="res://world/generation/room.tscn" id="1_room"]
+[ext_resource type="PackedScene" path="res://world/generation/door.tscn" id="2_door"]
+[ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://player/player.tscn" id="3_player"]
+
+[node name="StartingRoom" type="Node2D" unique_id=40725186]
+
+[node name="StartRoom" parent="." unique_id=970867386 instance=ExtResource("1_room")]
+
+[node name="NextRoom" parent="." unique_id=372068528 instance=ExtResource("1_room")]
+position = Vector2(480, 0)
+
+[node name="PlayerStart" type="Marker2D" parent="." unique_id=1240678231]
+position = Vector2(240, 135)
+
+[node name="StartRoomEntry" type="Marker2D" parent="." unique_id=531774310]
+position = Vector2(380, 135)
+
+[node name="NextRoomEntry" type="Marker2D" parent="." unique_id=2114729442]
+position = Vector2(580, 135)
+
+[node name="DoorToNext" parent="." unique_id=1502762517 instance=ExtResource("2_door")]
+position = Vector2(440, 135)
+
+[node name="DoorToStart" parent="." unique_id=1338691705 instance=ExtResource("2_door")]
+position = Vector2(520, 135)
+
+[node name="Player" parent="." unique_id=198900997 instance=ExtResource("3_player")]
+position = Vector2(240, 135)
