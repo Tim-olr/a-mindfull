@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1786955070
+::res://::1786981652
 icon.svg::CompressedTexture2D/CompressedTexture2D::8188177616138856582::1772738358::1772739340::1::::<><><>0<>0<>81340f9a0cc78dd1638d6171a1881f90<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 LICENSE.md::TextFile::-1::1774263726::0::1::::<><><>0<>0<><>::
 README.md::TextFile::-1::1772735592::0::1::::<><><>0<>0<><>::
@@ -3980,7 +3980,8 @@ the_world.tscn::PackedScene::2887004937877063605::1786954373::0::1::::<><><>0<>0
 ::res://scenes/main game/ui/::1780426453
 map_ui.tscn::PackedScene::24800383953035336::1780426453::0::1::::<><><>0<>0<><>::res://scripts/main game/ui/map_ui.gd
 time_of_day_widget.tscn::PackedScene::3738407614657611::1778102161::0::1::::<><><>0<>0<><>::res://scripts/main game/ui/time_of_day_widget.gd
-::res://scenes/Physics objects/::1786954002
+::res://scenes/Physics objects/::1786955619
+physics_object.tscn::PackedScene::3975504774845032990::1786955619::0::1::::<><><>0<>0<><>::uid://cf00aahfatipu::::res://scripts/Physics objects/physics_object.gd<>uid://dowoda6idxfva::::res://icon.svg
 ::res://scenes/Physics objects/spirits/::1778166687
 bullet_deflector.tscn::PackedScene::1553875989135231752::1778165720::0::1::::<><><>0<>0<><>::res://scripts/Physics objects/spirits/bullet_deflector.gd
 chain_trap.tscn::PackedScene::6117936094278731272::1778166687::0::1::::<><><>0<>0<><>::uid://bg5f34ckjk0fe::::res://scripts/Physics objects/spirits/chain_trap.gd<>uid://dowoda6idxfva::::res://icon.svg
@@ -4039,9 +4040,9 @@ STS_swift.tscn::PackedScene::135135939470547134::1775996397::0::1::::<><><>0<>0<
 TestLaser.tscn::PackedScene::5458102123834318859::1775995806::0::1::::<><><>0<>0<><>::uid://d1nawydecsmi7::::res://scripts/Weapons/spirit_weapons/keep_me_close.gd<>uid://kqprvh4qgnic::::res://scenes/Projectile/projectile.tscn<>uid://xtt53okqaoh3::::res://assets/other/projectiles/spritemaps/KMC_sprites.tscn<>uid://bsmiimrqb81t5::::res://scenes/Projectile/LaserProjectile.tscn
 wandering_eye.tscn::PackedScene::6716058580967312648::1778597552::0::1::::<><><>0<>0<><>::uid://bu8rd7b6sp3hj::::res://scripts/Weapons/spirit_weapons/wandering_eye.gd<>uid://c2xdtafq60m77::::res://scenes/Projectile/growing_projectile.tscn
 ::res://scripts/::1781274632
-::res://scripts/artifacts/::1781275132
+::res://scripts/artifacts/::1786955633
 adrenal_syringe.gd::GDScript::8718113628852175533::1781274664::0::1::::<>ArtifactResource<><>0<>0<><>::
-artifact_manager.gd::GDScript::8425421967077622549::1781274653::0::1::::<>Node<><>0<>0<><>::
+artifact_manager.gd::GDScript::8425421967077622549::1786955633::0::1::::<>Node<><>0<>0<><>::
 artifact_resource.gd::GDScript::7217007219140995087::1781274632::0::1::::ArtifactResource<>Resource<><>0<>0<><>::
 focused_mind.gd::GDScript::5413359901903089044::1781274677::0::1::::<>ArtifactResource<><>0<>0<><>::
 insurance_charm.gd::GDScript::9119042148001491134::1781274668::0::1::::<>ArtifactResource<><>0<>0<><>::
@@ -4061,7 +4062,7 @@ fog_of_war.gd::GDScript::4820142107763382649::1779016340::0::1::::<>Node<><>0<>0
 GlobalhitMarker.gd::GDScript::606279210741741433::1775121336::0::1::::<>Node<><>0<>0<><>::
 loot_pool_manager.gd::GDScript::5920603640142419907::1778360530::0::1::::<>Node<><>0<>0<><>::
 weapon_registry.gd::GDScript::2548537616136259430::1778360530::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/items/::1786953998
+::res://scripts/items/::1786955097
 artifact_interactable.gd::GDScript::3480501756108223056::1781274683::0::1::::ArtifactInteractable<>Interactable<><>0<>0<><>::
 item.gd::GDScript::3995992329048961044::1774442196::0::1::::Item<>Node<><>0<>0<><>::
 item_interactable.gd::GDScript::2637292863465267053::1778976261::0::1::::ItemInteractable<>Interactable<><>0<>0<><>::
@@ -4071,7 +4072,7 @@ chest_loot_pool.gd::GDScript::5259163400763851459::1779016340::0::1::::ChestLoot
 chest_ui.gd::GDScript::423933414716373871::1780425900::0::1::::ChestUI<>Control<><>0<>0<><>::
 ::res://scripts/items/consumable/::1772739238
 apple.gd::GDScript::2826309046854200434::1772739238::0::1::::<>Item<><>0<>0<><>::
-::res://scripts/main game/::1786954360
+::res://scripts/main game/::1786955097
 day_night_cycle.gd::GDScript::4412758453891646743::1786954360::0::1::::<>Node<><>0<>0<><>::
 game.gd::GDScript::3552846528166844466::1786954045::0::1::::<>Node2D<><>0<>0<><>::
 game_manager.gd::GDScript::8620906229965984551::1773834192::0::1::::<>Node2D<><>0<>0<><>::
@@ -4114,17 +4115,18 @@ the_world.gd::GDScript::7280671575768987605::1786954294::0::1::::<>Node2D<><>0<>
 ::res://scripts/main game/ui/::1786954221
 map_ui.gd::GDScript::7653603907368678715::1786954221::0::1::::<>Control<><>0<>0<><>::
 time_of_day_widget.gd::GDScript::2102463001243595841::1778102141::0::1::::<>Control<><>0<>0<><>::
-::res://scripts/Physics objects/::1786954002
+::res://scripts/Physics objects/::1786955619
+physics_object.gd::GDScript::2127549558564066716::1786955364::0::1::::PhysicsObject<>StaticBody2D<><>0<>0<><>::
 ::res://scripts/Physics objects/spirits/::1778165846
 bullet_deflector.gd::GDScript::6502907716416090219::1778165720::0::1::::<>Node2D<><>0<>0<><>::
 chain_trap.gd::GDScript::2869840192069824434::1778165720::0::1::::<>Node2D<><>0<>0<><>::
 jesters_grin_bomb.gd::GDScript::5687531782136991070::1775771097::0::1::::<>PhysicsObject<><>0<>0<><>::
-::res://scripts/Player/::1786954208
+::res://scripts/Player/::1786955625
 GlobalPlayer.gd::GDScript::3634137497432277414::1781269914::0::1::::<>Node<><>0<>0<><>::
 player.gd::GDScript::4169454906023678633::1781269954::0::1::::Player<>CharacterBody2D<><>0<>0<><>::
 player_components.gd::GDScript::7274151422071033574::1781270246::0::1::::PlayerComponents<>Node2D<><>0<>0<><>::
 player_manager.gd::GDScript::2376834637856670156::1786954208::0::1::::PlayerManager<>Node2D<><>0<>0<><>::
-player_movement.gd::GDScript::8116732337177180290::1781274731::0::1::::PlayerMovement<>Node2D<><>0<>0<><>::
+player_movement.gd::GDScript::8116732337177180290::1786955625::0::1::::PlayerMovement<>Node2D<><>0<>0<><>::
 player_specials.gd::GDScript::2889875903574187753::1778166243::0::1::::PlayerSpecials<>Node2D<><>0<>0<><>::
 player_stats.gd::GDScript::6699601115607886984::1786954058::0::1::::PlayerStats<>Node2D<><>0<>0<><>::
 player_visuals.gd::GDScript::2212066862665592498::1779019947::0::1::::PlayerVisuals<>Node2D<><>0<>0<><>::
@@ -4139,10 +4141,10 @@ item_resource.gd::GDScript::330915824076223624::1778147591::0::1::::ItemResource
 ::res://scripts/Player/inventory/safe/::1786954447
 global_safe.gd::GDScript::5752852097397678908::1786954082::0::1::::<>Node2D<><>0<>0<><>::
 safeUi.gd::GDScript::8021051076690860158::1786954447::0::1::::SafeUI<>Control<><>0<>0<><>::
-::res://scripts/Projectiles/::1781272488
+::res://scripts/Projectiles/::1786955377
 growing_projectile.gd::GDScript::87314737804835982::1778166517::0::1::::<>Projectile<><>0<>0<><>::
 laser_projectile.gd::GDScript::30139276297596265::1775995710::0::1::::LaserProjectile<>Node2D<><>0<>0<><>::
-projectile.gd::GDScript::126512782107756830::1778534462::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
+projectile.gd::GDScript::126512782107756830::1786955377::0::1::::Projectile<>CharacterBody2D<><>0<>0<><>::
 swap_projectile.gd::GDScript::7612828366697139707::1781272347::0::1::::SwapProjectile<>Projectile<><>0<>0<><>::
 ::res://scripts/shaders/::1781268524
 blue_filter.gdshader::Shader::5097217208791447235::1772739238::0::1::::<><><>0<>0<><>::

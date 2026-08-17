@@ -1,3 +1,1 @@
-res://scripts/Player/player_movement.gd
-res://scripts/Projectiles/projectile.gd
-res://scripts/artifacts/artifact_manager.gd
+res://scripts/shaders/outline.gdshader
