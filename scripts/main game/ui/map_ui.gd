@@ -124,7 +124,7 @@ func _on_draw_map() -> void:
 			continue
 		_draw_ctrl.draw_rect(Rect2(sx, sy, cp - 0.5, cp - 0.5), fog_of_war.visited[cell])
 
-	if WiseTree.is_unlocked("station_beacon") and fog_of_war.has_extraction_point:
+	if fog_of_war.has_extraction_point:
 		var ep := fog_of_war.extraction_point_tile
 		var ex := min_x + ep.x * cp + cp * 0.5
 		var ey := min_y + ep.y * cp + cp * 0.5

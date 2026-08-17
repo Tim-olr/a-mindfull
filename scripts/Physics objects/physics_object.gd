@@ -1,5 +1,9 @@
-extends RigidBody2D
+extends StaticBody2D
 class_name PhysicsObject
+
+## A static, non-pushable world obstacle. Configure per-instance to act as a
+## plain wall, a destroyable obstacle (crate, rubble, whatever), or both.
+## Any weapon/projectile damages it the same way — there's no tool-gating.
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
@@ -8,10 +12,8 @@ const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
 @export var Name: String
 
 @export_category("Physics Settings")
-@export var pushable: bool
 @export var can_pass_through: bool
 @export var stops_bullets: bool = true
-@export var friction: float = 20.0
 
 @export_category("Loot Settings")
 @export var drops_something: bool
@@ -19,13 +21,9 @@ const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
 @export var drop_amount: int
 
 @export_category("Other Settings")
-@export var max_health: int
+@export var destroyable: bool = false
+@export var max_health: int = 10
 @export var health: int = 0
-@export var does_damage: bool
-@export var damage_amount: float
-@export var damage_resistance: int = 0
-@export_enum("Axe", "Pickaxe", "Bullet", "Shovel") var prefered_tool
-@export_range(0, 100, 0.1) var damage_amplifier = 0.0
 @export var hide_txtr: bool = false
 @export var has_on_touch: bool = false
 
@@ -34,13 +32,10 @@ func _ready() -> void:
 	init_settings()
 	add_to_group("physics_object")
 
-func _physics_process(_delta: float) -> void:
-	pass
-
-func damage(amount: float, tool_index: int) -> void:
-	if tool_index != prefered_tool:
+func damage(amount: float) -> void:
+	if not destroyable:
 		return
-	health -= amount * (1.0 + damage_amplifier)
+	health -= amount
 	if health <= 0:
 		_die()
 
@@ -55,16 +50,7 @@ func _die() -> void:
 	queue_free()
 
 func init_settings():
-	linear_damp = friction
-	if hide_txtr:
-		visible = false
-	else:
-		visible = true
-	if !pushable:
-		freeze = true
-	else:
-		freeze = false
-		linear_damp = 20.0
+	visible = not hide_txtr
 	if can_pass_through and stops_bullets:
 		collision_layer = 4
 	elif can_pass_through:
@@ -73,9 +59,12 @@ func init_settings():
 		collision_layer = 1
 	if stops_bullets:
 		add_to_group("wall")
-	else:
-		if is_in_group("wall"):
-			remove_from_group("wall")
+	elif is_in_group("wall"):
+		remove_from_group("wall")
+	if destroyable:
+		add_to_group("destructible")
+	elif is_in_group("destructible"):
+		remove_from_group("destructible")
 
 func init_health():
 	health = max_health

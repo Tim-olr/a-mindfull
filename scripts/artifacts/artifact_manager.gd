@@ -126,7 +126,7 @@ func roll_random() -> ArtifactResource:
 	var weights: Array[float] = []
 	var total := 0.0
 	for art in _pool:
-		var w := BASE_W[art.rarity] * (1.0 + luck * int(art.rarity) * 0.5)
+		var w = BASE_W[art.rarity] * (1.0 + luck * int(art.rarity) * 0.5)
 		weights.append(w)
 		total += w
 	var roll := _rng.randf() * total

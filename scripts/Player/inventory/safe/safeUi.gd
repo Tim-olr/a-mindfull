@@ -11,7 +11,7 @@ const C_GREEN      := Color(0.35, 0.80, 0.45)
 const C_RED        := Color(0.90, 0.35, 0.30)
 
 const RADIUS  := 9
-const GRID_COLS := 4
+const GRID_COLS := 8
 const SLOT_SIZE := 64
 const SLOT_GAP  := 6
 
@@ -26,11 +26,6 @@ const slot_scene = preload("res://scenes/Player/inventory/InventorySlot.tscn")
 @onready var _main_panel:        Control  = $MainPanel
 @onready var _grid_container:    Control  = $MainPanel/Background/GridContainer
 @onready var _capacity_label:    Label    = $MainPanel/Background/CapacityLabel
-@onready var _shard_stored_label: Label   = $MainPanel/Background/ShardBox/ShardStoredLabel
-@onready var _shard_amount_input: LineEdit = $MainPanel/Background/ShardBox/ShardAmountInput
-@onready var _shard_minus_btn:   Button   = $MainPanel/Background/ShardBox/ShardMinusBtn
-@onready var _shard_plus_btn:    Button   = $MainPanel/Background/ShardBox/ShardPlusBtn
-@onready var _shard_withdraw_btn: Button  = $MainPanel/Background/ShardBox/ShardWithdrawBtn
 
 
 func _ready() -> void:
@@ -46,7 +41,6 @@ func _ready() -> void:
 	_center_panel()
 	_rebuild_inv_slots()
 	_update_capacity_label()
-	_update_shard_label()
 	hide()
 
 
@@ -63,7 +57,6 @@ func open() -> void:
 	for item in GlobalSafe.safe:
 		add_item(item, item.amount)
 	_update_capacity_label()
-	_update_shard_label()
 	show()
 	_animate_in()
 
@@ -167,44 +160,3 @@ func _notify_interactable_closed() -> void:
 func _update_capacity_label() -> void:
 	if _capacity_label != null:
 		_capacity_label.text = "%d / %d" % [occupiedSlots, slotAmount]
-
-
-func _shard_input_value() -> float:
-	if _shard_amount_input == null:
-		return 0.0
-	var t := _shard_amount_input.text.strip_edges()
-	if t.is_empty():
-		return 0.0
-	return maxf(0.0, t.to_float())
-
-
-func _set_shard_input(v: float) -> void:
-	if _shard_amount_input != null:
-		_shard_amount_input.text = str(maxf(0.0, v))
-
-
-func _on_shard_minus() -> void:
-	_set_shard_input(_shard_input_value() - 1.0)
-
-
-func _on_shard_plus() -> void:
-	_set_shard_input(minf(GlobalSafe.shards, _shard_input_value() + 1.0))
-
-
-func _on_shard_withdraw() -> void:
-	var amount: float = _shard_input_value()
-	if amount <= 0.0:
-		return
-	if amount > GlobalSafe.shards:
-		amount = GlobalSafe.shards
-	if amount <= 0.0:
-		return
-	GlobalSafe.shards -= amount
-	GlobalPlayer.stats.add_shards(amount)
-	_set_shard_input(0.0)
-	_update_shard_label()
-
-
-func _update_shard_label() -> void:
-	if _shard_stored_label != null:
-		_shard_stored_label.text = "◈  %s" % str(GlobalSafe.shards)

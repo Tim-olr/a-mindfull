@@ -103,6 +103,11 @@ func _check_overlaps() -> void:
 				break
 		if should_ignore:
 			continue
+		if body.is_in_group("destructible"):
+			if body.has_method("damage"):
+				body.damage(damage)
+			go_away()
+			return
 		if body.is_in_group("wall"):
 			go_away()
 			return

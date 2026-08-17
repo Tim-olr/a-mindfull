@@ -1,20 +1,7 @@
 [gd_scene format=3 uid="uid://dgmmjdo2t04f0"]
 
 [ext_resource type="Script" uid="uid://dmjpslqlj8ida" path="res://scripts/Player/inventory/safe/safeUi.gd" id="1_ayjp0"]
-[ext_resource type="Texture2D" uid="uid://bkyldlddygq2j" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/button_normal.png" id="2_h6pm0"]
 [ext_resource type="Texture2D" uid="uid://cch44qg2ac5du" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png" id="2_rhn6m"]
-[ext_resource type="Texture2D" uid="uid://duhcxxxivw2or" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/button_pressed.png" id="3_rhn6m"]
-[ext_resource type="Texture2D" uid="uid://c0rex186f2psg" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/button_hover.png" id="4_64n8l"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x7oqw"]
-texture = ExtResource("2_h6pm0")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ctjyu"]
-content_margin_top = 10.0
-texture = ExtResource("3_rhn6m")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ltknp"]
-texture = ExtResource("4_64n8l")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_close"]
 
@@ -64,7 +51,7 @@ offset_right = 720.0
 offset_bottom = 72.0
 theme_override_colors/font_color = Color(0.99834317, 0.9982161, 0.99803835, 1)
 theme_override_font_sizes/font_size = 14
-text = "Stored items and shards."
+text = "Weapons brought home from the dungeon."
 horizontal_alignment = 1
 
 [node name="Separator" type="ColorRect" parent="MainPanel/Background" unique_id=2015068826]
@@ -84,116 +71,15 @@ offset_right = 319.0
 offset_bottom = 104.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 13
-text = "ITEMS"
+text = "WEAPONS"
 
 [node name="GridContainer" type="Control" parent="MainPanel/Background" unique_id=26607402]
 anchors_preset = 0
 offset_left = 18.0
 offset_top = 100.0
-offset_right = 320.0
+offset_right = 702.0
 offset_bottom = 520.0
 mouse_filter = 2
-
-[node name="ShardsLabel" type="Label" parent="MainPanel/Background" unique_id=1703993840]
-layout_mode = 0
-offset_left = 358.0
-offset_top = 85.0
-offset_right = 696.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(0.99848825, 0.9614813, 0.91031724, 1)
-theme_override_font_sizes/font_size = 13
-text = "SHARDS"
-
-[node name="ShardBox" type="NinePatchRect" parent="MainPanel/Background" unique_id=1953717268]
-modulate = Color(0.87243545, 0.8724354, 0.87243533, 1)
-layout_mode = 0
-offset_left = 359.0
-offset_top = 99.0
-offset_right = 697.0
-offset_bottom = 299.0
-texture = ExtResource("2_rhn6m")
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 5
-patch_margin_bottom = 6
-
-[node name="ShardStoredLabel" type="Label" parent="MainPanel/Background/ShardBox" unique_id=2053622269]
-layout_mode = 0
-offset_top = 16.0
-offset_right = 338.0
-offset_bottom = 52.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 28
-horizontal_alignment = 1
-
-[node name="StoredSub" type="Label" parent="MainPanel/Background/ShardBox" unique_id=123088163]
-layout_mode = 0
-offset_top = 56.0
-offset_right = 338.0
-offset_bottom = 74.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 11
-text = "stored in safe"
-horizontal_alignment = 1
-
-[node name="InnerSep" type="ColorRect" parent="MainPanel/Background/ShardBox" unique_id=521077685]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 86.0
-offset_right = 326.0
-offset_bottom = 87.0
-mouse_filter = 2
-color = Color(0.22, 0.24, 0.28, 1)
-
-[node name="AmountLabel" type="Label" parent="MainPanel/Background/ShardBox" unique_id=1675619365]
-layout_mode = 0
-offset_top = 96.0
-offset_right = 338.0
-offset_bottom = 114.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 11
-text = "WITHDRAW AMOUNT"
-horizontal_alignment = 1
-
-[node name="ShardMinusBtn" type="Button" parent="MainPanel/Background/ShardBox" unique_id=583975436]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 120.0
-offset_right = 44.0
-offset_bottom = 152.0
-theme_override_font_sizes/font_size = 18
-text = "−"
-
-[node name="ShardAmountInput" type="LineEdit" parent="MainPanel/Background/ShardBox" unique_id=1699235190]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 120.0
-offset_right = 290.0
-offset_bottom = 152.0
-text = "0"
-alignment = 1
-
-[node name="ShardPlusBtn" type="Button" parent="MainPanel/Background/ShardBox" unique_id=273331784]
-layout_mode = 0
-offset_left = 294.0
-offset_top = 120.0
-offset_right = 326.0
-offset_bottom = 152.0
-theme_override_font_sizes/font_size = 18
-text = "+"
-
-[node name="ShardWithdrawBtn" type="Button" parent="MainPanel/Background/ShardBox" unique_id=1605016962]
-layout_mode = 0
-offset_left = 126.0
-offset_top = 156.0
-offset_right = 211.0
-offset_bottom = 191.0
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxTexture_x7oqw")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ctjyu")
-theme_override_styles/hover = SubResource("StyleBoxTexture_ltknp")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_close")
-text = "Withdraw"
 
 [node name="CloseBtn" type="Button" parent="MainPanel/Background" unique_id=585445877]
 layout_mode = 0
@@ -211,7 +97,4 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_close")
 text = "✕"
 flat = true
 
-[connection signal="pressed" from="MainPanel/Background/ShardBox/ShardMinusBtn" to="." method="_on_shard_minus"]
-[connection signal="pressed" from="MainPanel/Background/ShardBox/ShardPlusBtn" to="." method="_on_shard_plus"]
-[connection signal="pressed" from="MainPanel/Background/ShardBox/ShardWithdrawBtn" to="." method="_on_shard_withdraw"]
 [connection signal="pressed" from="MainPanel/Background/CloseBtn" to="." method="_on_close_pressed"]

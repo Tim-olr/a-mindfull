@@ -1,20 +1,3 @@
-res://scripts/shaders/outline.gdshader
-res://resources/crafting/stations/weapon_smith.tres
-res://scripts/world gen/new_tile_set.tres
-res://scenes/main game/spirits/spirits/furniture_city.tscn
-res://scripts/main game/Spirits/spirits/furniture_city.gd
-res://scenes/Weapons/spirit_weapons/furniture_city.tscn
-res://scripts/Weapons/spirit_weapons/furniture_city.gd
-res://scripts/main game/Spirits/spirit.gd
-res://resources/spirits/spirits/FURNITURE_CITY.tres
-res://scenes/Player/player.tscn
-res://scripts/Player/player.gd
-res://scripts/Player/GlobalPlayer.gd
-res://scripts/Player/player_components.gd
-res://scenes/main game/components/PlayerComponents/component.gd
-res://scenes/main game/components/PlayerComponents/spirits/furniture_city_boost.tscn
-res://scenes/main game/components/PlayerComponents/spirits/furniture_city_boost.gd
-res://scenes/Physics objects/physics_object.tscn
-res://scripts/Weapons/spirit_weapons/fc_active.gd
-res://scenes/Weapons/spirit_weapons/fc_active.tscn
-res://scenes/Projectile/swap_projectile.tscn
+res://scripts/Player/player_movement.gd
+res://scripts/Projectiles/projectile.gd
+res://scripts/artifacts/artifact_manager.gd

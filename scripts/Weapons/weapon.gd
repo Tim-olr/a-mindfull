@@ -188,17 +188,9 @@ func _shoot_projectile() -> void:
 		bullet.speed_mode           = bullet_speed_mode
 		bullet.end_speed_multiplier = bullet_end_speed_multiplier
 		bullet.pierce               = pierce
-		# Fahrer card: spirit damage multiplier (The Son / The Fahrer).
-		if shooter.is_in_group("spirit"):
-			bullet.damage = attack_damage * FahrerDeck.spirit_damage_mult()
-		else:
-			bullet.damage = attack_damage
+		bullet.damage = attack_damage
 		bullet.lifetime             = bullet_lifetime
 		bullet.collision_area.set_scale(custom_collision_sizes)
-		# Fahrer card: Jack of Spades forces every projectile to a fixed scale.
-		var scale_override = FahrerDeck.bullet_scale_override()
-		if scale_override != null:
-			bullet.scale = scale_override
 		var final_pos: Vector2 = bullet_stars_pos.global_position if bullet_stars_pos else spawn_pos
 		if pos_scatter_radius > 0.0:
 			final_pos += Vector2(randf() * pos_scatter_radius, 0.0).rotated(base_rot)
@@ -236,10 +228,7 @@ func _shoot_laser() -> void:
 		laser.shooter_group = "spirit"
 	laser.rot                    = base_rot
 	laser.rotation               = base_rot
-	if shooter.is_in_group("spirit"):
-		laser.damage = attack_damage * FahrerDeck.spirit_damage_mult()
-	else:
-		laser.damage = attack_damage
+	laser.damage = attack_damage
 	laser.lifetime               = bullet_lifetime
 	laser.pierce                 = pierce
 	laser.knockback_force        = knockback_force

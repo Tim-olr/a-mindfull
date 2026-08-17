@@ -6,7 +6,7 @@ extends Node
 @export var start_time: float = 0.30       # start a bit after sunrise
 
 var time: float = 0.30
-var lock_time: bool = false      # set by Fahrer cards (The Sun / The Moon)
+var lock_time: bool = false
 var lock_value: float = 0.5
 var _modulate_node: CanvasModulate = null
 

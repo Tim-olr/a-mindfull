@@ -192,7 +192,6 @@ func die():
 	if tree == null:
 		return
 	var player_node = get_parent()
-	GlobalSafe.add_shards(GlobalPlayer.stats.shards * (0.1 + ArtifactManager.shard_death_retention()))
 	if player_node:
 		player_node.process_mode = Node.PROCESS_MODE_ALWAYS
 	if movement_controller:

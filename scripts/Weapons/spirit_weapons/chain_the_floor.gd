@@ -35,7 +35,7 @@ func _shoot_chain() -> void:
 		bullet.do_more_damage_to_enemies_with_hp_percent = GlobalPlayer.stats.do_more_damage_to_enemies_with_hp_percent
 		bullet.enemy_health_percentage_min               = GlobalPlayer.stats.enemy_health_percentage_min
 		bullet.damage_mult_for_dmdtewhp                  = GlobalPlayer.stats.damage_mult_for_dmdtewhp
-		bullet.damage           = base_damage * seg[1] * FahrerDeck.spirit_damage_mult()
+		bullet.damage           = base_damage * seg[1]
 		bullet.lifetime         = 0.13
 		bullet.projectileSpeed  = 0.0
 		bullet.speed_mode       = 0

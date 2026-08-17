@@ -12,8 +12,6 @@ class_name Enemy
 @onready var attack_speed: Timer = $attack_speed
 @onready var health_bar: ProgressBar = $"UI enemy/HealthBar"
 @export var knockback_resistance: float = 0.0
-@export var can_drop_shards := true
-@export var shard_amount := 0.0
 @export var pushback_distance: float = 38.0
 
 @export var avoidance_ray_count: int    = 7
@@ -39,7 +37,6 @@ func _ready() -> void:
 		var wep = weapon.instantiate()
 		add_child(wep)
 	add_to_group("enemy")
-	stats.speed *= FahrerDeck.enemy_speed_mult()
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0 and !died:
@@ -129,13 +126,7 @@ func damage(damageAmount, _dmgr, _camShake):
 func die():
 	canWalk = false
 	died = true
-	give_shards()
 	queue_free()
-
-func give_shards(amount := 0.0):
-	if !can_drop_shards:
-		return
-	GlobalPlayer.stats.add_shards(amount if amount != 0.0 else shard_amount)
 
 func attack(_b):
 	pass

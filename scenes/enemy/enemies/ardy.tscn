@@ -19,7 +19,6 @@ texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_wmufp")
-shard_amount = 10.0
 pushback_distance = 1.0
 avoidance_force = 300.0
 

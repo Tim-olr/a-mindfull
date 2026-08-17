@@ -26,8 +26,6 @@ var _dodge_token: int = 0
 const COLLISION_BIT_WALKABLE := 1
 const COLLISION_BIT_WALL := 8
 
-@export var push_force: float = 200.0
-
 func _ready() -> void:
 	Player.collision_mask = COLLISION_BIT_WALKABLE | COLLISION_BIT_WALL
 
@@ -46,7 +44,6 @@ func _physics_process(delta):
 	dodgeVelocity = lerp(dodgeVelocity, Vector2.ZERO, 13 * delta)
 	handle_animations()
 	Player.move_and_slide()
-	_handle_physics_pushes()
 
 func add_knockback(knockback: Vector2):
 	knockbackVelocity += knockback
@@ -142,10 +139,3 @@ func handle_animations():
 			player_sprites.flip_h = false
 			if player_sprites.animation != "walk_down":
 				player_sprites.play("walk_down")
-
-func _handle_physics_pushes() -> void:
-	for i in Player.get_slide_collision_count():
-		var collision = Player.get_slide_collision(i)
-		var collider = collision.get_collider()
-		if collider is PhysicsObject and collider.pushable:
-			collider.apply_central_impulse(-collision.get_normal() * push_force)

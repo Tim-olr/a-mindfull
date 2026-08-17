@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://dj1cj1xd2h1ka" path="res://scripts/Player/camera/camera_2d.gd" id="9_06t3u"]
 [ext_resource type="PackedScene" uid="uid://y76cgvbr6xds" path="res://scenes/generalComponents/health_bar.tscn" id="9_lf5c0"]
 [ext_resource type="Texture2D" uid="uid://8kvscpbrp3bp" path="res://assets/player/charcater.png" id="10_1bwnf"]
-[ext_resource type="PackedScene" uid="uid://byxetoyvngan6" path="res://scenes/Player/inventory/currency/shard_counter.tscn" id="12_1bwnf"]
 [ext_resource type="Shader" uid="uid://c3ukum4ox8wcs" path="res://scripts/shaders/grayscale.gdshader" id="12_tb7ui"]
 [ext_resource type="Shader" uid="uid://ceveomwowsu7d" path="res://scripts/shaders/blue_filter.gdshader" id="13_7hhef"]
 [ext_resource type="Script" uid="uid://dbvwhgdhuymig" path="res://scripts/Player/player_components.gd" id="17_tayva"]
@@ -308,7 +307,6 @@ dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 1400
 climb_time = 0.2
-shards = 10000.0
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
 position = Vector2(985, 521)
@@ -345,15 +343,6 @@ offset_top = -97.0
 offset_right = 276.0
 offset_bottom = -70.0
 scale = Vector2(0.6, 0.6)
-
-[node name="shard_counter" parent="PlayerVisuals/UI" unique_id=599853496 instance=ExtResource("12_1bwnf")]
-z_index = 18
-layout_mode = 0
-offset_left = 121.0
-offset_top = -44.0
-offset_right = 121.0
-offset_bottom = -44.0
-scale = Vector2(0.8, 0.8)
 
 [node name="PlayerSprites" type="AnimatedSprite2D" parent="PlayerVisuals" unique_id=98449750]
 sprite_frames = SubResource("SpriteFrames_x5xxc")

@@ -27,15 +27,11 @@ GlobalPlayer="*uid://br1nyi7ps7d55"
 GlobalWorld="*uid://cursbc857e54k"
 GlobalSafe="*uid://cn7yvsmy5gls3"
 GlobalhitMarker="*uid://ivxlhrg3mot2"
-Crafting="*uid://cf7psk33fpt32"
-ShardCounterLobby="*uid://cwk3uktvc4bsf"
 DayNightCycle="*res://scripts/main game/day_night_cycle.gd"
-FahrerDeck="*uid://b83a3xt1xbcfq"
 ArtifactManager="*res://scripts/artifacts/artifact_manager.gd"
 WeaponRegistry="*res://scripts/global/weapon_registry.gd"
 LootPoolManager="*res://scripts/global/loot_pool_manager.gd"
 FogOfWar="*res://scripts/global/fog_of_war.gd"
-WiseTree="*res://scripts/global/wise_tree.gd"
 
 [display]
 
@@ -77,6 +73,7 @@ physics_object=""
 step_up=""
 world_gen=""
 climbing_area=""
+destructible=""
 
 [gui]
 
