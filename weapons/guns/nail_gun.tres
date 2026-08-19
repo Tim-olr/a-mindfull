@@ -13,4 +13,4 @@ rarity = 1
 txtr = ExtResource("3_dxrg6")
 Name = "Nail Gun"
 description = "Rapid fire nails. Low damage but very fast."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

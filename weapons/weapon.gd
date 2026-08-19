@@ -96,7 +96,7 @@ func _process(_delta: float) -> void:
 			bullet_stars_pos.look_at(GlobalPlayer.player.global_position)
 			if gun:
 				var dist = global_position.distance_to(GlobalPlayer.player.global_position)
-				if shooter.stats.canAttack and dist < 1000:
+				if shooter.stats.canAttack and dist < 1000 and shooter.can_attack_player():
 					perform_attack()
 
 

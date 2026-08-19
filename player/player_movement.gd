@@ -31,6 +31,8 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if not movement_enabled:
+		direction = Vector2.ZERO
+		handle_animations()
 		return
 	direction = Input.get_vector("left", "right", "up", "down")
 	if direction.length() > 0:

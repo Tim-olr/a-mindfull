@@ -12,6 +12,7 @@ func _ready() -> void:
 	icon.material.set_shader_parameter("outline_color", item.calculate_rarity_outline())
 	if item.has_scale:
 		scale = item.scale_mod
+	_start_bob(icon)
 
 func interacted():
 	GlobalPlayer.inventory.inventory.add_item(item)

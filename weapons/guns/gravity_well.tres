@@ -13,4 +13,4 @@ rarity = 2
 txtr = ExtResource("3_6mnnl")
 Name = "Gravity Well"
 description = "Summons orbiting projectiles that shield you from enemies."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

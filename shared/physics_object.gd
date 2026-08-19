@@ -27,10 +27,37 @@ const ITEM_INTERACTABLE = preload("uid://cgwfugy5k2bsj")
 @export var hide_txtr: bool = false
 @export var has_on_touch: bool = false
 
+var _player_passthrough: bool = false
+
 func _ready() -> void:
 	init_health()
 	init_settings()
 	add_to_group("physics_object")
+	if not can_pass_through:
+		add_to_group("obstacle")
+		_sync_player_passthrough()
+
+## Obstacles block the player by default. A spirit whose ability grants
+## passthrough (Spirit.allows_obstacle_passthrough) can toggle this per obstacle
+## via the "obstacle" group when it is brought out/in.
+func set_player_can_pass(passable: bool) -> void:
+	if not is_instance_valid(GlobalPlayer.player) or passable == _player_passthrough:
+		return
+	_player_passthrough = passable
+	if passable:
+		add_collision_exception_with(GlobalPlayer.player)
+	else:
+		remove_collision_exception_with(GlobalPlayer.player)
+
+## Picks up the current spirit's passthrough state for obstacles spawned
+## while that spirit is already out (e.g. entering a new room).
+func _sync_player_passthrough() -> void:
+	if not is_instance_valid(GlobalPlayer.stats):
+		return
+	var spirit = GlobalPlayer.stats.playerSpiritScene
+	if spirit != null and is_instance_valid(spirit) and spirit.out \
+			and spirit.has_method("allows_obstacle_passthrough") and spirit.allows_obstacle_passthrough():
+		set_player_can_pass(true)
 
 func damage(amount: float) -> void:
 	if not destroyable:

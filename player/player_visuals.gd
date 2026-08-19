@@ -5,6 +5,7 @@ class_name PlayerVisuals
 @onready var health_bar: ProgressBar = $UI/HealthBar
 @onready var gray: TextureRect = $Effects2/Gray
 @onready var blue: TextureRect = $Effects/Blue
+@onready var room_shadow: ColorRect = $Effects3/RoomShadow
 
 const GRAY_DURATION: float = 0.2
 
@@ -13,6 +14,11 @@ func _ready() -> void:
 	health_bar.init_health(GlobalPlayer.stats.maxHp)
 	if gray.material and gray.material is ShaderMaterial:
 		gray.material.set_shader_parameter("saturation", 1.0)
+	# Only the dungeon uses room-edge darkening; the hub has no rooms to hide.
+	room_shadow.visible = false
+
+func set_room_shadow_visible(is_visible: bool) -> void:
+	room_shadow.visible = is_visible
 
 func init_health_display(max_hp: float) -> void:
 	health_bar.init_health(max_hp)

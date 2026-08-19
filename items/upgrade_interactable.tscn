@@ -14,7 +14,7 @@ shader_parameter/outline_color = Color(1, 1, 1, 1)
 radius = 17.560923
 
 [node name="UpgradeInteractable" type="Area2D" groups=["interactables"]]
-scale = Vector2(10, 10)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_upg")
 
 [node name="icon" type="Sprite2D" parent="."]

@@ -14,6 +14,7 @@ func _ready() -> void:
 		icon.texture = artifact.icon
 	icon.material = icon.material.duplicate()
 	icon.material.set_shader_parameter("outline_color", artifact.rarity_color())
+	_start_bob(icon)
 
 func interacted() -> void:
 	ArtifactManager.pick_up(artifact)

@@ -22,8 +22,6 @@ class_name Spirit
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var bullet_start_pos: Marker2D = GlobalPlayer.spiritMarker
 
-@onready var mesh_instance_2d: MeshInstance2D = $MeshInstance2D
-
 var canAbility: bool = true
 
 var weapo: Weapon
@@ -43,8 +41,6 @@ var host: CharacterBody2D
 @onready var stats: Node2D = $stats
 
 func _ready() -> void:
-	if mesh_instance_2d != null:
-		mesh_instance_2d.hide()
 	if hasWeapon:
 		weapo = weaponScene.instantiate()
 		add_child(weapo)
@@ -88,8 +84,6 @@ func damage(amount, damager, shake):
 
 func bring_out():
 	if !out:
-		if mesh_instance_2d != null:
-			mesh_instance_2d.show()
 		out = true
 		canGetAttacked = true
 		apply_passive()
@@ -97,6 +91,8 @@ func bring_out():
 			weapo.show()
 		ap.play("BringOut")
 		enemycollision.disabled = false
+		if allows_obstacle_passthrough():
+			_set_obstacle_passthrough(true)
 
 func bring_in():
 	if out:
@@ -107,6 +103,8 @@ func bring_in():
 			weapo.hide()
 		ap.play("BringIn")
 		enemycollision.disabled = true
+		if allows_obstacle_passthrough():
+			_set_obstacle_passthrough(false)
 
 func check_can_attack():
 	if stats.canAttack:
@@ -134,6 +132,16 @@ func remove_ability():
 # `hit_on_spirit` is true when the hit landed on the spirit body, false when on the player.
 func modify_incoming_damage(amount: float, _hit_on_spirit: bool) -> float:
 	return amount
+
+## Override to true in subclasses whose passive/active ability lets the
+## player walk through breakable/solid obstacles while the spirit is out.
+func allows_obstacle_passthrough() -> bool:
+	return false
+
+func _set_obstacle_passthrough(enabled: bool) -> void:
+	for obstacle in get_tree().get_nodes_in_group("obstacle"):
+		if obstacle.has_method("set_player_can_pass"):
+			obstacle.set_player_can_pass(enabled)
 
 func _on_attack_cooldown_timer_timeout() -> void:
 	stats.canAttack = true

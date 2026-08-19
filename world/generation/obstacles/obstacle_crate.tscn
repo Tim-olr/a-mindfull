@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" uid="uid://bwv08oeqvuexq" path="res://shared/physics_object.tscn" id="1_base"]
+
+[node name="ObstacleCrate" instance=ExtResource("1_base")]
+scale = Vector2(0.18, 0.18)
+Name = "Crate"
+destroyable = true
+max_health = 15
+health = 15
+modulate = Color(0.65, 0.45, 0.25, 1)

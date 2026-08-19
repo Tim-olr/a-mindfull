@@ -22,7 +22,7 @@ texture = ExtResource("2_wqe0a")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=496845371 groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=496845371]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1373880134]
 position = Vector2(0, 0.5)
@@ -42,9 +42,9 @@ texture = ExtResource("2_wqe0a")
 
 [node name="EnemyStats" type="Node2D" parent="." unique_id=1019589396]
 script = ExtResource("3_ihpvw")
-hp = 200.0
-speed = 100.0
-attackDamage = 19.0
+hp = 50.0
+speed = 52.0
+attackDamage = 15.0
 attackCooldown = 1.0
 attackSpeed = 3.0
 death_anim_time = 1.0

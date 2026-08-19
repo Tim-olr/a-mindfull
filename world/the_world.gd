@@ -15,6 +15,7 @@ func _ready() -> void:
 		GlobalPlayer.camera.snap_to_room(start_room)
 	load_timer.start()
 	GlobalPlayer.visuals.deleteBlack()
+	GlobalPlayer.visuals.set_room_shadow_visible(true)
 	GameManager.is_in_lobby = false
 	GlobalWorld.projectiles = projectiles
 	GlobalWorld.theWorld = self

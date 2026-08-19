@@ -1,10 +1,10 @@
-[gd_scene format=4 uid="uid://bheqsxiy5xkwj"]
+[gd_scene format=3 uid="uid://bheqsxiy5xkwj"]
 
 [ext_resource type="PackedScene" uid="uid://hw08n22lt0e2" path="res://player/player.tscn" id="1_27o51"]
 [ext_resource type="Script" uid="uid://dby2ukjy8dom4" path="res://world/the_world.gd" id="1_87ryk"]
-[ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://world/extraction_point.tscn" id="10_wk3ij"]
-[ext_resource type="Script" path="res://world/generation/dungeon_generator.gd" id="2_gen"]
+[ext_resource type="Script" uid="uid://dyr0clqssl6cl" path="res://world/generation/dungeon_generator.gd" id="2_gen"]
 [ext_resource type="Resource" uid="uid://jyvi036w6gy" path="res://world/generation/floors/depths.tres" id="3_floor"]
+[ext_resource type="PackedScene" uid="uid://da8qg1qf0g4wu" path="res://world/extraction_point.tscn" id="10_wk3ij"]
 
 [sub_resource type="Gradient" id="Gradient_13bug"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -19,15 +19,14 @@ script = ExtResource("1_87ryk")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=624441541]
 
-[node name="DungeonGenerator" type="Node2D" parent="."]
+[node name="DungeonGenerator" type="Node2D" parent="." unique_id=1123046326]
+y_sort_enabled = true
 script = ExtResource("2_gen")
 floor_config = ExtResource("3_floor")
 auto_generate = true
 use_random_seed = false
-seed_value = 1
 
 [node name="Player" parent="." unique_id=1802974490 instance=ExtResource("1_27o51")]
-z_index = 0
 position = Vector2(240, 135)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1374598864]

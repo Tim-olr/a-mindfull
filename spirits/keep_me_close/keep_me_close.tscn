@@ -170,7 +170,6 @@ sprites = NodePath("AnimatedSprite2D")
 activeAbilityCooldown = 30.0
 hasAbilityDuration = true
 abilityDuration = 7.0
-hasWeapon = true
 weaponScene = ExtResource("2_n2n30")
 follow_distance = 35.0
 

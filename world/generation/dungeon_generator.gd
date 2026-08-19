@@ -161,6 +161,7 @@ func _instantiate_rooms(types: Dictionary) -> Dictionary:
 		var room: DungeonRoom = scene.instantiate()
 		room.grid_position = cell
 		room.room_id = room_id
+		room.is_start_room = (cell == Vector2i.ZERO)
 		room.position = Vector2(cell.x * floor_config.room_size.x, cell.y * floor_config.room_size.y)
 		add_child(room)
 		result[cell] = room
@@ -176,6 +177,7 @@ func _spawn_door(room: DungeonRoom, neighbor_room: DungeonRoom, side: DungeonRoo
 	var door: Door = door_scene.instantiate()
 	door.target_position = neighbor_room.get_entry_position(entry_side as Side)
 	door.target_room = neighbor_room
+	door.source_room = room
 	add_child(door)
 	door.global_position = room.get_door_position(side as Side)
 	door.face_side(side)

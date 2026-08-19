@@ -13,4 +13,4 @@ rarity = 3
 txtr = ExtResource("3_qblwm")
 Name = "Cursed Tome"
 description = "Casts a random spell each attack: Fireball, Ice Spike, or Chain Lightning."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

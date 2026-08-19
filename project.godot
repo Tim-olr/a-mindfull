@@ -14,14 +14,16 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="extraction roguelike"
-run/main_scene="uid://cjun8ius5qflf"
+config/name="A Mindfull"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
 
 [autoload]
 
+KeybindManager="*res://ui/settings/keybind_manager.gd"
+PauseManager="*res://ui/pause_menu/pause_manager.gd"
 GameManager="*uid://du3bcindtvcx0"
 GlobalPlayer="*uid://br1nyi7ps7d55"
 GlobalWorld="*uid://cursbc857e54k"

@@ -13,4 +13,4 @@ rarity = 2
 txtr = ExtResource("3_l52xr")
 Name = "Echo Cannon"
 description = "Fires a large projectile that splits into three smaller ones."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

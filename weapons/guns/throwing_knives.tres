@@ -12,4 +12,4 @@ itemScene = ExtResource("1_tk")
 txtr = ExtResource("3_eyokm")
 Name = "Throwing Knives"
 description = "Fast throwing knives. Low damage but very rapid."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

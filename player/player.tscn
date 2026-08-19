@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dnv2nppsb62ti" path="res://player/player_movement.gd" id="1_pyt2a"]
 [ext_resource type="Script" uid="uid://b0nykv8sstij6" path="res://player/player.gd" id="1_s4a0o"]
 [ext_resource type="Script" uid="uid://c2plpl8yv0n81" path="res://player/player_stats.gd" id="2_s4a0o"]
-[ext_resource type="Resource" uid="uid://edrw6nhv1nlj" path="res://spirits/furniture_city/furniture_city.tres" id="3_1bwnf"]
+[ext_resource type="Resource" uid="uid://cvjrk20laai14" path="res://spirits/keep_me_close/keep_me_close.tres" id="3_65viv"]
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="PackedScene" uid="uid://dgmmjdo2t04f0" path="res://player/safe/safe_ui.tscn" id="7_2pfsf"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://d4jgyfymssuv7" path="res://shared/shaders/room_vignette.gdshader" id="18_vignette"]
 [ext_resource type="Script" uid="uid://cjfn86qlry2jf" path="res://ui/currency_label.gd" id="19_currency"]
 [ext_resource type="Script" uid="uid://cqoyhr6t4v1e5" path="res://ui/minimap.gd" id="20_minimap"]
+[ext_resource type="Script" uid="uid://burag4j84yakx" path="res://ui/time_label.gd" id="21_time"]
 
 [sub_resource type="Gradient" id="Gradient_ly2qd"]
 offsets = PackedFloat32Array(0.993506, 0.993976, 1)
@@ -307,14 +308,14 @@ hp = 100.0
 maxHp = 100.0
 attackDamage = 10.0
 slideAmount = 100.0
-playerSpirit = ExtResource("3_1bwnf")
+playerSpirit = ExtResource("3_65viv")
 bulletAmount = 1
 bulletLifeTime = 1.0
 bulletSize = Vector2(1, 1)
 attackSpeed = 1.0
 dashImmuneTime = 1.0
 dashCooldown = 1.0
-dashAmount = 1400
+dashAmount = 1100
 climb_time = 0.2
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
@@ -359,6 +360,20 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 18
 text = "Shards: 0"
 script = ExtResource("19_currency")
+
+[node name="TimeLabel" type="Label" parent="PlayerVisuals/UI" unique_id=1664315400]
+z_index = 18
+offset_left = 24.0
+offset_top = 83.0
+offset_right = 264.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "00:00"
+script = ExtResource("21_time")
 
 [node name="MinimapLayer" type="CanvasLayer" parent="PlayerVisuals" unique_id=1043487800]
 layer = 5

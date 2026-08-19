@@ -13,4 +13,4 @@ rarity = 1
 txtr = ExtResource("3_bqmts")
 Name = "Shotgun"
 description = "Fires a wide spread of pellets. Devastating at close range."
-scale_mod = Vector2(6, 6)
+scale_mod = Vector2(0.5, 0.5)

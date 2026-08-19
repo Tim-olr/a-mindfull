@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfe1f5nk2e85a" path="res://world/generation/floor_config.gd" id="1_cfg"]
 [ext_resource type="Script" uid="uid://bj1f74e644y8x" path="res://world/generation/special_room_data.gd" id="2_special"]
 [ext_resource type="PackedScene" path="res://world/generation/special_rooms/boss_room.tscn" id="3_boss"]
-[ext_resource type="PackedScene" path="res://world/generation/special_rooms/item_room.tscn" id="4_item"]
+[ext_resource type="PackedScene" uid="uid://j44tyik8syny" path="res://world/generation/special_rooms/item_room.tscn" id="4_item"]
 [ext_resource type="PackedScene" path="res://world/generation/special_rooms/shop_room.tscn" id="5_shop"]
 
 [sub_resource type="Resource" id="SpecialRoomData_boss"]

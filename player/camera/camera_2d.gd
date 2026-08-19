@@ -20,29 +20,37 @@ func snap_to_room(room: DungeonRoom) -> void:
 	if _room_tween:
 		_room_tween.kill()
 	global_position = room.get_center()
-	_mark_current(room)
+	_leave_current_room(room)
+	room.set_active(true)
 
+## Slides the camera to the new room. Player movement/shooting and the new
+## room's enemies stay frozen until the slide animation finishes, so no
+## gameplay logic runs while the room switch is still playing out.
 func slide_to_room(room: DungeonRoom) -> void:
 	if _room_tween:
 		_room_tween.kill()
+	_set_logic_frozen(true)
+	_leave_current_room(room)
 	_room_tween = create_tween()
 	_room_tween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_room_tween.tween_property(self, "global_position", room.get_center(), room_transition_time)
-	_mark_current(room)
+	_room_tween.tween_callback(_finish_room_switch.bind(room))
 
-func _mark_current(room: DungeonRoom) -> void:
+func _finish_room_switch(room: DungeonRoom) -> void:
+	room.set_active(true)
+	_set_logic_frozen(false)
+
+func _set_logic_frozen(frozen: bool) -> void:
+	if is_instance_valid(GlobalPlayer.movement):
+		GlobalPlayer.movement.movement_enabled = not frozen
+	if is_instance_valid(GlobalPlayer.stats):
+		GlobalPlayer.stats.canAttack = not frozen
+
+func _leave_current_room(room: DungeonRoom) -> void:
+	if is_instance_valid(GlobalWorld.current_room) and GlobalWorld.current_room != room:
+		GlobalWorld.current_room.set_active(false)
 	room.visited = true
 	GlobalWorld.current_room = room
-	print("DEBUG room marked current: grid=", room.grid_position, " global_pos=", room.global_position,
-		" visible_in_tree=", room.is_visible_in_tree(), " children=", room.get_children())
-	for c in room.get_children():
-		if c is CanvasItem:
-			print("  child ", c.name, " type=", c.get_class(), " visible=", c.visible, " modulate=", c.modulate, " z_index=", c.z_index)
-			if c is TextureRect:
-				print("    TextureRect global_position=", c.global_position, " size=", c.size, " global_rect=", c.get_global_rect(), " texture=", c.texture)
-	print("DEBUG cam: enabled=", enabled, " is_current=", is_current(), " active_cam=", get_viewport().get_camera_2d(),
-		" me=", self, " zoom=", zoom, " global_position=", global_position, " canvas_transform=", get_viewport().canvas_transform)
-	print("DEBUG world2d: room=", room.get_world_2d(), " cam=", get_world_2d(), " same_viewport=", (room.get_viewport() == get_viewport()))
 
 func _process(delta: float) -> void:
 	if shake_strength > 0:

@@ -19,10 +19,9 @@ texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_wmufp")
-pushback_distance = 1.0
 avoidance_force = 300.0
 
-[node name="Area2D" type="Area2D" parent="." unique_id=58544561 groups=["enemy"]]
+[node name="Area2D" type="Area2D" parent="." unique_id=58544561]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1310979559]
 position = Vector2(-1, 0.5)
@@ -44,11 +43,11 @@ texture = ExtResource("2_bjdtj")
 
 [node name="EnemyStats" type="Node2D" parent="." unique_id=1233673918]
 script = ExtResource("3_eotki")
-hp = 80.0
-speed = 80.0
-attackDamage = 8.0
+hp = 20.0
+speed = 40.0
+attackDamage = 6.0
 attackCooldown = 1.0
-attackSpeed = 4.0
+attackSpeed = 2.0
 death_anim_time = 1.0
 bulletAmount = 1
 bulletLifeTime = 1.0

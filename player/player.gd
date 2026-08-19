@@ -20,15 +20,3 @@ func _ready() -> void:
 	GlobalPlayer.spiritMarker = spirit_bullet_marker
 	GlobalPlayer.specials = player_specials
 	GlobalPlayer.components = player_components
-
-var _debug_timer := 0.0
-func _process(delta: float) -> void:
-	_debug_timer += delta
-	if _debug_timer >= 0.5:
-		_debug_timer = 0.0
-		var sprite = $PlayerVisuals/PlayerSprites
-		var room = GlobalWorld.current_room
-		print("DEBUG pos=", global_position, " visible=", sprite.visible, " modulate=", sprite.modulate,
-			" self_modulate=", sprite.self_modulate, " z_index=", z_index,
-			" room=", (room.grid_position if room else "none"),
-			" cam_pos=", (camera_2d.global_position if camera_2d else "none"))
