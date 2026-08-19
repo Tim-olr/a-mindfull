@@ -14,7 +14,7 @@ func _ready() -> void:
 	top_level = true
 
 func apply_shake(shakeAmt):
-	shake_strength = shakeAmt
+	shake_strength = shakeAmt * GameSettings.screen_shake_intensity
 
 func snap_to_room(room: DungeonRoom) -> void:
 	if _room_tween:

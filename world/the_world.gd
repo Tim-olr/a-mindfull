@@ -4,12 +4,17 @@ extends Node2D
 @onready var projectiles: Node2D = $projectiles
 @onready var dmgNrs: Node2D = $dmgNrs
 @onready var dungeon_generator: DungeonGenerator = $DungeonGenerator
+@onready var canvas_modulate: CanvasModulate = $CanvasModulate
+
+const BASE_MODULATE := Color(1.2, 1.15, 1.08, 1.0)
 
 ## Entry point for a dungeon run: generates the floor layout, then wires up
 ## the player, globals, and the weapons carried in from the hub.
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
+	GameSettings.changed.connect(_apply_brightness)
+	_apply_brightness()
 	GlobalWorld.dungeon_generator = dungeon_generator
 	var start_room: DungeonRoom = dungeon_generator.rooms.get(Vector2i.ZERO)
 	if start_room and is_instance_valid(GlobalPlayer.camera):
@@ -49,3 +54,11 @@ func _ready() -> void:
 
 func _on_load_timer_timeout() -> void:
 	black.hide()
+
+func _apply_brightness() -> void:
+	canvas_modulate.color = Color(
+		BASE_MODULATE.r * GameSettings.brightness,
+		BASE_MODULATE.g * GameSettings.brightness,
+		BASE_MODULATE.b * GameSettings.brightness,
+		BASE_MODULATE.a
+	)

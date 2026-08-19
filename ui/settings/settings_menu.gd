@@ -5,15 +5,20 @@ signal closed
 const ROW_LABEL_MIN_WIDTH := 260.0
 const MODIFIER_KEYCODES := [KEY_SHIFT, KEY_CTRL, KEY_ALT, KEY_META, KEY_CAPSLOCK]
 
-@onready var keybind_list: VBoxContainer = $Panel/ScrollContainer/KeybindList
+const FPS_LABELS := {0: "Uncapped", 30: "30", 60: "60", 120: "120", 144: "144", 240: "240"}
+
+@onready var keybind_list: VBoxContainer = $Panel/TabContainer/Controls/KeybindList
+@onready var general_list: VBoxContainer = $Panel/TabContainer/Display/GeneralList
 
 var _bind_buttons: Dictionary = {}
 var _listening_action: String = ""
 var _listening_button: Button = null
+var _fullscreen_checkbox: CheckBox = null
 
 func _ready() -> void:
 	hide()
 	_build_rows()
+	_build_general_settings()
 
 func open_settings() -> void:
 	_cancel_listening()
@@ -156,3 +161,109 @@ func _event_to_text(event: InputEvent) -> String:
 			_:
 				return "Mouse %d" % event.button_index
 	return "Unknown"
+
+func _build_general_settings() -> void:
+	_add_slider_row("Screen Shake", 0.0, 2.0, 0.05, GameSettings.screen_shake_intensity, func(v): GameSettings.set_screen_shake_intensity(v))
+	_add_slider_row("Brightness", 0.4, 1.8, 0.05, GameSettings.brightness, func(v): GameSettings.set_brightness(v))
+	_add_fps_row()
+	_add_fullscreen_row()
+	_add_resolution_row()
+
+func _add_slider_row(label_text: String, min_v: float, max_v: float, step: float, current: float, on_change: Callable) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+
+	var label := Label.new()
+	label.text = label_text
+	label.custom_minimum_size = Vector2(ROW_LABEL_MIN_WIDTH, 0)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	row.add_child(label)
+
+	var slider := HSlider.new()
+	slider.min_value = min_v
+	slider.max_value = max_v
+	slider.step = step
+	slider.value = current
+	slider.custom_minimum_size = Vector2(220, 24)
+	slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.add_child(slider)
+
+	var value_label := Label.new()
+	value_label.text = "%d%%" % roundi(current * 100.0)
+	value_label.custom_minimum_size = Vector2(56, 0)
+	row.add_child(value_label)
+
+	slider.value_changed.connect(func(v: float):
+		value_label.text = "%d%%" % roundi(v * 100.0)
+		on_change.call(v)
+	)
+
+	general_list.add_child(row)
+
+func _add_fps_row() -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+
+	var label := Label.new()
+	label.text = "FPS Limit"
+	label.custom_minimum_size = Vector2(ROW_LABEL_MIN_WIDTH, 0)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	row.add_child(label)
+
+	var option := OptionButton.new()
+	for fps in GameSettings.FPS_OPTIONS:
+		option.add_item(FPS_LABELS.get(fps, str(fps)))
+	var idx := GameSettings.FPS_OPTIONS.find(GameSettings.fps_limit)
+	option.selected = maxi(idx, 0)
+	option.item_selected.connect(func(i: int): GameSettings.set_fps_limit(GameSettings.FPS_OPTIONS[i]))
+	row.add_child(option)
+
+	general_list.add_child(row)
+
+func _add_fullscreen_row() -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+
+	var label := Label.new()
+	label.text = "Fullscreen"
+	label.custom_minimum_size = Vector2(ROW_LABEL_MIN_WIDTH, 0)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	row.add_child(label)
+
+	var checkbox := CheckBox.new()
+	checkbox.button_pressed = GameSettings.fullscreen
+	checkbox.toggled.connect(func(pressed: bool): GameSettings.set_fullscreen(pressed))
+	row.add_child(checkbox)
+
+	general_list.add_child(row)
+	_fullscreen_checkbox = checkbox
+
+## Picking a resolution only has a visible effect in windowed mode, so
+## choosing one also switches Fullscreen off (and updates that checkbox)
+## instead of silently doing nothing while fullscreen is still on.
+func _add_resolution_row() -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", 16)
+
+	var label := Label.new()
+	label.text = "Resolution"
+	label.custom_minimum_size = Vector2(ROW_LABEL_MIN_WIDTH, 0)
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	row.add_child(label)
+
+	var option := OptionButton.new()
+	for res in GameSettings.RESOLUTIONS:
+		option.add_item("%d x %d" % [res.x, res.y])
+	var idx := GameSettings.RESOLUTIONS.find(GameSettings.window_size)
+	option.selected = maxi(idx, 0)
+	option.item_selected.connect(func(i: int):
+		var res: Vector2i = GameSettings.RESOLUTIONS[i]
+		GameSettings.set_window_size(res)
+		if GameSettings.fullscreen:
+			GameSettings.set_fullscreen(false)
+			if _fullscreen_checkbox != null:
+				_fullscreen_checkbox.button_pressed = false
+	)
+	row.add_child(option)
+
+	general_list.add_child(row)

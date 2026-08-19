@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 KeybindManager="*res://ui/settings/keybind_manager.gd"
+GameSettings="*res://ui/settings/game_settings.gd"
 PauseManager="*res://ui/pause_menu/pause_manager.gd"
 GameManager="*uid://du3bcindtvcx0"
 GlobalPlayer="*uid://br1nyi7ps7d55"
@@ -40,7 +41,7 @@ Currency="*res://player/currency.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
+window/size/mode=0
 window/size/borderless=true
 window/stretch/mode="viewport"
 

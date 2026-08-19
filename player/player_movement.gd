@@ -1,6 +1,8 @@
 extends Node2D
 class_name PlayerMovement
 
+const DashSmokeParticles: PackedScene = preload("res://player/dash_smoke_particles.tscn")
+
 @onready var Player = $".."
 @onready var Stats: Node2D = $"../PlayerStats"
 @onready var dash_cooldown: Timer = $DashCooldown
@@ -72,43 +74,62 @@ func _deferred_wait_for_dodge(token: int) -> void:
 	if token == _dodge_token:
 		isDodgingAnim = false
 
-## Ghostly afterimage trail: a bright expanding flash at the moment of the
-## dash, followed by a string of translucent player-silhouette afterimages
-## left behind along the dash path, each fading and shrinking away.
+## Dash afterimage trail: every frame of the walk animation that's currently
+## playing gets spawned in white, shortly after one another, along the dash
+## path. Each frame is given less time to fade than the last (duration =
+## total trail lifetime minus how late it spawned) so despite spawning
+## staggered, they all hit zero alpha and disappear at the same moment,
+## instead of fading out one by one. A smoke puff also kicks up from the
+## spot the dash started.
 func _deferred_dash_trail(token: int) -> void:
-	_spawn_ghost(1.0, 2.4, 0.85, 0.0, 0.18, Color(0.75, 0.95, 1.0))
-	var ghost_count := 5
-	for i in range(ghost_count):
-		await get_tree().create_timer(0.035).timeout
-		if token != _dodge_token:
-			return
-		_spawn_ghost(1.0, 0.75, 0.5, 0.0, 0.3, Color(0.5, 0.6, 1.0))
+	_spawn_dash_smoke(player_sprites.global_position)
 
-func _spawn_ghost(scale_from: float, scale_to: float, alpha_from: float, alpha_to: float, duration: float, tint: Color) -> void:
+	var anim_name := String(player_sprites.animation)
 	var frames := player_sprites.sprite_frames
-	if frames == null or not frames.has_animation(player_sprites.animation):
+	if frames == null or not frames.has_animation(anim_name):
 		return
-	var tex := frames.get_frame_texture(player_sprites.animation, player_sprites.frame)
+	var frame_count := frames.get_frame_count(anim_name)
+	if frame_count <= 0:
+		return
+
+	var flip := player_sprites.flip_h
+	var stagger := 0.045
+	var trail_lifetime := 0.3
+	for i in range(frame_count):
+		if i > 0:
+			await get_tree().create_timer(stagger).timeout
+			if token != _dodge_token:
+				return
+		var remaining: float = maxf(trail_lifetime - stagger * i, 0.06)
+		_spawn_walk_frame_ghost(frames.get_frame_texture(anim_name, i), flip, remaining)
+
+func _spawn_walk_frame_ghost(tex: Texture2D, flip: bool, duration: float) -> void:
 	if tex == null:
 		return
 	var parent := Player.get_parent()
 	if parent == null:
 		return
-	var base_scale: Vector2 = player_sprites.get_global_transform().get_scale()
 	var ghost := Sprite2D.new()
 	ghost.texture = tex
-	ghost.flip_h = player_sprites.flip_h
+	ghost.flip_h = flip
 	ghost.global_position = player_sprites.global_position
 	ghost.global_rotation = player_sprites.global_rotation
-	ghost.scale = base_scale * scale_from
+	ghost.scale = player_sprites.get_global_transform().get_scale()
 	ghost.z_index = Player.z_index - 1
-	ghost.modulate = Color(tint.r, tint.g, tint.b, alpha_from)
+	ghost.modulate = Color(1.0, 1.0, 1.0, 0.85)
 	parent.add_child(ghost)
 	var tween := ghost.create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(ghost, "modulate:a", alpha_to, duration)
-	tween.tween_property(ghost, "scale", base_scale * scale_to, duration)
-	tween.chain().tween_callback(ghost.queue_free)
+	tween.tween_property(ghost, "modulate:a", 0.0, duration)
+	tween.tween_callback(ghost.queue_free)
+
+func _spawn_dash_smoke(pos: Vector2) -> void:
+	var parent := Player.get_parent()
+	if parent == null:
+		return
+	var smoke := DashSmokeParticles.instantiate()
+	smoke.global_position = pos
+	smoke.z_index = Player.z_index - 1
+	parent.add_child(smoke)
 
 func _on_dash_cooldown_timeout() -> void:
 	canDodge = true

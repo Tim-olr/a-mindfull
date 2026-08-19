@@ -15,6 +15,7 @@ class_name Enemy
 @export var knockback_resistance: float = 0.0
 @export var pushback_strength: float = 60.0
 @export var separation_padding: float = 4.0
+@export var player_radius: float = 10.0
 
 @export var avoidance_ray_count: int    = 7
 @export var avoidance_ray_length: float = 52.0
@@ -52,6 +53,7 @@ func _ready() -> void:
 		var wep = weapon.instantiate()
 		add_child(wep)
 	add_to_group("enemy")
+	_setup_collision_exceptions()
 	if deals_contact_damage:
 		area.body_entered.connect(_on_contact_area_body_entered)
 		area.body_exited.connect(_on_contact_area_body_exited)
@@ -61,6 +63,19 @@ func _ready() -> void:
 		add_child(contact_timer)
 		contact_timer.timeout.connect(_deal_contact_damage)
 		contact_timer.start()
+
+## Characters are meant to shove each other (see _compute_separation), not
+## act like solid walls. Godot's kinematic collision would otherwise hard-stop
+## and violently un-stick overlapping CharacterBody2Ds in a single frame
+## (the "teleporting" snap), so the physical collision between this enemy and
+## the player/other enemies is turned off here; only real geometry (walls)
+## still blocks movement, and the soft push below handles the rest.
+func _setup_collision_exceptions() -> void:
+	if is_instance_valid(GlobalPlayer.player):
+		add_collision_exception_with(GlobalPlayer.player)
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy != self and is_instance_valid(enemy):
+			add_collision_exception_with(enemy)
 
 func _process(_delta: float) -> void:
 	if stats.hp <= 0 and !died:
@@ -125,6 +140,17 @@ func _compute_separation() -> Vector2:
 		var away := offset / distance if distance > 0.01 else Vector2.RIGHT.rotated(randf() * TAU)
 		var overlap := (min_distance - distance) / min_distance
 		separation += away * overlap * pushback_strength
+
+	if is_instance_valid(GlobalPlayer.player):
+		var player := GlobalPlayer.player
+		var p_offset: Vector2 = global_position - player.global_position
+		var p_distance: float = p_offset.length()
+		var p_min_distance: float = my_radius + player_radius + separation_padding
+		if p_distance < p_min_distance:
+			var p_away := p_offset / p_distance if p_distance > 0.01 else Vector2.RIGHT.rotated(randf() * TAU)
+			var p_overlap := (p_min_distance - p_distance) / p_min_distance
+			separation += p_away * p_overlap * pushback_strength
+
 	return separation
 
 func _compute_steering() -> Vector2:
@@ -148,6 +174,18 @@ func _get_avoidance() -> Vector2:
 	var avoid  := Vector2.ZERO
 	var spread := PI
 
+	# Avoidance rays are only meant to steer around walls/obstacles, not
+	# other enemies or the player (those are handled by _compute_separation
+	# and should be approached/pushed through, not steered away from).
+	# Everyone else defaults to the same physics layer as walls, so they
+	# have to be excluded explicitly here.
+	var exclude: Array = [self]
+	if is_instance_valid(GlobalPlayer.player):
+		exclude.append(GlobalPlayer.player)
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if enemy != self and is_instance_valid(enemy):
+			exclude.append(enemy)
+
 	for i in avoidance_ray_count:
 		var t       := float(i) / float(avoidance_ray_count - 1)
 		var angle   := (t - 0.5) * spread
@@ -158,7 +196,7 @@ func _get_avoidance() -> Vector2:
 			global_position,
 			global_position + ray_dir * avoidance_ray_length
 		)
-		query.exclude    = [self]
+		query.exclude    = exclude
 		query.collision_mask = 1
 
 		var result := space.intersect_ray(query)

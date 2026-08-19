@@ -19,7 +19,8 @@ texture = ExtResource("2_bjdtj")
 area = NodePath("Area2D")
 base = NodePath("Sprite2D")
 weapon = ExtResource("3_wmufp")
-avoidance_force = 300.0
+separation_padding = 1.0
+avoidance_ray_length = 10.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=58544561]
 
