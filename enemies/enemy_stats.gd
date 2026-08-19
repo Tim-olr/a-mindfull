@@ -12,5 +12,6 @@ extends Node2D
 @export var pierce: int = 1
 @export var bulletLifeTime: float
 @export var bulletSize: Vector2
+@export var shard_reward: int = 1
 var max_hp: float = 0.0
 var canAttack: bool = true

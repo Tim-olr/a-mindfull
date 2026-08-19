@@ -235,6 +235,7 @@ func damage(damageAmount, _dmgr, _camShake):
 func die():
 	canWalk = false
 	died = true
+	Currency.add(stats.shard_reward)
 	queue_free()
 
 func attack(_b):

@@ -21,6 +21,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mvg1l"]
 size = Vector2(8, 8)
 
+[sub_resource type="Gradient" id="Gradient_trail"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 1, 0.9, 1, 1, 0.62, 0.15, 0.85, 0.55, 0.08, 0.02, 0)
+
+[sub_resource type="Gradient" id="Gradient_trail_spark"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.85, 0.4, 0)
+
+[sub_resource type="Curve" id="Curve_trailscale"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ember"]
+blend_mode = 1
+
 [node name="Projectile" type="CharacterBody2D" unique_id=1162203950 node_paths=PackedStringArray("collision_area", "area_shape", "local_proj")]
 script = ExtResource("1_gmfsf")
 collision_area = NodePath("CollisionArea")
@@ -39,5 +54,46 @@ one_shot = true
 shape = SubResource("RectangleShape2D_mvg1l")
 
 [node name="ProjMiddle" type="Marker2D" parent="." unique_id=1072879033]
+
+[node name="TrailParticles" type="CPUParticles2D" parent="." unique_id=1072879034]
+material = SubResource("CanvasItemMaterial_ember")
+emitting = true
+amount = 12
+lifetime = 0.18
+explosiveness = 0.0
+randomness = 0.35
+local_coords = false
+direction = Vector2(-1, 0)
+spread = 14.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 28.0
+angular_velocity_min = -140.0
+angular_velocity_max = 140.0
+damping_min = 30.0
+damping_max = 60.0
+scale_amount_min = 0.5
+scale_amount_max = 1.4
+scale_amount_curve = SubResource("Curve_trailscale")
+color_ramp = SubResource("Gradient_trail")
+hue_variation_min = -0.02
+hue_variation_max = 0.04
+
+[node name="TrailSparkle" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_ember")
+emitting = true
+amount = 4
+lifetime = 0.12
+explosiveness = 0.0
+randomness = 0.6
+local_coords = false
+direction = Vector2(-1, 0)
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.0
+initial_velocity_max = 45.0
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+color_ramp = SubResource("Gradient_trail_spark")
 
 [connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

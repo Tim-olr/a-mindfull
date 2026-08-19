@@ -65,11 +65,50 @@ func dodge():
 	_dodge_token += 1
 	var token = _dodge_token
 	call_deferred("_deferred_wait_for_dodge", token)
+	call_deferred("_deferred_dash_trail", token)
 
 func _deferred_wait_for_dodge(token: int) -> void:
 	await player_sprites.animation_finished
 	if token == _dodge_token:
 		isDodgingAnim = false
+
+## Ghostly afterimage trail: a bright expanding flash at the moment of the
+## dash, followed by a string of translucent player-silhouette afterimages
+## left behind along the dash path, each fading and shrinking away.
+func _deferred_dash_trail(token: int) -> void:
+	_spawn_ghost(1.0, 2.4, 0.85, 0.0, 0.18, Color(0.75, 0.95, 1.0))
+	var ghost_count := 5
+	for i in range(ghost_count):
+		await get_tree().create_timer(0.035).timeout
+		if token != _dodge_token:
+			return
+		_spawn_ghost(1.0, 0.75, 0.5, 0.0, 0.3, Color(0.5, 0.6, 1.0))
+
+func _spawn_ghost(scale_from: float, scale_to: float, alpha_from: float, alpha_to: float, duration: float, tint: Color) -> void:
+	var frames := player_sprites.sprite_frames
+	if frames == null or not frames.has_animation(player_sprites.animation):
+		return
+	var tex := frames.get_frame_texture(player_sprites.animation, player_sprites.frame)
+	if tex == null:
+		return
+	var parent := Player.get_parent()
+	if parent == null:
+		return
+	var base_scale: Vector2 = player_sprites.get_global_transform().get_scale()
+	var ghost := Sprite2D.new()
+	ghost.texture = tex
+	ghost.flip_h = player_sprites.flip_h
+	ghost.global_position = player_sprites.global_position
+	ghost.global_rotation = player_sprites.global_rotation
+	ghost.scale = base_scale * scale_from
+	ghost.z_index = Player.z_index - 1
+	ghost.modulate = Color(tint.r, tint.g, tint.b, alpha_from)
+	parent.add_child(ghost)
+	var tween := ghost.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(ghost, "modulate:a", alpha_to, duration)
+	tween.tween_property(ghost, "scale", base_scale * scale_to, duration)
+	tween.chain().tween_callback(ghost.queue_free)
 
 func _on_dash_cooldown_timeout() -> void:
 	canDodge = true

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Projectile
 
+const ImpactParticles: PackedScene = preload("res://weapons/projectiles/impact_particles.tscn")
+
 @onready var life_time: Timer = $LifeTime
 
 var rot: float = 0.0
@@ -134,7 +136,16 @@ func _on_life_time_timeout() -> void:
 	queue_free()
 
 func go_away():
+	_spawn_impact_particles()
 	queue_free()
+
+func _spawn_impact_particles() -> void:
+	var parent := get_parent()
+	if parent == null:
+		return
+	var fx = ImpactParticles.instantiate()
+	fx.global_position = global_position
+	parent.add_child(fx)
 
 func hit(hitBody):
 	var my_shape = area_shape.shape

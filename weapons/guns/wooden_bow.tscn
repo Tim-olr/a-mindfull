@@ -12,7 +12,7 @@ size = Vector2(86, 20)
 script = ExtResource("1_bow")
 damageMod = 15.0
 bulletLifeTimeMod = 1.5
-projectileSpeedMod = 600.0
+projectileSpeedMod = 300.0
 shootCooldown = 0.4
 gun = true
 description = "Hold to charge, release to fire. Longer charge = more damage and range."

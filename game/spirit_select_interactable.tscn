@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/spirit_select_interactable.gd" id="1_spint"]
+[ext_resource type="Texture2D" uid="uid://dowoda6idxfva" path="res://icon.svg" id="2_spint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spint"]
+size = Vector2(124.25, 119.5)
+
+[node name="SpiritSelectInteractable" type="Area2D" groups=["interactables"]]
+script = ExtResource("1_spint")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.7, 0.85, 1, 1)
+texture = ExtResource("2_spint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_spint")

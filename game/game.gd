@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready() -> void:
 	get_tree().paused = false
+	Engine.time_scale = 1.0
 	GlobalPlayer.stats.canAttack = false
 	var playerSpirit = GlobalPlayer.stats.playerSpirit.scene.instantiate()
 	playerSpirit.host = GlobalPlayer.player

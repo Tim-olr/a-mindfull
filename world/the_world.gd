@@ -9,6 +9,7 @@ extends Node2D
 ## the player, globals, and the weapons carried in from the hub.
 
 func _ready() -> void:
+	Engine.time_scale = 1.0
 	GlobalWorld.dungeon_generator = dungeon_generator
 	var start_room: DungeonRoom = dungeon_generator.rooms.get(Vector2i.ZERO)
 	if start_room and is_instance_valid(GlobalPlayer.camera):

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://84meb3bqjfvg" path="res://player/player_manager.gd" id="3_ly2qd"]
 [ext_resource type="Script" uid="uid://6rsohixmelnm" path="res://player/player_visuals.gd" id="5_ly2qd"]
 [ext_resource type="PackedScene" uid="uid://dgmmjdo2t04f0" path="res://player/safe/safe_ui.tscn" id="7_2pfsf"]
+[ext_resource type="PackedScene" path="res://spirits/spirit_select/spirit_select_ui.tscn" id="7_spsel"]
 [ext_resource type="Script" uid="uid://cqkje5nuohlnc" path="res://player/inventory/player_inventory.gd" id="7_3ragq"]
 [ext_resource type="Script" uid="uid://bhf43mahuarph" path="res://player/player_specials.gd" id="8_67ne4"]
 [ext_resource type="PackedScene" uid="uid://jqii235rbcqp" path="res://player/inventory/inventory.tscn" id="8_lf5c0"]
@@ -316,6 +317,7 @@ attackSpeed = 1.0
 dashImmuneTime = 1.0
 dashCooldown = 1.0
 dashAmount = 1100
+hitImmuneTime = 0.6
 climb_time = 0.2
 
 [node name="PlayerInventory" type="Node2D" parent="." unique_id=73861592]
@@ -328,6 +330,13 @@ layer = 10
 [node name="Inventory" parent="PlayerInventory/InventoryLayer" unique_id=1859743326 instance=ExtResource("8_lf5c0")]
 
 [node name="SafeUi" parent="PlayerInventory" unique_id=1199611452 instance=ExtResource("7_2pfsf")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SpiritSelectUi" parent="PlayerInventory" instance=ExtResource("7_spsel")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -464,6 +473,9 @@ shape = SubResource("CircleShape2D_uiqp4")
 [node name="HPSTimer" type="Timer" parent="PlayerManager" unique_id=29365474]
 autostart = true
 
+[node name="HitImmunityTimer" type="Timer" parent="PlayerManager" unique_id=1877443210]
+one_shot = true
+
 [node name="PlayerMovement" type="Node2D" parent="." unique_id=563886157]
 script = ExtResource("1_pyt2a")
 
@@ -495,5 +507,6 @@ shakeFade = 7.0
 script = ExtResource("17_tayva")
 
 [connection signal="timeout" from="PlayerManager/HPSTimer" to="PlayerManager" method="hps_tick"]
+[connection signal="timeout" from="PlayerManager/HitImmunityTimer" to="PlayerManager" method="_on_hit_immunity_timer_timeout"]
 [connection signal="timeout" from="PlayerMovement/DashCooldown" to="PlayerMovement" method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="PlayerMovement/ImmunityTime" to="PlayerMovement" method="_on_immunity_time_timeout"]

@@ -18,6 +18,7 @@ y_sort_enabled = true
 script = ExtResource("1_87ryk")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=624441541]
+color = Color(1.2, 1.15, 1.08, 1)
 
 [node name="DungeonGenerator" type="Node2D" parent="." unique_id=1123046326]
 y_sort_enabled = true

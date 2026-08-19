@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bqva4l530dwja" path="res://game/game.gd" id="1_yg2su"]
 [ext_resource type="PackedScene" uid="uid://b8hsu3b3gsqo3" path="res://game/game_starter.tscn" id="2_13bug"]
 [ext_resource type="PackedScene" uid="uid://rm7o5ewaew2x" path="res://world/safe_interactable.tscn" id="5_cub4b"]
+[ext_resource type="PackedScene" path="res://game/spirit_select_interactable.tscn" id="6_spint"]
 
 [node name="Game" type="Node2D" unique_id=1324580435]
 script = ExtResource("1_yg2su")
@@ -16,4 +17,8 @@ scale = Vector2(0.2, 0.2)
 
 [node name="SafeInteractable" parent="." unique_id=1927641315 instance=ExtResource("5_cub4b")]
 position = Vector2(-155.00012, 29.999992)
+scale = Vector2(0.2, 0.2)
+
+[node name="SpiritSelectInteractable" parent="." instance=ExtResource("6_spint")]
+position = Vector2(-155.00012, -60.0)
 scale = Vector2(0.2, 0.2)

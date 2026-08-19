@@ -1,0 +1,90 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://spirits/spirit_select/spirit_select_ui.gd" id="1_spsel"]
+[ext_resource type="Texture2D" uid="uid://cch44qg2ac5du" path="res://assets/world/blocks/set/Ninja Adventure - Asset Pack/Ui/Theme/Theme Wood/nine_path_panel.png" id="2_spsel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_close"]
+
+[node name="SpiritSelectUi" type="Control"]
+z_index = 1002
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_spsel")
+
+[node name="MainPanel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 550.0
+offset_top = 300.0
+offset_right = 1370.0
+offset_bottom = 730.0
+mouse_filter = 2
+
+[node name="Background" type="NinePatchRect" parent="MainPanel"]
+layout_mode = 0
+offset_right = 820.0
+offset_bottom = 430.0
+texture = ExtResource("2_spsel")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 5
+patch_margin_bottom = 6
+
+[node name="Title" type="Label" parent="MainPanel/Background"]
+layout_mode = 0
+offset_top = 14.0
+offset_right = 820.0
+offset_bottom = 52.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 26
+text = "SPIRITS"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="MainPanel/Background"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 820.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.99834317, 0.9982161, 0.99803835, 1)
+theme_override_font_sizes/font_size = 14
+text = "Choose which spirit accompanies you."
+horizontal_alignment = 1
+
+[node name="Separator" type="ColorRect" parent="MainPanel/Background"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 80.0
+offset_right = 802.0
+offset_bottom = 82.0
+mouse_filter = 2
+color = Color(0.22, 0.24, 0.28, 1)
+
+[node name="GridContainer" type="Control" parent="MainPanel/Background"]
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 100.0
+offset_right = 805.0
+offset_bottom = 410.0
+mouse_filter = 2
+
+[node name="CloseBtn" type="Button" parent="MainPanel/Background"]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 10.0
+offset_right = 820.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.9, 0.35, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_close")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_close")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_close")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_close")
+text = "✕"
+flat = true
+
+[connection signal="pressed" from="MainPanel/Background/CloseBtn" to="." method="_on_close_pressed"]

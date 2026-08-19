@@ -8,6 +8,7 @@ class_name PlayerManager
 @onready var health_bar: ProgressBar = $"../PlayerVisuals/UI/HealthBar"
 @onready var player_sprites: AnimatedSprite2D = $"../PlayerVisuals/PlayerSprites"
 @onready var weapon_marker: Marker2D = $"../WeaponMarker"
+@onready var hit_immunity_timer: Timer = $HitImmunityTimer
 
 @export var weapon: PackedScene
 @export var inventory_node_path: NodePath = NodePath("")
@@ -17,8 +18,10 @@ class_name PlayerManager
 
 var canGetDamaged: bool = true
 var spiritCanGetDamaged := true
+var hit_immune: bool = false
 var _weapon_instance: Node = null
 var _active_interactable: Interactable = null
+var _flicker_tween: Tween = null
 
 # Auto-pickup area (radius driven by stats.pickup_radius_mult)
 const PICKUP_AREA_BASE := 600.0
@@ -146,12 +149,13 @@ func _on_interact_area_exited(area: Area2D) -> void:
 func damage(damage_amount, attacker, shake):
 	if god_mode:
 		return
-	if canGetDamaged:
+	if canGetDamaged and not hit_immune and not movement_controller.isDodging:
 		damage_amount = _apply_spirit_incoming_modifier(damage_amount, false)
 		var reduction_am = damage_amount * stats.damage_reduction
 		damage_amount -= reduction_am
 		stats.hp -= damage_amount
 		damaged(shake)
+		_start_hit_immunity()
 		health_bar.set_health(stats.hp)
 		GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
 		if attacker != null:
@@ -161,18 +165,41 @@ func damage(damage_amount, attacker, shake):
 func spirit_damage(damage_amount, attacker, shake):
 	if god_mode:
 		return
-	if spiritCanGetDamaged:
+	if spiritCanGetDamaged and not hit_immune and not movement_controller.isDodging:
 		damage_amount = _apply_spirit_incoming_modifier(damage_amount, true)
 		# Spirit hits use damage_reduction PLUS spirit_damage_reduction
 		var total_dr := clampf(stats.damage_reduction + stats.spirit_damage_reduction, 0.0, 0.95)
 		damage_amount -= damage_amount * total_dr
 		stats.hp -= damage_amount
 		damaged(shake)
+		_start_hit_immunity()
 		health_bar.set_health(stats.hp)
 		GlobalhitMarker.show_hit_marker(damage_amount, GlobalPlayer.player, false)
 		if attacker != null:
 			var knockback_direction = (get_parent().global_position - attacker.global_position).normalized()
 			apply_knockback(knockback_direction, 200.0)
+
+func _start_hit_immunity() -> void:
+	hit_immune = true
+	hit_immunity_timer.start(stats.hitImmuneTime)
+	_start_hit_flicker()
+
+func _on_hit_immunity_timer_timeout() -> void:
+	hit_immune = false
+	_stop_hit_flicker()
+
+func _start_hit_flicker() -> void:
+	if _flicker_tween and _flicker_tween.is_valid():
+		_flicker_tween.kill()
+	_flicker_tween = create_tween()
+	_flicker_tween.set_loops()
+	_flicker_tween.tween_callback(func(): player_sprites.visible = false).set_delay(0.06)
+	_flicker_tween.tween_callback(func(): player_sprites.visible = true).set_delay(0.06)
+
+func _stop_hit_flicker() -> void:
+	if _flicker_tween and _flicker_tween.is_valid():
+		_flicker_tween.kill()
+	player_sprites.visible = true
 
 func _apply_spirit_incoming_modifier(amount: float, hit_on_spirit: bool) -> float:
 	var s = stats.playerSpiritScene
@@ -188,6 +215,7 @@ func damaged(shake):
 
 func die():
 	canGetDamaged = false
+	_stop_hit_flicker()
 	var tree = get_tree()
 	if tree == null:
 		return
