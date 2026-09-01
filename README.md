@@ -4,7 +4,7 @@
 **An extraction roguelike built around the power of your spirit.**
 
 ![Early Development](https://img.shields.io/badge/Status-Early%20Development-yellow)
-![Genre](https://img.shields.io/badge/Genre-Roguelike%20%7C%20Extraction%20Shooter-blueviolet)
+![Genre](https://img.shields.io/badge/Genre-Roguelike%20%7C%20Dungeon%20Crawler-blueviolet)
 ![Contact](https://img.shields.io/badge/Contact-amindfullgame%40gmail.com-blue)
 
 </div>
